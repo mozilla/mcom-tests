@@ -87,9 +87,6 @@ class MobilePage(Page):
 	@property
 	def get_download_text(self):
 		return self.selenium.get_text(self.download_locator)
-	
-		
-		
+			
 	def __init__(self, selenium):
 		self.selenium = selenium
-

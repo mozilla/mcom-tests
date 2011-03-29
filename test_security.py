@@ -39,11 +39,11 @@ from selenium import selenium
 from vars import ConnectionParameters
 import unittest
 from mozilla_base_page  import  MozillaBasePage
-from mobile_page import MobilePage
+from security_page import SecurityPage
 
 
 
-class TestMobile(unittest.TestCase):
+class TestSecurity(unittest.TestCase):
 	
 	def setUp(self):
 		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
@@ -57,58 +57,47 @@ class TestMobile(unittest.TestCase):
 		
 	def test_header_and_footer_links_are_present(self):
 		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/mobile/')
+		homepageBase.selenium.open('/firefox/security/')
 		
 		for x in homepageBase.headers_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
-			
+
 		for x in homepageBase.footer_features_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
-			
+
 		for x in homepageBase.footer_social_media_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
-			
+
 		for x in homepageBase.footer_mobile_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
-			
+
 		for x in homepageBase.footer_support_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
-			
+
 		for x in homepageBase.footer_addons_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
-			
+
 		for x in homepageBase.footer_about_list:
 			homepageBase.selenium.get_text(x)
 			self.assertTrue(homepageBase.is_element_present(x))
 			
-
-
-	
-
-
-	def test_sub_sections_are_present(self):
-		mobile_pg = MobilePage(self.selenium)
-		mobile_pg.selenium.open('/mobile/')
-		mobile_pg.get_tour_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
-		mobile_pg.get_sync_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
-		mobile_pg.get_addons_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
-		mobile_pg.get_download_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator))
-		
-		
 			
-			
+	def test_icons_are_present(self):
+		securitypageBase  = SecurityPage(self.selenium)
+		securitypageBase.selenium.open('/firefox/security/')
 		
 		
 		
-if __name__ =="__main__":
+		
+if __name__ == "__main__":
 	unittest.main()
+		
+		
+		
+		

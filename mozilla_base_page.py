@@ -56,7 +56,7 @@ class MozillaBasePage(Page):
 	_about_header_locator = "css=#nav-main-about > a"
 	_mozilla_header_locator ="css=#header > div a.mozilla"
 	_header_list = [_features_header_locator,
-	                 _mobile_header_locator,
+					 _mobile_header_locator,
 					 _addons_header_locator,
 					 _support_header_locator,
 					 _about_header_locator,
@@ -69,7 +69,7 @@ class MozillaBasePage(Page):
 	_footer_tech_locator = "css=#footer-menu > ul >li:nth-child(1) > ul > li:nth-child(5) > a"
 	_footer_videos_locator = "css=#footer-menu > ul >li:nth-child(1) > ul > li:nth-child(6) > a"
 	_footer_tour_locator = "css=#footer-menu > ul >li:nth-child(1) > ul > li:nth-child(7) > a"
-	_footer_features_list = [ _footer_features_locator,
+	_footer_features_list = [_footer_features_locator,
 							  _footer_security_locator,
 							  _footer_performance_locator,
 							  _footer_custom_locator,
@@ -94,7 +94,7 @@ class MozillaBasePage(Page):
 	_footer_minvolved_locator = "css=#footer-menu > ul > li:nth-child(2) > ul > li:nth-child(7) > a"
 	_footer_mfaq_locator = "css=#footer-menu > ul > li:nth-child(2) > ul > li:nth-child(8) > a"
 	_footer_mblog_locator = "css=#footer-menu > ul > li:nth-child(2) > ul > li:nth-child(9) > a"
-	_footer_mobile_list = [ _footer_mobile_locator,
+	_footer_mobile_list = [_footer_mobile_locator,
 	                        _footer_mobile_download_locator,
 	                        _footer_mfeatures_locator,
 	                        _footer_mcustom_locator,
@@ -104,7 +104,7 @@ class MozillaBasePage(Page):
 	                        _footer_mfaq_locator,
 	                        _footer_mblog_locator]
 	
-	_footer_addons_locator =  "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(1) > a"
+	_footer_addons_locator = "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(1) > a"
 	_footer_feat_addons_locator = "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(2) > a"
 	_footer_extensions_locator = "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(3) > a"
 	_footer_themes_locator = "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(4) > a"
@@ -114,7 +114,7 @@ class MozillaBasePage(Page):
 	_footer_collections_locator = "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(8) > a"
 	_footer_mobile_addons_locator = "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(9) > a"
 	_footer_dev_hub_locator =  "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(10) > a"
-	_footer_addons_list = [ _footer_addons_locator,
+	_footer_addons_list = [_footer_addons_locator,
 	                        _footer_feat_addons_locator,
 							_footer_extensions_locator,
 							_footer_themes_locator,
@@ -128,7 +128,7 @@ class MozillaBasePage(Page):
 	_footer_support_locator = "css=#footer-menu > ul > li:nth-child(4) > ul > li:nth-child(1) > a"
 	_footer_msupport_locator = "css=#footer-menu > ul > li:nth-child(4) > ul > li:nth-child(2) > a"
 	_footer_thunderbird_locator = "css=#footer-menu > ul > li:nth-child(4) > ul > li:nth-child(3) > a"
-	_footer_support_list = [ _footer_support_locator,
+	_footer_support_list = [_footer_support_locator,
 							 _footer_msupport_locator,
 							 _footer_thunderbird_locator]
 							
@@ -155,12 +155,12 @@ class MozillaBasePage(Page):
 	@property
 	def footer_about_list(self):
 		return self._footer_about_list
+
 	@property
 	def footer_support_list(self):
 		return self._footer_support_list
 		
 							
-	
 	@property
 	def headers_list(self):
 		return self._header_list

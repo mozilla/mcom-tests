@@ -42,50 +42,52 @@ from vars import ConnectionParameters
 from page import Page
 
 
-class FeaturesPage(Page):
-	_made_easy_locator = "css=li#made-easy > a"
-	_high_performance_locator = "css=li#high-performace > a"
-	_advanced_security_locator = "css=li#advanced-security > a"
-	_powerful_personalization_locator = "css=li#powerful-personalization > a"
-	_universal_access_locator = "css=li#universal-access > a"
-	_cutting_edge_locator = "css=li#cutting-edge > a"
-	_download_link = "css=a.download-link"
-	_download_link_content = "css=a.download-link > .download-content"
-		
-	@property
-	def get_made_easy(self):
-		return self._made_easy_locator
-		
-	@property
-	def high_performance(self):
-		return self.selenium.is_element_prese(self._high_performance_locator)
+class SecurityPage(Page):
 	
-		
-	@property
-	def advanced_security(self):
-		return self._advanced_security_locator
-		
-	@property
-	def powerful_personalization(self):
-		return self._powerfu_personalization_locator
-		
-	@property
-	def universal_access(self):
-		return self._universal_access_locator
-		
-	@property
-	def cutting_edge(self):
-		return self._cutting_edge_locator
-		
-	@property 
-	def download_link(self):
-		return self._download_link_locator
+	_privacy_icon_locator = "li#security-privacy > a"
+	_security_icon_locator = "li#security-secure > a"
+	_control_icon_locator = "li#security-control > a"
+	_mission_icon_locator = "li#security-mission > a"
+	_privacy_screenshot_locator = "div#privacy.section > div.section-image >img"
+	_security_screenshot_locator = "div#secure.section > .section-image >img"
+	_control_screenshot_locator = "div#control.section > .section-image >img"
+	_mission_screenshot_locator = "div#mission.section > div.section-image >img"
 	
-	@property
-	def item_on_page(self):
-		return self._some_locator
-	
-	def __init__(self, selenium):
+	def __init__(self,selenium):
 		self.selenium = selenium
-		self.selenium.open('/')
+		self.selenium.open('/firefox/security/')
 		self.selenium.window_maximize()
+	
+	
+	@property
+	def privacy_icon(self):
+		return self._privacy_icon_locator
+		
+	@property
+	def security_icon(self):
+		return self._security_icon_locator
+		
+	@property
+	def control_icon(self):
+		return self._control_icon_locator
+		
+	@property
+	def misson_icon(self):
+		return self._mission_icon_locator
+		
+	@property
+	def privacy_screenshot(self):
+		return self._privacy_screenshot_locator
+		
+	@property
+	def security_screenshot(self):
+		return self._security_screenshot_locator
+		
+	@property
+	def control_screenshot(self):
+		return self._control_screenshot_locator
+		
+	@property
+	def mission_screenshot(self):
+		return self._mission_screenshot_locator
+		
