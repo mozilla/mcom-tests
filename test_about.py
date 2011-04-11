@@ -36,64 +36,46 @@
 #
 # ***** END LICENSE BLOCK *****
 
-
 from selenium import selenium
 from vars import ConnectionParameters
 import unittest
 from mozilla_base_page  import  MozillaBasePage
 
 
-
 class TestAbout(unittest.TestCase):
 	
-	def setUp(self):
-		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-													ConnectionParameters.browser, ConnectionParameters.baseurl)
-		self.selenium.start()
-		self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-	
+    def setUp(self):
+        self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
+        ConnectionParameters.browser, ConnectionParameters.baseurl)
+        self.selenium.start()
+        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
 		
-	def tearDown(self):
-		self.selenium.stop()
-	
+    def tearDown(self):
+        self.selenium.stop()
 		
-	def test_header_and_footer_links_are_present(self):	
-	
-		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/firefox/about/')
-	
-		for x in homepageBase.headers_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-		for x in homepageBase.footer_features_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-		for x in homepageBase.footer_social_media_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-		for x in homepageBase.footer_mobile_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-		for x in homepageBase.footer_support_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-		for x in homepageBase.footer_addons_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-		for x in homepageBase.footer_about_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-		
-		
-	
+    def test_header_and_footer_links_are_present(self):	
+        homepageBase = MozillaBasePage(self.selenium)
+        homepageBase.go_to_about()
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.headers_list ]
 
-	
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.footer_features_list]
 
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.footer_social_media_list]
+				
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.footer_mobile_list]
+				
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.footer_support_list]
+
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.footer_addons_list]
+
+        [self.assertTrue(homepageBase.is_element_present(x)) 
+            for x in homepageBase.footer_about_list]
+			
 if __name__ =="__main__":
 	unittest.main()
