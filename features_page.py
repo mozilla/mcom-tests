@@ -43,15 +43,16 @@ from page import Page
 
 
 class FeaturesPage(Page):
-	_made_easy_locator = "css=li#made-easy > a"
-	_high_performance_locator = "css=li#high-performace > a"
-	_advanced_security_locator = "css=li#advanced-security > a"
-	_powerful_personalization_locator = "css=li#powerful-personalization > a"
+	_made_easy_locator ="css=li#made-easy > a"
+	_high_performance_locator ="css=li#high-performace > a"
+	_advanced_security_locator ="css=li#advanced-security > a"
+	_powerful_personalization_locator ="css=li#powerful-personalization > a"
 	_universal_access_locator = "css=li#universal-access > a"
 	_cutting_edge_locator = "css=li#cutting-edge > a"
-	_download_link = "css=a.download-link"
-	_download_link_content = "css=a.download-link > .download-content"
-		
+	_download_link ="css=a.download-link"
+	_download_link_content ="css=a.download-link > .download-content"
+	
+	
 	@property
 	def get_made_easy(self):
 		return self._made_easy_locator
@@ -85,7 +86,7 @@ class FeaturesPage(Page):
 	def item_on_page(self):
 		return self._some_locator
 	
-	def __init__(self, selenium):
+	def __init__(self,selenium):
 		self.selenium = selenium
 		self.selenium.open('/')
 		self.selenium.window_maximize()

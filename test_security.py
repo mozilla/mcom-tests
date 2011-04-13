@@ -91,6 +91,8 @@ class TestSecurity(unittest.TestCase):
 	def test_icons_are_present(self):
 		securitypageBase  = SecurityPage(self.selenium)
 		securitypageBase.selenium.open('/firefox/security/')
+		self.assertTrue(securitypabe)
+		
 		
 		
 		

@@ -102,7 +102,7 @@ class TestMobile(unittest.TestCase):
 		mobile_pg.get_addons_text
 		self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
 		mobile_pg.get_download_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator))
+		self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
 		
 		
 			
@@ -112,3 +112,8 @@ class TestMobile(unittest.TestCase):
 		
 if __name__ =="__main__":
 	unittest.main()
+		
+
+		
+	
+	
