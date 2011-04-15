@@ -38,6 +38,6 @@
 class ConnectionParameters:
 	server ="localhost"
 	port = 4444
-	browser = "firefox"
-	baseurl ='http://www-fx4.stage.mozilla.com'
+	browser = "Firefox4b;en-us;MacOSX6"
+	baseurl ='https://www-trunk.stage.mozilla.com'
 	page_load_timeout = 120000
