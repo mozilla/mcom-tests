@@ -36,9 +36,9 @@
 #
 # ***** END LICENSE BLOCK *****
 class ConnectionParameters:
-	server ="qa-selenium.mv.mozilla.com"
+	server ="localhost"
 	port = 4444
-	browser = "Firefox4b;en-us;MacOSX6"
+	browser = "Firefox-4;en-us;MacOSX6"
 	baseurl = "http://www.mozilla.com"
 	productionurl = "http://www.mozilla.com"
 	page_load_timeout = 120000
