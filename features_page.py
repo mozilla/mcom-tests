@@ -43,43 +43,44 @@ from page import Page
 
 class FeaturesPage(Page):
     
-    _made_easy_locator =
+    _made_easy_locator = \
     "css=#main-feature>.feature-links>#made-easy>a"
-    _high_performance_locator = 
+    _high_performance_locator =  \
     "css=#main-feature>.feature-links>#high-performance>a"
-    _advanced_security_locator =
+    _advanced_security_locator = \
     "css=#main-feature>.feature-links>#advanced-security>a"
-    _powerful_personalization_locator =
+    _powerful_personalization_locator = \
     "css=#main-feature>.feature-links>#powerful-personalization>a"
-    _universal_access_locator =
+    _universal_access_locator = \
     "css=#main-feature>.feature-links>#cutting-edge>a"
-    _cutting_edge_locator =
+    _cutting_edge_locator = \
     "css=#main-feature>.feature-links>#universal-access>a"
-    _made_easy_image =
+    
+    _made_easy_image = \
     "css=#madeeasy>.features-container>.feature>.right"
-    _app_tabs_image =
+    _app_tabs_image = \
     "css=#madeeasy>.features-container>.feature>.column1>.sub-feature>.right"
-    _switch_tab_image = 
+    _switch_tab_image = \
     "css=#madeeasy>.features-container>.feature>.column2>.sub-feature>.right"
-    _panorama_image = 
+    _panorama_image = \
     "css=#madeeasy>.features-container>.feature>.column3>.sub-feature>.right"
-    _sync_image =
+    _sync_image = \
     "css=#madeeasy>.features-container>.column-span>.right"
-    _easy_search_image =
+    _easy_search_image = \
     "//*[@id='madeeasy']/div/div[8]/div[4]/img"
-    _one_bookmark_image =
+    _one_bookmark_image = \
     "css=#madeeasy>.features-container>.feature>.oneclickbookmarking>.right"
-    _speed_image =
+    _speed_image = \
     "css=#highperformance>.features-container>.column1>.feature>#performance-chart"
-    _security_image =
+    _security_image = \
     "css=#advancedsecurity>.features-container>.column1>.feature>.right"
-    _private_browsing_image =
+    _private_browsing_image = \
     "css=#advancedsecurity>.features-container>.column2>.feature>.right"
-    _auto_update_image =
+    _auto_update_image = \
     "css=#advancedsecurity>.features-container>.column3>.feature>.right"
-    _addons_manager_image =
+    _addons_manager_image = \
     "css=#powerfulpersonalization>.features-container>.addons-manager>.right"
-    personas_image =
+    personas_image = \
     "css=#powerfulpersonalization>.features-container>.column1>.feature>.right"
     
     

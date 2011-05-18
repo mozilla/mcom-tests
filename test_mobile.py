@@ -44,76 +44,28 @@ from mobile_page import MobilePage
 
 
 class TestMobile(unittest.TestCase):
-	
-	def setUp(self):
-		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-													ConnectionParameters.browser, ConnectionParameters.baseurl)
-		self.selenium.start()
-		self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-		
-	def tearDown(self):
-		self.selenium.stop()
-		
-		
-	def test_header_and_footer_links_are_present(self):
-		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/mobile/')
-		
-		for x in homepageBase.headers_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_features_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_social_media_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_mobile_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_support_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_addons_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_about_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
 
+    def setUp(self):
+        self.selenium = selenium(ConnectionParameters.server, \
+        ConnectionParameters.port,ConnectionParameters.browser,\
+        ConnectionParameters.baseurl)
+        self.selenium.start()
+        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
 
-	
+    def tearDown(self):
+        self.selenium.stop()
 
+    def test_sub_sections_are_present(self):
+        mobile_pg = MobilePage(self.selenium)
+        mobile_pg.open('/mobile/')
+        mobile_pg.get_tour_text
+        self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
+        mobile_pg.get_sync_text
+        self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
+        mobile_pg.get_addons_text
+        self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
+        mobile_pg.get_download_text
+        self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
 
-	def test_sub_sections_are_present(self):
-		mobile_pg = MobilePage(self.selenium)
-		mobile_pg.selenium.open('/mobile/')
-		mobile_pg.get_tour_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
-		mobile_pg.get_sync_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
-		mobile_pg.get_addons_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
-		mobile_pg.get_download_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
-		
-		
-			
-			
-		
-		
-		
 if __name__ =="__main__":
-	unittest.main()
-		
-
-		
-	
-	
+    unittest.main()

@@ -38,7 +38,7 @@
 import unittest
 from selenium import selenium
 from vars import ConnectionParameters
-from refactor_features_page import FeaturesPage
+from features_page import FeaturesPage
 
 
 class TestCommon(unittest.TestCase):
