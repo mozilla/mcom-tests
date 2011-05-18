@@ -36,23 +36,48 @@
 #
 # ***** END LICENSE BLOCK *****
 
+import unittest
 from selenium import selenium
 from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
+from customize_page import CustomizePage
 
 
-class TestAbout(unittest.TestCase):
-	
+class TestSecurity(unittest.TestCase):
+    
     def setUp(self):
-        self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-        ConnectionParameters.browser, ConnectionParameters.baseurl)
+        self.selenium = selenium(ConnectionParameters.server,
+        ConnectionParameters.port, ConnectionParameters.browser,
+        ConnectionParameters.baseurl)
         self.selenium.start()
         self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-		
+        
     def tearDown(self):
         self.selenium.stop()
-		
-			
-if __name__ =="__main__":
-	unittest.main()
+        
+        
+    def test_customize_iconns(self):
+        customize_pg = CustomizePage(self.selenium)
+        customize_pg.open("/firefox/customize/")
+        self.assertTrue(customize_pg.plugins_icon)
+        self.assertTrue(customize_pg.interface_icon)
+        self.assertTrue(customize_pg.sync_icon)
+        self.assertTure(customize_pg.style_icon)
+        self.assertTrue(customize_pg.addons_icon)
+        
+        
+    def test_customize_images(self):
+        customize_pg = CustomizePage(self.selenium)
+        customize_pg.open("/firefox/customize/")
+        #self.assertTrue(customize_pg.style_image)
+        self.assertTrue(customize_pg.plugins_image)
+        self.assertTrue(customize_pg.interface_image)
+        self.assertTrue(customize_pg.sync_image)
+        self.assertTrue(customize_pg.addons_feature)
+        self.assertTrue(customize_pg.top_feature)
+        
+if __name__ == "__main__":
+    unittest.main()
+    
+        
+      
+        

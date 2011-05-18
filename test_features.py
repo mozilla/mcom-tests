@@ -35,71 +35,46 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-
-
+import unittest
 from selenium import selenium
 from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
-from features_page import FeaturesPage
+from refactor_features_page import FeaturesPage
 
 
-
-class TestFeatures(unittest.TestCase):
-	
-	def setUp(self):
-		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-													ConnectionParameters.browser, ConnectionParameters.baseurl)
-		self.selenium.start()
-		self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-
-	def tearDown(self):
-		self.selenium.stop()
-
-
-		
-		
-
-	
-	
-	
-	def test_header_and_footer_links_are_present(self):
-		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/firefox/features/')
-
-		for x in homepageBase.headers_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_features_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_social_media_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_mobile_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_support_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-		
-		for x in homepageBase.footer_addons_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_about_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-
-	def test_features(self):
-		features_pg = FeaturesPage(self.selenium)
-		features_pg.selenium.open('/firefox/features/')
-
-		
-if __name__ =="__main__":
-   unittest.main()
+class TestCommon(unittest.TestCase):
+    
+    def setUp(self):
+        self.selenium = selenium(ConnectionParameters.server,
+        ConnectionParameters.port,
+        ConnectionParameters.browser, ConnectionParameters.baseurl)
+        self.selenium.start()
+        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
+        
+    def tearDown(self):
+        self.selenium.stop()
+        
+        
+    def test_page(self):
+        features_pg = FeaturesPage(self.selenium)
+        features_pg.open("/firefox/features/")
+        self.assertTrue(features_pg.made_easy)
+        self.assertTrue(features_pg.high_performance)
+        self.assertTrue(features_pg.advanced_security)
+        self.assertTrue(features_pg.powerful_personalization)
+        self.assertTrue(features_pg.universal_access)
+        self.assertTrue(features_pg.cutting_edge)
+        self.assertTrue(features_pg.made_easy_img)
+        self.assertTrue(features_pg.app_tabs_img)
+        self.assertTrue(features_pg.switch_tab_img)
+        self.assertTrue(features_pg.panorama_img)
+        self.assertTrue(features_pg.sync_img)
+        self.assertTrue(features_pg.easy_search_img)
+        self.assertTrue(features_pg.one_bookmark_img)
+        self.assertTrue(features_pg.speed_img)
+        self.assertTrue(features_pg.security_img)
+        self.assertTrue(features_pg.private_browsing_img)
+        self.assertTrue(features_pg.auto_update_img)
+        
+        
+if __name__ == "__main__":
+    unittest.main()
