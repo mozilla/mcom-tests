@@ -35,17 +35,16 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-
 import unittest
 from selenium import selenium
 from vars import ConnectionParameters
-from customize_page import CustomizePage
+from newsletter_page import NewsletterPage
 
 
-class TestCustomize(unittest.TestCase):
+class TestSecurity(unittest.TestCase):
     
     def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server,
+        self.selenium = selenium (ConnectionParameters.server,
         ConnectionParameters.port, ConnectionParameters.browser,
         ConnectionParameters.baseurl)
         self.selenium.start()
@@ -55,29 +54,13 @@ class TestCustomize(unittest.TestCase):
         self.selenium.stop()
         
         
-    def test_customize_icons(self):
-        customize_pg = CustomizePage(self.selenium)
-        customize_pg.open("/firefox/customize/")
-        self.assertTrue(customize_pg.plugins_icon)
-        self.assertTrue(customize_pg.interface_icon)
-        self.assertTrue(customize_pg.sync_icon)
-        self.assertTrue(customize_pg.style_icon)
-        self.assertTrue(customize_pg.addons_icon)
-        
-        
-    def test_customize_images(self):
-        customize_pg = CustomizePage(self.selenium)
-        customize_pg.open("/firefox/customize/")
-        #self.assertTrue(customize_pg.style_image)
-        self.assertTrue(customize_pg.plugins_image)
-        self.assertTrue(customize_pg.interface_image)
-        self.assertTrue(customize_pg.sync_image)
-        self.assertTrue(customize_pg.addons_feature)
-        self.assertTrue(customize_pg.top_feature)
+    def test_submit_newsletter(self):
+        newsletter_pg = NewsletterPage(self.selenium)
+        newsletter_pg.open("/en-US/newsletter/")
+        newsletter_pg.type_email
+        newsletter_pg.click_checkbox
+        self.assertTrue(newsletter_pg.subscribe)
+        self.assertTrue(newsletter_pg.stay_connected)
         
 if __name__ == "__main__":
     unittest.main()
-    
-        
-      
-        
