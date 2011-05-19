@@ -41,7 +41,7 @@ from vars import ConnectionParameters
 from newsletter_page import NewsletterPage
 
 
-class TestSecurity(unittest.TestCase):
+class TestNewsletter(unittest.TestCase):
     
     def setUp(self):
         self.selenium = selenium (ConnectionParameters.server,

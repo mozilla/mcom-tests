@@ -41,7 +41,7 @@ from vars import ConnectionParameters
 from features_page import FeaturesPage
 
 
-class TestCommon(unittest.TestCase):
+class TestFeatures(unittest.TestCase):
     
     def setUp(self):
         self.selenium = selenium(ConnectionParameters.server,
