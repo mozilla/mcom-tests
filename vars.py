@@ -38,6 +38,6 @@
 class ConnectionParameters:
 	server ="localhost"
 	port = 4444
-	browser = "*firefox"
-	baseurl ='https://www-trunk.stage.mozilla.com'
+	browser = ""
+	baseurl ='https://www.mozilla.com'
 	page_load_timeout = 120000
