@@ -37,11 +37,9 @@
 # ***** END LICENSE BLOCK *****
 import re
 import time
-import vars
 import base64
 
-page_load_timeout = vars.ConnectionParameters.page_load_timeout
-base_url = vars.ConnectionParameters.baseurl
+
 http_regex = re.compile('https?://((\w+\.)+\w+\.\w+)')
 
 
@@ -50,11 +48,14 @@ class Page(object):
     Base class for all Pages
     '''
 
-    def __init__(self, selenium):
+    def __init__(self,testsetup):
         '''
         Constructor
         '''
-        self.selenium = selenium
+        self.testsetup = testsetup
+        self.selenium = testsetup.selenium
+        self.base_url = testsetup.base_url
+        self.timeout = testsetup.timeout
 
     @property
     def is_the_current_page(self):
@@ -114,7 +115,7 @@ class Page(object):
         while not self.is_element_present(element):
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception(element + ' has not loaded')
 
@@ -124,7 +125,7 @@ class Page(object):
         while not self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception(element + " is not visible")
 
@@ -133,7 +134,7 @@ class Page(object):
         while self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception(element + " is still visible")
 
@@ -142,14 +143,14 @@ class Page(object):
         while (re.search(url_regex, self.selenium.get_location(), re.IGNORECASE)) is None:
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception("Sites Page has not loaded")
 
     def record_error(self):
         ''' Records an error. '''
 
-        http_matches = http_regex.match(base_url)
+        http_matches = http_regex.match(self.base_url)
         file_name = http_matches.group(1)
 
         print '-------------------'

@@ -34,41 +34,29 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import unittest
+
 from selenium import selenium
-from vars import ConnectionParameters
+from unittestzero import Assert
 from security_page import SecurityPage
 
 
-class TestSecurity(unittest.TestCase):
+class TestSecurity:
     
-    def setUp(self):
-        self.selenium = selenium (ConnectionParameters.server,
-        ConnectionParameters.port, ConnectionParameters.browser,
-        ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-        
-    def tearDown(self):
-        self.selenium.stop()
-        
-        
-    def test_security_icons(self):
-        security_pg = SecurityPage(self.selenium)
+    def test_security_icons(self,testsetup):
+        self.selenium = testsetup.selenium
+        security_pg = SecurityPage(testsetup)
         security_pg.open("/firefox/security/")
-        self.assertTrue(security_pg.protecting_privacy_ico)
-        self.assertTrue(security_pg.browser_security_ico)
-        self.assertTrue(security_pg.in_control_ico)
-        self.assertTrue(security_pg.mission_ico)
+        Assert.true(security_pg.protecting_privacy_ico)
+        Assert.true(security_pg.browser_security_ico)
+        Assert.true(security_pg.in_control_ico)
+        Assert.true(security_pg.mission_ico)
         
         
-    def test_security_images(self):
-        security_pg = SecurityPage(self.selenium)
+    def test_security_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        security_pg = SecurityPage(testsetup)
         security_pg.open("/firefox/security/")
-        self.assertTrue(security_pg.privacy_img)
-        self.assertTrue(security_pg.browser_security_img)
-        self.assertTrue(security_pg.control_img)
-        self.assertTrue(security_pg.mission_img)
-        
-if __name__ == "__main__":
-    unittest.main()
+        Assert.true(security_pg.privacy_img)
+        Assert.true(security_pg.browser_security_img)
+        Assert.true(security_pg.control_img)
+        Assert.true(security_pg.mission_img)

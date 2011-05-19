@@ -41,10 +41,6 @@ from page import Page
 
 
 class SecurityPage(Page):
-    
-    def __init__(self,selenium):
-        self.selenium = selenium
-        self.selenium.open("/firefox/security/")
         
     _protecting_privacy_ico = "css=#security-privacy"
     _browser_security_ico = "css=#security-secure"

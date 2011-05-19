@@ -36,48 +36,31 @@
 #
 # ***** END LICENSE BLOCK *****
 
-import unittest
 from selenium import selenium
-from vars import ConnectionParameters
 from customize_page import CustomizePage
+from unittestzero import Assert
 
 
-class TestCustomize(unittest.TestCase):
-    
-    def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server,
-        ConnectionParameters.port, ConnectionParameters.browser,
-        ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
+class TestCustomize:
         
-    def tearDown(self):
-        self.selenium.stop()
-        
-        
-    def test_customize_icons(self):
-        customize_pg = CustomizePage(self.selenium)
+    def test_customize_icons(self,testsetup):
+        self.selenium = testsetup.selenium
+        customize_pg = CustomizePage(testsetup)
         customize_pg.open("/firefox/customize/")
-        self.assertTrue(customize_pg.plugins_icon)
-        self.assertTrue(customize_pg.interface_icon)
-        self.assertTrue(customize_pg.sync_icon)
-        self.assertTrue(customize_pg.style_icon)
-        self.assertTrue(customize_pg.addons_icon)
+        Assert.true(customize_pg.plugins_icon)
+        Assert.true(customize_pg.interface_icon)
+        Assert.true(customize_pg.sync_icon)
+        Assert.true(customize_pg.style_icon)
+        Assert.true(customize_pg.addons_icon)
         
         
-    def test_customize_images(self):
-        customize_pg = CustomizePage(self.selenium)
+    def test_customize_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        customize_pg = CustomizePage(testsetup)
         customize_pg.open("/firefox/customize/")
-        #self.assertTrue(customize_pg.style_image)
-        self.assertTrue(customize_pg.plugins_image)
-        self.assertTrue(customize_pg.interface_image)
-        self.assertTrue(customize_pg.sync_image)
-        self.assertTrue(customize_pg.addons_feature)
-        self.assertTrue(customize_pg.top_feature)
-        
-if __name__ == "__main__":
-    unittest.main()
-    
-        
-      
-        
+        #Assert.true(customize_pg.style_image)
+        Assert.true(customize_pg.plugins_image)
+        Assert.true(customize_pg.interface_image)
+        Assert.true(customize_pg.sync_image)
+        Assert.true(customize_pg.addons_feature)
+        Assert.true(customize_pg.top_feature)

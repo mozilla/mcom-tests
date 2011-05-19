@@ -35,32 +35,18 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import unittest
 from selenium import selenium
-from vars import ConnectionParameters
+from unittestzero import Assert
 from newsletter_page import NewsletterPage
 
 
-class TestNewsletter(unittest.TestCase):
-    
-    def setUp(self):
-        self.selenium = selenium (ConnectionParameters.server,
-        ConnectionParameters.port, ConnectionParameters.browser,
-        ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
+class TestNewsletter:        
         
-    def tearDown(self):
-        self.selenium.stop()
-        
-        
-    def test_submit_newsletter(self):
-        newsletter_pg = NewsletterPage(self.selenium)
+    def test_submit_newsletter(self,testsetup):
+        self.selenium = testsetup.selenium
+        newsletter_pg = NewsletterPage(testsetup)
         newsletter_pg.open("/en-US/newsletter/")
         newsletter_pg.type_email
         newsletter_pg.click_checkbox
-        self.assertTrue(newsletter_pg.subscribe)
-        self.assertTrue(newsletter_pg.stay_connected)
-        
-if __name__ == "__main__":
-    unittest.main()
+        Assert.true(newsletter_pg.subscribe)
+        Assert.true(newsletter_pg.stay_connected)

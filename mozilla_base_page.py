@@ -37,17 +37,11 @@
 # ***** END LICENSE BLOCK *****
 
 from selenium import selenium
-from vars import ConnectionParameters
 from page import Page
 
 
 class MozillaBasePage(Page):
-
-    def __init__(self, selenium):
-        self.selenium = selenium
-        self.selenium.open('/')
-        self.selenium.window_maximize()
-
+    
     _header_logo_locator = "css=#header>div>h1>a"
     #_desktop_header_locator = "css=#nav-main-desktop>a"
     _mobile_header_locator = "css=#nav-main-mobile>a"

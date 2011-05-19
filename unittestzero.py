@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -13,14 +12,14 @@
 # for the specific language governing rights and limitations under the
 # License.
 #
-# The Original Code is Mozilla WebQA Selenium Tests.
+# The Original Code is UnittestZero.
 #
 # The Initial Developer of the Original Code is
-# Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2010
+# Portions created by the Initial Developer are Copyright (C) 2011
+
 # the Initial Developer. All Rights Reserved.
 #
-# Contributor(s): Raymond Etornam Agbeame
+# Contributor(s): David Burns
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -36,25 +35,33 @@
 #
 # ***** END LICENSE BLOCK *****
 
-from selenium import selenium
-from unittestzero import Assert
-from performance_page import PerformancePage
 
+class Assert:
 
-class TestPerformance:
-    
-    def test_performance_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        performance_pg = PerformancePage(testsetup)
-        performance_pg.open("/firefox/performance/")
-        Assert.true(performance_pg.perf_web_ico)
-        Assert.true(performance_pg.perf_app_ico)
-        Assert.true(performance_pg.perf_hardware_ico)
-        
-    def test_performance_images(self,testsetup):
-        self.selenium = testsetup.selenium
-        performance_pg = PerformancePage(testsetup)
-        performance_pg.open("/firefox/performance/")
-        Assert.true(performance_pg.perf_web_img)
-        Assert.true(performance_pg.perf_app_img)
-        Assert.true(performance_pg.perf_hardware_img)
+    @classmethod
+    def equal(self, first, second, msg=None):
+        assert first == second, msg
+
+    @classmethod
+    def not_equal(self, first, second, msg=None):
+        assert first != second, msg
+
+    @classmethod
+    def true(self, first, msg=None):
+        assert first is True, msg
+
+    @classmethod
+    def false(self, first, msg=None):
+        assert first is False, msg
+
+    @classmethod
+    def none(self, first, msg=None):
+        assert first is None, msg
+
+    @classmethod
+    def not_none(self, first, msg=None):
+        assert first is not None, msg
+
+    @classmethod
+    def fail(self, msg):
+        raise AssertionError(msg)

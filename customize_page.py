@@ -41,10 +41,6 @@ from page import Page
 
 class CustomizePage(Page):
 
-    def __init__(self, selenium):
-        self.selenium = selenium
-        self.selenium.open("/firefox/customize/")
-
     _style_ico = "css=#cust-style"
     _addons_ico = "css=#cust-addons"
     _plugins_ico = "css=#cust-plugins"

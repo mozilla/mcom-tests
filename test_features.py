@@ -35,46 +35,32 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import unittest
+
 from selenium import selenium
-from vars import ConnectionParameters
+from unittestzero import Assert
 from features_page import FeaturesPage
 
 
-class TestFeatures(unittest.TestCase):
-    
-    def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server,
-        ConnectionParameters.port,
-        ConnectionParameters.browser, ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-        
-    def tearDown(self):
-        self.selenium.stop()
-        
-        
-    def test_page(self):
-        features_pg = FeaturesPage(self.selenium)
+class TestFeatures:
+          
+    def test_page(self,testsetup):
+        self.selenium = testsetup.selenium
+        features_pg = FeaturesPage(testsetup)
         features_pg.open("/firefox/features/")
-        self.assertTrue(features_pg.made_easy)
-        self.assertTrue(features_pg.high_performance)
-        self.assertTrue(features_pg.advanced_security)
-        self.assertTrue(features_pg.powerful_personalization)
-        self.assertTrue(features_pg.universal_access)
-        self.assertTrue(features_pg.cutting_edge)
-        self.assertTrue(features_pg.made_easy_img)
-        self.assertTrue(features_pg.app_tabs_img)
-        self.assertTrue(features_pg.switch_tab_img)
-        self.assertTrue(features_pg.panorama_img)
-        self.assertTrue(features_pg.sync_img)
-        self.assertTrue(features_pg.easy_search_img)
-        self.assertTrue(features_pg.one_bookmark_img)
-        self.assertTrue(features_pg.speed_img)
-        self.assertTrue(features_pg.security_img)
-        self.assertTrue(features_pg.private_browsing_img)
-        self.assertTrue(features_pg.auto_update_img)
-        
-        
-if __name__ == "__main__":
-    unittest.main()
+        Assert.true(features_pg.made_easy)
+        Assert.true(features_pg.high_performance)
+        Assert.true(features_pg.advanced_security)
+        Assert.true(features_pg.powerful_personalization)
+        Assert.true(features_pg.universal_access)
+        Assert.true(features_pg.cutting_edge)
+        Assert.true(features_pg.made_easy_img)
+        Assert.true(features_pg.app_tabs_img)
+        Assert.true(features_pg.switch_tab_img)
+        Assert.true(features_pg.panorama_img)
+        Assert.true(features_pg.sync_img)
+        Assert.true(features_pg.easy_search_img)
+        Assert.true(features_pg.one_bookmark_img)
+        Assert.true(features_pg.speed_img)
+        Assert.true(features_pg.security_img)
+        Assert.true(features_pg.private_browsing_img)
+        Assert.true(features_pg.auto_update_img)

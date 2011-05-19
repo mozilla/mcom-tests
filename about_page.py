@@ -41,9 +41,6 @@ from page import Page
 
 class AboutPage(Page):
 
-    def __init__(self, selenium):
-        self.selenium = selenium
-    
     _participate_img = "css=#get-involved>h3>a>span"
     _txt_participate = "css=#get-involved>h3>a"
     _communications_img = "css=#press>h3>a>span"

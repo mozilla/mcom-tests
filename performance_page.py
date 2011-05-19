@@ -39,10 +39,7 @@ from page import Page
 
 
 class PerformancePage(Page):
-    
-    def __init__(self, selenium):
-        self.selenium = selenium
-        
+            
     _perf_web = "css=#perf-web"
     _perf_app = "css=#perf-app"
     _perf_hardware = "css=#perf-hardware"

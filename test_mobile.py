@@ -36,36 +36,21 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
+from unittestzero import Assert
 from mobile_page import MobilePage
 
-
-
-class TestMobile(unittest.TestCase):
-
-    def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server, \
-        ConnectionParameters.port,ConnectionParameters.browser,\
-        ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-
-    def tearDown(self):
-        self.selenium.stop()
-
-    def test_sub_sections_are_present(self):
-        mobile_pg = MobilePage(self.selenium)
+class TestMobile:
+    
+    def test_sub_sections_are_present(self,testsetup):
+        self.selenium = testsetup.selenium
+        mobile_pg = MobilePage(testsetup)
         mobile_pg.open('/mobile/')
         mobile_pg.get_tour_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
+        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
         mobile_pg.get_sync_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
+        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
         mobile_pg.get_addons_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
+        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
         mobile_pg.get_download_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
-
-if __name__ =="__main__":
-    unittest.main()
+        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
+    

@@ -40,9 +40,6 @@ from page import Page
 
 
 class NewsletterPage(Page):
-    
-    def __init__(self, selenium):
-        self.selenium = selenium
         
     _email = "css=.email"
     _privacy_checkbox = "css=.privacy-check"

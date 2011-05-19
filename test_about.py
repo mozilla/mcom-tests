@@ -37,47 +37,34 @@
 # ***** END LICENSE BLOCK *****
 
 from selenium import selenium
-from vars import ConnectionParameters
-import unittest
+from unittestzero import Assert
 from about_page import AboutPage
 
 
-class TestAbout(unittest.TestCase):
-	
-    def setUp(self):
-        self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-        ConnectionParameters.browser, ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-		
-    def tearDown(self):
-        self.selenium.stop()
-        
-    def test_about_images(self):
-        about_pg = AboutPage(self.selenium)
+class TestAbout:
+	    
+    def test_about_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        about_pg = AboutPage(testsetup)
         about_pg.open("/about/")
-        self.assertTrue(about_pg.participate_image)
-        self.assertTrue(about_pg.communications_image)
-        self.assertTrue(about_pg.careers_image)
-        self.assertTrue(about_pg.partnerships_image)
-        self.assertTrue(about_pg.legal_image)
-        self.assertTrue(about_pg.contact_us_image)
-        self.assertTrue(about_pg.store_image)
-        self.assertTrue(about_pg.blog_image)
+        Assert.true(about_pg.participate_image)
+        Assert.true(about_pg.communications_image)
+        Assert.true(about_pg.careers_image)
+        Assert.true(about_pg.partnerships_image)
+        Assert.true(about_pg.legal_image)
+        Assert.true(about_pg.contact_us_image)
+        Assert.true(about_pg.store_image)
+        Assert.true(about_pg.blog_image)
         
-    def test_about_text(self):
-        about_pg = AboutPage(self.selenium)
+    def test_about_text(self,testsetup):
+        self.selenium = testsetup.selenium
+        about_pg = AboutPage(testsetup)
         about_pg.open("/about/")
-        self.assertTrue(about_pg.participate_text)
-        self.assertTrue(about_pg.communications_text)
-        self.assertTrue(about_pg.careers_text)
-        self.assertTrue(about_pg.partnerships_text)
-        self.assertTrue(about_pg.legal_text)
-        self.assertTrue(about_pg.contact_us_text)
-        self.assertTrue(about_pg.store_text)
-        self.assertTrue(about_pg.blog_text)
-        
-		
-			
-if __name__ =="__main__":
-	unittest.main()
+        Assert.true(about_pg.participate_text)
+        Assert.true(about_pg.communications_text)
+        Assert.true(about_pg.careers_text)
+        Assert.true(about_pg.partnerships_text)
+        Assert.true(about_pg.legal_text)
+        Assert.true(about_pg.contact_us_text)
+        Assert.true(about_pg.store_text)
+        Assert.true(about_pg.blog_text)

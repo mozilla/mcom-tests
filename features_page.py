@@ -40,7 +40,6 @@ from selenium import selenium
 from page import Page
 
 
-
 class FeaturesPage(Page):
     
     _made_easy_locator = \
@@ -152,6 +151,3 @@ class FeaturesPage(Page):
     @property
     def auto_update_img(self):
         return self.is_element_present(self._auto_update_image)
-                
-    def __init__(self, selenium):
-        self.selenium = selenium

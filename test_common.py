@@ -36,27 +36,19 @@
 #
 # ***** END LICENSE BLOCK *****
 
-import unittest
+
 from selenium import selenium
-from vars import ConnectionParameters
+from unittestzero import Assert
 from mozilla_base_page import MozillaBasePage
 
 
-class TestCommon(unittest.TestCase):
+class TestCommon:
     
-    def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server,
-        ConnectionParameters.port,
-        ConnectionParameters.browser, ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-        
-        
-    def tearDown(self):
-        self.selenium.stop()
+   
           
-    def test_header_and_footer_links(self, url="/firefox/fx/"):
-        home_pg = MozillaBasePage(self.selenium)
+    def test_header_and_footer_links(self,testsetup, url="/firefox/fx/"):
+        self.selenium = testsetup.selenium
+        home_pg = MozillaBasePage(testsetup)
         home_pg.open(url)
         
         for x in home_pg.header_links:
@@ -92,7 +84,7 @@ class TestCommon(unittest.TestCase):
             print home_pg.is_element_present(x)
     
 
-    def test_all_page_header_and_footer_links(self):
+    def test_all_page_header_and_footer_links(self,testsetup):
         urls = [
             "/firefox/security/",
             "/firefox/performmance/",
@@ -121,14 +113,12 @@ class TestCommon(unittest.TestCase):
             
         for x in urls:
             print x 
-            self.test_header_and_footer_links(x)
+            self.test_header_and_footer_links(testsetup,url=x)
             
-    def test_download_buttons(self, url="/firefox/features/"):
-        home_pg = MozillaBasePage(self.selenium)
+    def test_download_buttons(self,testsetup, url="/firefox/features/"):
+        self.selenium = testsetup.selenium
+        home_pg = MozillaBasePage(testsetup)
         home_pg.open(url)
         for x in home_pg.get_upper_download_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-                       
-if __name__ == "__main__":
-    unittest.main()
