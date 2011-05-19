@@ -67,6 +67,13 @@ class Page(object):
                 raise Exception('Expected page title does not match actual page title.')
         else:
             return True
+            
+    def open(self,url,timeout=80000):
+        self.selenium.open(url)
+        self.selenium.wait_for_page_to_load(timeout)
+        
+    def get_text(self,locator):
+        return self.selenium.get_text(locator)
 
     def click_link(self, link, wait_flag=False,timeout=80000):
         self.selenium.click("link=%s" %(link))

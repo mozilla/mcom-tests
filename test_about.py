@@ -39,7 +39,7 @@
 from selenium import selenium
 from vars import ConnectionParameters
 import unittest
-from mozilla_base_page  import  MozillaBasePage
+from about_page import AboutPage
 
 
 class TestAbout(unittest.TestCase):
@@ -52,30 +52,32 @@ class TestAbout(unittest.TestCase):
 		
     def tearDown(self):
         self.selenium.stop()
+        
+    def test_about_images(self):
+        about_pg = AboutPage(self.selenium)
+        about_pg.open("/about/")
+        self.assertTrue(about_pg.participate_image)
+        self.assertTrue(about_pg.communications_image)
+        self.assertTrue(about_pg.careers_image)
+        self.assertTrue(about_pg.partnerships_image)
+        self.assertTrue(about_pg.legal_image)
+        self.assertTrue(about_pg.contact_us_image)
+        self.assertTrue(about_pg.store_image)
+        self.assertTrue(about_pg.blog_image)
+        
+    def test_about_text(self):
+        about_pg = AboutPage(self.selenium)
+        about_pg.open("/about/")
+        self.assertTrue(about_pg.participate_text)
+        self.assertTrue(about_pg.communications_text)
+        self.assertTrue(about_pg.careers_text)
+        self.assertTrue(about_pg.partnerships_text)
+        self.assertTrue(about_pg.legal_text)
+        self.assertTrue(about_pg.contact_us_text)
+        self.assertTrue(about_pg.store_text)
+        self.assertTrue(about_pg.blog_text)
+        
 		
-    def test_header_and_footer_links_are_present(self):	
-        homepageBase = MozillaBasePage(self.selenium)
-        homepageBase.go_to_about()
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.headers_list ]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_features_list]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_social_media_list]
-				
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_mobile_list]
-				
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_support_list]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_addons_list]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_about_list]
 			
 if __name__ =="__main__":
 	unittest.main()

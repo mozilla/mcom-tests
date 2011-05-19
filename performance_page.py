@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -36,36 +35,45 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
-from mobile_page import MobilePage
+from page import Page
 
 
-
-class TestMobile(unittest.TestCase):
-
-    def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server, \
-        ConnectionParameters.port,ConnectionParameters.browser,\
-        ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-
-    def tearDown(self):
-        self.selenium.stop()
-
-    def test_sub_sections_are_present(self):
-        mobile_pg = MobilePage(self.selenium)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
-
-if __name__ =="__main__":
-    unittest.main()
+class PerformancePage(Page):
+    
+    def __init__(self, selenium):
+        self.selenium = selenium
+        
+    _perf_web = "css=#perf-web"
+    _perf_app = "css=#perf-app"
+    _perf_hardware = "css=#perf-hardware"
+    _perf_web_img = "css=#web>.section-image"
+    _perf_app_img = "css=#performance-chart>tbody"
+    _perf_hardware_img = "css=#hardware>.section-image"
+    
+    @property
+    def perf_web_ico(self):
+        return self.is_element_present(self._perf_web)
+        
+    @property
+    def perf_app_ico(self):
+        return self.is_element_present(self._perf_app)
+        
+    @property
+    def perf_hardware_ico(self):
+        return self.is_element_present(self._perf_hardware)
+        
+    @property
+    def perf_web_img(self):
+        return self.is_element_present(self._perf_web_img)
+        
+    @property
+    def perf_app_img(self):
+        return self.is_element_present(self._perf_app_img)
+        
+    @property
+    def perf_hardware_img(self):
+        return self.is_element_present(self._perf_hardware_img)
+        
+        
+    
+    

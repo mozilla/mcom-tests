@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -35,71 +34,41 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+import unittest
 from selenium import selenium
 from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
 from security_page import SecurityPage
 
 
-
 class TestSecurity(unittest.TestCase):
-	
-	def setUp(self):
-		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-													ConnectionParameters.browser, ConnectionParameters.baseurl)
-		self.selenium.start()
-		self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-		
-	def tearDown(self):
-		self.selenium.stop()
-		
-		
-	def test_header_and_footer_links_are_present(self):
-		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/firefox/security/')
-		
-		for x in homepageBase.headers_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_features_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_social_media_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_mobile_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_support_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_addons_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_about_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-			
-	def test_icons_are_present(self):
-		securitypageBase  = SecurityPage(self.selenium)
-		securitypageBase.selenium.open('/firefox/security/')
-	
-		
-		
-		
-		
-		
+    
+    def setUp(self):
+        self.selenium = selenium (ConnectionParameters.server,
+        ConnectionParameters.port, ConnectionParameters.browser,
+        ConnectionParameters.baseurl)
+        self.selenium.start()
+        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
+        
+    def tearDown(self):
+        self.selenium.stop()
+        
+        
+    def test_security_icons(self):
+        security_pg = SecurityPage(self.selenium)
+        security_pg.open("/firefox/security/")
+        self.assertTrue(security_pg.protecting_privacy_ico)
+        self.assertTrue(security_pg.browser_security_ico)
+        self.assertTrue(security_pg.in_control_ico)
+        self.assertTrue(security_pg.mission_ico)
+        
+        
+    def test_security_images(self):
+        security_pg = SecurityPage(self.selenium)
+        security_pg.open("/firefox/security/")
+        self.assertTrue(security_pg.privacy_img)
+        self.assertTrue(security_pg.browser_security_img)
+        self.assertTrue(security_pg.control_img)
+        self.assertTrue(security_pg.mission_img)
+        
 if __name__ == "__main__":
-	unittest.main()
-		
-		
-		
-		
+    unittest.main()

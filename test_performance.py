@@ -35,37 +35,40 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+import unittest
 from selenium import selenium
 from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
-from mobile_page import MobilePage
+from performance_page import PerformancePage
 
 
-
-class TestMobile(unittest.TestCase):
-
+class TestPerformance(unittest.TestCase):
+    
     def setUp(self):
-        self.selenium = selenium(ConnectionParameters.server, \
-        ConnectionParameters.port,ConnectionParameters.browser,\
+        self.selenium = selenium(ConnectionParameters.server,
+        ConnectionParameters.port,ConnectionParameters.browser,
         ConnectionParameters.baseurl)
         self.selenium.start()
         self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-
+        
     def tearDown(self):
         self.selenium.stop()
-
-    def test_sub_sections_are_present(self):
-        mobile_pg = MobilePage(self.selenium)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
-
-if __name__ =="__main__":
+        
+        
+    def test_performance_icons(self):
+        performance_pg = PerformancePage(self.selenium)
+        performance_pg.open("/firefox/performance/")
+        self.assertTrue(performance_pg.perf_web_ico)
+        self.assertTrue(performance_pg.perf_app_ico)
+        self.assertTrue(performance_pg.perf_hardware_ico)
+        
+    def test_performance_images(self):
+        performance_pg = PerformancePage(self.selenium)
+        performance_pg.open("/firefox/performance/")
+        self.assertTrue(performance_pg.perf_web_img)
+        self.assertTrue(performance_pg.perf_app_img)
+        self.assertTrue(performance_pg.perf_hardware_img)
+        
+if __name__ == "__main__":
     unittest.main()
+        
+        

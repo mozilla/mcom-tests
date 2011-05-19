@@ -36,60 +36,67 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from vars import ConnectionParameters
 from page import Page
 
 
-class MobilePage(Page):
-
-    _take_tour_locator = "css=#sub-video.sub-feature a"
-    _sync_locator = "css=#sub-sync.sub-feature a"
-    _addons_locator = "css=#sub-addons.sub-feature a"
-    _type_less_locator = "#sub-speed.sub-feature a"
-    _download_locator ="css=a.download-link"
-
-    @property
-    def tour_locator(self):
-        return self._take_tour_locator
-
-    @property
-    def sync_locator(self):
-        return self._sync_locator
-
-    @property
-    def addons_locator(self):
-        return self._addons_locator
-
-    @property
-    def type_less_locator(self):
-        return self._type_less_locator
-
-    @property
-    def download_locator(self):
-        return self._download_locator
-
-    @property
-    def get_tour_text(self):
-        return self.selenium.get_text(self.tour_locator)
-
-    @property
-    def get_sync_text(self):
-        return self.selenium.get_text(self.tour_locator)
-
-
-    @property
-    def get_addons_text(self):
-        return self.selenium.get_text(self.addons_locator)
-
-    @property
-    def get_type_less_text(self):
-        return self.selenium.get_text(self.type_less_locator)
-
-    @property
-    def get_download_text(self):
-        return self.selenium.get_text(self.download_locator)
-
-
+class CustomizePage(Page):
 
     def __init__(self, selenium):
         self.selenium = selenium
+        self.selenium.open("/firefox/customize/")
+
+    _style_ico = "css=#cust-style"
+    _addons_ico = "css=#cust-addons"
+    _plugins_ico = "css=#cust-plugins"
+    _interface_ico = "css=#cust-interface"
+    _sync_ico = "css=#cust-sync"
+    _style_img = "css=.persona-preview"
+    _plugins_img = "css=#plugins>.features-image>img"
+    _interface_img = "css=#interface>.features-image>img"
+    _sync_img = "css=.mozilla-video-control-overlay"
+    _addons_feature = "css=.mozilla-video-control-overlay"
+    _top_feature = "css=#top-features"
+
+    @property
+    def style_icon(self):
+        return self.is_element_present(self._style_ico)
+
+    @property
+    def addons_icon(self):
+        return self.is_element_present(self._addons_ico)
+
+    @property
+    def plugins_icon(self):
+        return self.is_element_present(self._plugins_ico)
+
+    @property
+    def interface_icon(self):
+        return self.is_element_present(self._interface_ico)
+
+    @property
+    def sync_icon(self):
+        return self.is_element_present(self._sync_ico)
+
+    @property
+    def style_image(self):
+        return self.is_element_present(self._style_img)
+
+    @property
+    def plugins_image(self):
+        return self.is_element_present(self._plugins_img)
+
+    @property
+    def interface_image(self):
+        return self.is_element_present(self._interface_img)
+
+    @property
+    def sync_image(self):
+        return self.is_element_present(self._sync_img)
+
+    @property
+    def addons_feature(self):
+        return self.is_element_present(self._addons_feature)
+
+    @property
+    def top_feature(self):
+        return self.is_element_present(self._top_feature)

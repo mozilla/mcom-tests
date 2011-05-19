@@ -36,58 +36,54 @@
 #
 # ***** END LICENSE BLOCK *****
 
-
 from selenium import selenium
-from vars import ConnectionParameters
 from page import Page
 
 
 class SecurityPage(Page):
-	
-	_privacy_icon_locator = "li#security-privacy > a"
-	_security_icon_locator = "li#security-secure > a"
-	_control_icon_locator = "li#security-control > a"
-	_mission_icon_locator = "li#security-mission > a"
-	_privacy_screenshot_locator = "div#privacy.section > div.section-image >img"
-	_security_screenshot_locator = "div#secure.section > .section-image >img"
-	_control_screenshot_locator = "div#control.section > .section-image >img"
-	_mission_screenshot_locator = "div#mission.section > div.section-image >img"
-	
-	def __init__(self,selenium):
-		self.selenium = selenium
-		self.selenium.open('/firefox/security/')
-		self.selenium.window_maximize()
-	
-	
-	@property
-	def privacy_icon(self):
-		return self._privacy_icon_locator
-		
-	@property
-	def security_icon(self):
-		return self._security_icon_locator
-		
-	@property
-	def control_icon(self):
-		return self._control_icon_locator
-		
-	@property
-	def misson_icon(self):
-		return self._mission_icon_locator
-		
-	@property
-	def privacy_screenshot(self):
-		return self._privacy_screenshot_locator
-		
-	@property
-	def security_screenshot(self):
-		return self._security_screenshot_locator
-		
-	@property
-	def control_screenshot(self):
-		return self._control_screenshot_locator
-		
-	@property
-	def mission_screenshot(self):
-		return self._mission_screenshot_locator
-		
+    
+    def __init__(self,selenium):
+        self.selenium = selenium
+        self.selenium.open("/firefox/security/")
+        
+    _protecting_privacy_ico = "css=#security-privacy"
+    _browser_security_ico = "css=#security-secure"
+    _in_control_ico = "css=#security-control"
+    _mission_ico = "css=#security-mission"
+    _privacy_img = "css=#privacy>.section-image>img"
+    _browser_security_img = "css=#secure>.section-image>img"
+    _control_img = "css=#control>.section-image>img"
+    _mission_img = "css=#mission>.section-image>img"
+    
+    @property
+    def protecting_privacy_ico(self):
+        return self.is_element_present(self._protecting_privacy_ico)
+        
+    @property
+    def browser_security_ico(self):
+        return self.is_element_present(self._browser_security_ico)
+        
+    @property
+    def in_control_ico(self):
+        return self.is_element_present(self._in_control_ico)
+        
+    @property
+    def mission_ico(self):
+        return self.is_element_present(self._mission_ico)
+        
+    @property
+    def privacy_img(self):
+        return self.is_element_present(self._privacy_img)
+        
+    @property
+    def browser_security_img(self):
+        return self.is_element_present(self._browser_security_img)
+        
+    @property
+    def control_img(self):
+        return self.is_element_present(self._control_img)
+        
+    @property
+    def mission_img(self):
+        return self.is_element_present(self._mission_img)
+        
