@@ -41,4 +41,4 @@ class ConnectionParameters:
 	browser = "Firefox-4;en-us;MacOSX6"
 	baseurl = "http://www.mozilla.com"
 	productionurl = "http://www.mozilla.com"
-
+        page_load_timeout = 12000
