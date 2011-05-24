@@ -69,30 +69,30 @@ class Page(object):
         else:
             return True
             
-    def open(self,url,timeout=80000):
+    def open(self,url):
         self.selenium.open(url)
-        self.selenium.wait_for_page_to_load(timeout)
+        self.selenium.wait_for_page_to_load(self.timeout)
         
     def get_text(self,locator):
         return self.selenium.get_text(locator)
 
-    def click_link(self, link, wait_flag=False,timeout=80000):
+    def click_link(self, link, wait_flag=False):
         self.selenium.click("link=%s" %(link))
         if(wait_flag):
-            self.selenium.wait_for_page_to_load(timeout)
+            self.selenium.wait_for_page_to_load(self.timeout)
         
-    def click(self,locator,wait_flag=False,timeout=80000):
+    def click(self,locator,wait_flag=False):
         self.selenium.click(locator)
         if(wait_flag):
-            self.selenium.wait_for_page_to_load(timeout)
+            self.selenium.wait_for_page_to_load(self.timeout)
             
     def type(self,locator, str):
         self.selenium.type(locator, str)
         
-    def click_button(self,button,wait_flag=False,timeout=80000):
+    def click_button(self,button,wait_flag=False):
         self.selenium.click(button)
         if(wait_flag):
-            self.selenium.wait_for_page_to_load(timeout)
+            self.selenium.wait_for_page_to_load(self.timeout)
 
     def get_url_current_page(self):
         return(self.selenium.get_location())
@@ -106,9 +106,9 @@ class Page(object):
     def is_text_present(self,text):
         return self.selenium.is_text_present(text)
     
-    def refresh(self,timeout=80000):
+    def refresh(self):
         self.selenium.refresh()
-        self.selenium.wait_for_page_to_load(timeout)
+        self.selenium.wait_for_page_to_load(self.timeout)
 
     def wait_for_element_present(self, element):
         count = 0
