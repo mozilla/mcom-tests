@@ -1,7 +1,7 @@
 import urllib
 
 
-def testErrors():
+def testStatusCode():
 	url = 'http://www.mozilla.com/en-US/abck'
 	page = urllib.urlopen(url)
 	if  page.code == 404:
@@ -10,4 +10,4 @@ def testErrors():
 	    print "%s returned %d" %(url,page.code)
 	
 	
-testErrors()
+testStatusCode()
