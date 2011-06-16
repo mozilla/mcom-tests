@@ -37,45 +37,34 @@
 # ***** END LICENSE BLOCK *****
 
 from selenium import selenium
-from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
+from unittestzero import Assert
+from about_page import AboutPage
 
 
-class TestAbout(unittest.TestCase):
-	
-    def setUp(self):
-        self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-        ConnectionParameters.browser, ConnectionParameters.baseurl)
-        self.selenium.start()
-        self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-		
-    def tearDown(self):
-        self.selenium.stop()
-		
-    def test_header_and_footer_links_are_present(self):	
-        homepageBase = MozillaBasePage(self.selenium)
-        homepageBase.go_to_about()
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.headers_list ]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_features_list]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_social_media_list]
-				
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_mobile_list]
-				
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_support_list]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_addons_list]
-
-        [self.assertTrue(homepageBase.is_element_present(x)) 
-            for x in homepageBase.footer_about_list]
-			
-if __name__ =="__main__":
-	unittest.main()
+class TestAbout:
+	    
+    def test_about_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        about_pg = AboutPage(testsetup)
+        about_pg.open("/about/")
+        Assert.true(about_pg.participate_image)
+        Assert.true(about_pg.communications_image)
+        Assert.true(about_pg.careers_image)
+        Assert.true(about_pg.partnerships_image)
+        Assert.true(about_pg.legal_image)
+        Assert.true(about_pg.contact_us_image)
+        Assert.true(about_pg.store_image)
+        Assert.true(about_pg.blog_image)
+        
+    def test_about_text(self,testsetup):
+        self.selenium = testsetup.selenium
+        about_pg = AboutPage(testsetup)
+        about_pg.open("/about/")
+        Assert.true(about_pg.participate_text)
+        Assert.true(about_pg.communications_text)
+        Assert.true(about_pg.careers_text)
+        Assert.true(about_pg.partnerships_text)
+        Assert.true(about_pg.legal_text)
+        Assert.true(about_pg.contact_us_text)
+        Assert.true(about_pg.store_text)
+        Assert.true(about_pg.blog_text)

@@ -37,11 +37,9 @@
 # ***** END LICENSE BLOCK *****
 import re
 import time
-import vars
 import base64
 
-page_load_timeout = vars.ConnectionParameters.page_load_timeout
-base_url = vars.ConnectionParameters.baseurl
+
 http_regex = re.compile('https?://((\w+\.)+\w+\.\w+)')
 
 
@@ -50,11 +48,14 @@ class Page(object):
     Base class for all Pages
     '''
 
-    def __init__(self, selenium):
+    def __init__(self,testsetup):
         '''
         Constructor
         '''
-        self.selenium = selenium
+        self.testsetup = testsetup
+        self.selenium = testsetup.selenium
+        self.base_url = testsetup.base_url
+        self.timeout = testsetup.timeout
 
     @property
     def is_the_current_page(self):
@@ -67,24 +68,31 @@ class Page(object):
                 raise Exception('Expected page title does not match actual page title.')
         else:
             return True
+            
+    def open(self,url):
+        self.selenium.open(url)
+        self.selenium.wait_for_page_to_load(self.timeout)
+        
+    def get_text(self,locator):
+        return self.selenium.get_text(locator)
 
-    def click_link(self, link, wait_flag=False,timeout=80000):
+    def click_link(self, link, wait_flag=False):
         self.selenium.click("link=%s" %(link))
         if(wait_flag):
-            self.selenium.wait_for_page_to_load(timeout)
+            self.selenium.wait_for_page_to_load(self.timeout)
         
-    def click(self,locator,wait_flag=False,timeout=80000):
+    def click(self,locator,wait_flag=False):
         self.selenium.click(locator)
         if(wait_flag):
-            self.selenium.wait_for_page_to_load(timeout)
+            self.selenium.wait_for_page_to_load(self.timeout)
             
     def type(self,locator, str):
         self.selenium.type(locator, str)
         
-    def click_button(self,button,wait_flag=False,timeout=80000):
+    def click_button(self,button,wait_flag=False):
         self.selenium.click(button)
         if(wait_flag):
-            self.selenium.wait_for_page_to_load(timeout)
+            self.selenium.wait_for_page_to_load(self.timeout)
 
     def get_url_current_page(self):
         return(self.selenium.get_location())
@@ -98,16 +106,16 @@ class Page(object):
     def is_text_present(self,text):
         return self.selenium.is_text_present(text)
     
-    def refresh(self,timeout=80000):
+    def refresh(self):
         self.selenium.refresh()
-        self.selenium.wait_for_page_to_load(timeout)
+        self.selenium.wait_for_page_to_load(self.timeout)
 
     def wait_for_element_present(self, element):
         count = 0
         while not self.is_element_present(element):
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception(element + ' has not loaded')
 
@@ -117,7 +125,7 @@ class Page(object):
         while not self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception(element + " is not visible")
 
@@ -126,7 +134,7 @@ class Page(object):
         while self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception(element + " is still visible")
 
@@ -135,14 +143,14 @@ class Page(object):
         while (re.search(url_regex, self.selenium.get_location(), re.IGNORECASE)) is None:
             time.sleep(1)
             count += 1
-            if count == page_load_timeout/1000:
+            if count == self.timeout/1000:
                 self.record_error()
                 raise Exception("Sites Page has not loaded")
 
     def record_error(self):
         ''' Records an error. '''
 
-        http_matches = http_regex.match(base_url)
+        http_matches = http_regex.match(self.base_url)
         file_name = http_matches.group(1)
 
         print '-------------------'

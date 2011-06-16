@@ -35,10 +35,33 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-class ConnectionParameters:
-	server ="qa-selenium.mv.mozilla.com"
-	port = 4444
-	browser = "Firefox4b;en-us;MacOSX6"
-	baseurl = "http://www.mozilla.com"
-	productionurl = "http://www.mozilla.com"
-	page_load_timeout = 120000
+from selenium import selenium
+from page import Page
+
+
+class NewsletterPage(Page):
+        
+    _email = "css=.email"
+    _privacy_checkbox = "css=.privacy-check"
+    _subscribe_button = "css=.subscribe"
+    _success_pane = "css=.success-pane>h3"
+    _stay_connected_button = "css=.stay-connected"
+    
+    @property
+    def type_email(self):
+        return self.type(self._email, "me@example.com")
+        
+        
+    @property
+    def click_checkbox(self):
+        return self.click(self._privacy_checkbox)
+        
+    @property
+    def subscribe(self):
+        self.click(self._subscribe_button)
+        return self.is_element_present(self._success_pane)
+        
+    @property
+    def stay_connected(self):
+        return self.is_element_present(self._stay_connected_button)
+        

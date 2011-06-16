@@ -36,57 +36,118 @@
 #
 # ***** END LICENSE BLOCK *****
 
-
 from selenium import selenium
-from vars import ConnectionParameters
 from page import Page
 
 
 class FeaturesPage(Page):
-	_made_easy_locator ="css=li#made-easy > a"
-	_high_performance_locator ="css=li#high-performace > a"
-	_advanced_security_locator ="css=li#advanced-security > a"
-	_powerful_personalization_locator ="css=li#powerful-personalization > a"
-	_universal_access_locator = "css=li#universal-access > a"
-	_cutting_edge_locator = "css=li#cutting-edge > a"
-	_download_link ="css=a.download-link"
-	_download_link_content ="css=a.download-link > .download-content"
-	
-	
-	@property
-	def get_made_easy(self):
-		return self._made_easy_locator
-		
-	@property
-	def high_performance(self):
-		return self.selenium.is_element_prese(self._high_performance_locator)
-	
-		
-	@property
-	def advanced_security(self):
-		return self._advanced_security_locator
-		
-	@property
-	def powerful_personalization(self):
-		return self._powerfu_personalization_locator
-		
-	@property
-	def universal_access(self):
-		return self._universal_access_locator
-		
-	@property
-	def cutting_edge(self):
-		return self._cutting_edge_locator
-		
-	@property 
-	def download_link(self):
-		return self._download_link_locator
-	
-	@property
-	def item_on_page(self):
-		return self._some_locator
-	
-	def __init__(self,selenium):
-		self.selenium = selenium
-		self.selenium.open('/')
-		self.selenium.window_maximize()
+    
+    _made_easy_locator = \
+    "css=#main-feature>.feature-links>#made-easy>a"
+    _high_performance_locator =  \
+    "css=#main-feature>.feature-links>#high-performance>a"
+    _advanced_security_locator = \
+    "css=#main-feature>.feature-links>#advanced-security>a"
+    _powerful_personalization_locator = \
+    "css=#main-feature>.feature-links>#powerful-personalization>a"
+    _universal_access_locator = \
+    "css=#main-feature>.feature-links>#cutting-edge>a"
+    _cutting_edge_locator = \
+    "css=#main-feature>.feature-links>#universal-access>a"
+    
+    _made_easy_image = \
+    "css=#madeeasy>.features-container>.feature>.right"
+    _app_tabs_image = \
+    "css=#madeeasy>.features-container>.feature>.column1>.sub-feature>.right"
+    _switch_tab_image = \
+    "css=#madeeasy>.features-container>.feature>.column2>.sub-feature>.right"
+    _panorama_image = \
+    "css=#madeeasy>.features-container>.feature>.column3>.sub-feature>.right"
+    _sync_image = \
+    "css=#madeeasy>.features-container>.column-span>.right"
+    _easy_search_image = \
+    "//*[@id='madeeasy']/div/div[8]/div[4]/img"
+    _one_bookmark_image = \
+    "css=#madeeasy>.features-container>.feature>.oneclickbookmarking>.right"
+    _speed_image = \
+    "css=#highperformance>.features-container>.column1>.feature>#performance-chart"
+    _security_image = \
+    "css=#advancedsecurity>.features-container>.column1>.feature>.right"
+    _private_browsing_image = \
+    "css=#advancedsecurity>.features-container>.column2>.feature>.right"
+    _auto_update_image = \
+    "css=#advancedsecurity>.features-container>.column3>.feature>.right"
+    _addons_manager_image = \
+    "css=#powerfulpersonalization>.features-container>.addons-manager>.right"
+    personas_image = \
+    "css=#powerfulpersonalization>.features-container>.column1>.feature>.right"
+    
+    
+    
+    @property
+    def made_easy(self):
+        return self.is_element_present(self._made_easy_locator)
+        
+    @property
+    def high_performance(self):
+        return self.is_element_present(self._high_performance_locator)
+        
+    @property
+    def advanced_security(self):
+        return self.is_element_present(self._advanced_security_locator)
+        
+    @property
+    def powerful_personalization(self):
+        return self.is_element_present(self._powerful_personalization_locator)
+    
+    @property
+    def universal_access(self):
+        return self.is_element_present(self._universal_access_locator)
+        
+    @property
+    def cutting_edge(self):
+        return self.is_element_present(self._cutting_edge_locator)
+        
+    @property
+    def made_easy_img(self):
+        return self.is_element_present(self._made_easy_image)
+        
+    @property
+    def app_tabs_img(self):
+        return self.is_element_present(self._app_tabs_image)
+        
+    @property
+    def switch_tab_img(self):
+        return self.is_element_present(self._switch_tab_image)
+        
+    @property
+    def panorama_img(self):
+        return self.is_element_present(self._panorama_image)
+        
+    @property
+    def sync_img(self):
+        return self.is_element_present(self._sync_image)
+        
+    @property
+    def easy_search_img(self):
+        return self.is_element_present(self._easy_search_image)
+        
+    @property
+    def one_bookmark_img(self):
+        return self.is_element_present(self._one_bookmark_image)
+        
+    @property
+    def speed_img(self):
+        return self.is_element_present(self._speed_image)
+        
+    @property
+    def security_img(self):
+        return self.is_element_present(self._security_image)
+        
+    @property
+    def private_browsing_img(self):
+        return self.is_element_present(self._private_browsing_image)
+    
+    @property
+    def auto_update_img(self):
+        return self.is_element_present(self._auto_update_image)

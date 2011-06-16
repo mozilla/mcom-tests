@@ -35,22 +35,29 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+
 from selenium import selenium
 from unittestzero import Assert
-from mobile_page import MobilePage
+from performance_page import PerformancePage
+import pytest
+xfail = pytest.mark.xfail
 
-class TestMobile:
+
+class TestPerformance:
     
-    def test_sub_sections_are_present(self,testsetup):
+    def test_performance_icons(self,testsetup):
         self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
+        performance_pg = PerformancePage(testsetup)
+        performance_pg.open("/firefox/performance/")
+        Assert.true(performance_pg.perf_web_ico)
+        Assert.true(performance_pg.perf_app_ico)
+        Assert.true(performance_pg.perf_hardware_ico)
     
+    @xfail(reason="Bug 661285 - [Fx5LaunchDay] Remove Perf graphs from moz.com and add new content to take its place on the Performance page")    
+    def test_performance_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        performance_pg = PerformancePage(testsetup)
+        performance_pg.open("/firefox/performance/")
+        Assert.true(performance_pg.perf_web_img)
+        Assert.true(performance_pg.perf_app_img)
+        Assert.true(performance_pg.perf_hardware_img)

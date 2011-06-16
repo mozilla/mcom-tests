@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -35,22 +34,16 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from unittestzero import Assert
-from mobile_page import MobilePage
+import urllib
 
-class TestMobile:
-    
-    def test_sub_sections_are_present(self,testsetup):
-        self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
-    
+
+def testStatusCode():
+	url = 'http://www.mozilla.com/en-US/abck'
+	page = urllib.urlopen(url)
+	if  page.code == 404:
+	    print 'passed'
+	else:
+	    print "%s returned %d" %(url,page.code)
+	
+	
+testStatusCode()

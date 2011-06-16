@@ -20,7 +20,7 @@
 # Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
-# Contributor(s): Raymond Etornam Agbeame 
+# Contributor(s): Raymond Etornam Agbeame
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -36,60 +36,54 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from vars import ConnectionParameters
 from page import Page
 
 
 class MobilePage(Page):
-	_take_tour_locator = "css=#sub-video.sub-feature a"
-	_sync_locator = "css=#sub-sync.sub-feature a"
-	_addons_locator = "css=#sub-addons.sub-feature a"
-	_type_less_locator = "#sub-speed.sub-feature a"
-	_download_locator ="css=a.download-link"
-	
-	@property
-	def tour_locator(self):
-		return self._take_tour_locator
-		
-	@property
-	def sync_locator(self):
-		return self._sync_locator
-		
-	@property
-	def addons_locator(self):
-		return self._addons_locator
-		
-	@property
-	def type_less_locator(self):
-		return self._type_less_locator
-		
-	@property
-	def download_locator(self):
-		return self._download_locator
-		
-	@property
-	def get_tour_text(self):
-		return self.selenium.get_text(self.tour_locator)
-		
-	@property
-	def get_sync_text(self):
-		return self.selenium.get_text(self.tour_locator)
-		
-		
-	@property
-	def get_addons_text(self):
-		return self.selenium.get_text(self.addons_locator)
-		
-	@property
-	def get_type_less_text(self):
-		return self.selenium.get_text(self.type_less_locator)
-		
-	@property
-	def get_download_text(self):
-		return self.selenium.get_text(self.download_locator)
-	
-		
-		
-	def __init__(self, selenium):
-		self.selenium = selenium
 
+    _take_tour_locator = "css=#sub-video.sub-feature a"
+    _sync_locator = "css=#sub-sync.sub-feature a"
+    _addons_locator = "css=#sub-addons.sub-feature a"
+    _type_less_locator = "#sub-speed.sub-feature a"
+    _download_locator ="css=a.download-link"
+
+    @property
+    def tour_locator(self):
+        return self._take_tour_locator
+
+    @property
+    def sync_locator(self):
+        return self._sync_locator
+
+    @property
+    def addons_locator(self):
+        return self._addons_locator
+
+    @property
+    def type_less_locator(self):
+        return self._type_less_locator
+
+    @property
+    def download_locator(self):
+        return self._download_locator
+
+    @property
+    def get_tour_text(self):
+        return self.selenium.get_text(self.tour_locator)
+
+    @property
+    def get_sync_text(self):
+        return self.selenium.get_text(self.tour_locator)
+
+
+    @property
+    def get_addons_text(self):
+        return self.selenium.get_text(self.addons_locator)
+
+    @property
+    def get_type_less_text(self):
+        return self.selenium.get_text(self.type_less_locator)
+
+    @property
+    def get_download_text(self):
+        return self.selenium.get_text(self.download_locator)

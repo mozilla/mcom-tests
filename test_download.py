@@ -35,22 +35,41 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from unittestzero import Assert
-from mobile_page import MobilePage
+import lxml.html
+import urllib
 
-class TestMobile:
+
+def checkAllButtons():
+    '''
+        This script scrapes http://www.mozilla.com product
+        download page grabs  *Nix,OSX,Windows download links
+        and checks the status code for  each download url
+    '''
+    url ='http://www.mozilla.com/en-US/products/download.html'
+    document = lxml.html.parse(url).getroot()
+    document.make_links_absolute()
+    osxLinks = document.body.cssselect("li.os_osx>a")
+    link = osxLinks[0].get('href')
+    print link
+    response = urllib.urlopen(link)
+    if response.code != 200:
+        print "%s  is failing" % (link)
     
-    def test_sub_sections_are_present(self,testsetup):
-        self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
+    #check for linux
+    unixLinks = document.body.cssselect("li.os_linux>a")
+    link = unixLinks[0].get('href')
+    print link
+    response = urllib.urlopen(link)
+    if response.code != 200:
+        print "%s  is failing" % (link)
     
+    #check for windows
+    winLinks = document.body.cssselect("li.os_windows>a")
+    link = winLinks[0].get('href')
+    print link
+    response = urllib.urlopen(link)
+    if response.code != 200:
+        print "%s  is failing" % (link)
+    
+if __name__ == "__main__":
+    checkAllButtons()

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -36,21 +35,42 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from unittestzero import Assert
-from mobile_page import MobilePage
+from page import Page
 
-class TestMobile:
+
+class PerformancePage(Page):
+            
+    _perf_web = "css=#perf-web"
+    _perf_app = "css=#perf-app"
+    _perf_hardware = "css=#perf-hardware"
+    _perf_web_img = "css=#web>.section-image"
+    _perf_app_img = "css=#performance-chart>tbody"
+    _perf_hardware_img = "css=#hardware>.section-image"
     
-    def test_sub_sections_are_present(self,testsetup):
-        self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
+    @property
+    def perf_web_ico(self):
+        return self.is_element_present(self._perf_web)
+        
+    @property
+    def perf_app_ico(self):
+        return self.is_element_present(self._perf_app)
+        
+    @property
+    def perf_hardware_ico(self):
+        return self.is_element_present(self._perf_hardware)
+        
+    @property
+    def perf_web_img(self):
+        return self.is_element_present(self._perf_web_img)
+        
+    @property
+    def perf_app_img(self):
+        return self.is_element_present(self._perf_app_img)
+        
+    @property
+    def perf_hardware_img(self):
+        return self.is_element_present(self._perf_hardware_img)
+        
+        
+    
     

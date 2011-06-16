@@ -37,20 +37,16 @@
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
 from unittestzero import Assert
-from mobile_page import MobilePage
+from newsletter_page import NewsletterPage
 
-class TestMobile:
-    
-    def test_sub_sections_are_present(self,testsetup):
+
+class TestNewsletter:        
+        
+    def test_submit_newsletter(self,testsetup):
         self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
-    
+        newsletter_pg = NewsletterPage(testsetup)
+        newsletter_pg.open("/en-US/newsletter/")
+        newsletter_pg.type_email
+        newsletter_pg.click_checkbox
+        Assert.true(newsletter_pg.subscribe)
+        Assert.true(newsletter_pg.stay_connected)

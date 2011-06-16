@@ -25,6 +25,7 @@ followed by
     sudo pip install pytest 
     sudo pip install pytest-xdist
     sudo pip install selenium
+    sudo pip install unittestzero
     
 to install the required Python libraries.
 

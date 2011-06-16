@@ -35,22 +35,32 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from unittestzero import Assert
-from mobile_page import MobilePage
 
-class TestMobile:
-    
-    def test_sub_sections_are_present(self,testsetup):
+from selenium import selenium
+from customize_page import CustomizePage
+from unittestzero import Assert
+
+
+class TestCustomize:
+        
+    def test_customize_icons(self,testsetup):
         self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
-        mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
-    
+        customize_pg = CustomizePage(testsetup)
+        customize_pg.open("/firefox/customize/")
+        Assert.true(customize_pg.plugins_icon)
+        Assert.true(customize_pg.interface_icon)
+        Assert.true(customize_pg.sync_icon)
+        Assert.true(customize_pg.style_icon)
+        Assert.true(customize_pg.addons_icon)
+        
+        
+    def test_customize_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        customize_pg = CustomizePage(testsetup)
+        customize_pg.open("/firefox/customize/")
+        #Assert.true(customize_pg.style_image)
+        Assert.true(customize_pg.plugins_image)
+        Assert.true(customize_pg.interface_image)
+        Assert.true(customize_pg.sync_image)
+        Assert.true(customize_pg.addons_feature)
+        Assert.true(customize_pg.top_feature)
