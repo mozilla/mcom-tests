@@ -40,13 +40,12 @@ Change the path/name to the downloaded Selenium server file.
 
 [Selenium Downloads]: http://code.google.com/p/selenium/downloads/list
 
-### vars.py
-Edit the vars.py file to specify the browser you will want to run your tests in. Common values are *\*firefox*, *\*safari*, *\*iexplore*, *\*googlechrome*
+
 
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-    py.test-2.6 .
+    py.test  --browser='*firefox' --site=http://www-trunk.stage.mozilla.com --timeout="120000"
 
 Writing Tests
 -------------
