@@ -45,6 +45,7 @@ xfail = pytest.mark.xfail
 
 class TestPerformance:
     
+    @xfail(reason="Bug 661285 - [Fx5LaunchDay] Remove Perf graphs from moz.com and add new content to take its place on the Performance page")
     def test_performance_icons(self,testsetup):
         self.selenium = testsetup.selenium
         performance_pg = PerformancePage(testsetup)

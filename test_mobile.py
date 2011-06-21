@@ -38,9 +38,12 @@
 from selenium import selenium
 from unittestzero import Assert
 from mobile_page import MobilePage
+import pytest
+xfail = pytest.mark.xfail
 
 class TestMobile:
     
+    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=664261")
     def test_sub_sections_are_present(self,testsetup):
         self.selenium = testsetup.selenium
         mobile_pg = MobilePage(testsetup)
