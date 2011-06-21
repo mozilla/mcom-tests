@@ -37,6 +37,7 @@
 # ***** END LICENSE BLOCK *****
 import lxml.html
 import urllib
+from unittestzero import Assert
 
 
 def checkAllButtons():
@@ -52,24 +53,24 @@ def checkAllButtons():
     link = osxLinks[0].get('href')
     print link
     response = urllib.urlopen(link)
-    if response.code != 200:
-        print "%s  is failing" % (link)
+    Assert.true(response.code ==200)
+    
     
     #check for linux
     unixLinks = document.body.cssselect("li.os_linux>a")
     link = unixLinks[0].get('href')
     print link
     response = urllib.urlopen(link)
-    if response.code != 200:
-        print "%s  is failing" % (link)
+    Assert.true(response.code ==200)
+    
     
     #check for windows
     winLinks = document.body.cssselect("li.os_windows>a")
     link = winLinks[0].get('href')
     print link
     response = urllib.urlopen(link)
-    if response.code != 200:
-        print "%s  is failing" % (link)
+    Assert.true(response.code ==200)
+
     
 if __name__ == "__main__":
     checkAllButtons()
