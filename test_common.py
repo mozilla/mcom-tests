@@ -91,7 +91,7 @@ class TestCommon:
             "/firefox/customize/",
             "/firefox/technology/",
             "/firefox/video/",
-            "/firefox/tour/",
+            "/firefox/central/",
             "/firefox/channel/",
             "/mobile/",
             "/mobile/download/",
