@@ -87,7 +87,7 @@ class TestCommon:
     def test_all_page_header_and_footer_links(self,testsetup):
         urls = [
             "/firefox/security/",
-            "/firefox/performmance/",
+            "/firefox/performance/",
             "/firefox/customize/",
             "/firefox/technology/",
             "/firefox/video/",
