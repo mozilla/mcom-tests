@@ -36,28 +36,31 @@
 #
 # ***** END LICENSE BLOCK *****
 
+import pytest
 from selenium import selenium
 from customize_page import CustomizePage
 from unittestzero import Assert
+xfail = pytest.mark.xfail
 
 
 class TestCustomize:
-        
+    
+    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667032")  
     def test_customize_icons(self,testsetup):
         self.selenium = testsetup.selenium
         customize_pg = CustomizePage(testsetup)
-        customize_pg.open("/firefox/customize/")
+        customize_pg.open("/en-US/firefox/customize/")
         Assert.true(customize_pg.plugins_icon)
         Assert.true(customize_pg.interface_icon)
         Assert.true(customize_pg.sync_icon)
         Assert.true(customize_pg.style_icon)
         Assert.true(customize_pg.addons_icon)
         
-        
+    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667032")    
     def test_customize_images(self,testsetup):
         self.selenium = testsetup.selenium
         customize_pg = CustomizePage(testsetup)
-        customize_pg.open("/firefox/customize/")
+        customize_pg.open("/en-US/firefox/customize/")
         #Assert.true(customize_pg.style_image)
         Assert.true(customize_pg.plugins_image)
         Assert.true(customize_pg.interface_image)
