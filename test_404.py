@@ -35,15 +35,15 @@
 #
 # ***** END LICENSE BLOCK *****
 import urllib
+from unittestzero import Assert
 
 
 def testStatusCode():
 	url = 'http://www.mozilla.com/en-US/abck'
 	page = urllib.urlopen(url)
-	if  page.code == 404:
-	    print 'passed'
-	else:
-	    print "%s returned %d" %(url,page.code)
-	
+	try:
+	    Assert.true(page.code==404)
+	except AssertionError:
+	    print "%s returned %d" %(url, page.code)	
 	
 testStatusCode()
