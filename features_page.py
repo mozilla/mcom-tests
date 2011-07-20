@@ -70,7 +70,7 @@ class FeaturesPage(Page):
     _one_bookmark_image = \
     "css=#madeeasy>.features-container>.feature>.oneclickbookmarking>.right"
     _speed_image = \
-    "css=#highperformance>.features-container>.column1>.feature>#performance-chart"
+    "css=.mozilla-video-control-overlay"
     _security_image = \
     "css=#advancedsecurity>.features-container>.column1>.feature>.right"
     _private_browsing_image = \
