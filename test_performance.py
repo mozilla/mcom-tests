@@ -45,20 +45,18 @@ xfail = pytest.mark.xfail
 
 class TestPerformance:
     
-    @xfail(reason="Bug 661285 - [Fx5LaunchDay] Remove Perf graphs from moz.com and add new content to take its place on the Performance page")
+
     def test_performance_icons(self,testsetup):
         self.selenium = testsetup.selenium
         performance_pg = PerformancePage(testsetup)
         performance_pg.open("/firefox/performance/")
+        Assert.true(performance_pg.video_overlay)
         Assert.true(performance_pg.perf_web_ico)
-        Assert.true(performance_pg.perf_app_ico)
         Assert.true(performance_pg.perf_hardware_ico)
     
-    @xfail(reason="Bug 661285 - [Fx5LaunchDay] Remove Perf graphs from moz.com and add new content to take its place on the Performance page")    
+        
     def test_performance_images(self,testsetup):
         self.selenium = testsetup.selenium
         performance_pg = PerformancePage(testsetup)
         performance_pg.open("/firefox/performance/")
-        Assert.true(performance_pg.perf_web_img)
-        Assert.true(performance_pg.perf_app_img)
         Assert.true(performance_pg.perf_hardware_img)
