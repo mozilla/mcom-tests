@@ -38,11 +38,11 @@ import pytest
 from selenium import selenium
 from unittestzero import Assert
 from security_page import SecurityPage
-xfail = pytest.mark.xfail
+
 
 
 class TestSecurity:
-    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667090")
+    
     def test_security_icons(self,testsetup):
         self.selenium = testsetup.selenium
         security_pg = SecurityPage(testsetup)
@@ -52,7 +52,7 @@ class TestSecurity:
         Assert.true(security_pg.in_control_ico)
         Assert.true(security_pg.mission_ico)
         
-    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667090")  
+   
     def test_security_images(self,testsetup):
         self.selenium = testsetup.selenium
         security_pg = SecurityPage(testsetup)
