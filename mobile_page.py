@@ -20,7 +20,7 @@
 # Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
-# Contributor(s): Raymond Etornam Agbeame 
+# Contributor(s): Raymond Etornam Agbeame
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -36,60 +36,66 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from vars import ConnectionParameters
 from page import Page
 
 
 class MobilePage(Page):
-	_take_tour_locator = "css=#sub-video.sub-feature a"
-	_sync_locator = "css=#sub-sync.sub-feature a"
-	_addons_locator = "css=#sub-addons.sub-feature a"
-	_type_less_locator = "#sub-speed.sub-feature a"
-	_download_locator ="css=a.download-link"
-	
-	@property
-	def tour_locator(self):
-		return self._take_tour_locator
-		
-	@property
-	def sync_locator(self):
-		return self._sync_locator
-		
-	@property
-	def addons_locator(self):
-		return self._addons_locator
-		
-	@property
-	def type_less_locator(self):
-		return self._type_less_locator
-		
-	@property
-	def download_locator(self):
-		return self._download_locator
-		
-	@property
-	def get_tour_text(self):
-		return self.selenium.get_text(self.tour_locator)
-		
-	@property
-	def get_sync_text(self):
-		return self.selenium.get_text(self.tour_locator)
-		
-		
-	@property
-	def get_addons_text(self):
-		return self.selenium.get_text(self.addons_locator)
-		
-	@property
-	def get_type_less_text(self):
-		return self.selenium.get_text(self.type_less_locator)
-		
-	@property
-	def get_download_text(self):
-		return self.selenium.get_text(self.download_locator)
-	
-		
-		
-	def __init__(self, selenium):
-		self.selenium = selenium
-
+    
+    _text_download_android = "css=#android>h3"
+    _text_download_iphone = "css=#iphone>h3"
+    _btn_download_android = "css=#android>p.dl>a"
+    _btn_download_iphone = "css=#iphone>p.dl>a"
+    _btn_download_android_beta = "css=#beta_android>a"
+    _btn_download_desktop = "css=#desktop_download>li>a"
+    _newsletter_link = "css=.mail>a"
+    _twitter_link = "css=li.twitter>a"
+    _facebook_link = "css=.facebook>a"
+    
+    @property
+    def android_header_text(self):
+        return self.is_element_present(self._text_download_android)
+        
+    @property
+    def iphone_header_text(self):
+        return self.is_element_present(self._text_download_iphone)
+        
+    @property
+    def android_button(self):
+        return self.is_element_present(self._btn_download_android)
+        
+    @property
+    def iphone_button(self):
+        return self.is_element_present(self._btn_download_iphone)
+        
+    @property
+    def android_beta_button(self):
+        return self.is_element_present(self._btn_download_android_beta)
+        
+    @property
+    def mobile_desktop_button(self):
+        return self.is_element_present(self._btn_download_desktop)
+        
+    @property
+    def newsletter_link(self):
+        return self.is_element_present(self._newsletter_link)
+        
+    @property
+    def twitter_link(self):
+        return self.is_element_present(self._twitter_link)
+        
+    @property
+    def facebook_link(self):
+        return self.is_element_present(self._facebook_link)
+        
+    @property
+    def click_newsletter_link(self):
+        self.click(self._newsletter_link, True)
+        return self.get_url_current_page()
+    
+    @property
+    def click_facebook_link(self):
+        self.click(self._facebook_link, True)
+        return self.get_url_current_page()
+        
+        
+    

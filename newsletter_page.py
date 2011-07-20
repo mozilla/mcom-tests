@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -34,30 +35,33 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
 from selenium import selenium
-from unittestzero import Assert
-from security_page import SecurityPage
+from page import Page
 
 
-
-class TestSecurity:
-    
-    def test_security_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
+class NewsletterPage(Page):
         
-   
-    def test_security_images(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+    _email = "css=.email"
+    _privacy_checkbox = "css=.privacy-check"
+    _subscribe_button = "css=.subscribe"
+    _success_pane = "css=.success-pane>h3"
+    _stay_connected_button = "css=.stay-connected"
+    
+    @property
+    def type_email(self):
+        return self.type(self._email, "me@example.com")
+        
+        
+    @property
+    def click_checkbox(self):
+        return self.click(self._privacy_checkbox)
+        
+    @property
+    def subscribe(self):
+        self.click(self._subscribe_button)
+        return self.is_element_present(self._success_pane)
+        
+    @property
+    def stay_connected(self):
+        return self.is_element_present(self._stay_connected_button)
+        

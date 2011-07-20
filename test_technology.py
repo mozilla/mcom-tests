@@ -34,30 +34,42 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
+
 from selenium import selenium
 from unittestzero import Assert
-from security_page import SecurityPage
+from technology_page import TechnologyPage
 
 
-
-class TestSecurity:
+class TestTechnology:
     
-    def test_security_icons(self,testsetup):
+    def test_technology_icons(self,testsetup):
         self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
+        technology_pg = TechnologyPage(testsetup)
+        technology_pg.open("/firefox/technology/")
+        Assert.true(technology_pg.innovation_button)
+        Assert.true(technology_pg.css_button)
+        Assert.true(technology_pg.api_button)
+        Assert.true(technology_pg.dev_button)
+        Assert.true(technology_pg.svg_button)
+        Assert.true(technology_pg.security_button)
+        Assert.true(technology_pg.rollover_button)
         
-   
-    def test_security_images(self,testsetup):
+        
+    def test_all_sections(self,testsetup):
         self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+        technology_pg = TechnologyPage(testsetup)
+        technology_pg.open("/firefox/technology/")
+        Assert.true(technology_pg.html5_section)
+        Assert.true(technology_pg.css_section)
+        Assert.true(technology_pg.api_section)
+        Assert.true(technology_pg.tools_section)
+        Assert.true(technology_pg.svg_section)
+        Assert.true(technology_pg.security_section)
+        
+    def test_html_sections(self,testsetup):
+        self.selenium = testsetup.selenium
+        technology_pg = TechnologyPage(testsetup)
+        technology_pg.open("/firefox/technology/")
+        Assert.true(technology_pg.forms)
+        Assert.true(technology_pg.parser)
+        Assert.true(technology_pg.webm)

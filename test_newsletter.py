@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -34,30 +35,18 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
 from selenium import selenium
 from unittestzero import Assert
-from security_page import SecurityPage
+from newsletter_page import NewsletterPage
 
 
-
-class TestSecurity:
-    
-    def test_security_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
+class TestNewsletter:        
         
-   
-    def test_security_images(self,testsetup):
+    def test_submit_newsletter(self,testsetup):
         self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+        newsletter_pg = NewsletterPage(testsetup)
+        newsletter_pg.open("/en-US/newsletter/")
+        newsletter_pg.type_email
+        newsletter_pg.click_checkbox
+        Assert.true(newsletter_pg.subscribe)
+        Assert.true(newsletter_pg.stay_connected)

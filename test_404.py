@@ -34,30 +34,16 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
-from selenium import selenium
+import urllib
 from unittestzero import Assert
-from security_page import SecurityPage
 
 
-
-class TestSecurity:
-    
-    def test_security_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
-        
-   
-    def test_security_images(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+def testStatusCode():
+	url = 'http://www.mozilla.com/en-US/abck'
+	page = urllib.urlopen(url)
+	try:
+	    Assert.true(page.code==404)
+	except AssertionError:
+	    print "%s returned %d" %(url, page.code)	
+	
+testStatusCode()

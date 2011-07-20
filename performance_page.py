@@ -34,30 +34,35 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
 from selenium import selenium
-from unittestzero import Assert
-from security_page import SecurityPage
+from page import Page
 
 
-
-class TestSecurity:
+class PerformancePage(Page):
+            
+    _perf_web = "css=#perf-web"
+    _perf_hardware = "css=#perf-hardware"
+    _perf_hardware_img = "css=#hardware>.section-image"
+    _video_overlay = "css=.mozilla-video-control-overlay"
     
-    def test_security_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
+    @property
+    def perf_web_ico(self):
+        return self.is_element_present(self._perf_web)
+
         
-   
-    def test_security_images(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+    @property
+    def perf_hardware_ico(self):
+        return self.is_element_present(self._perf_hardware)
+
+        
+    @property
+    def perf_hardware_img(self):
+        return self.is_element_present(self._perf_hardware_img)
+        
+    @property
+    def video_overlay(self):
+        return self.is_element_present(self._video_overlay)
+        
+        
+    
+    

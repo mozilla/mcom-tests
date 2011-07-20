@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -34,30 +35,42 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
-from selenium import selenium
+import lxml.html
+import urllib
 from unittestzero import Assert
-from security_page import SecurityPage
 
 
-
-class TestSecurity:
+def checkAllButtons():
+    '''
+        This script scrapes http://www.mozilla.com product
+        download page grabs  *Nix,OSX,Windows download links
+        and checks the status code for  each download url
+    '''
+    url ='http://www.mozilla.com/en-US/products/download.html'
+    document = lxml.html.parse(url).getroot()
+    document.make_links_absolute()
+    osxLinks = document.body.cssselect("li.os_osx>a")
+    link = osxLinks[0].get('href')
+    print link
+    response = urllib.urlopen(link)
+    Assert.true(response.code ==200)
     
-    def test_security_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
-        
-   
-    def test_security_images(self,testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+    
+    #check for linux
+    unixLinks = document.body.cssselect("li.os_linux>a")
+    link = unixLinks[0].get('href')
+    print link
+    response = urllib.urlopen(link)
+    Assert.true(response.code ==200)
+    
+    
+    #check for windows
+    winLinks = document.body.cssselect("li.os_windows>a")
+    link = winLinks[0].get('href')
+    print link
+    response = urllib.urlopen(link)
+    Assert.true(response.code ==200)
+
+    
+if __name__ == "__main__":
+    checkAllButtons()

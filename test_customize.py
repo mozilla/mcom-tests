@@ -35,10 +35,35 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-class ConnectionParameters:
-	server ="qa-selenium.mv.mozilla.com"
-	port = 4444
-	browser = "Firefox4b;en-us;MacOSX6"
-	baseurl = "http://www.mozilla.com"
-	productionurl = "http://www.mozilla.com"
-	page_load_timeout = 120000
+
+import pytest
+from selenium import selenium
+from customize_page import CustomizePage
+from unittestzero import Assert
+xfail = pytest.mark.xfail
+
+
+class TestCustomize:
+    
+    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667032")  
+    def test_customize_icons(self,testsetup):
+        self.selenium = testsetup.selenium
+        customize_pg = CustomizePage(testsetup)
+        customize_pg.open("/en-US/firefox/customize/")
+        Assert.true(customize_pg.plugins_icon)
+        Assert.true(customize_pg.interface_icon)
+        Assert.true(customize_pg.sync_icon)
+        Assert.true(customize_pg.style_icon)
+        Assert.true(customize_pg.addons_icon)
+        
+    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667032")    
+    def test_customize_images(self,testsetup):
+        self.selenium = testsetup.selenium
+        customize_pg = CustomizePage(testsetup)
+        customize_pg.open("/en-US/firefox/customize/")
+        #Assert.true(customize_pg.style_image)
+        Assert.true(customize_pg.plugins_image)
+        Assert.true(customize_pg.interface_image)
+        Assert.true(customize_pg.sync_image)
+        Assert.true(customize_pg.addons_feature)
+        Assert.true(customize_pg.top_feature)

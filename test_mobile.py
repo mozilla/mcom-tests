@@ -36,84 +36,27 @@
 #
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
-from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
+from unittestzero import Assert
 from mobile_page import MobilePage
+import pytest
+xfail = pytest.mark.xfail
 
-
-
-class TestMobile(unittest.TestCase):
-	
-	def setUp(self):
-		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-													ConnectionParameters.browser, ConnectionParameters.baseurl)
-		self.selenium.start()
-		self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-		
-	def tearDown(self):
-		self.selenium.stop()
-		
-		
-	def test_header_and_footer_links_are_present(self):
-		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/mobile/')
-		
-		for x in homepageBase.headers_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_features_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_social_media_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_mobile_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_support_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_addons_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_about_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-
-
-	
-
-
-	def test_sub_sections_are_present(self):
-		mobile_pg = MobilePage(self.selenium)
-		mobile_pg.selenium.open('/mobile/')
-		mobile_pg.get_tour_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.tour_locator))
-		mobile_pg.get_sync_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.sync_locator))
-		mobile_pg.get_addons_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.addons_locator))
-		mobile_pg.get_download_text
-		self.assertTrue(mobile_pg.is_element_present(mobile_pg.download_locator ))
-		
-		
-			
-			
-		
-		
-		
-if __name__ =="__main__":
-	unittest.main()
-		
-
-		
-	
-	
+class TestMobile:
+    
+    #@xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=664261")
+    def test_sub_sections_are_present(self,testsetup):
+        self.selenium = testsetup.selenium
+        mobile_pg = MobilePage(testsetup)
+        mobile_pg.open('/mobile/')
+        Assert.true(mobile_pg.android_header_text)
+        Assert.true(mobile_pg.iphone_header_text)
+        Assert.true(mobile_pg.android_button)
+        Assert.true(mobile_pg.iphone_button)
+        Assert.true(mobile_pg.android_beta_button)
+        Assert.true(mobile_pg.mobile_desktop_button)
+        Assert.true(mobile_pg.newsletter_link)
+        Assert.true(mobile_pg.facebook_link)
+        Assert.true(mobile_pg.twitter_link)
+        Assert.equal(mobile_pg.click_facebook_link, \
+                    u"http://www.facebook.com/firefoxformobile")
+    

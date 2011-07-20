@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -34,30 +35,28 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import pytest
+
 from selenium import selenium
 from unittestzero import Assert
-from security_page import SecurityPage
+from performance_page import PerformancePage
+import pytest
+xfail = pytest.mark.xfail
 
 
-
-class TestSecurity:
+class TestPerformance:
     
-    def test_security_icons(self,testsetup):
+
+    def test_performance_icons(self,testsetup):
         self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.protecting_privacy_ico)
-        Assert.true(security_pg.browser_security_ico)
-        Assert.true(security_pg.in_control_ico)
-        Assert.true(security_pg.mission_ico)
+        performance_pg = PerformancePage(testsetup)
+        performance_pg.open("/firefox/performance/")
+        Assert.true(performance_pg.video_overlay)
+        Assert.true(performance_pg.perf_web_ico)
+        Assert.true(performance_pg.perf_hardware_ico)
+    
         
-   
-    def test_security_images(self,testsetup):
+    def test_performance_images(self,testsetup):
         self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
-        security_pg.open("/firefox/security/")
-        Assert.true(security_pg.privacy_img)
-        Assert.true(security_pg.browser_security_img)
-        Assert.true(security_pg.control_img)
-        Assert.true(security_pg.mission_img)
+        performance_pg = PerformancePage(testsetup)
+        performance_pg.open("/firefox/performance/")
+        Assert.true(performance_pg.perf_hardware_img)

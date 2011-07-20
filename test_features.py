@@ -36,70 +36,34 @@
 #
 # ***** END LICENSE BLOCK *****
 
-
 from selenium import selenium
-from vars import ConnectionParameters
-import unittest
-from mozilla_base_page  import  MozillaBasePage
+from unittestzero import Assert
 from features_page import FeaturesPage
+import pytest
+xfail = pytest.mark.xfail
 
 
-
-class TestFeatures(unittest.TestCase):
-	
-	def setUp(self):
-		self.selenium = selenium( ConnectionParameters.server, ConnectionParameters.port,
-													ConnectionParameters.browser, ConnectionParameters.baseurl)
-		self.selenium.start()
-		self.selenium.set_timeout(ConnectionParameters.page_load_timeout)
-
-	def tearDown(self):
-		self.selenium.stop()
-
-
-		
-		
-
-	
-	
-	
-	def test_header_and_footer_links_are_present(self):
-		homepageBase = MozillaBasePage(self.selenium)
-		homepageBase.selenium.open('/firefox/features/')
-
-		for x in homepageBase.headers_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_features_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_social_media_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-
-		for x in homepageBase.footer_mobile_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_support_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-		
-		for x in homepageBase.footer_addons_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-			
-		for x in homepageBase.footer_about_list:
-			homepageBase.selenium.get_text(x)
-			self.assertTrue(homepageBase.is_element_present(x))
-	
-
-	def test_features(self):
-		features_pg = FeaturesPage(self.selenium)
-		features_pg.selenium.open('/firefox/features/')
-
-		
-if __name__ =="__main__":
-   unittest.main()
+class TestFeatures:
+    
+    @xfail(reason="Bug 661285 - [Fx5LaunchDay] Remove Perf graphs from moz.com and add new content to take its place on the Performance page")      
+    def test_page(self,testsetup):
+        self.selenium = testsetup.selenium
+        features_pg = FeaturesPage(testsetup)
+        features_pg.open("/firefox/features/")
+        Assert.true(features_pg.made_easy)
+        Assert.true(features_pg.high_performance)
+        Assert.true(features_pg.advanced_security)
+        Assert.true(features_pg.powerful_personalization)
+        Assert.true(features_pg.universal_access)
+        Assert.true(features_pg.cutting_edge)
+        Assert.true(features_pg.made_easy_img)
+        Assert.true(features_pg.app_tabs_img)
+        Assert.true(features_pg.switch_tab_img)
+        Assert.true(features_pg.panorama_img)
+        Assert.true(features_pg.sync_img)
+        Assert.true(features_pg.easy_search_img)
+        Assert.true(features_pg.one_bookmark_img)
+        Assert.true(features_pg.speed_img)
+        Assert.true(features_pg.security_img)
+        Assert.true(features_pg.private_browsing_img)
+        Assert.true(features_pg.auto_update_img)
