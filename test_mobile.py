@@ -43,17 +43,20 @@ xfail = pytest.mark.xfail
 
 class TestMobile:
     
-    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=664261")
+    #@xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=664261")
     def test_sub_sections_are_present(self,testsetup):
         self.selenium = testsetup.selenium
         mobile_pg = MobilePage(testsetup)
         mobile_pg.open('/mobile/')
-        mobile_pg.get_tour_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.tour_locator))
-        mobile_pg.get_sync_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.sync_locator))
-        mobile_pg.get_addons_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.addons_locator))
-        mobile_pg.get_download_text
-        Assert.true(mobile_pg.is_element_present(mobile_pg.download_locator ))
+        Assert.true(mobile_pg.android_header_text)
+        Assert.true(mobile_pg.iphone_header_text)
+        Assert.true(mobile_pg.android_button)
+        Assert.true(mobile_pg.iphone_button)
+        Assert.true(mobile_pg.android_beta_button)
+        Assert.true(mobile_pg.mobile_desktop_button)
+        Assert.true(mobile_pg.newsletter_link)
+        Assert.true(mobile_pg.facebook_link)
+        Assert.true(mobile_pg.twitter_link)
+        Assert.equal(mobile_pg.click_facebook_link, \
+                    u"http://www.facebook.com/firefoxformobile")
     
