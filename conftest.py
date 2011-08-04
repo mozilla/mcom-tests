@@ -40,7 +40,7 @@ def pytest_addoption(parser):
         help="specify the browser")
     parser.addoption("--site", action="store", default=None,
         help="specify the AUT")
-    parser.addoption("--timeout", action="store", default=120000,
+    parser.addoption("--timeout", action="store", type="int", default=120000,
         help="specify the timeout")
 
 
