@@ -44,8 +44,7 @@ xfail = pytest.mark.xfail
 
 
 class TestCustomize:
-    
-    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667032")  
+
     def test_customize_icons(self,testsetup):
         self.selenium = testsetup.selenium
         customize_pg = CustomizePage(testsetup)
@@ -55,8 +54,7 @@ class TestCustomize:
         Assert.true(customize_pg.sync_icon)
         Assert.true(customize_pg.style_icon)
         Assert.true(customize_pg.addons_icon)
-        
-    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=667032")    
+
     def test_customize_images(self,testsetup):
         self.selenium = testsetup.selenium
         customize_pg = CustomizePage(testsetup)
