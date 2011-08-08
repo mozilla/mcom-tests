@@ -49,4 +49,3 @@ class TestNewsletter:
         newsletter_pg.type_email
         newsletter_pg.click_checkbox
         Assert.true(newsletter_pg.subscribe)
-        Assert.true(newsletter_pg.stay_connected)

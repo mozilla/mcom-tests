@@ -45,7 +45,6 @@ class NewsletterPage(Page):
     _privacy_checkbox = "css=.privacy-check"
     _subscribe_button = "css=.subscribe"
     _success_pane = "css=.success-pane>h3"
-    _stay_connected_button = "css=.stay-connected"
     
     @property
     def type_email(self):
@@ -60,8 +59,4 @@ class NewsletterPage(Page):
     def subscribe(self):
         self.click(self._subscribe_button)
         return self.is_element_present(self._success_pane)
-        
-    @property
-    def stay_connected(self):
-        return self.is_element_present(self._stay_connected_button)
         
