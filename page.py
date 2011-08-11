@@ -101,7 +101,7 @@ class Page(object):
         return self.selenium.is_element_present(locator)
 
     def is_element_visible(self, locator):
-        return self.selenium.is_visible(locator)
+        return self.selenium.is_element_present(locator) and self.selenium.is_visible(locator)
     
     def is_text_present(self,text):
         return self.selenium.is_text_present(text)
