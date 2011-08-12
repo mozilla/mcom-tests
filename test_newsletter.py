@@ -21,6 +21,7 @@
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
+#                 Dave Hunt <dhunt@mozilla.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -35,17 +36,28 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
 from unittestzero import Assert
 from newsletter_page import NewsletterPage
+import pytest
+xfail = pytest.mark.xfail
 
 
-class TestNewsletter:        
-        
-    def test_submit_newsletter(self,testsetup):
-        self.selenium = testsetup.selenium
+class TestNewsletter:
+
+    @xfail(reason="Bug 663528 - Build email preference center on mozilla.com")
+    def test_subscribe_to_newsletter_succeeds(self, testsetup):
         newsletter_pg = NewsletterPage(testsetup)
-        newsletter_pg.open("/en-US/newsletter/")
-        newsletter_pg.type_email
-        newsletter_pg.click_checkbox
-        Assert.true(newsletter_pg.subscribe)
+        newsletter_pg.go_to_newsletter_page()
+        newsletter_pg.type_email('me@example.com')
+        newsletter_pg.agree_to_privacy_policy()
+        newsletter_pg.click_sign_me_up()
+        Assert.true(newsletter_pg.is_thanks_for_subscribing_visible)
+
+    @xfail(reason="Bug 663528 - Build email preference center on mozilla.com")
+    def test_subscribe_to_newsletter_fails_if_user_does_not_agree_to_privacy_policy(self, testsetup):
+        newsletter_pg = NewsletterPage(testsetup)
+        newsletter_pg.go_to_newsletter_page()
+        newsletter_pg.type_email('me@example.com')
+        newsletter_pg.click_sign_me_up()
+        Assert.true(newsletter_pg.is_privacy_policy_error_visible)
+        Assert.false(newsletter_pg.is_thanks_for_subscribing_visible)
