@@ -36,18 +36,13 @@
 #
 # ***** END LICENSE BLOCK *****
 
-from selenium import selenium
 from unittestzero import Assert
 from features_page import FeaturesPage
-import pytest
-xfail = pytest.mark.xfail
 
 
 class TestFeatures:
-    
-    @xfail(reason="Bug 661285 - [Fx5LaunchDay] Remove Perf graphs from moz.com and add new content to take its place on the Performance page")      
-    def test_page(self,testsetup):
-        self.selenium = testsetup.selenium
+
+    def test_page(self, testsetup):
         features_pg = FeaturesPage(testsetup)
         features_pg.open("/firefox/features/")
         Assert.true(features_pg.made_easy)
