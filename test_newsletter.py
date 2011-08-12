@@ -38,10 +38,13 @@
 # ***** END LICENSE BLOCK *****
 from unittestzero import Assert
 from newsletter_page import NewsletterPage
+import pytest
+xfail = pytest.mark.xfail
 
 
 class TestNewsletter:
 
+    @xfail(reason="Bug 663528 - Build email preference center on mozilla.com")
     def test_subscribe_to_newsletter_succeeds(self, testsetup):
         newsletter_pg = NewsletterPage(testsetup)
         newsletter_pg.go_to_newsletter_page()
@@ -50,6 +53,7 @@ class TestNewsletter:
         newsletter_pg.click_sign_me_up()
         Assert.true(newsletter_pg.is_thanks_for_subscribing_visible)
 
+    @xfail(reason="Bug 663528 - Build email preference center on mozilla.com")
     def test_subscribe_to_newsletter_fails_if_user_does_not_agree_to_privacy_policy(self, testsetup):
         newsletter_pg = NewsletterPage(testsetup)
         newsletter_pg.go_to_newsletter_page()
