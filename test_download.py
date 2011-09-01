@@ -21,6 +21,7 @@
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
+#                 Dave Hunt <dhunt@mozilla.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -35,42 +36,34 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import lxml.html
-import urllib
+
+import urllib2
+
+from BeautifulSoup import BeautifulStoneSoup
+import pytest
 from unittestzero import Assert
 
 
-def checkAllButtons():
-    '''
-        This script scrapes http://www.mozilla.com product
-        download page grabs  *Nix,OSX,Windows download links
-        and checks the status code for  each download url
-    '''
-    url ='http://www.mozilla.com/en-US/products/download.html'
-    document = lxml.html.parse(url).getroot()
-    document.make_links_absolute()
-    osxLinks = document.body.cssselect("li.os_osx>a")
-    link = osxLinks[0].get('href')
-    print link
-    response = urllib.urlopen(link)
-    Assert.true(response.code ==200)
-    
-    
-    #check for linux
-    unixLinks = document.body.cssselect("li.os_linux>a")
-    link = unixLinks[0].get('href')
-    print link
-    response = urllib.urlopen(link)
-    Assert.true(response.code ==200)
-    
-    
-    #check for windows
-    winLinks = document.body.cssselect("li.os_windows>a")
-    link = winLinks[0].get('href')
-    print link
-    response = urllib.urlopen(link)
-    Assert.true(response.code ==200)
+@pytest.mark.skip_selenium
+class TestDownload(object):
 
-    
-if __name__ == "__main__":
-    checkAllButtons()
+    def test_osx_download_button_returns_status_code_200(self, testsetup):
+        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
+        link = html.find('li', 'os_osx').a['href']
+        print link
+        response = urllib2.urlopen(link)
+        Assert.equal(response.code, 200)
+
+    def test_linux_download_button_returns_status_code_200(self, testsetup):
+        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
+        link = html.find('li', 'os_linux').a['href']
+        print link
+        response = urllib2.urlopen(link)
+        Assert.equal(response.code, 200)
+
+    def test_windows_download_button_returns_status_code_200(self, testsetup):
+        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
+        link = html.find('li', 'os_windows').a['href']
+        print link
+        response = urllib2.urlopen(link)
+        Assert.equal(response.code, 200)
