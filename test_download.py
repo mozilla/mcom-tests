@@ -42,9 +42,15 @@ import urllib2
 from BeautifulSoup import BeautifulStoneSoup
 import pytest
 from unittestzero import Assert
+from urllib import FancyURLopener
 
 
 @pytest.mark.skip_selenium
+
+class MyOpener(FancyURLopener):
+    version = 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.872.0 Safari/535.2'
+
+
 class TestDownload(object):
 
     def test_osx_download_button_returns_status_code_200(self, testsetup):
@@ -63,6 +69,16 @@ class TestDownload(object):
 
     def test_windows_download_button_returns_status_code_200(self, testsetup):
         html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
+        link = html.find('li', 'os_windows').a['href']
+        print link
+        response = urllib2.urlopen(link)
+        Assert.equal(response.code, 200)
+
+    def test_download_button_returns_status_code_200_using_chrome(self,testsetup):
+        '''https://bugzilla.mozilla.org/show_bug.cgi?id=672713'''
+        from test_download import MyOpener
+        myopener = MyOpener()
+        html = BeautifulStoneSoup(myopener.open('%s/products/download.html' % testsetup.base_url))
         link = html.find('li', 'os_windows').a['href']
         print link
         response = urllib2.urlopen(link)
