@@ -35,15 +35,17 @@
 #
 # ***** END LICENSE BLOCK *****
 import urllib
+import pytest
 from unittestzero import Assert
 
 
-def testStatusCode():
-	url = 'http://www.mozilla.com/en-US/abck'
-	page = urllib.urlopen(url)
-	try:
-	    Assert.true(page.code==404)
-	except AssertionError:
-	    print "%s returned %d" %(url, page.code)	
-	
-testStatusCode()
+@pytest.mark.skip_selenium
+class TestStatus(object):
+    
+    def testStatusCode(self, testsetup):
+        url = testsetup.base_url +'/abck'
+        page = urllib.urlopen(url)
+        try:
+            Assert.true(page.code==404)
+        except AssertionError:
+            print "%s returned %d" %(url, page.code)
