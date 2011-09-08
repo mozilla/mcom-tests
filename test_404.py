@@ -36,7 +36,7 @@
 # ***** END LICENSE BLOCK *****
 import urllib
 import pytest
-from unittestzero import Assert
+
 
 
 @pytest.mark.skip_selenium
@@ -44,8 +44,11 @@ class TestStatus(object):
     
     def testStatusCode(self, testsetup):
         url = testsetup.base_url +'/abck'
-        page = urllib.urlopen(url)
-        try:
-            Assert.true(page.code==404)
-        except AssertionError:
-            print "%s returned %d" %(url, page.code)
+        response = urllib.urlopen(url)
+        assert(response.code==404)
+    
+    '''test for X-Robots-Tag  header'''
+    def testXRobotsTags(self, testsetup):
+        url = testsetup.base_url
+        response = urllib.urlopen(url)
+        assert("X-Robots-Tag" in response.info())
