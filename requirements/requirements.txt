@@ -6,3 +6,4 @@ pytest
 pytest-xdist
 BeautifulSoup==3.2.0
 unittestzero
+pytest_mozwebqa
