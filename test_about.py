@@ -46,7 +46,7 @@ class TestAbout:
     def test_about_images(self,mozwebqa):
         self.selenium = mozwebqa.selenium
         about_pg = AboutPage(mozwebqa)
-        about_pg.open("/about/")
+        about_pg.open("/en-US/about/")
         Assert.true(about_pg.participate_image)
         Assert.true(about_pg.communications_image)
         Assert.true(about_pg.careers_image)
@@ -59,7 +59,7 @@ class TestAbout:
     def test_about_text(self,mozwebqa):
         self.selenium = mozwebqa.selenium
         about_pg = AboutPage(mozwebqa)
-        about_pg.open("/about/")
+        about_pg.open("/en-US/about/")
         Assert.true(about_pg.participate_text)
         Assert.true(about_pg.communications_text)
         Assert.true(about_pg.careers_text)

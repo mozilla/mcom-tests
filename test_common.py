@@ -100,7 +100,7 @@ class TestCommon:
             "/mobile/getinvolved/",
             "/mobile/faq/",
             "/firefox/video/",
-            "/about/",
+            "/en-US/about/",
             "/about/participate/",
             "/press/",
             "/about/careers.html",
