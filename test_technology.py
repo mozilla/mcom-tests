@@ -42,9 +42,9 @@ from technology_page import TechnologyPage
 
 class TestTechnology:
     
-    def test_technology_icons(self,testsetup):
-        self.selenium = testsetup.selenium
-        technology_pg = TechnologyPage(testsetup)
+    def test_technology_icons(self,mozwebqa):
+        self.selenium = mozwebqa.selenium
+        technology_pg = TechnologyPage(mozwebqa)
         technology_pg.open("/firefox/technology/")
         Assert.true(technology_pg.innovation_button)
         Assert.true(technology_pg.css_button)
@@ -55,9 +55,9 @@ class TestTechnology:
         Assert.true(technology_pg.rollover_button)
         
         
-    def test_all_sections(self,testsetup):
-        self.selenium = testsetup.selenium
-        technology_pg = TechnologyPage(testsetup)
+    def test_all_sections(self,mozwebqa):
+        self.selenium = mozwebqa.selenium
+        technology_pg = TechnologyPage(mozwebqa)
         technology_pg.open("/firefox/technology/")
         Assert.true(technology_pg.html5_section)
         Assert.true(technology_pg.css_section)
@@ -66,9 +66,9 @@ class TestTechnology:
         Assert.true(technology_pg.svg_section)
         Assert.true(technology_pg.security_section)
         
-    def test_html_sections(self,testsetup):
-        self.selenium = testsetup.selenium
-        technology_pg = TechnologyPage(testsetup)
+    def test_html_sections(self,mozwebqa):
+        self.selenium = mozwebqa.selenium
+        technology_pg = TechnologyPage(mozwebqa)
         technology_pg.open("/firefox/technology/")
         Assert.true(technology_pg.forms)
         Assert.true(technology_pg.parser)

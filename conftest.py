@@ -27,7 +27,7 @@ def pytest_runtest_teardown(item):
         TestSetup.selenium.stop()
 
 
-def pytest_funcarg__testsetup(request):
+def pytest_funcarg__mozwebqa(request):
     return TestSetup(request)
 
 

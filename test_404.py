@@ -42,14 +42,14 @@ import pytest
 @pytest.mark.skip_selenium
 class TestStatus(object):
     
-    def testStatusCode(self, testsetup):
-        url = testsetup.base_url +'/abck'
+    def testStatusCode(self, mozwebqa):
+        url = mozwebqa.base_url +'/abck'
         response = urllib.urlopen(url)
         assert(response.code==404)
     
     '''test for X-Robots-Tag header'''
-    def testXRobotsTags(self, testsetup):
-        url = testsetup.base_url
+    def testXRobotsTags(self, mozwebqa):
+        url = mozwebqa.base_url
         response = urllib.urlopen(url)
         assert("X-Robots-Tag" in response.info())
         assert('noodp' not in response.headers.dict.values())
