@@ -48,14 +48,14 @@ class Page(object):
     Base class for all Pages
     '''
 
-    def __init__(self,testsetup):
+    def __init__(self,mozwebqa):
         '''
         Constructor
         '''
-        self.testsetup = testsetup
-        self.selenium = testsetup.selenium
-        self.base_url = testsetup.base_url
-        self.timeout = testsetup.timeout
+        self.mozwebqa = mozwebqa
+        self.selenium = mozwebqa.selenium
+        self.base_url = mozwebqa.base_url
+        self.timeout = mozwebqa.timeout
 
     @property
     def is_the_current_page(self):
