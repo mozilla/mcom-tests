@@ -47,7 +47,7 @@ class TestStatus(object):
         response = urllib.urlopen(url)
         assert(response.code==404)
     
-    '''test for X-Robots-Tag  header'''
+    '''test for X-Robots-Tag header'''
     def testXRobotsTags(self, testsetup):
         url = testsetup.base_url
         response = urllib.urlopen(url)
