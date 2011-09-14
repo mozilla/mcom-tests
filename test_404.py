@@ -52,4 +52,4 @@ class TestStatus(object):
         url = mozwebqa.base_url
         response = urllib.urlopen(url)
         assert("X-Robots-Tag" in response.info())
-        assert('noodp' not in response.headers.dict.values())
+        assert('noodp' in response.headers.dict.values())
