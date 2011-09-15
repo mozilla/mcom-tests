@@ -42,8 +42,8 @@ from about_page import AboutPage
 
 
 class TestAbout:
-	    
-    def test_about_images(self,mozwebqa):
+
+    def test_about_images(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         about_pg = AboutPage(mozwebqa)
         about_pg.open("/en-US/about/")
@@ -55,8 +55,8 @@ class TestAbout:
         Assert.true(about_pg.contact_us_image)
         Assert.true(about_pg.store_image)
         Assert.true(about_pg.blog_image)
-        
-    def test_about_text(self,mozwebqa):
+
+    def test_about_text(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         about_pg = AboutPage(mozwebqa)
         about_pg.open("/en-US/about/")

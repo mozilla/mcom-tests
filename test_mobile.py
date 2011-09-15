@@ -41,10 +41,10 @@ from mobile_page import MobilePage
 import pytest
 xfail = pytest.mark.xfail
 
+
 class TestMobile:
-    
-    #@xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=664261")
-    def test_sub_sections_are_present(self,mozwebqa):
+
+    def test_sub_sections_are_present(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         mobile_pg = MobilePage(mozwebqa)
         mobile_pg.open('/mobile/')
@@ -59,4 +59,3 @@ class TestMobile:
         Assert.true(mobile_pg.twitter_link)
         Assert.equal(mobile_pg.click_facebook_link, \
                     u"http://www.facebook.com/firefoxformobile")
-    
