@@ -40,10 +40,9 @@ from unittestzero import Assert
 from security_page import SecurityPage
 
 
-
 class TestSecurity:
-    
-    def test_security_icons(self,mozwebqa):
+
+    def test_security_icons(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         security_pg = SecurityPage(mozwebqa)
         security_pg.open("/firefox/security/")
@@ -51,9 +50,8 @@ class TestSecurity:
         Assert.true(security_pg.browser_security_ico)
         Assert.true(security_pg.in_control_ico)
         Assert.true(security_pg.mission_ico)
-        
-   
-    def test_security_images(self,mozwebqa):
+
+    def test_security_images(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         security_pg = SecurityPage(mozwebqa)
         security_pg.open("/firefox/security/")

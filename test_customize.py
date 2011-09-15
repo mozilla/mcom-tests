@@ -45,7 +45,7 @@ xfail = pytest.mark.xfail
 
 class TestCustomize:
 
-    def test_customize_icons(self,mozwebqa):
+    def test_customize_icons(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         customize_pg = CustomizePage(mozwebqa)
         customize_pg.open("/en-US/firefox/customize/")
@@ -55,7 +55,7 @@ class TestCustomize:
         Assert.true(customize_pg.style_icon)
         Assert.true(customize_pg.addons_icon)
 
-    def test_customize_images(self,mozwebqa):
+    def test_customize_images(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         customize_pg = CustomizePage(mozwebqa)
         customize_pg.open("/en-US/firefox/customize/")

@@ -41,8 +41,8 @@ from technology_page import TechnologyPage
 
 
 class TestTechnology:
-    
-    def test_technology_icons(self,mozwebqa):
+
+    def test_technology_icons(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         technology_pg = TechnologyPage(mozwebqa)
         technology_pg.open("/firefox/technology/")
@@ -53,9 +53,8 @@ class TestTechnology:
         Assert.true(technology_pg.svg_button)
         Assert.true(technology_pg.security_button)
         Assert.true(technology_pg.rollover_button)
-        
-        
-    def test_all_sections(self,mozwebqa):
+
+    def test_all_sections(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         technology_pg = TechnologyPage(mozwebqa)
         technology_pg.open("/firefox/technology/")
@@ -65,8 +64,8 @@ class TestTechnology:
         Assert.true(technology_pg.tools_section)
         Assert.true(technology_pg.svg_section)
         Assert.true(technology_pg.security_section)
-        
-    def test_html_sections(self,mozwebqa):
+
+    def test_html_sections(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         technology_pg = TechnologyPage(mozwebqa)
         technology_pg.open("/firefox/technology/")

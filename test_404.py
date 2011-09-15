@@ -36,20 +36,20 @@
 # ***** END LICENSE BLOCK *****
 import urllib
 import pytest
-
+from unittestzero import Assert
 
 
 @pytest.mark.skip_selenium
 class TestStatus(object):
-    
-    def testStatusCode(self, mozwebqa):
+
+    def test_status_code_returns_404(self, mozwebqa):
         url = mozwebqa.base_url +'/abck'
         response = urllib.urlopen(url)
-        assert(response.code==404)
-    
-    '''test for X-Robots-Tag header'''
-    def testXRobotsTags(self, mozwebqa):
+        Assert.equal(response.code,404)
+
+    def test_xrobots_tag_is_present(self, mozwebqa):
+        '''Test for X-Robots-Tag header'''
         url = mozwebqa.base_url
         response = urllib.urlopen(url)
-        assert("X-Robots-Tag" in response.info())
-        assert('noodp' in response.headers.dict.values())
+        Assert.contains("X-Robots-Tag", response.info())
+        Assert.contains('noodp', response.headers.dict.values())
