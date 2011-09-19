@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -13,10 +13,10 @@
 # for the specific language governing rights and limitations under the
 # License.
 #
-# The Original Code is Firefox Input 
+# The Original Code is Mozilla WebQA Selenium Tests.
 #
 # The Initial Developer of the Original Code is
-# Mozilla Corp.
+# Mozilla.
 # Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
@@ -48,14 +48,14 @@ class Page(object):
     Base class for all Pages
     '''
 
-    def __init__(self,mozwebqa):
+    def __init__(self, testsetup):
         '''
         Constructor
         '''
-        self.mozwebqa = mozwebqa
-        self.selenium = mozwebqa.selenium
-        self.base_url = mozwebqa.base_url
-        self.timeout = mozwebqa.timeout
+        self.testsetup = testsetup
+        self.selenium = testsetup.selenium
+        self.base_url = testsetup.base_url
+        self.timeout = testsetup.timeout
 
     @property
     def is_the_current_page(self):
@@ -68,44 +68,44 @@ class Page(object):
                 raise Exception('Expected page title does not match actual page title.')
         else:
             return True
-            
-    def open(self,url):
+
+    def open(self, url):
         self.selenium.open(url)
         self.selenium.wait_for_page_to_load(self.timeout)
-        
-    def get_text(self,locator):
+
+    def get_text(self, locator):
         return self.selenium.get_text(locator)
 
     def click_link(self, link, wait_flag=False):
         self.selenium.click("link=%s" %(link))
         if(wait_flag):
             self.selenium.wait_for_page_to_load(self.timeout)
-        
-    def click(self,locator,wait_flag=False):
+
+    def click(self, locator, wait_flag=False):
         self.selenium.click(locator)
         if(wait_flag):
             self.selenium.wait_for_page_to_load(self.timeout)
-            
-    def type(self,locator, str):
+
+    def type(self, locator, str):
         self.selenium.type(locator, str)
-        
-    def click_button(self,button,wait_flag=False):
+
+    def click_button(self, button, wait_flag=False):
         self.selenium.click(button)
         if(wait_flag):
             self.selenium.wait_for_page_to_load(self.timeout)
 
     def get_url_current_page(self):
         return(self.selenium.get_location())
-    
-    def is_element_present(self,locator):
+
+    def is_element_present(self, locator):
         return self.selenium.is_element_present(locator)
 
     def is_element_visible(self, locator):
         return self.selenium.is_element_present(locator) and self.selenium.is_visible(locator)
-    
-    def is_text_present(self,text):
+
+    def is_text_present(self, text):
         return self.selenium.is_text_present(text)
-    
+
     def refresh(self):
         self.selenium.refresh()
         self.selenium.wait_for_page_to_load(self.timeout)
