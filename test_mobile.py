@@ -44,9 +44,9 @@ xfail = pytest.mark.xfail
 
 class TestMobile:
 
-    def test_sub_sections_are_present(self, mozwebqa):
-        self.selenium = mozwebqa.selenium
-        mobile_pg = MobilePage(mozwebqa)
+    def test_sub_sections_are_present(self, testsetup):
+        self.selenium = testsetup.selenium
+        mobile_pg = MobilePage(testsetup)
         mobile_pg.open('/mobile/')
         Assert.true(mobile_pg.android_header_text)
         Assert.true(mobile_pg.iphone_header_text)

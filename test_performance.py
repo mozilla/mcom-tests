@@ -45,16 +45,16 @@ xfail = pytest.mark.xfail
 
 class TestPerformance:
 
-    def test_performance_icons(self, mozwebqa):
-        self.selenium = mozwebqa.selenium
-        performance_pg = PerformancePage(mozwebqa)
+    def test_performance_icons(self, testsetup):
+        self.selenium = testsetup.selenium
+        performance_pg = PerformancePage(testsetup)
         performance_pg.open("/firefox/performance/")
         Assert.true(performance_pg.video_overlay)
         Assert.true(performance_pg.perf_web_ico)
         Assert.true(performance_pg.perf_hardware_ico)
 
-    def test_performance_images(self, mozwebqa):
-        self.selenium = mozwebqa.selenium
-        performance_pg = PerformancePage(mozwebqa)
+    def test_performance_images(self, testsetup):
+        self.selenium = testsetup.selenium
+        performance_pg = PerformancePage(testsetup)
         performance_pg.open("/firefox/performance/")
         Assert.true(performance_pg.perf_hardware_img)

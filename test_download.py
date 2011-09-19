@@ -53,31 +53,31 @@ class MyOpener(FancyURLopener):
 
 class TestDownload(object):
 
-    def test_osx_download_button_returns_status_code_200(self, mozwebqa):
-        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % mozwebqa.base_url))
+    def test_osx_download_button_returns_status_code_200(self, testsetup):
+        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
         link = html.find('li', 'os_osx').a['href']
         print link
         response = urllib2.urlopen(link)
         Assert.equal(response.code, 200)
 
-    def test_linux_download_button_returns_status_code_200(self, mozwebqa):
-        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % mozwebqa.base_url))
+    def test_linux_download_button_returns_status_code_200(self, testsetup):
+        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
         link = html.find('li', 'os_linux').a['href']
         print link
         response = urllib2.urlopen(link)
         Assert.equal(response.code, 200)
 
-    def test_windows_download_button_returns_status_code_200(self, mozwebqa):
-        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % mozwebqa.base_url))
+    def test_windows_download_button_returns_status_code_200(self, testsetup):
+        html = BeautifulStoneSoup(urllib2.urlopen('%s/products/download.html' % testsetup.base_url))
         link = html.find('li', 'os_windows').a['href']
         print link
         response = urllib2.urlopen(link)
         Assert.equal(response.code, 200)
 
-    def test_download_button_returns_status_code_200_using_chrome(self, mozwebqa):
+    def test_download_button_returns_status_code_200_using_chrome(self, testsetup):
         '''https://bugzilla.mozilla.org/show_bug.cgi?id=672713'''
         myopener = MyOpener()
-        html = BeautifulStoneSoup(myopener.open('%s/products/download.html' % mozwebqa.base_url))
+        html = BeautifulStoneSoup(myopener.open('%s/products/download.html' % testsetup.base_url))
         link = html.find('li', 'os_windows').a['href']
         print link
         response = urllib2.urlopen(link)
