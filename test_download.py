@@ -74,7 +74,7 @@ class TestDownload(object):
         response = urllib2.urlopen(link)
         Assert.equal(response.code, 200)
 
-    def test_download_button_returns_status_code_200_using_chrome(self, testsetup):
+    def test_download_button_returns_status_code_200_using_google_chrome(self, testsetup):
         '''https://bugzilla.mozilla.org/show_bug.cgi?id=672713'''
         myopener = MyOpener()
         html = BeautifulStoneSoup(myopener.open('%s/products/download.html' % testsetup.base_url))
