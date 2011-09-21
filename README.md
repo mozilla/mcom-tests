@@ -3,7 +3,7 @@ Mozilla.com Selenium Tests
 
 This repository holds automated tests for [http://www.mozilla.com][MOZ]
 
-[MOZ]: http://www.mozilla.com
+[MOZ]: http://www.mozilla.org
 
 Running Tests
 -------------
@@ -24,17 +24,18 @@ followed by
 
     sudo pip install pytest 
     sudo pip install pytest-xdist
+    sudo pip install pytest_mozwebqa
     sudo pip install selenium
     sudo pip install unittestzero
     
 to install the required Python libraries.
 
 ### Selenium
-Once this is all set up you will need to download and start a Selenium server. You can download the latest Selenium server from [here][Selenium Downloads]. The filename will be something like 'selenium-server-standalone-2.0b1.jar'
+Once this is all set up you will need to download and start a Selenium server. You can download the latest Selenium server from [here][Selenium Downloads]. The filename will be something like 'selenium-server-standalone-x.x.jar (where x.x is current shipping version)'
 
 To start the Selenium server run the following command:
 
-    java -jar ~/Downloads/selenium-server-standalone-2.0b1.jar
+    java -jar ~/Downloads/selenium-server-standalone-x.x.jar (where x.x is current shipping version)
 
 Change the path/name to the downloaded Selenium server file.
 
@@ -45,7 +46,7 @@ Change the path/name to the downloaded Selenium server file.
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-    py.test  --browser='*firefox' --site=http://www-trunk.stage.mozilla.com --timeout="120000"
+   py.test -v --api=rc --baseurl="http://www.mozilla.org" --browser=firefox
 
 Writing Tests
 -------------
