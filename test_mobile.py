@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -44,9 +44,9 @@ xfail = pytest.mark.xfail
 
 class TestMobile:
 
-    def test_sub_sections_are_present(self, testsetup):
-        self.selenium = testsetup.selenium
-        mobile_pg = MobilePage(testsetup)
+    def test_sub_sections_are_present(self, mozwebqa):
+        self.selenium = mozwebqa.selenium
+        mobile_pg = MobilePage(mozwebqa)
         mobile_pg.open('/mobile/')
         Assert.true(mobile_pg.android_header_text)
         Assert.true(mobile_pg.iphone_header_text)

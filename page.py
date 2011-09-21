@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -77,7 +77,7 @@ class Page(object):
         return self.selenium.get_text(locator)
 
     def click_link(self, link, wait_flag=False):
-        self.selenium.click("link=%s" %(link))
+        self.selenium.click("link=%s" % (link))
         if(wait_flag):
             self.selenium.wait_for_page_to_load(self.timeout)
 
@@ -115,7 +115,7 @@ class Page(object):
         while not self.is_element_present(element):
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception(element + ' has not loaded')
 
@@ -125,7 +125,7 @@ class Page(object):
         while not self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception(element + " is not visible")
 
@@ -134,7 +134,7 @@ class Page(object):
         while self.is_element_visible(element):
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception(element + " is still visible")
 
@@ -143,7 +143,7 @@ class Page(object):
         while (re.search(url_regex, self.selenium.get_location(), re.IGNORECASE)) is None:
             time.sleep(1)
             count += 1
-            if count == self.timeout/1000:
+            if count == self.timeout / 1000:
                 self.record_error()
                 raise Exception("Sites Page has not loaded")
 

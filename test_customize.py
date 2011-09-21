@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -45,9 +45,9 @@ xfail = pytest.mark.xfail
 
 class TestCustomize:
 
-    def test_customize_icons(self, testsetup):
-        self.selenium = testsetup.selenium
-        customize_pg = CustomizePage(testsetup)
+    def test_customize_icons(self, mozwebqa):
+        self.selenium = mozwebqa.selenium
+        customize_pg = CustomizePage(mozwebqa)
         customize_pg.open("/en-US/firefox/customize/")
         Assert.true(customize_pg.plugins_icon)
         Assert.true(customize_pg.interface_icon)
@@ -55,9 +55,9 @@ class TestCustomize:
         Assert.true(customize_pg.style_icon)
         Assert.true(customize_pg.addons_icon)
 
-    def test_customize_images(self, testsetup):
-        self.selenium = testsetup.selenium
-        customize_pg = CustomizePage(testsetup)
+    def test_customize_images(self, mozwebqa):
+        self.selenium = mozwebqa.selenium
+        customize_pg = CustomizePage(mozwebqa)
         customize_pg.open("/en-US/firefox/customize/")
         #Assert.true(customize_pg.style_image)
         Assert.true(customize_pg.plugins_image)

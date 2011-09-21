@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -42,9 +42,9 @@ from mozilla_base_page import MozillaBasePage
 
 class TestCommon:
 
-    def test_header_and_footer_links(self, testsetup, url="/firefox/fx/"):
-        self.selenium = testsetup.selenium
-        home_pg = MozillaBasePage(testsetup)
+    def test_header_and_footer_links(self, mozwebqa, url="/firefox/fx/"):
+        self.selenium = mozwebqa.selenium
+        home_pg = MozillaBasePage(mozwebqa)
         home_pg.open(url)
 
         for x in home_pg.header_links:
@@ -79,7 +79,7 @@ class TestCommon:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
-    def test_all_page_header_and_footer_links(self, testsetup):
+    def test_all_page_header_and_footer_links(self, mozwebqa):
         urls = [
             "/firefox/security/",
             "/firefox/performance/",
@@ -107,11 +107,11 @@ class TestCommon:
 
         for x in urls:
             print x
-            self.test_header_and_footer_links(testsetup, url=x)
+            self.test_header_and_footer_links(mozwebqa, url=x)
 
-    def test_download_buttons(self, testsetup, url="/firefox/features/"):
-        self.selenium = testsetup.selenium
-        home_pg = MozillaBasePage(testsetup)
+    def test_download_buttons(self, mozwebqa, url="/firefox/features/"):
+        self.selenium = mozwebqa.selenium
+        home_pg = MozillaBasePage(mozwebqa)
         home_pg.open(url)
         for x in home_pg.get_upper_download_links:
             print home_pg.get_text(x)

@@ -16,7 +16,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -42,18 +42,18 @@ from security_page import SecurityPage
 
 class TestSecurity:
 
-    def test_security_icons(self, testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
+    def test_security_icons(self, mozwebqa):
+        self.selenium = mozwebqa.selenium
+        security_pg = SecurityPage(mozwebqa)
         security_pg.open("/firefox/security/")
         Assert.true(security_pg.protecting_privacy_ico)
         Assert.true(security_pg.browser_security_ico)
         Assert.true(security_pg.in_control_ico)
         Assert.true(security_pg.mission_ico)
 
-    def test_security_images(self, testsetup):
-        self.selenium = testsetup.selenium
-        security_pg = SecurityPage(testsetup)
+    def test_security_images(self, mozwebqa):
+        self.selenium = mozwebqa.selenium
+        security_pg = SecurityPage(mozwebqa)
         security_pg.open("/firefox/security/")
         Assert.true(security_pg.privacy_img)
         Assert.true(security_pg.browser_security_img)

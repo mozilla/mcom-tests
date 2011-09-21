@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -45,8 +45,8 @@ xfail = pytest.mark.xfail
 class TestNewsletter:
 
     @xfail(reason="Bug 663528 - Build email preference center on mozilla.com")
-    def test_subscribe_to_newsletter_succeeds(self, testsetup):
-        newsletter_pg = NewsletterPage(testsetup)
+    def test_subscribe_to_newsletter_succeeds(self, mozwebqa):
+        newsletter_pg = NewsletterPage(mozwebqa)
         newsletter_pg.go_to_newsletter_page()
         newsletter_pg.type_email('me@example.com')
         newsletter_pg.agree_to_privacy_policy()
@@ -54,8 +54,8 @@ class TestNewsletter:
         Assert.true(newsletter_pg.is_thanks_for_subscribing_visible)
 
     @xfail(reason="Bug 663528 - Build email preference center on mozilla.com")
-    def test_subscribe_to_newsletter_fails_if_user_does_not_agree_to_privacy_policy(self, testsetup):
-        newsletter_pg = NewsletterPage(testsetup)
+    def test_subscribe_to_newsletter_fails_if_user_does_not_agree_to_privacy_policy(self, mozwebqa):
+        newsletter_pg = NewsletterPage(mozwebqa)
         newsletter_pg.go_to_newsletter_page()
         newsletter_pg.type_email('me@example.com')
         newsletter_pg.click_sign_me_up()

@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -42,8 +42,8 @@ from features_page import FeaturesPage
 
 class TestFeatures:
 
-    def test_page(self, testsetup):
-        features_pg = FeaturesPage(testsetup)
+    def test_page(self, mozwebqa):
+        features_pg = FeaturesPage(mozwebqa)
         features_pg.open("/firefox/features/")
         Assert.true(features_pg.made_easy)
         Assert.true(features_pg.high_performance)
