@@ -42,8 +42,8 @@ from features_page import FeaturesPage
 
 class TestFeatures:
 
-    def test_page(self, testsetup):
-        features_pg = FeaturesPage(testsetup)
+    def test_page(self, mozwebqa):
+        features_pg = FeaturesPage(mozwebqa)
         features_pg.open("/firefox/features/")
         Assert.true(features_pg.made_easy)
         Assert.true(features_pg.high_performance)

@@ -83,7 +83,7 @@ class MozillaBasePage(Page):
     _footer_tour_locator,
     _footer_future_locator]
 
-    _footer_twitter_locator ="css=#footer-twitter a"
+    _footer_twitter_locator = "css=#footer-twitter a"
     _footer_facebbook_locator = "css=#sub-footer-newsletter a"
     _footer_moreways_locator = "css=#footer-connect a"
     _footer_monthly_newsletter_locator = "css=#sub-footer-newsletter a"
