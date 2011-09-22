@@ -3,9 +3,7 @@
 
 pytest
 pytest-xdist
-pytest_mozwebqa
+pytest-mozwebqa
 selenium
 unittestzero
 BeautifulSoup==3.2.0
-
-
