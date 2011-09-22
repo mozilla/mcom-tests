@@ -16,7 +16,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2010
+# Portions created by the Initial Developer are Copyright (C) 2011
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -35,15 +35,21 @@
 #
 # ***** END LICENSE BLOCK *****
 import urllib
+import pytest
 from unittestzero import Assert
 
 
-def testStatusCode():
-	url = 'http://www.mozilla.com/en-US/abck'
-	page = urllib.urlopen(url)
-	try:
-	    Assert.true(page.code==404)
-	except AssertionError:
-	    print "%s returned %d" %(url, page.code)	
-	
-testStatusCode()
+@pytest.mark.skip_selenium
+class TestStatus(object):
+
+    def test_status_code_returns_404(self, mozwebqa):
+        url = mozwebqa.base_url + '/abck'
+        response = urllib.urlopen(url)
+        Assert.equal(response.code, 404)
+
+    def test_xrobots_tag_is_present(self, mozwebqa):
+        '''Test for X-Robots-Tag header'''
+        url = mozwebqa.base_url
+        response = urllib.urlopen(url)
+        Assert.contains("X-Robots-Tag", response.info())
+        Assert.contains('noodp', response.headers.dict.values())
