@@ -41,7 +41,7 @@ from page import Page
 
 
 class MozillaBasePage(Page):
-    
+
     _header_logo_locator = "css=#header>div>h1>a"
     #_desktop_header_locator = "css=#nav-main-desktop>a"
     _mobile_header_locator = "css=#nav-main-mobile>a"
@@ -55,7 +55,7 @@ class MozillaBasePage(Page):
     _addons_header_locator,
     _support_header_locator,
     _about_header_locator,
-    _mozilla_header_locator ]
+    _mozilla_header_locator]
 
     _footer_desktop_locator = \
     "css=#footer-menu>ul>li:nth-child(1)>ul>li:nth-child(1)>a"
@@ -83,7 +83,7 @@ class MozillaBasePage(Page):
     _footer_tour_locator,
     _footer_future_locator]
 
-    _footer_twitter_locator ="css=#footer-twitter a"
+    _footer_twitter_locator = "css=#footer-twitter a"
     _footer_facebbook_locator = "css=#sub-footer-newsletter a"
     _footer_moreways_locator = "css=#footer-connect a"
     _footer_monthly_newsletter_locator = "css=#sub-footer-newsletter a"
