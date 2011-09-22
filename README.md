@@ -16,18 +16,32 @@ You will need a version of the [Java Runtime Environment][JRE] installed
 ### Python
 Before you will be able to run these tests you will need to have Python 2.6 installed.
 
-Run
+__note__
 
-    easy_install pip
+The below instructions will install the required Python libraries into your
+global Python installation. If you work on multiple Python projects that might
+end up needing different versions of the same libraries, you might want to
+follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then
+create and activate a [virtualenv](http://www.virtualenv.org) (e.g. `virtualenv
+mcom-tests-env; source mcom-tests-env/bin/activate`) to create a clean
+"virtual environment" for just this project. Then you can
+`pip install -r requiremenst/requirements.txt` in your virtual environment
+without needing to use `sudo`.
+
+If you don't mind installing globally, just run
+
+    sudo easy_install pip
 
 followed by
 
-    sudo pip install pytest 
-    sudo pip install pytest-xdist
-    sudo pip install pytest_mozwebqa
-    sudo pip install selenium
-    sudo pip install unittestzero
-    
+    sudo pip install -r requirements/requirements.txt
+
+__note__
+
+If you are running on Ubuntu/Debian you will need to first do
+
+    sudo apt-get install python-setuptools
+
 to install the required Python libraries.
 
 ### Selenium
@@ -46,7 +60,7 @@ Change the path/name to the downloaded Selenium server file.
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-   py.test -v --api=rc --baseurl="http://www.mozilla.org" --browser=firefox
+   py.test --api=rc --baseurl=http://www.mozilla.org --browser=*firefox
 
 Writing Tests
 -------------
