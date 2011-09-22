@@ -35,56 +35,51 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-
-
 from selenium import selenium
 from unittestzero import Assert
 from mozilla_base_page import MozillaBasePage
 
 
 class TestCommon:
-    
-   
-          
-    def test_header_and_footer_links(self,testsetup, url="/firefox/fx/"):
-        self.selenium = testsetup.selenium
-        home_pg = MozillaBasePage(testsetup)
+
+    def test_header_and_footer_links(self, mozwebqa, url="/firefox/fx/"):
+        self.selenium = mozwebqa.selenium
+        home_pg = MozillaBasePage(mozwebqa)
         home_pg.open(url)
-        
+
         for x in home_pg.header_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
+
         for x in home_pg.footer_support_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
+
         for x in home_pg.footer_features_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
-        for  x in home_pg.footer_social_links:
+
+        for x in home_pg.footer_social_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
+
         for x in home_pg.footer_mobile_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
+
         for x in home_pg.footer_about_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
+
         for x in home_pg.footer_addons_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-            
+
         for x in home_pg.footer_legal_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
-    
 
-    def test_all_page_header_and_footer_links(self,testsetup):
+    def test_all_page_header_and_footer_links(self, mozwebqa):
         urls = [
             "/firefox/security/",
             "/firefox/performance/",
@@ -100,7 +95,7 @@ class TestCommon:
             "/mobile/getinvolved/",
             "/mobile/faq/",
             "/firefox/video/",
-            "/about/",
+            "/en-US/about/",
             "/about/participate/",
             "/press/",
             "/about/careers.html",
@@ -109,15 +104,16 @@ class TestCommon:
             "/about/contact.html",
             "/firefox/all.html",
             "/firefox/all-older.html"]
-            
+
         for x in urls:
-            print x 
-            self.test_header_and_footer_links(testsetup,url=x)
-            
-    def test_download_buttons(self,testsetup, url="/firefox/features/"):
-        self.selenium = testsetup.selenium
-        home_pg = MozillaBasePage(testsetup)
+            print x
+            self.test_header_and_footer_links(mozwebqa, url=x)
+
+    def test_download_buttons(self, mozwebqa, url="/firefox/features/"):
+        self.selenium = mozwebqa.selenium
+        home_pg = MozillaBasePage(mozwebqa)
         home_pg.open(url)
         for x in home_pg.get_upper_download_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
+            print home_pg.is_element_visible(x)
