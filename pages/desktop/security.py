@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -34,29 +35,49 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from page import Page
+
+from pages.base import MozillaBasePage
 
 
-class PerformancePage(Page):
+class SecurityPage(MozillaBasePage):
 
-    _perf_web = "css=#perf-web"
-    _perf_hardware = "css=#perf-hardware"
-    _perf_hardware_img = "css=#hardware>.section-image"
-    _video_overlay = "css=.mozilla-video-control-overlay"
-
-    @property
-    def perf_web_ico(self):
-        return self.is_element_present(self._perf_web)
-
-    @property
-    def perf_hardware_ico(self):
-        return self.is_element_present(self._perf_hardware)
+    _protecting_privacy_ico = "css=#security-privacy"
+    _browser_security_ico = "css=#security-secure"
+    _in_control_ico = "css=#security-control"
+    _mission_ico = "css=#security-mission"
+    _privacy_img = "css=#privacy>.section-image>img"
+    _browser_security_img = "css=#secure>.section-image>img"
+    _control_img = "css=#control>.section-image>img"
+    _mission_img = "css=#mission>.section-image>img"
 
     @property
-    def perf_hardware_img(self):
-        return self.is_element_present(self._perf_hardware_img)
+    def protecting_privacy_ico(self):
+        return self.is_element_present(self._protecting_privacy_ico)
 
     @property
-    def video_overlay(self):
-        return self.is_element_present(self._video_overlay)
+    def browser_security_ico(self):
+        return self.is_element_present(self._browser_security_ico)
+
+    @property
+    def in_control_ico(self):
+        return self.is_element_present(self._in_control_ico)
+
+    @property
+    def mission_ico(self):
+        return self.is_element_present(self._mission_ico)
+
+    @property
+    def privacy_img(self):
+        return self.is_element_present(self._privacy_img)
+
+    @property
+    def browser_security_img(self):
+        return self.is_element_present(self._browser_security_img)
+
+    @property
+    def control_img(self):
+        return self.is_element_present(self._control_img)
+
+    @property
+    def mission_img(self):
+        return self.is_element_present(self._mission_img)

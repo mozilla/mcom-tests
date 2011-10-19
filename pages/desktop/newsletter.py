@@ -21,6 +21,7 @@
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
+#                 Dave Hunt <dhunt@mozilla.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -35,50 +36,34 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-
-from selenium import selenium
-from page import Page
+from pages.base import MozillaBasePage
 
 
-class SecurityPage(Page):
+class NewsletterPage(MozillaBasePage):
 
-    _protecting_privacy_ico = "css=#security-privacy"
-    _browser_security_ico = "css=#security-secure"
-    _in_control_ico = "css=#security-control"
-    _mission_ico = "css=#security-mission"
-    _privacy_img = "css=#privacy>.section-image>img"
-    _browser_security_img = "css=#secure>.section-image>img"
-    _control_img = "css=#control>.section-image>img"
-    _mission_img = "css=#mission>.section-image>img"
+    _email_locator = "css=.email"
+    _agree_to_privacy_policy_checkbox_locator = "css=.privacy-check"
+    _submit_button_locator = "css=.subscribe"
+    _privacy_policy_error_locator = "css=.privacy-error"
+    _success_pane_locator = "css=.success-pane"
 
-    @property
-    def protecting_privacy_ico(self):
-        return self.is_element_present(self._protecting_privacy_ico)
+    def go_to_newsletter_page(self):
+        self.selenium.open("/en-US/newsletter/")
 
-    @property
-    def browser_security_ico(self):
-        return self.is_element_present(self._browser_security_ico)
+    def type_email(self, email):
+        self.selenium.type(self._email_locator, email)
 
-    @property
-    def in_control_ico(self):
-        return self.is_element_present(self._in_control_ico)
+    def agree_to_privacy_policy(self):
+        self.selenium.check(self._agree_to_privacy_policy_checkbox_locator)
+
+    def click_sign_me_up(self):
+        self.selenium.click(self._submit_button_locator)
+        self.selenium.wait_for_page_to_load(self.timeout)
 
     @property
-    def mission_ico(self):
-        return self.is_element_present(self._mission_ico)
+    def is_privacy_policy_error_visible(self):
+        return self.is_element_visible(self._privacy_policy_error_locator)
 
     @property
-    def privacy_img(self):
-        return self.is_element_present(self._privacy_img)
-
-    @property
-    def browser_security_img(self):
-        return self.is_element_present(self._browser_security_img)
-
-    @property
-    def control_img(self):
-        return self.is_element_present(self._control_img)
-
-    @property
-    def mission_img(self):
-        return self.is_element_present(self._mission_img)
+    def is_thanks_for_subscribing_visible(self):
+        return self.is_element_visible(self._success_pane_locator)

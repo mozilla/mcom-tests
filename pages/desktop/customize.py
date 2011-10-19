@@ -35,64 +35,63 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from page import Page
+from pages.base import MozillaBasePage
 
 
-class MobilePage(Page):
+class CustomizePage(MozillaBasePage):
 
-    _text_download_android = "css=#android>h3"
-    _text_download_iphone = "css=#iphone>h3"
-    _btn_download_android = "css=#android>p.dl>a"
-    _btn_download_iphone = "css=#iphone>p.dl>a"
-    _btn_download_android_beta = "css=#beta_android>a"
-    _btn_download_desktop = "css=#desktop_download>li>a"
-    _newsletter_link = "css=.mail>a"
-    _twitter_link = "css=li.twitter>a"
-    _facebook_link = "css=.facebook>a"
-
-    @property
-    def android_header_text(self):
-        return self.is_element_present(self._text_download_android)
+    _style_ico = "css=#cust-style"
+    _addons_ico = "css=#cust-addons"
+    _plugins_ico = "css=#cust-plugins"
+    _interface_ico = "css=#cust-interface"
+    _sync_ico = "css=#cust-sync"
+    _style_img = "css=.persona-preview"
+    _plugins_img = "css=#plugins>.features-image>img"
+    _interface_img = "css=#interface>.features-image>img"
+    _sync_img = "css=.mozilla-video-control-overlay"
+    _addons_feature = "css=.mozilla-video-control-overlay"
+    _top_feature = "css=#top-features"
 
     @property
-    def iphone_header_text(self):
-        return self.is_element_present(self._text_download_iphone)
+    def style_icon(self):
+        return self.is_element_present(self._style_ico)
 
     @property
-    def android_button(self):
-        return self.is_element_present(self._btn_download_android)
+    def addons_icon(self):
+        return self.is_element_present(self._addons_ico)
 
     @property
-    def iphone_button(self):
-        return self.is_element_present(self._btn_download_iphone)
+    def plugins_icon(self):
+        return self.is_element_present(self._plugins_ico)
 
     @property
-    def android_beta_button(self):
-        return self.is_element_present(self._btn_download_android_beta)
+    def interface_icon(self):
+        return self.is_element_present(self._interface_ico)
 
     @property
-    def mobile_desktop_button(self):
-        return self.is_element_present(self._btn_download_desktop)
+    def sync_icon(self):
+        return self.is_element_present(self._sync_ico)
 
     @property
-    def newsletter_link(self):
-        return self.is_element_present(self._newsletter_link)
+    def style_image(self):
+        return self.is_element_present(self._style_img)
 
     @property
-    def twitter_link(self):
-        return self.is_element_present(self._twitter_link)
+    def plugins_image(self):
+        return self.is_element_present(self._plugins_img)
 
     @property
-    def facebook_link(self):
-        return self.is_element_present(self._facebook_link)
+    def interface_image(self):
+        return self.is_element_present(self._interface_img)
 
     @property
-    def click_newsletter_link(self):
-        self.click(self._newsletter_link, True)
-        return self.get_url_current_page()
+    def sync_image(self):
+        return self.is_element_present(self._sync_img)
 
     @property
-    def click_facebook_link(self):
-        self.click(self._facebook_link, True)
-        return self.get_url_current_page()
+    def addons_feature(self):
+        return self.is_element_present(self._addons_feature)
+
+    @property
+    def top_feature(self):
+        return self.is_element_present(self._top_feature)

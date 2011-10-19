@@ -37,7 +37,7 @@
 import pytest
 from selenium import selenium
 from unittestzero import Assert
-from security_page import SecurityPage
+from pages.desktop.security import SecurityPage
 
 
 class TestSecurity:

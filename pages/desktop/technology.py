@@ -35,10 +35,10 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from page import Page
+from pages.base import MozillaBasePage
 
 
-class TechnologyPage(Page):
+class TechnologyPage(MozillaBasePage):
 
     _innovation_btn = "css=#tech-html5"
     _css_btn = "css=#tech-css"
