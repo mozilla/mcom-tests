@@ -38,8 +38,8 @@
 
 import pytest
 from selenium import selenium
-from  pages.desktop.customize import CustomizePage
 from unittestzero import Assert
+from pages.desktop.customize import CustomizePage
 xfail = pytest.mark.xfail
 
 

@@ -38,7 +38,7 @@
 
 from selenium import selenium
 from unittestzero import Assert
-from  pages.desktop.about import AboutPage
+from pages.desktop.about import AboutPage
 
 
 class TestAbout:
