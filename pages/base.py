@@ -42,13 +42,13 @@ from page import Page
 
 class MozillaBasePage(Page):
 
-    _header_logo_locator = "css=#header>div>h1>a"
+    _header_logo_locator = "css=#header > div > h1 > a"
     #_desktop_header_locator = "css=#nav-main-desktop>a"
-    _mobile_header_locator = "css=#nav-main-mobile>a"
-    _addons_header_locator = "css=#nav-main-addons>a"
-    _support_header_locator = "css=#nav-main-support>a"
-    _about_header_locator = "css=#nav-main-about>a"
-    _mozilla_header_locator = "css=#header>div a.mozilla"
+    _mobile_header_locator = "css=#nav-main-mobile > a"
+    _addons_header_locator = "css=#nav-main-addons > a"
+    _support_header_locator = "css=#nav-main-support > a"
+    _about_header_locator = "css=#nav-main-about > a"
+    _mozilla_header_locator = "css=#header > div a.mozilla"
     _header_list = [
     _header_logo_locator,
     _mobile_header_locator,
@@ -58,15 +58,15 @@ class MozillaBasePage(Page):
     _mozilla_header_locator]
 
     _footer_features_locator = \
-    "css=#footer-menu>ul>li:nth-child(1)>ul>li:nth-child(1)>a"
+    "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(1) > a"
     _footer_customize_locator = \
-    "css=#footer-menu>ul>li:nth-child(1)>ul>li:nth-child(2)>a"
+    "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(2) > a"
     _footer_performance_locator = \
-    "css=#footer-menu>ul>li:nth-child(1)>ul>li:nth-child(3)>a"
+    "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(3) > a"
     _footer_technology_locator =  \
-    "css=#footer-menu>ul>li:nth-child(1)>ul> li:nth-child(4)>a"
+    "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(4) > a"
     _footer_privacy_locator = \
-    "css=#footer-menu>ul>li:nth-child(1)>ul>li:nth-child(5)>a"
+    "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(5) > a"
     _footer_desktop_list = [
     _footer_features_locator,
     _footer_customize_locator,
@@ -85,70 +85,71 @@ class MozillaBasePage(Page):
     _footer_monthly_newsletter_locator]
 
     _footer_mobile_download_locator = \
-    "css=#footer-menu>ul>li:nth-child(2)>ul>li:nth-child(1)>a"
+    "css=#footer-menu > ul > li:nth-child(2) > ul > li:nth-child(1) > a"
     _footer_mfeatures_locator = \
-    "css=#footer-menu>ul>li:nth-child(2)>ul>li:nth-child(2)>a"
+    "css=#footer-menu >ul > li:nth-child(2) > ul > li:nth-child(2) > a"
     _footer_mcustom_locator = \
-    "css=#footer-menu>ul>li:nth-child(2)>ul>li:nth-child(3)>a"
+    "css=#footer-menu > ul >li:nth-child(2) > ul > li:nth-child(3) > a"
     _footer_mfaq_locator = \
-    "css=#footer-menu>ul>li:nth-child(2)>ul>li:nth-child(4)>a"
+    "css=#footer-menu > ul > li:nth-child(2) > ul > li:nth-child(4) > a"
     _footer_mobile_list = [
     _footer_mobile_download_locator,
     _footer_mfeatures_locator,
     _footer_mcustom_locator,
     _footer_mfaq_locator]
 
-    _footer_rdownload_locator = \
-    "css=#footer-menu>ul>li:nth-child(3)>ul>li:nth-child(1)>a"
+    #
+    _footer_release_download_locator = \
+    "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(1) > a"
     _footer_aurora_locator = \
-    "css=#footer-menu>ul>li:nth-child(3)>ul>li:nth-child(2)>a"
+    "css=#footer-menu > ul>li:nth-child(3) > ul > li:nth-child(2) > a"
     _footer_beta_locator = \
-    "css=#footer-menu>ul>li:nth-child(3)>ul>li:nth-child(3)>a"
+    "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(3) > a"
     _footer_firefox_locator = \
-    "css=#footer-menu>ul>li:nth-child(3)>ul>li:nth-child(4)>a"
+    "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(4) > a"
     _footer_releases_list = [
-    _footer_rdownload_locator,
+    _footer_release_download_locator,
     _footer_aurora_locator,
     _footer_beta_locator,
     _footer_firefox_locator]
 
     _footer_desktop_addons_locator = \
-    "css=#footer-menu>ul>li:nth-child(4)>ul>li:nth-child(1)>a"
+    "css=#footer-menu > ul > li:nth-child(4) > ul > li:nth-child(1) > a"
     _footer_mobile_addons_locator = \
-    "css=#footer-menu>ul>li:nth-child(4)>ul>li:nth-child(2)>a"
+    "css=#footer-menu > ul > li:nth-child(4) > ul > li:nth-child(2) > a"
     _footer_personas_locator = \
-    "css=#footer-menu>ul>li:nth-child(4)>ul>li:nth-child(3)>a"
+    "css=#footer-menu > ul > li:nth-child(4) > ul > li:nth-child(3) > a"
     _footer_addons_list = [
     _footer_desktop_addons_locator,
     _footer_mobile_addons_locator,
     _footer_personas_locator]
 
     _footer_support_locator = \
-    "css=#footer-menu>ul>li:nth-child(5)>ul>li:nth-child(1)>a"
+    "css=#footer-menu > ul > li:nth-child(5) > ul > li:nth-child(1) > a"
     _footer_msupport_locator = \
-    "css=#footer-menu>ul>li:nth-child(5)>ul>li:nth-child(2)>a"
+    "css=#footer-menu > ul > li:nth-child(5) > ul > li:nth-child(2) > a"
     _footer_support_list = [
     _footer_support_locator,
     _footer_msupport_locator]
 
     _footer_blog_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(1)>a"
+    "css=#footer-menu > ul > li:nth-child (6) > ul > li:nth-child(1) > a"
     _footer_about_firefox_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(2)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(2) > a"
     _footer_join_mozilla_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(3)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(3) > a"
     _footer_participate_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(4)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(4) > a"
     _footer_press_center_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(5)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(5) > a"
     _footer_brand_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(6)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(6) > a"
     _footer_careers_locator = \
-    "css=#footer-menu > ul > li:nth-child(6)>ul>li:nth-child(7)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(7) > a"
     _footer_partnerships_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(8)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(8) > a"
     _footer_contact_locator = \
-    "css=#footer-menu>ul>li:nth-child(6)>ul>li:nth-child(9)>a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(9) > a"
     _footer_about_list = [
     _footer_blog_locator,
     _footer_about_firefox_locator,
@@ -160,9 +161,9 @@ class MozillaBasePage(Page):
     _footer_partnerships_locator,
     _footer_contact_locator]
 
-    _footer_privacy_policy_locator = "css=#footer-links>a:nth-child(1)"
-    _footer_legal_notices_locator = "css=#footer-links>a:nth-child(2)"
-    _footer_trademark_abuse_locator = "css=#footer-links>a:nth-child(3)"
+    _footer_privacy_policy_locator = "css=#footer-links > a:nth-child(1)"
+    _footer_legal_notices_locator = "css=#footer-links > a:nth-child(2)"
+    _footer_trademark_abuse_locator = "css=#footer-links > a:nth-child(3)"
     _footer_legal_list = [
     _footer_privacy_policy_locator,
     _footer_legal_notices_locator,

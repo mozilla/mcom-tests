@@ -38,7 +38,8 @@
 from selenium import selenium
 from unittestzero import Assert
 from pages.base import MozillaBasePage
-from pytest.mark import xfail
+import pytest
+xfail = pytest.mark.xfail
 
 
 class TestCommon:
