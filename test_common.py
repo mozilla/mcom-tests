@@ -38,10 +38,12 @@
 from selenium import selenium
 from unittestzero import Assert
 from pages.base import MozillaBasePage
+from pytest.mark import xfail
 
 
 class TestCommon:
 
+    @xfail(reason="Footer not on production yet")
     def test_header_and_footer_links(self, mozwebqa, url="/firefox/fx/"):
         self.selenium = mozwebqa.selenium
         home_pg = MozillaBasePage(mozwebqa)
@@ -55,7 +57,7 @@ class TestCommon:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
-        for x in home_pg.footer_features_links:
+        for x in home_pg.footer_desktop_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
@@ -64,6 +66,10 @@ class TestCommon:
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_mobile_links:
+            print home_pg.get_text(x)
+            print home_pg.is_element_present(x)
+
+        for x in home_pg.footer_rdownload_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
@@ -79,6 +85,7 @@ class TestCommon:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
+    @xfail(reason="Footer not on production yet")
     def test_all_page_header_and_footer_links(self, mozwebqa):
         urls = [
             "/firefox/security/",
