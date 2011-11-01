@@ -37,7 +37,7 @@
 
 from selenium import selenium
 from unittestzero import Assert
-from technology_page import TechnologyPage
+from pages.desktop.technology import TechnologyPage
 
 
 class TestTechnology:

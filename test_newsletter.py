@@ -37,7 +37,7 @@
 #
 # ***** END LICENSE BLOCK *****
 from unittestzero import Assert
-from newsletter_page import NewsletterPage
+from pages.desktop.newsletter import NewsletterPage
 import pytest
 xfail = pytest.mark.xfail
 

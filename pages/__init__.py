@@ -17,11 +17,10 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2010
+# Portions created by the Initial Developer are Copyright (C) 2011
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
-#                 Dave Hunt <dhunt@mozilla.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -36,36 +35,3 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-
-from page import Page
-
-
-class NewsletterPage(Page):
-
-    _email_locator = "css=.email"
-    _agree_to_privacy_policy_checkbox_locator = "css=.privacy-check"
-    _submit_button_locator = "css=.subscribe"
-    _privacy_policy_error_locator = "css=.privacy-error"
-    _success_pane_locator = "css=.success-pane"
-
-    def go_to_newsletter_page(self):
-        self.selenium.open("/en-US/newsletter/")
-
-    def type_email(self, email):
-        self.selenium.type(self._email_locator, email)
-
-    def agree_to_privacy_policy(self):
-        self.selenium.check(self._agree_to_privacy_policy_checkbox_locator)
-
-    def click_sign_me_up(self):
-        self.selenium.click(self._submit_button_locator)
-        self.selenium.wait_for_page_to_load(self.timeout)
-
-    @property
-    def is_privacy_policy_error_visible(self):
-        return self.is_element_visible(self._privacy_policy_error_locator)
-
-    @property
-    def is_thanks_for_subscribing_visible(self):
-        return self.is_element_visible(self._success_pane_locator)

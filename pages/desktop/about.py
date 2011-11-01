@@ -35,11 +35,10 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from page import Page
+from pages.base import MozillaBasePage
 
 
-class AboutPage(Page):
+class AboutPage(MozillaBasePage):
 
     _participate_img = "css=#get-involved>h3>a>span"
     _txt_participate = "css=#get-involved>h3>a"
