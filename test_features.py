@@ -37,7 +37,7 @@
 # ***** END LICENSE BLOCK *****
 
 from unittestzero import Assert
-from features_page import FeaturesPage
+from pages.desktop.features import FeaturesPage
 
 
 class TestFeatures:

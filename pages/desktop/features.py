@@ -35,12 +35,10 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-
-from selenium import selenium
-from page import Page
+from pages.base import MozillaBasePage
 
 
-class FeaturesPage(Page):
+class FeaturesPage(MozillaBasePage):
 
     _made_easy_locator = \
     "css=#main-feature>.feature-links>#made-easy>a"

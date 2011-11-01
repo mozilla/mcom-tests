@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2010
+# Portions created by the Initial Developer are Copyright (C) 2011
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -35,27 +35,3 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from unittestzero import Assert
-from pages.mobile.mobile import MobilePage
-import pytest
-xfail = pytest.mark.xfail
-
-
-class TestMobile:
-
-    def test_sub_sections_are_present(self, mozwebqa):
-        self.selenium = mozwebqa.selenium
-        mobile_pg = MobilePage(mozwebqa)
-        mobile_pg.open('/mobile/')
-        Assert.true(mobile_pg.android_header_text)
-        Assert.true(mobile_pg.iphone_header_text)
-        Assert.true(mobile_pg.android_button)
-        Assert.true(mobile_pg.iphone_button)
-        Assert.true(mobile_pg.android_beta_button)
-        Assert.true(mobile_pg.mobile_desktop_button)
-        Assert.true(mobile_pg.newsletter_link)
-        Assert.true(mobile_pg.facebook_link)
-        Assert.true(mobile_pg.twitter_link)
-        Assert.equal(mobile_pg.click_facebook_link, \
-                    u"http://www.facebook.com/firefoxformobile")

@@ -37,7 +37,7 @@
 # ***** END LICENSE BLOCK *****
 from selenium import selenium
 from unittestzero import Assert
-from mozilla_base_page import MozillaBasePage
+from pages.base import MozillaBasePage
 
 
 class TestCommon:

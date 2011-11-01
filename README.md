@@ -18,7 +18,7 @@ Before you will be able to run these tests you will need to have Python 2.6 inst
 
 __note__
 
-The below instructions will install the required Python libraries into your
+The instructions below will install the required Python libraries into your
 global Python installation. If you work on multiple Python projects that might
 end up needing different versions of the same libraries, you might want to
 follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then

@@ -38,7 +38,7 @@
 
 from selenium import selenium
 from unittestzero import Assert
-from performance_page import PerformancePage
+from pages.desktop.performance import PerformancePage
 import pytest
 xfail = pytest.mark.xfail
 
