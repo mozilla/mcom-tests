@@ -70,7 +70,7 @@ class TestCommon:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
-        for x in home_pg.footer_rdownload_links:
+        for x in home_pg.footer_release_download_links:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 

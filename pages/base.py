@@ -98,7 +98,6 @@ class MozillaBasePage(Page):
     _footer_mcustom_locator,
     _footer_mfaq_locator]
 
-    #
     _footer_release_download_locator = \
     "css=#footer-menu > ul > li:nth-child(3) > ul > li:nth-child(1) > a"
     _footer_aurora_locator = \
@@ -206,7 +205,7 @@ class MozillaBasePage(Page):
         return self._footer_mobile_list
 
     @property
-    def footer_rdownload_links(self):
+    def footer_release_download_links(self):
         return self._footer_releases_list
 
     @property
