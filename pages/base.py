@@ -63,7 +63,7 @@ class MozillaBasePage(Page):
     "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(2) > a"
     _footer_performance_locator = \
     "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(3) > a"
-    _footer_technology_locator =  \
+    _footer_technology_locator = \
     "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(4) > a"
     _footer_privacy_locator = \
     "css=#footer-menu > ul > li:nth-child(1) > ul > li:nth-child(5) > a"
@@ -170,11 +170,13 @@ class MozillaBasePage(Page):
 
     _right_download_button_locator = "css=span.download-title"
     _right_privacy_policy_locator = "link=Privacy Policy"
-    _other_systems_locator = "link=Other Systems and Languages"
+    _other_systems_locator = "link=Systems & Languages"
+    _release_notes_locator = "link=Release Notes"
     _download_links_list = [
     _right_download_button_locator,
     _right_privacy_policy_locator,
-    _other_systems_locator]
+    _other_systems_locator,
+    _release_notes_locator]
 
     @property
     def get_upper_download_links(self):
