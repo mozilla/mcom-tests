@@ -117,6 +117,7 @@ class TestCommon:
             print x
             self.test_header_and_footer_links(mozwebqa, url=x)
 
+    @xfail(reason="Download button not on production yet")
     def test_download_buttons(self, mozwebqa, url="/firefox/features/"):
         self.selenium = mozwebqa.selenium
         home_pg = MozillaBasePage(mozwebqa)
