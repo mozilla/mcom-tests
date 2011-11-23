@@ -76,12 +76,14 @@ class MozillaBasePage(Page):
 
     _footer_twitter_locator = "css=#footer-twitter a"
     _footer_facebbook_locator = "css=#sub-footer-newsletter a"
-    _footer_moreways_locator = "css=#footer-connect a"
+    #_footer_moreways_locator = "css=#footer-connect a"
+    _footer_affiliates_locator = "css=#footer-affiliates a"
     _footer_monthly_newsletter_locator = "css=#sub-footer-newsletter a"
     _footer_social_media_list = [
     _footer_twitter_locator,
     _footer_facebbook_locator,
-    _footer_moreways_locator,
+    #_footer_moreways_locator,
+    _footer_affiliates_locator,
     _footer_monthly_newsletter_locator]
 
     _footer_mobile_download_locator = \
@@ -132,7 +134,7 @@ class MozillaBasePage(Page):
     _footer_msupport_locator]
 
     _footer_blog_locator = \
-    "css=#footer-menu > ul > li:nth-child (6) > ul > li:nth-child(1) > a"
+    "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(1) > a"
     _footer_about_firefox_locator = \
     "css=#footer-menu > ul > li:nth-child(6) > ul > li:nth-child(2) > a"
     _footer_join_mozilla_locator = \
@@ -177,6 +179,22 @@ class MozillaBasePage(Page):
     _right_privacy_policy_locator,
     _other_systems_locator,
     _release_notes_locator]
+
+    _monthly_news_locator = "css=.email.placeholder"
+    _monthly_news_locator_button = "css=.email-open"
+    _test_email_address = "me@example.com"
+
+    @property
+    def test_email_address(self):
+        return self._test_email_address
+
+    @property
+    def monthly_news_locator(self):
+        return self._monthly_news_locator
+
+    @property
+    def monthly_news_locator_button(self):
+        return self._monthly_news_locator_button
 
     @property
     def get_upper_download_links(self):
