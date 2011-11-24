@@ -131,6 +131,9 @@ class TestCommon:
         home_pg.open(url)
         home_pg.type(home_pg.monthly_news_locator, home_pg.test_email_address)
         home_pg.click(home_pg.monthly_news_locator_button)
+        home_pg.click(home_pg.inline_privacy_checkbox)
+        home_pg.click(home_pg.sign_me_up_button, True)
+        home_pg.is_element_present(home_pg.success_pane_locator)
         
 
     def test_all_download_buttons(self,mozwebqa):

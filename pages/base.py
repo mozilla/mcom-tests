@@ -183,6 +183,21 @@ class MozillaBasePage(Page):
     _monthly_news_locator = "css=.email.placeholder"
     _monthly_news_locator_button = "css=.email-open"
     _test_email_address = "me@example.com"
+    _inline_privacy_checkbox = "css=#inline-privacy-check"
+    _sign_me_up_button = "css=.subscribe"
+    _success_pane_locator = "css=.successpane > h3"
+
+    @property
+    def success_pane_locator(self):
+        return self._success_pane_locator
+
+    @property
+    def sign_me_up_button(self):
+        return self._sign_me_up_button
+
+    @property
+    def inline_privacy_checkbox(self):
+        return self._inline_privacy_checkbox
 
     @property
     def test_email_address(self):
