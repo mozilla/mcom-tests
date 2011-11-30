@@ -1,7 +1,7 @@
 ## These are the required python libraries needed to run Selenium tests
 ## on Mozilla WebQA projects
 
-pytest
+pytest==2.1.3
 pytest-xdist
 pytest-mozwebqa
 selenium
