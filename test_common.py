@@ -35,6 +35,7 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+
 from selenium import selenium
 from unittestzero import Assert
 from pages.base import MozillaBasePage
@@ -89,6 +90,7 @@ class TestCommon:
 
     def test_all_page_header_and_footer_links(self, mozwebqa):
         urls = [
+            "/firefox/channel/",
             "/firefox/security/",
             "/firefox/performance/",
             "/en-US/firefox/customize/",

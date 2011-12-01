@@ -34,6 +34,7 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+
 import urllib
 import pytest
 from unittestzero import Assert
@@ -43,7 +44,6 @@ xfail = pytest.mark.xfail
 @pytest.mark.skip_selenium
 class TestRedirects(object):
 
-    @xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=683782")
     def test_https_redirects_from_mozilla_dot_com(self, url='https://www.mozilla.com/'):
         response = urllib.urlopen(url)
         Assert.contains("https://www.mozilla.org/", response.url)
@@ -52,7 +52,7 @@ class TestRedirects(object):
         response = urllib.urlopen(url)
         Assert.equal('https://www.mozilla.org/en-US/mobile/', response.url)
 
-    def test_firefox_mobile_redirect(self , url='https://www.mozilla.org/en-US/firefox/mobile'):
+    def test_firefox_mobile_redirect(self, url='https://www.mozilla.org/en-US/firefox/mobile'):
         response = urllib.urlopen(url)
         Assert.equal('https://www.mozilla.org/en-US/mobile/', response.url)
 
@@ -63,4 +63,3 @@ class TestRedirects(object):
     def test_redirect_with_trailing_slash(self, url='https://www.mozilla.org/community'):
         response = urllib.urlopen(url)
         Assert.equal('https://www.mozilla.org/community/', response.url)
-                    
