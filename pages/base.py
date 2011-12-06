@@ -169,7 +169,7 @@ class MozillaBasePage(Page):
     _footer_trademark_abuse_locator]
 
     _right_download_button_locator = "css=span.download-title"
-    _right_privacy_policy_locator = "link=Privacy Policy"
+    _right_privacy_policy_locator = "link=Privacy"
     _other_systems_locator = "link=Systems & Languages"
     _release_notes_locator = "link=Release Notes"
     _download_links_list = [
