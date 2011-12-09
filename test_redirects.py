@@ -67,7 +67,7 @@ class TestRedirects(object):
         result = mozwebqa.base_url + "/en-US/firefox/aurora/"
         Assert.equal(result, response.url)
 
-    def test_redirect_with_trailing_slash(self, mozwebqa):
+    def test_redirect_to_trailing_slash(self, mozwebqa):
         url = mozwebqa.base_url + "/community"
         response = urllib.urlopen(url)
         result = mozwebqa.base_url + "/community/"

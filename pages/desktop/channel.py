@@ -50,9 +50,9 @@ class ChannelPage(MozillaBasePage):
     _aurora_privacy_policy_locator = \
     "css=#download_aurora_button > .download-other > a:nth-child(2)"
     _aurora_mobile_supported_device_locator = \
-    "css=#download_aurora_mobile_button > .home-download > .download-other>a:nth-child(1)"
+    "css=#download_aurora_mobile_button > .home-download > .download-other > a:nth-child(1)"
     _aurora_mobile_privacy_policy_locator = \
-    "css=#download_aurora_mobile_button >.home-download >.download-other>a:nth-child(2)"
+    "css=#download_aurora_mobile_button >.home-download >.download-other > a:nth-child(2)"
     _beta_systems_and_languages_locator = \
     "css=#download_beta > #download-button > .download-other > span > a:nth-child(1)"
     _beta_privacy_policy_locator = \
