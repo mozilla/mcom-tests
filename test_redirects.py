@@ -44,22 +44,31 @@ xfail = pytest.mark.xfail
 @pytest.mark.skip_selenium
 class TestRedirects(object):
 
-    def test_https_redirects_from_mozilla_dot_com(self, url='https://www.mozilla.com/'):
+    def test_redirects_from_mozilla_dot_com(self, mozwebqa):
+        url = mozwebqa.base_url
         response = urllib.urlopen(url)
-        Assert.contains("https://www.mozilla.org/", response.url)
+        Assert.contains(url, response.url)
 
-    def test_fennec_redirect(self, url='https://www.mozilla.org/fennec'):
+    def test_fennec_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + "/fennec"
         response = urllib.urlopen(url)
-        Assert.equal('https://www.mozilla.org/en-US/mobile/', response.url)
+        result = mozwebqa.base_url + "/en-US/mobile/"
+        Assert.equal(result, response.url)
 
-    def test_firefox_mobile_redirect(self, url='https://www.mozilla.org/en-US/firefox/mobile'):
+    def test_firefox_mobile_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + "/firefox/mobile"
         response = urllib.urlopen(url)
-        Assert.equal('https://www.mozilla.org/en-US/mobile/', response.url)
+        result = mozwebqa.base_url + "/en-US/mobile/"
+        Assert.equal(result, response.url)
 
-    def test_firefox_aurora_redirect(self, url='https://www.mozilla.org/aurora'):
+    def test_firefox_aurora_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + "/aurora"
         response = urllib.urlopen(url)
-        Assert.equal('https://www.mozilla.org/en-US/firefox/aurora/', response.url)
+        result = mozwebqa.base_url + "/en-US/firefox/aurora/"
+        Assert.equal(result, response.url)
 
-    def test_redirect_with_trailing_slash(self, url='https://www.mozilla.org/community'):
+    def test_redirect_with_trailing_slash(self, mozwebqa):
+        url = mozwebqa.base_url + "/community"
         response = urllib.urlopen(url)
-        Assert.equal('https://www.mozilla.org/community/', response.url)
+        result = mozwebqa.base_url + "/community/"
+        Assert.equal(result, response.url)
