@@ -35,6 +35,7 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+
 from selenium import selenium
 from unittestzero import Assert
 from pages.base import MozillaBasePage
@@ -44,7 +45,7 @@ xfail = pytest.mark.xfail
 
 class TestCommon:
 
-    @xfail(reason="Footer not on production yet")
+
     def test_header_and_footer_links(self, mozwebqa, url="/firefox/fx/"):
         self.selenium = mozwebqa.selenium
         home_pg = MozillaBasePage(mozwebqa)
@@ -86,16 +87,16 @@ class TestCommon:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
-    @xfail(reason="Footer not on production yet")
+
     def test_all_page_header_and_footer_links(self, mozwebqa):
         urls = [
+            "/firefox/channel/",
             "/firefox/security/",
             "/firefox/performance/",
             "/en-US/firefox/customize/",
             "/firefox/technology/",
             "/firefox/video/",
             "/firefox/central/",
-            "/firefox/channel/",
             "/mobile/",
             "/mobile/features/",
             "/mobile/customize/",
@@ -125,3 +126,29 @@ class TestCommon:
             print home_pg.get_text(x)
             print home_pg.is_element_present(x)
             print home_pg.is_element_visible(x)
+
+    def test_footer_newsletter_submission(self, mozwebqa, url="/firefox/features"):
+        self.selenium = mozwebqa.selenium
+        home_pg = MozillaBasePage(mozwebqa)
+        home_pg.open(url)
+        home_pg.type(home_pg.monthly_news_locator, home_pg.test_email_address)
+        home_pg.click(home_pg.monthly_news_locator_button)
+        home_pg.click(home_pg.inline_privacy_checkbox)
+        home_pg.click(home_pg.sign_me_up_button, True)
+        home_pg.is_element_present(home_pg.success_pane_locator)
+        
+
+    def test_all_download_buttons(self,mozwebqa):
+        urls = [
+            "/firefox/security/",
+            "/firefox/performance/",
+            "/en-US/firefox/customize/",
+            "/firefox/technology/",
+            "/firefox/video/",
+            "/firefox/central/",
+            "/firefox/video/"]
+
+        for x in urls:
+            print x
+            self.test_download_buttons(mozwebqa, url=x)
+        
