@@ -49,19 +49,19 @@ class TestRedirects(object):
         response = urllib.urlopen(url)
         Assert.contains(url, response.url)
 
-    def test_fennec_redirect(self, mozwebqa):
+    def test_fennec_to_mobile_redirect(self, mozwebqa):
         url = mozwebqa.base_url + "/fennec"
         response = urllib.urlopen(url)
         result = mozwebqa.base_url + "/en-US/mobile/"
         Assert.equal(result, response.url)
 
-    def test_firefox_mobile_redirect(self, mozwebqa):
+    def test_firefox_mobile_to_mobile_redirect(self, mozwebqa):
         url = mozwebqa.base_url + "/firefox/mobile"
         response = urllib.urlopen(url)
         result = mozwebqa.base_url + "/en-US/mobile/"
         Assert.equal(result, response.url)
 
-    def test_firefox_aurora_redirect(self, mozwebqa):
+    def test_firefox_aurora_to_firefox_auroa_redirect(self, mozwebqa):
         url = mozwebqa.base_url + "/aurora"
         response = urllib.urlopen(url)
         result = mozwebqa.base_url + "/en-US/firefox/aurora/"
