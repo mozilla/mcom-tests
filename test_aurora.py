@@ -17,10 +17,11 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2010
+# Portions created by the Initial Developer are Copyright (C) 2011
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
+#                 Dave Hunt <dhunt@mozilla.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -35,23 +36,35 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
+
 from unittestzero import Assert
-from pages.mobile.mobile import MobilePage
+from pages.desktop.aurora import AuroraPage
 import pytest
 xfail = pytest.mark.xfail
 
 
-class TestMobile:
+class TestAurora:
 
-    @xfail(reason='Bug 699985 - push updated basket-dev')
-    def test_sub_sections_are_present(self, mozwebqa):
-        self.selenium = mozwebqa.selenium
-        mobile_pg = MobilePage(mozwebqa)
-        mobile_pg.open('/mobile/')
-        Assert.true(mobile_pg.get_firefox_for_android_button)
-        Assert.true(mobile_pg.newsletter_link)
-        Assert.true(mobile_pg.facebook_link)
-        Assert.true(mobile_pg.twitter_link)
-        Assert.equal(mobile_pg.click_facebook_link, \
-                    u"http://www.facebook.com/firefoxformobile")
+    def test_headers(self, mozwebqa):
+        aurora_pg = AuroraPage(mozwebqa)
+        aurora_pg.go_to_aurora_page
+        Assert.true(aurora_pg.preview_features_header)
+        Assert.true(aurora_pg.share_feedback_header)
+        Assert.true(aurora_pg.shape_firefox_header)
+        Assert.true(aurora_pg.aurora_header)
+
+    def test_download_button(self, mozwebqa):
+        aurora_pg = AuroraPage(mozwebqa)
+        aurora_pg.go_to_aurora_page
+        Assert.true(aurora_pg.aurora_download_button)
+        Assert.true(aurora_pg.all_systems_and_languages_link)
+        Assert.true(aurora_pg.privacy_policy_link)
+
+    def test_aurora_newsletter(self, mozwebqa):
+        aurora_pg = AuroraPage(mozwebqa)
+        aurora_pg.go_to_aurora_page
+        aurora_pg.type_email("me@example.com")
+        aurora_pg.check_aurora_checkbox
+        aurora_pg.agree_to_privacy_policy
+        aurora_pg.click_sign_me_up
+        Assert.equal(aurora_pg.newsletter_submitted_sucessfully, "Thanks for subscribing!")
