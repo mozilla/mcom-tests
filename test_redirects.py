@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -17,7 +16,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2010
+# Portions created by the Initial Developer are Copyright (C) 2011
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -35,23 +34,41 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-from selenium import selenium
-from unittestzero import Assert
-from pages.mobile.mobile import MobilePage
+
+import urllib
 import pytest
+from unittestzero import Assert
 xfail = pytest.mark.xfail
 
 
-class TestMobile:
+@pytest.mark.skip_selenium
+class TestRedirects(object):
 
-    @xfail(reason='Bug 699985 - push updated basket-dev')
-    def test_sub_sections_are_present(self, mozwebqa):
-        self.selenium = mozwebqa.selenium
-        mobile_pg = MobilePage(mozwebqa)
-        mobile_pg.open('/mobile/')
-        Assert.true(mobile_pg.get_firefox_for_android_button)
-        Assert.true(mobile_pg.newsletter_link)
-        Assert.true(mobile_pg.facebook_link)
-        Assert.true(mobile_pg.twitter_link)
-        Assert.equal(mobile_pg.click_facebook_link, \
-                    u"http://www.facebook.com/firefoxformobile")
+    def test_redirects_from_mozilla_dot_com(self, mozwebqa):
+        url = mozwebqa.base_url
+        response = urllib.urlopen(url)
+        Assert.contains(url, response.url)
+
+    def test_fennec_redirects_to_mobile(self, mozwebqa):
+        url = mozwebqa.base_url + "/fennec"
+        response = urllib.urlopen(url)
+        result = mozwebqa.base_url + "/en-US/mobile/"
+        Assert.equal(result, response.url)
+
+    def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
+        url = mozwebqa.base_url + "/firefox/mobile"
+        response = urllib.urlopen(url)
+        result = mozwebqa.base_url + "/en-US/mobile/"
+        Assert.equal(result, response.url)
+
+    def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
+        url = mozwebqa.base_url + "/aurora"
+        response = urllib.urlopen(url)
+        result = mozwebqa.base_url + "/en-US/firefox/aurora/"
+        Assert.equal(result, response.url)
+
+    def test_redirect_to_trailing_slash(self, mozwebqa):
+        url = mozwebqa.base_url + "/community"
+        response = urllib.urlopen(url)
+        result = mozwebqa.base_url + "/community/"
+        Assert.equal(result, response.url)
