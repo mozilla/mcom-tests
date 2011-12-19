@@ -44,6 +44,7 @@ xfail = pytest.mark.xfail
 
 class TestMobile:
 
+    @xfail(reason='Bug 699985 - push updated basket-dev')
     def test_sub_sections_are_present(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         mobile_pg = MobilePage(mozwebqa)
