@@ -48,12 +48,7 @@ class TestMobile:
         self.selenium = mozwebqa.selenium
         mobile_pg = MobilePage(mozwebqa)
         mobile_pg.open('/mobile/')
-        Assert.true(mobile_pg.android_header_text)
-        Assert.true(mobile_pg.iphone_header_text)
-        Assert.true(mobile_pg.android_button)
-        Assert.true(mobile_pg.iphone_button)
-        Assert.true(mobile_pg.android_beta_button)
-        Assert.true(mobile_pg.mobile_desktop_button)
+        Assert.true(mobile_pg.get_firefox_for_android_button)
         Assert.true(mobile_pg.newsletter_link)
         Assert.true(mobile_pg.facebook_link)
         Assert.true(mobile_pg.twitter_link)

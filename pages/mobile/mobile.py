@@ -40,15 +40,20 @@ from pages.base import MozillaBasePage
 
 class MobilePage(MozillaBasePage):
 
-    _text_download_android = "css=#android>h3"
-    _text_download_iphone = "css=#iphone>h3"
-    _btn_download_android = "css=#android>p.dl>a"
-    _btn_download_iphone = "css=#iphone>p.dl>a"
-    _btn_download_android_beta = "css=#beta_android>a"
-    _btn_download_desktop = "css=#desktop_download>li>a"
-    _newsletter_link = "css=.mail>a"
-    _twitter_link = "css=li.twitter>a"
-    _facebook_link = "css=.facebook>a"
+    _text_download_android = "css=#android > h3"
+    _text_download_iphone = "css=#iphone > h3"
+    _btn_download_android = "css=#android > p.dl > a"
+    _btn_download_iphone = "css=#iphone >p.dl > a"
+    _btn_download_android_beta = "css=#beta_android > a"
+    _btn_download_desktop = "css=#desktop_download>li > a"
+    _newsletter_link = "css=.mail > a"
+    _twitter_link = "css=li.twitter > a"
+    _facebook_link = "css=.facebook > a"
+    _get_firefox_for_android_btn = "css=#download > .download"
+
+    @property
+    def get_firefox_for_android_button(self):
+        return self.is_element_present(self._get_firefox_for_android_btn)
 
     @property
     def android_header_text(self):
