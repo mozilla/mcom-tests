@@ -61,7 +61,7 @@ class TestRedirects(object):
         result = mozwebqa.base_url + "/en-US/mobile/"
         Assert.equal(result, response.url)
 
-    def test_firefox_aurora_redirects_to_firefox_aurora(self, mozwebqa):
+    def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
         url = mozwebqa.base_url + "/aurora"
         response = urllib.urlopen(url)
         result = mozwebqa.base_url + "/en-US/firefox/aurora/"
