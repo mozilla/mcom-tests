@@ -34,22 +34,42 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+
+from unittestzero import Assert
 import requests
 import pytest
-from unittestzero import Assert
+
+xfail = pytest.mark.xfail
 
 
 @pytest.mark.skip_selenium
-class TestStatus(object):
+class TestRedirects(object):
 
-    def test_status_code_returns_404(self, mozwebqa):
-        url = mozwebqa.base_url + '/abck'
-        response = requests.get(url)
-        Assert.equal(response.status_code, 404)
-
-    def test_xrobots_tag_is_present(self, mozwebqa):
-        '''Test for X-Robots-Tag header'''
+    def test_redirects_from_mozilla_dot_com(self, mozwebqa):
         url = mozwebqa.base_url
         response = requests.get(url)
-        Assert.contains("x-robots-tag", response.headers.keys())
-        Assert.contains('noodp', response.headers.values())
+        Assert.contains(url, response.url)
+
+    def test_fennec_redirects_to_mobile(self, mozwebqa):
+        url = mozwebqa.base_url + "/fennec"
+        response = requests.get(url)
+        result = mozwebqa.base_url + "/en-US/mobile/"
+        Assert.equal(result, response.url)
+
+    def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
+        url = mozwebqa.base_url + "/firefox/mobile"
+        response = requests.get(url)
+        result = mozwebqa.base_url + "/en-US/mobile/"
+        Assert.equal(result, response.url)
+
+    def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
+        url = mozwebqa.base_url + "/aurora"
+        response = requests.get(url)
+        result = mozwebqa.base_url + "/en-US/firefox/aurora/"
+        Assert.equal(result, response.url)
+
+    def test_redirect_to_trailing_slash(self, mozwebqa):
+        url = mozwebqa.base_url + "/community"
+        response = requests.get(url)
+        result = mozwebqa.base_url + "/community/"
+        Assert.equal(result, response.url)

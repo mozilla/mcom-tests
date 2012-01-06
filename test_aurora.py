@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
 #
@@ -20,6 +21,7 @@
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
+#                 Dave Hunt <dhunt@mozilla.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -34,22 +36,35 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import requests
-import pytest
+
 from unittestzero import Assert
+from pages.desktop.aurora import AuroraPage
+import pytest
+xfail = pytest.mark.xfail
 
 
-@pytest.mark.skip_selenium
-class TestStatus(object):
+class TestAurora:
 
-    def test_status_code_returns_404(self, mozwebqa):
-        url = mozwebqa.base_url + '/abck'
-        response = requests.get(url)
-        Assert.equal(response.status_code, 404)
+    def test_headers(self, mozwebqa):
+        aurora_pg = AuroraPage(mozwebqa)
+        aurora_pg.go_to_aurora_page
+        Assert.true(aurora_pg.preview_features_header)
+        Assert.true(aurora_pg.share_feedback_header)
+        Assert.true(aurora_pg.shape_firefox_header)
+        Assert.true(aurora_pg.aurora_header)
 
-    def test_xrobots_tag_is_present(self, mozwebqa):
-        '''Test for X-Robots-Tag header'''
-        url = mozwebqa.base_url
-        response = requests.get(url)
-        Assert.contains("x-robots-tag", response.headers.keys())
-        Assert.contains('noodp', response.headers.values())
+    def test_download_button(self, mozwebqa):
+        aurora_pg = AuroraPage(mozwebqa)
+        aurora_pg.go_to_aurora_page
+        Assert.true(aurora_pg.aurora_download_button)
+        Assert.true(aurora_pg.all_systems_and_languages_link)
+        Assert.true(aurora_pg.privacy_policy_link)
+
+    def test_aurora_newsletter(self, mozwebqa):
+        aurora_pg = AuroraPage(mozwebqa)
+        aurora_pg.go_to_aurora_page
+        aurora_pg.type_email("me@example.com")
+        aurora_pg.check_aurora_checkbox
+        aurora_pg.agree_to_privacy_policy
+        aurora_pg.click_sign_me_up
+        Assert.equal(aurora_pg.newsletter_submitted_sucessfully, "Thanks for subscribing!")
