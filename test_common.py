@@ -45,7 +45,7 @@ xfail = pytest.mark.xfail
 
 class TestCommon:
 
-
+    @xfail(reason="Temporarily redirecting to a SOPA-protest page")
     def test_header_and_footer_links(self, mozwebqa, url="/firefox/fx/"):
         self.selenium = mozwebqa.selenium
         home_pg = MozillaBasePage(mozwebqa)
