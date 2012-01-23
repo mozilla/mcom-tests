@@ -60,41 +60,39 @@ class AuroraPage(MozillaBasePage):
         self.open("/aurora/")
 
     @property
-    def preview_features_header(self):
+    def is_preview_features_header_present(self):
         return self.is_element_present(self._preview_features_locator)
 
     @property
-    def share_feedback_header(self):
+    def is_share_feedback_header_present(self):
         return self.is_element_present(self._share_feedback_locator)
 
     @property
-    def shape_firefox_header(self):
+    def is_shape_firefox_header_present(self):
         return self.is_element_present(self._shape_firefox_locator)
 
     @property
-    def aurora_header(self):
+    def is_aurora_header_present(self):
         return self.is_element_present(self._aurora_header)
 
     @property
-    def aurora_download_button(self):
+    def is_aurora_download_button_present(self):
         return self.is_element_present(self._aurora_btn_locator)
 
     @property
-    def all_systems_and_languages_link(self):
+    def is_all_systems_and_languages_link_present(self):
         return self.is_element_present(self._all_systems_locator)
 
     @property
-    def privacy_policy_link(self):
+    def is_privacy_policy_link_present(self):
         return self.is_element_present(self._privacy_policy_locator)
 
     def type_email(self, email):
         self.selenium.type(self._email_locator, email)
 
-    @property
     def check_aurora_checkbox(self):
         return self.selenium.check(self._aurora_checkbox_locator)
 
-    @property
     def agree_to_privacy_policy(self):
         self.selenium.check(self._privacy_policy_checkbox_locator)
 

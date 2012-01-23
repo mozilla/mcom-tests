@@ -45,26 +45,26 @@ xfail = pytest.mark.xfail
 
 class TestAurora:
 
-    def test_headers(self, mozwebqa):
+    def test_that_headers_are_present(self, mozwebqa):
         aurora_pg = AuroraPage(mozwebqa)
         aurora_pg.go_to_aurora_page
-        Assert.true(aurora_pg.preview_features_header)
-        Assert.true(aurora_pg.share_feedback_header)
-        Assert.true(aurora_pg.shape_firefox_header)
-        Assert.true(aurora_pg.aurora_header)
+        Assert.true(aurora_pg.is_preview_features_header_present)
+        Assert.true(aurora_pg.is_share_feedback_header_present)
+        Assert.true(aurora_pg.is_shape_firefox_header_present)
+        Assert.true(aurora_pg.is_aurora_header_present)
 
-    def test_download_button(self, mozwebqa):
+    def test_download_button_section(self, mozwebqa):
         aurora_pg = AuroraPage(mozwebqa)
         aurora_pg.go_to_aurora_page
-        Assert.true(aurora_pg.aurora_download_button)
-        Assert.true(aurora_pg.all_systems_and_languages_link)
-        Assert.true(aurora_pg.privacy_policy_link)
+        Assert.true(aurora_pg.is_aurora_download_button_present)
+        Assert.true(aurora_pg.is_all_systems_and_languages_link_present)
+        Assert.true(aurora_pg.is_privacy_policy_link_present)
 
-    def test_aurora_newsletter(self, mozwebqa):
+    def test_aurora_newsletter_submission(self, mozwebqa):
         aurora_pg = AuroraPage(mozwebqa)
         aurora_pg.go_to_aurora_page
         aurora_pg.type_email("me@example.com")
-        aurora_pg.check_aurora_checkbox
-        aurora_pg.agree_to_privacy_policy
+        aurora_pg.check_aurora_checkbox()
+        aurora_pg.agree_to_privacy_policy()
         aurora_pg.click_sign_me_up
         Assert.equal(aurora_pg.newsletter_submitted_sucessfully, "Thanks for subscribing!")
