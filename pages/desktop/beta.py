@@ -60,41 +60,39 @@ class BetaPage(MozillaBasePage):
         self.open("/mobile/beta/")
 
     @property
-    def test_features_header(self):
+    def is_test_features_header_present(self):
         return self.is_element_present(self._test_features_locator)
 
     @property
-    def do_part_header(self):
+    def is_do_part_header_present(self):
         return self.is_element_present(self._do_part_locator)
 
     @property
-    def polish_header(self):
+    def is_polish_header_present(self):
         return self.is_element_present(self._polish_locator)
 
     @property
-    def beta_header(self):
+    def is_beta_header_present(self):
         return self.is_element_present(self._beta_header)
 
     @property
-    def beta_download_button(self):
+    def is_beta_download_button_present(self):
         return self.is_element_present(self._beta_btn_locator)
 
     @property
-    def supported_devices_link(self):
+    def is_supported_devices_link_present(self):
         return self.is_element_present(self._supported_devices_locator)
 
     @property
-    def privacy_policy_link(self):
+    def is_privacy_policy_link_present(self):
         return self.is_element_present(self._privacy_policy_locator)
 
     def type_email(self, email):
         self.selenium.type(self._email_locator, email)
 
-    @property
     def check_beta_checkbox(self):
-        return self.selenium.check(self._beta_checkbox_locator)
+        self.selenium.check(self._beta_checkbox_locator)
 
-    @property
     def agree_to_privacy_policy(self):
         self.selenium.check(self._privacy_policy_checkbox_locator)
 
