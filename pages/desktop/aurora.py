@@ -55,7 +55,6 @@ class AuroraPage(MozillaBasePage):
     _shape_firefox_locator = "css=#feature-list > li:nth-child(3) > h3"
     _success_pane_locator = "css=.success-pane>h3"
 
-    @property
     def go_to_aurora_page(self):
         self.open("/aurora/")
 
@@ -96,7 +95,6 @@ class AuroraPage(MozillaBasePage):
     def agree_to_privacy_policy(self):
         self.selenium.check(self._privacy_policy_checkbox_locator)
 
-    @property
     def click_sign_me_up(self):
         self.selenium.click(self._sign_up_btn_locator)
         self.selenium.wait_for_page_to_load(self.timeout)
