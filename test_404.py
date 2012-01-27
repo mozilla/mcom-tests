@@ -34,7 +34,7 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
-import urllib
+import requests
 import pytest
 from unittestzero import Assert
 
@@ -44,12 +44,12 @@ class TestStatus(object):
 
     def test_status_code_returns_404(self, mozwebqa):
         url = mozwebqa.base_url + '/abck'
-        response = urllib.urlopen(url)
-        Assert.equal(response.code, 404)
+        response = requests.get(url)
+        Assert.equal(response.status_code, 404)
 
     def test_xrobots_tag_is_present(self, mozwebqa):
         '''Test for X-Robots-Tag header'''
         url = mozwebqa.base_url
-        response = urllib.urlopen(url)
-        Assert.contains("X-Robots-Tag", response.info())
-        Assert.contains('noodp', response.headers.dict.values())
+        response = requests.get(url)
+        Assert.contains("x-robots-tag", response.headers.keys())
+        Assert.contains('noodp', response.headers.values())
