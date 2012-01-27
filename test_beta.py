@@ -17,11 +17,11 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2012
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
-#                 Dave Hunt <dhunt@mozilla.com>
+#
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -38,33 +38,31 @@
 # ***** END LICENSE BLOCK *****
 
 from unittestzero import Assert
-from pages.desktop.aurora import AuroraPage
-import pytest
-xfail = pytest.mark.xfail
+from pages.desktop.beta import BetaPage
 
 
-class TestAurora:
+class TestBeta:
 
     def test_that_headers_are_present(self, mozwebqa):
-        aurora_pg = AuroraPage(mozwebqa)
-        aurora_pg.go_to_aurora_page()
-        Assert.true(aurora_pg.is_preview_features_header_present)
-        Assert.true(aurora_pg.is_share_feedback_header_present)
-        Assert.true(aurora_pg.is_shape_firefox_header_present)
-        Assert.true(aurora_pg.is_aurora_header_present)
+        beta_pg = BetaPage(mozwebqa)
+        beta_pg.go_to_mobile_beta_page()
+        Assert.true(beta_pg.is_test_features_header_present)
+        Assert.true(beta_pg.is_do_part_header_present)
+        Assert.true(beta_pg.is_polish_header_present)
+        Assert.true(beta_pg.is_beta_header_present)
 
     def test_download_button_section(self, mozwebqa):
-        aurora_pg = AuroraPage(mozwebqa)
-        aurora_pg.go_to_aurora_page()
-        Assert.true(aurora_pg.is_aurora_download_button_present)
-        Assert.true(aurora_pg.is_all_systems_and_languages_link_present)
-        Assert.true(aurora_pg.is_privacy_policy_link_present)
+        beta_pg = BetaPage(mozwebqa)
+        beta_pg.go_to_mobile_beta_page()
+        Assert.true(beta_pg.is_beta_download_button_present)
+        Assert.true(beta_pg.is_supported_devices_link_present)
+        Assert.true(beta_pg.is_privacy_policy_link_present)
 
-    def test_aurora_newsletter_submission(self, mozwebqa):
-        aurora_pg = AuroraPage(mozwebqa)
-        aurora_pg.go_to_aurora_page()
-        aurora_pg.type_email("me@example.com")
-        aurora_pg.check_aurora_checkbox()
-        aurora_pg.agree_to_privacy_policy()
-        aurora_pg.click_sign_me_up()
-        Assert.equal(aurora_pg.newsletter_submitted_sucessfully, "Thanks for subscribing!")
+    def test_beta_newsletter_submission(self, mozwebqa):
+        beta_pg = BetaPage(mozwebqa)
+        beta_pg.go_to_mobile_beta_page()
+        beta_pg.type_email("me@example.com")
+        beta_pg.check_beta_checkbox()
+        beta_pg.agree_to_privacy_policy()
+        beta_pg.click_sign_me_up()
+        Assert.equal(beta_pg.newsletter_submitted_sucessfully, "Thanks for subscribing!")
