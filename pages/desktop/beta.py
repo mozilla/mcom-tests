@@ -17,7 +17,7 @@
 #
 # The Initial Developer of the Original Code is
 # Mozilla.
-# Portions created by the Initial Developer are Copyright (C) 2011
+# Portions created by the Initial Developer are Copyright (C) 2012
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s): Raymond Etornam Agbeame
@@ -39,48 +39,48 @@
 from pages.base import MozillaBasePage
 
 
-class AuroraPage(MozillaBasePage):
+class BetaPage(MozillaBasePage):
 
 
-    _aurora_header = "css=#main-feature > h2 > img"
-    _aurora_btn_locator = "css=.home-download > li > a"
-    _all_systems_locator = "css=.download-other > a:nth-child(1)"
+    _beta_header = "css=#main-feature > h2 > img"
+    _beta_btn_locator = "css=.home-download > a"
+    _supported_devices_locator = "css=.download-other > a:nth-child(1)"
     _privacy_policy_locator = "css=.download-other > a:nth-child(2)"
     _email_locator = "css=#email"
-    _aurora_checkbox_locator = "css=#check_aurora"
+    _beta_checkbox_locator = "css=#check_beta"
     _privacy_policy_checkbox_locator = "css=#inline-privacy-check"
     _sign_up_btn_locator = "css=#subscribe.button"
-    _preview_features_locator = "css=#feature-list > li:nth-child(1) > h3"
-    _share_feedback_locator = "css=#feature-list > li:nth-child(2) > h3"
-    _shape_firefox_locator = "css=#feature-list > li:nth-child(3) > h3"
+    _test_features_locator = "css=#feature-list > li:nth-child(1) > h3"
+    _polish_locator = "css=#feature-list > li:nth-child(2) > h3"
+    _do_part_locator = "css=#feature-list > li:nth-child(3) > h3"
     _success_pane_locator = "css=.success-pane>h3"
 
-    def go_to_aurora_page(self):
-        self.open("/aurora/")
+    def go_to_mobile_beta_page(self):
+        self.open("/mobile/beta/")
 
     @property
-    def is_preview_features_header_present(self):
-        return self.is_element_present(self._preview_features_locator)
+    def is_test_features_header_present(self):
+        return self.is_element_present(self._test_features_locator)
 
     @property
-    def is_share_feedback_header_present(self):
-        return self.is_element_present(self._share_feedback_locator)
+    def is_do_part_header_present(self):
+        return self.is_element_present(self._do_part_locator)
 
     @property
-    def is_shape_firefox_header_present(self):
-        return self.is_element_present(self._shape_firefox_locator)
+    def is_polish_header_present(self):
+        return self.is_element_present(self._polish_locator)
 
     @property
-    def is_aurora_header_present(self):
-        return self.is_element_present(self._aurora_header)
+    def is_beta_header_present(self):
+        return self.is_element_present(self._beta_header)
 
     @property
-    def is_aurora_download_button_present(self):
-        return self.is_element_present(self._aurora_btn_locator)
+    def is_beta_download_button_present(self):
+        return self.is_element_present(self._beta_btn_locator)
 
     @property
-    def is_all_systems_and_languages_link_present(self):
-        return self.is_element_present(self._all_systems_locator)
+    def is_supported_devices_link_present(self):
+        return self.is_element_present(self._supported_devices_locator)
 
     @property
     def is_privacy_policy_link_present(self):
@@ -89,8 +89,8 @@ class AuroraPage(MozillaBasePage):
     def type_email(self, email):
         self.selenium.type(self._email_locator, email)
 
-    def check_aurora_checkbox(self):
-        return self.selenium.check(self._aurora_checkbox_locator)
+    def check_beta_checkbox(self):
+        self.selenium.check(self._beta_checkbox_locator)
 
     def agree_to_privacy_policy(self):
         self.selenium.check(self._privacy_policy_checkbox_locator)
