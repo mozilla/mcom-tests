@@ -107,7 +107,6 @@ class TestCommon:
             "/en-US/about/",
             "/about/participate/",
             "/press/",
-            "/about/careers.html",
             "/about/partnerships.html",
             "/about/legal.html",
             "/about/contact.html",
