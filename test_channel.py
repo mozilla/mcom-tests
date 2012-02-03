@@ -39,8 +39,9 @@ from selenium import selenium
 from unittestzero import Assert
 from pages.desktop.channel import ChannelPage
 import pytest
+xfail = pytest.mark.xfail
 
-
+@xfail(reason = " Bug https://bugzilla.mozilla.org/show_bug.cgi?id=684080")
 class TestChannelPage:
 
 
