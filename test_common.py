@@ -46,44 +46,38 @@ xfail = pytest.mark.xfail
 class TestCommon:
 
     def test_header_and_footer_links(self, mozwebqa, url="/firefox/fx/"):
-        self.selenium = mozwebqa.selenium
         home_pg = MozillaBasePage(mozwebqa)
         home_pg.open(url)
+        home_pg.click_tabzilla()
+
+        for x in home_pg.get_tabzilla_header_links:
+            print home_pg.is_element_present(x)
 
         for x in home_pg.header_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_support_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_desktop_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_social_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_mobile_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_release_download_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_about_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_addons_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
         for x in home_pg.footer_legal_links:
-            print home_pg.get_text(x)
             print home_pg.is_element_present(x)
 
 
@@ -109,8 +103,7 @@ class TestCommon:
             "/about/partnerships.html",
             "/about/legal.html",
             "/about/contact.html",
-            "/firefox/all.html",
-            "/firefox/all-older.html"]
+            "/firefox/all.html"]
 
         for x in urls:
             print x

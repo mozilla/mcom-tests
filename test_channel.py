@@ -44,52 +44,30 @@ import pytest
 class TestChannelPage:
 
 
-    def test_aurora_download_button(self, mozwebqa, url="/firefox/channel/"):
+    def test_that_logos_are_present(self, mozwebqa):
         channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.aurora_download_button)
+        channel_pg.go_to_channel_page()
+        Assert.true(channel_pg.is_beta_logo_present)
+        Assert.true(channel_pg.is_firefox_logo_present)
+        Assert.true(channel_pg.is_aurora_logo_present)
 
-    def test_aurora_mobile_download_button(self, mozwebqa, url="/firefox/channel/"):
+    def test_beta_sub_page(self, mozwebqa):
         channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.aurora_mobile_download_button)
+        channel_pg.go_to_channel_page()
+        channel_pg.click_beta_logo()
 
-    def test_beta_download_button(self, mozwebqa, url="/firefox/channel/"):
+    def test_aurora_sub_page(self, mozwebqa):
         channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.beta_download_button)
+        channel_pg.go_to_channel_page()
+        channel_pg.click_aurora_logo()
 
-    def test_beta_mobile_download_button(self, mozwebqa, url="/firefox/channel/"):
+    def test_firefox_sub_page(self, mozwebqa):
         channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.beta_mobile_download_button)
+        channel_pg.go_to_channel_page()
+        channel_pg.click_firefox_logo()
 
-    def test_beta_privacy_policy(self, mozwebqa, url="/firefox/channel/"):
+    def test_that_carousels_are_present(self, mozwebqa):
         channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.beta_privacy_link)
-
-    def test_beta_mobile_privacy_policy(self, mozwebqa, url="/firefox/channel/"):
-        channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.beta_mobile_privacy_link)
-
-    def aurora_mobile_privacy_policy(self, mozwebqa, url="/firefox/channel/"):
-        channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.aurora_mobile_privacy_link)
-
-    def aurora_privacy_policy(self, mozwebqa, url="/firefox/channel/"):
-        channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.aurora_privacy_link)
-
-    def beta_all_systems_and_languages(self, mozwebqa, url="/firefox/channel/"):
-        channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.beta_systems_and_languages_link)
-
-    def aurora_all_systems_and_languages(self, mozwebqa, url="/firefox/channel/"):
-        channel_pg = ChannelPage(mozwebqa)
-        channel_pg.open(url)
-        Assert.true(channel_pg.aurora_systems_and_languages_link)
+        channel_pg.go_to_channel_page()
+        Assert.true(channel_pg.is_right_carousel_present)
+        Assert.true(channel_pg.is_left_carousel_present)

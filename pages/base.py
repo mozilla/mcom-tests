@@ -42,13 +42,24 @@ from page import Page
 
 class MozillaBasePage(Page):
 
+    _header_tab_mozilla = "css=#tabzilla-nav>ul>li:nth-child(1)>h2"
+    _header_tab_products = "css=#tabzilla-nav>ul>li:nth-child(2)>h2"
+    _header_tab_innovation = "css=#tabzilla-nav>ul>li:nth-child(3)>h2"
+    _header_tab_get_involved = "css=#tabzilla-nav>ul>li:nth-child(4)>h2"
+    _header_tab_list = [
+    _header_tab_mozilla,
+    _header_tab_products,
+    _header_tab_innovation,
+    _header_tab_get_involved
+    ]
+
     _header_logo_locator = "css=#header > div > h1 > a"
     #_desktop_header_locator = "css=#nav-main-desktop>a"
     _mobile_header_locator = "css=#nav-main-mobile > a"
     _addons_header_locator = "css=#nav-main-addons > a"
     _support_header_locator = "css=#nav-main-support > a"
     _about_header_locator = "css=#nav-main-about > a"
-    _mozilla_header_locator = "css=#header > div a.mozilla"
+    _mozilla_header_locator = "css=#tabzilla"
     _header_list = [
     _header_logo_locator,
     _mobile_header_locator,
@@ -187,6 +198,14 @@ class MozillaBasePage(Page):
     _sign_me_up_button = "css=.subscribe"
     _success_pane_locator = "css=.successpane > h3"
 
+
+    def click_tabzilla(self):
+        self.click(self._mozilla_header_locator)
+
+
+    @property
+    def get_tabzilla_header_links(self):
+        return self._header_tab_list
     @property
     def success_pane_locator(self):
         return self._success_pane_locator
