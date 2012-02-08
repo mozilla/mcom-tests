@@ -22,7 +22,7 @@ class ChannelPage(MozillaBasePage):
     _learn_more_button = "css=.more>a"
     _left_carousel = "css=#carousel-left"
     _right_carousel = "css=#carousel-right"
-    _main_feature_header = "css=#main-feature>h2"
+    _main_feature_header = "css=#main-feature > h2"
 
 
     def go_to_channel_page(self):
