@@ -7,4 +7,9 @@ pytest-mozwebqa==0.7.1
 selenium
 unittestzero
 BeautifulSoup==3.2.0
+certifi==0.0.8
 requests==0.9.1
+execnet==1.0.9
+py==1.4.6
+PyYAML==3.10
+rdflib==3.1.0
