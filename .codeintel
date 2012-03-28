@@ -1,7 +1,0 @@
-{
-    "Python": {
-        "python": '/Users/retornam/Documents/tests/bin/python',
-        "pythonExtraPaths": ['/Users/retornam/Documents/tests/lib/python2.6/site-packages',
-        ]
-    },
-}
