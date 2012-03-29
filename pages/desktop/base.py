@@ -41,42 +41,36 @@ class Base(Page):
 
     @property
     def are_tabzilla_links_present(self):
-        try:
-            self.is_element_present(*self._tabzilla)
-            self.is_element_present(*self._tabzilla_mission_link)
-            self.is_element_present(*self._tabzilla_about_link)
-            self.is_element_present(*self._tabzilla_projects_link)
-            self.is_element_present(*self._tabzilla_support_link)
-            self.is_element_present(*self._tabzilla_developer_network_link)
-            self.is_element_present(*self._tabzilla_firefox_link)
-            self.is_element_present(*self._tabzilla_thunderbird_link)
-            self.is_element_present(*self._tabzilla_webfwd_link)
-            self.is_element_present(*self._tabzilla_labs_link)
-            self.is_element_present(*self._tabzilla_volunteer_link)
-            self.is_element_present(*self._tabzilla_work_link)
-            self.is_element_present(*self._tabzilla_findus_link)
-            self.is_element_present(*self._tabzilla_learnmore_link)
-            self.is_element_present(*self._tabzilla_search_textbox)
-            return True
-        except NoSuchElementException:
-            return False
+        self.is_element_present(*self._tabzilla)
+        self.is_element_present(*self._tabzilla_mission_link)
+        self.is_element_present(*self._tabzilla_about_link)
+        self.is_element_present(*self._tabzilla_projects_link)
+        self.is_element_present(*self._tabzilla_support_link)
+        self.is_element_present(*self._tabzilla_developer_network_link)
+        self.is_element_present(*self._tabzilla_firefox_link)
+        self.is_element_present(*self._tabzilla_thunderbird_link)
+        self.is_element_present(*self._tabzilla_webfwd_link)
+        self.is_element_present(*self._tabzilla_labs_link)
+        self.is_element_present(*self._tabzilla_volunteer_link)
+        self.is_element_present(*self._tabzilla_work_link)
+        self.is_element_present(*self._tabzilla_findus_link)
+        self.is_element_present(*self._tabzilla_learnmore_link)
+        self.is_element_present(*self._tabzilla_search_textbox)
+        return True
 
     def toggle_tabzilla_dropdown(self):
         self.selenium.find_element(*self._tabzilla).click()
 
     @property
     def are_footer_links_present(self):
-        try:
-            self.is_element_present(*self._footer_mozilla_link)
-            self.is_element_present(*self._contact_us_link)
-            self.is_element_present(*self._privacy_policy_link)
-            self.is_element_present(*self._legal_notices_link)
-            self.is_element_present(*self._report_trademark_link)
-            self.is_element_present(*self._abuse_link)
-            self.is_element_present(*self._twitter_link)
-            self.is_element_present(*self._facebook_link)
-            self.is_element_present(*self._firefox_affiliates_link)
-            self.is_element_present(*self._creative_commons_license)
-            return True
-        except NoSuchElementException:
-            return False
+        self.is_element_present(*self._footer_mozilla_link)
+        self.is_element_present(*self._contact_us_link)
+        self.is_element_present(*self._privacy_policy_link)
+        self.is_element_present(*self._legal_notices_link)
+        self.is_element_present(*self._report_trademark_link)
+        self.is_element_present(*self._abuse_link)
+        self.is_element_present(*self._twitter_link)
+        self.is_element_present(*self._facebook_link)
+        self.is_element_present(*self._firefox_affiliates_link)
+        self.is_element_present(*self._creative_commons_license)
+        return True
