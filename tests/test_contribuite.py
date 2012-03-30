@@ -44,7 +44,7 @@ class TestContribute:
         Assert.equal('http://www-dev.allizom.org/en-US/privacy-policy', help_form.privacy_link)
         Assert.equal('I’d like to receive regular contribution news by email', help_form.newsletter_text)
 
-        @pytest.mark.nondestructive
+    @pytest.mark.nondestructive
     def test_that_clicking_on_areas_of_interest_opens_the_help_form(self, mozwebqa):
         contribuite=Contribuite(mozwebqa)
         contribuite.got_to_page()
