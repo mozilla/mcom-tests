@@ -60,7 +60,7 @@ Change the path/name to the downloaded Selenium server file.
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-   py.test --api=rc --baseurl=http://www.mozilla.org --browser=*firefox
+	py.test --driver=firefox --destructive 	
 
 Writing Tests
 -------------
