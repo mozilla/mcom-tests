@@ -6,22 +6,23 @@
 
 import pytest
 from unittestzero import Assert
-from pages.desktop.contribute import Contribuite
+from pages.desktop.contribute import Contribute
+
 
 class TestContribute:
 
-    areas_of_interest=[u'Area of interest?', u'Helping Users', u'Localization',
-                       u'Testing and QA', u'Coding', u'Add-ons', u'Marketing',
-                       u'Student Reps', u'Web Development', u'Developer Documentation',
-                       u'Systems Administration', u'User Research', u'Thunderbird',
-                       u'Accessibility', u'Firefox Suggestions', u'Other']
+    areas_of_interest = [u'Area of interest?', u'Helping Users', u'Localization',
+                        u'Testing and QA', u'Coding', u'Add-ons', u'Marketing',
+                        u'Student Reps', u'Web Development', u'Developer Documentation',
+                        u'Systems Administration', u'User Research', u'Thunderbird',
+                        u'Accessibility', u'Firefox Suggestions', u'Other']
 
     @pytest.mark.nondestructive
     def test_want_to_help_area(self, mozwebqa):
-        contribuite=Contribuite(mozwebqa)
-        contribuite.got_to_page()
+        contribute = Contribute(mozwebqa)
+        contribute.go_to_page()
 
-        help_form=contribuite.help_form
+        help_form = contribute.help_form
 
         Assert.equal('Want to help?', help_form.title)
         Assert.equal('YOUR EMAIL HERE', help_form.email_placeholder)
@@ -41,15 +42,15 @@ class TestContribute:
         Assert.equal('Send us a note and we can get you started right away.', help_form.note_message)
         Assert.equal(u'Hi, I\u2019m interested in\u2026', help_form.comments_placeholder)
         Assert.equal('I agree to the Privacy Policy', help_form.privacy_text)
-        Assert.equal('http://www-dev.allizom.org/en-US/privacy-policy', help_form.privacy_link)
+        Assert.contains('/privacy-policy', help_form.privacy_link)
         Assert.equal('I’d like to receive regular contribution news by email', help_form.newsletter_text)
 
     @pytest.mark.nondestructive
     def test_that_clicking_on_areas_of_interest_opens_the_help_form(self, mozwebqa):
-        contribuite=Contribuite(mozwebqa)
-        contribuite.got_to_page()
+        contribute = Contribute(mozwebqa)
+        contribute.go_to_page()
 
-        help_form=contribuite.help_form
+        help_form = contribute.help_form
 
         Assert.false(help_form.is_additional_info_visible)
         help_form.click_email()

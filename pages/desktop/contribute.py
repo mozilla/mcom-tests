@@ -10,9 +10,10 @@ from selenium.webdriver.support.select import Select
 from pages.desktop.base import Base
 from pages.page import Page
 
-class Contribuite(Base):
 
-    def got_to_page(self):
+class Contribute(Base):
+
+    def go_to_page(self):
         self.open('/contribute/')
 
     @property
@@ -21,26 +22,26 @@ class Contribuite(Base):
 
     class HelpForm(Page):
 
-        _title_locator=(By.CSS_SELECTOR, 'div.row > .form-column-1 > h3')
-        _email_field_locator=(By.ID, 'id_email')
-        _area_of_interest_locator=(By.ID, 'id_interest')
-        _submit_button_locator=(By.ID, 'form-submit')
+        _title_locator = (By.CSS_SELECTOR, 'div.row > .form-column-1 > h3')
+        _email_field_locator = (By.ID, 'id_email')
+        _area_of_interest_locator = (By.ID, 'id_interest')
+        _submit_button_locator = (By.ID, 'form-submit')
 
-        _note_message_locator=(By.CSS_SELECTOR, '#form-details > .form-column-1 > p')
-        _comments_locator=(By.ID, 'id_comments')
+        _note_message_locator = (By.CSS_SELECTOR, '#form-details > .form-column-1 > p')
+        _comments_locator = (By.ID, 'id_comments')
 
-        _privacy_checkbox_locator=(By.ID, 'id_privacy')
-        _privacy_title_locator=(By.CSS_SELECTOR, '.privacy-check-label  span.title')
-        _privacy_title_link_locator=(By.CSS_SELECTOR, '.privacy-check-label  span.title > a')
+        _privacy_checkbox_locator = (By.ID, 'id_privacy')
+        _privacy_title_locator = (By.CSS_SELECTOR, '.privacy-check-label  span.title')
+        _privacy_title_link_locator = (By.CSS_SELECTOR, '.privacy-check-label  span.title > a')
 
-        _newsletter_checkbox_locator=(By.ID, 'id_newsletter')
-        _newsletter_title_locator=(By.CSS_SELECTOR, '.field-newsletter > label')
+        _newsletter_checkbox_locator = (By.ID, 'id_newsletter')
+        _newsletter_title_locator = (By.CSS_SELECTOR, '.field-newsletter > label')
 
-        _root_locator=(By.ID, 'help-form')
+        _root_locator = (By.ID, 'help-form')
 
         def __init__(self, testsetup):
             Page.__init__(self, testsetup)
-            self._root=self.selenium.find_element(*self._root_locator)
+            self._root = self.selenium.find_element(*self._root_locator)
 
         @property
         def title(self):
