@@ -11,10 +11,10 @@ from pages.page import Page
 
 
 class Home(Base):
-    _home_news_title_locator=(By.CSS_SELECTOR, '#home-news > h3')
-    _home_news_links_locator=(By.CSS_SELECTOR, '#home-news > h4 > a')
+    _home_news_title_locator = (By.CSS_SELECTOR, '#home-news > h3')
+    _home_news_links_locator = (By.CSS_SELECTOR, '#home-news > h4 > a')
 
-    def got_to_page(self):
+    def go_to_page(self):
         self.selenium.get(self.base_url)
 
     @property
@@ -31,22 +31,22 @@ class Home(Base):
 
     class EmailForm(Page):
 
-        _title_locator=(By.TAG_NAME, 'h3')
+        _title_locator = (By.TAG_NAME, 'h3')
 
-        _email_field_locator=(By.ID, 'id_email')
-        _country_selector_locator=(By.ID, 'country')
-        _privacy_checkbox_locator=(By.ID, 'id_privacy')
-        _privacy_title_locator=(By.CSS_SELECTOR, '.field-privacy  span.title')
-        _privacy_title_link_locator=(By.CSS_SELECTOR, 'div.field.field-privacy  span.title > a')
+        _email_field_locator = (By.ID, 'id_email')
+        _country_selector_locator = (By.ID, 'country')
+        _privacy_checkbox_locator = (By.ID, 'id_privacy')
+        _privacy_title_locator = (By.CSS_SELECTOR, '.field-privacy  span.title')
+        _privacy_title_link_locator = (By.CSS_SELECTOR, 'div.field.field-privacy span.title > a')
 
-        _submit_button_locator=(By.ID, 'footer_email_submit')
-        _form_details_locator=(By.CSS_SELECTOR, '.form-submit > p > small')
+        _submit_button_locator = (By.ID, 'footer_email_submit')
+        _form_details_locator = (By.CSS_SELECTOR, '.form-submit > p > small')
 
-        _root_locator=(By.ID, 'footer-email-form')
+        _root_locator = (By.ID, 'footer-email-form')
 
         def __init__(self, testsetup):
             Page.__init__(self, testsetup)
-            self._root=self.selenium.find_element(*self._root_locator)
+            self._root = self.selenium.find_element(*self._root_locator)
 
         @property
         def title(self):

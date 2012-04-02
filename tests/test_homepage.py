@@ -9,12 +9,12 @@ from unittestzero import Assert
 from pages.desktop.home import Home
 
 
-class TestTechnologyPage:
+class TestHomepage:
 
     @pytest.mark.nondestructive
     def test_blog_links(self, mozwebqa):
-        home=Home(mozwebqa)
-        home.got_to_page()
+        home = Home(mozwebqa)
+        home.go_to_page()
 
         Assert.equal('In the news', home.home_news_title)
 
@@ -23,10 +23,10 @@ class TestTechnologyPage:
 
     @pytest.mark.nondestructive
     def test_get_updates_area(self, mozwebqa):
-        home=Home(mozwebqa)
-        home.got_to_page()
+        home = Home(mozwebqa)
+        home.go_to_page()
 
-        email_form=home.email_form
+        email_form = home.email_form
 
         Assert.equal('Get Mozilla updates:', email_form.title)
         Assert.equal('YOUR EMAIL HERE', email_form.email_placeholder)
@@ -39,7 +39,7 @@ class TestTechnologyPage:
         Assert.true(email_form.is_additional_info_visible)
 
         Assert.equal('I agree to the Privacy Policy', email_form.privacy_text)
-        Assert.equal('http://www-dev.allizom.org/en-US/privacy-policy', email_form.privacy_link)
+        Assert.contains('/privacy-policy', email_form.privacy_link)
         Assert.equal('We will only send you Mozilla-related information.', email_form.form_details_text)
 
         Assert.equal(232, email_form.country_count)
