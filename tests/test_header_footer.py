@@ -28,4 +28,5 @@ class TestHeaderFooter:
     def test_footer_section_visible(self, mozwebqa):
         technology_page = TechnologyPage(mozwebqa)
         technology_page.go_to_page()
+
         Assert.true(technology_page.footer.is_visible)
