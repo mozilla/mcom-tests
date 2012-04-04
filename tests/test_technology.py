@@ -22,3 +22,15 @@ class TestTechnologyPage:
         Assert.true(technology_page.is_apis_link_visible)
         Assert.true(technology_page.is_svg_link_visible)
         Assert.true(technology_page.is_security_link_visible)
+
+    @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="Selenium issue 3492")
+    def test_that_learn_more_is_shown_on_mouse_over(self, mozwebqa):
+        technology_page = TechnologyPage(mozwebqa)
+        technology_page.go_to_page()
+
+        for bulb in technology_page.bulbs:
+            if bulb.is_learn_more_present:
+                Assert.false(bulb.is_learn_more_displayed)
+                bulb.hover()
+                Assert.true(bulb.is_learn_more_displayed)
