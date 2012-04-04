@@ -79,7 +79,7 @@ class TechnologyPage(Base):
             self._root = element
 
         def hover(self):
-            ActionChains(self._root).mouse_over(self._root).perform()
+            ActionChains(self._root).move_to_element(self._root).perform()
 
         @property
         def is_learn_more_present(self):
