@@ -43,7 +43,7 @@ class TestContribute:
         Assert.equal(u'Hi, I\u2019m interested in\u2026', help_form.comments_placeholder)
         Assert.equal('I agree to the Privacy Policy', help_form.privacy_text)
         Assert.contains('/privacy-policy', help_form.privacy_link)
-        Assert.equal('I’d like to receive regular contribution news by email', help_form.newsletter_text)
+        Assert.equal(u'I\u2019d like to receive regular contribution news by email', help_form.newsletter_text)
 
     @pytest.mark.nondestructive
     def test_that_clicking_on_areas_of_interest_opens_the_help_form(self, mozwebqa):
