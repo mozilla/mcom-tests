@@ -6,8 +6,8 @@
 
 from pages.page import Page
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
+
 
 class Base(Page):
 
@@ -51,7 +51,7 @@ class Base(Page):
             state = self.selenium.execute_script("return Tabzilla.opened")
             self.selenium.find_element(*self._tabzilla).click()
             WebDriverWait(self.selenium, 5).until(lambda s: state != s.execute_script("return Tabzilla.opened"))
-    
+
         @property
         def is_tabzilla_panel_visible(self):
             return self.is_element_visible(*self._tabzilla)

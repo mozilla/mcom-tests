@@ -11,7 +11,7 @@ from pages.desktop.technology_page import TechnologyPage
 
 class TestHeaderFooter:
 
-    @pytest.mark.xfail("Selenium issue 3492")
+    @pytest.mark.xfail(reason="Selenium issue 3492")
     @pytest.mark.nondestructive
     def test_header_section_visible(self, mozwebqa):
         technology_page = TechnologyPage(mozwebqa)
