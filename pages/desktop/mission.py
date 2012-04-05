@@ -10,10 +10,10 @@ from selenium.webdriver.common.by import By
 
 class MissionPage(Base):
 
-    _mission_sidebar_link = (By.CSS_SELECTOR, '.sidebar>nav>ul>li:nth-of-type(1)>a')
-    _forums_sidebar_link = (By.CSS_SELECTOR, '.sidebar>nav>ul>li:nth-of-type(2)>a')
-    _governance_sidebar_link = (By.CSS_SELECTOR, '.sidebar>nav>ul>li:nth-of-type(3)>a')
-    _history_sidebar_link = (By.CSS_SELECTOR, '.sidebar>nav>ul>li:nth-of-type(4)>a')
+    _mission_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(1) > a')
+    _forums_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(2) > a')
+    _governance_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(3) > a')
+    _history_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(4) > a')
     _home_breadcrumb_link = (By.CSS_SELECTOR, '.breadcrumbs > a')
     _mission_breadcrumb_link = (By.CSS_SELECTOR, '.breadcrumbs > span')
     _video_section = (By.CSS_SELECTOR, '.mozilla-video-control-overlay')
@@ -24,21 +24,21 @@ class MissionPage(Base):
         self.open('/en-US/mission')
 
     @property
-    def are_sidebar_links_present(self):
-        self.is_element_present(*self._mission_sidebar_link)
-        self.is_element_present(*self._forums_sidebar_link)
-        self.is_element_present(*self._governance_sidebar_link)
-        self.is_element_present(*self._history_sidebar_link)
+    def are_sidebar_links_visible(self):
+        self.is_element_visible(*self._mission_sidebar_link)
+        self.is_element_visible(*self._forums_sidebar_link)
+        self.is_element_visible(*self._governance_sidebar_link)
+        self.is_element_visible(*self._history_sidebar_link)
         return True
 
     @property
-    def are_breadcrumb_links_present(self):
-        self.is_element_present(*self._home_breadcrumb_link)
-        self.is_element_present(*self._mission_breadcrumb_link)
+    def are_breadcrumb_links_visible(self):
+        self.is_element_visible(*self._home_breadcrumb_link)
+        self.is_element_visible(*self._mission_breadcrumb_link)
         return True
 
     @property
-    def are_learn_more_links_present(self):
-        self.is_element_present(*self._our_projects_learn_more_link)
-        self.is_element_present(*self._get_involved_learn_more_link)
+    def are_learn_more_links_visible(self):
+        self.is_element_visible(*self._our_projects_learn_more_link)
+        self.is_element_visible(*self._get_involved_learn_more_link)
         return True
