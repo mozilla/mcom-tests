@@ -40,7 +40,7 @@ class TechnologyPage(Base):
     _video_preload_section = (By.CSS_SELECTOR, '#html5 > article:nth-of-type(5) > h1')
     _history_state_section = (By.CSS_SELECTOR, '#html5 > article:nth-of-type(6) > h1')
 
-    _bulb_aricle_locator = (By.CSS_SELECTOR, '#wall article > article')
+    _bulb_article_locator = (By.CSS_SELECTOR, '#wall article > article')
 
     @property
     def is_developer_tools_link_visible(self):
@@ -68,7 +68,7 @@ class TechnologyPage(Base):
 
     @property
     def bulbs(self):
-        return [self.Bulb(self.testsetup, bulb) for bulb in self.selenium.find_elements(*self._bulb_aricle_locator)]
+        return [self.Bulb(self.testsetup, bulb) for bulb in self.selenium.find_elements(*self._bulb_article_locator)]
 
     class Bulb(Page):
 
