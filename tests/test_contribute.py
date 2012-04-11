@@ -5,8 +5,9 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-from unittestzero import Assert
 from pages.desktop.contribute import Contribute
+from unittestzero import Assert
+
 
 
 class TestContribute:
