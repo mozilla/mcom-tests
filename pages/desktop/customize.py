@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 from pages.desktop.base import Base
 
 
-class FeaturesPage(Base):
+class CustomizePage(Base):
 
     def go_to_page(self):
-        self.open('/firefox/features/')
+        self.open('/firefox/customize/')
