@@ -9,22 +9,22 @@ from pages.desktop.base import Base
 
 class AboutPage(Base):
 
-    _participate_img = (By.CSS_SELECTOR, '#get-involved > h3 > a > span');
-    _txt_participate = (By.CSS_SELECTOR, '#get-involved > h3 > a');
-    _communications_img = (By.CSS_SELECTOR, '#press > h3 > a > span');
-    _txt_communications = (By.CSS_SELECTOR, '#press > h3 > a');
-    _careers_img = (By.CSS_SELECTOR, '#careers > h3 > a > span');
-    _txt_careers = (By.CSS_SELECTOR, '#careers > h3 > a');
-    _partnerships_img = (By.CSS_SELECTOR, '#partnerships > h3 > a > span');
-    _txt_partnerships = (By.CSS_SELECTOR, '#partnerships > h3 > a');
-    _legal_img = (By.CSS_SELECTOR, '#licensing > h3 > a > span');
-    _txt_legal = (By.CSS_SELECTOR, '#licensing > h3 > a');
-    _contact_us_img = (By.CSS_SELECTOR, '#contact > h3 > a > span');
-    _txt_contact_us = (By.CSS_SELECTOR, '#contact > h3 > a');
-    _store_img = (By.CSS_SELECTOR, '#store > h3 > a > span');
-    _txt_store = (By.CSS_SELECTOR, '#store > h3 > a');
-    _blog_img = (By.CSS_SELECTOR, '#blog > h3 > a > span');
-    _txt_blog = (By.CSS_SELECTOR, '#blog > h3 > a');
+    _participate_img = (By.CSS_SELECTOR, '#get-involved > h3 > a > span')
+    _txt_participate = (By.CSS_SELECTOR, '#get-involved > h3 > a')
+    _communications_img = (By.CSS_SELECTOR, '#press > h3 > a > span')
+    _txt_communications = (By.CSS_SELECTOR, '#press > h3 > a')
+    _careers_img = (By.CSS_SELECTOR, '#careers > h3 > a > span')
+    _txt_careers = (By.CSS_SELECTOR, '#careers > h3 > a')
+    _partnerships_img = (By.CSS_SELECTOR, '#partnerships > h3 > a > span')
+    _txt_partnerships = (By.CSS_SELECTOR, '#partnerships > h3 > a')
+    _legal_img = (By.CSS_SELECTOR, '#licensing > h3 > a > span')
+    _txt_legal = (By.CSS_SELECTOR, '#licensing > h3 > a')
+    _contact_us_img = (By.CSS_SELECTOR, '#contact > h3 > a > span')
+    _txt_contact_us = (By.CSS_SELECTOR, '#contact > h3 > a')
+    _store_img = (By.CSS_SELECTOR, '#store > h3 > a > span')
+    _txt_store = (By.CSS_SELECTOR, '#store > h3 > a')
+    _blog_img = (By.CSS_SELECTOR, '#blog > h3 > a > span')
+    _txt_blog = (By.CSS_SELECTOR, '#blog > h3 > a')
 
     @property
     def participate_image(self):
