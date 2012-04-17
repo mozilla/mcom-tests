@@ -16,7 +16,7 @@ class TestContribute:
                         u'Testing and QA', u'Coding', u'Add-ons', u'Marketing',
                         u'Student Reps', u'Web Development', u'Developer Documentation',
                         u'Systems Administration', u'User Research', u'Thunderbird',
-                        u'Accessibility', u'I have a suggestion for Firefox', u'I need help with a Firefox issue', u'Other']
+                        u'Accessibility', u'Other', u'I have a suggestion for Firefox', u'I need help with a Firefox issue']
 
     @pytest.mark.nondestructive
     def test_want_to_help_area(self, mozwebqa):
