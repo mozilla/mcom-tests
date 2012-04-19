@@ -11,7 +11,7 @@ from selenium.webdriver.common.by import By
 class TechnologyPage(Base):
 
     def go_to_page(self):
-       self.open('/en-US/firefox/technology/')
+        self.open('/en-US/firefox/technology/')
 
     _developer_tools_link = (By.CSS_SELECTOR, '.menu-bar > ul > li:nth-of-type(1) > a')
     _html5_link = (By.CSS_SELECTOR, '.menu-bar > ul > li:nth-of-type(1) > a')
@@ -38,11 +38,25 @@ class TechnologyPage(Base):
     _history_state_section = (By.CSS_SELECTOR, '#html5 > article:nth-of-type(6) > h1')
 
     @property
-    def are_billboard_links_present(self):
-        self.is_element_present(*self._developer_tools_link)
-        self.is_element_present(*self._html5_link)
-        self.is_element_present(*self._css_link)
-        self.is_element_present(*self._apis_link)
-        self.is_element_present(*self._svg_link)
-        self.is_element_present(*self._security_link)
-        return True
+    def is_developer_tools_link_visible(self):
+        return self.is_element_visible(*self._developer_tools_link)
+
+    @property
+    def is_html5_link_visible(self):
+        return self.is_element_visible(*self._html5_link)
+
+    @property
+    def is_css_link_visible(self):
+        return self.is_element_visible(*self._css_link)
+
+    @property
+    def is_apis_link_visible(self):
+        return self.is_element_visible(*self._apis_link)
+
+    @property
+    def is_svg_link_visible(self):
+        return self.is_element_visible(*self._svg_link)
+
+    @property
+    def is_security_link_visible(self):
+        return self.is_element_visible(*self._security_link)
