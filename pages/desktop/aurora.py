@@ -27,31 +27,31 @@ class AuroraPage(Base):
 
     @property
     def is_preview_features_header_present(self):
-        return self.is_element_present(self._preview_features_locator)
+        return self.is_element_present(*self._preview_features_locator)
 
     @property
     def is_share_feedback_header_present(self):
-        return self.is_element_present(self._share_feedback_locator)
+        return self.is_element_present(*self._share_feedback_locator)
 
     @property
     def is_shape_firefox_header_present(self):
-        return self.is_element_present(self._shape_firefox_locator)
+        return self.is_element_present(*self._shape_firefox_locator)
 
     @property
     def is_aurora_header_present(self):
-        return self.is_element_present(self._aurora_header)
+        return self.is_element_present(*self._aurora_header)
 
     @property
     def is_aurora_download_button_present(self):
-        return self.is_element_present(self._aurora_btn_locator)
+        return self.is_element_present(*self._aurora_btn_locator)
 
     @property
     def is_all_systems_and_languages_link_present(self):
-        return self.is_element_present(self._all_systems_locator)
+        return self.is_element_present(*self._all_systems_locator)
 
     @property
     def is_privacy_policy_link_present(self):
-        return self.is_element_present(self._privacy_policy_locator)
+        return self.is_element_present(*self._privacy_policy_locator)
 
     def type_email(self, email):
         self.selenium.find_element(*self._email_locator).send_keys(email)
