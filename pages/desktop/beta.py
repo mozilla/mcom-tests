@@ -27,31 +27,31 @@ class BetaPage(Base):
 
     @property
     def is_test_features_header_present(self):
-        return self.is_element_present(self._test_features_locator)
+        return self.is_element_present(*self._test_features_locator)
 
     @property
     def is_do_part_header_present(self):
-        return self.is_element_present(self._do_part_locator)
+        return self.is_element_present(*self._do_part_locator)
 
     @property
     def is_polish_header_present(self):
-        return self.is_element_present(self._polish_locator)
+        return self.is_element_present(*self._polish_locator)
 
     @property
     def is_beta_header_present(self):
-        return self.is_element_present(self._beta_header)
+        return self.is_element_present(*self._beta_header)
 
     @property
     def is_beta_download_button_present(self):
-        return self.is_element_present(self._beta_btn_locator)
+        return self.is_element_present(*self._beta_btn_locator)
 
     @property
     def is_supported_devices_link_present(self):
-        return self.is_element_present(self._supported_devices_locator)
+        return self.is_element_present(*self._supported_devices_locator)
 
     @property
     def is_privacy_policy_link_present(self):
-        return self.is_element_present(self._privacy_policy_locator)
+        return self.is_element_present(*self._privacy_policy_locator)
 
     def type_email(self, email):
         self.selenium.find_element(*self._email_locator).send_keys(email)
