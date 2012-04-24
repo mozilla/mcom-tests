@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -19,10 +20,10 @@ class ChannelPage(Base):
     _aurora_mobile_button = (By.CSS_SELECTOR, "#aurora-mobile-link > a")
     _beta_desktop_button = (By.CSS_SELECTOR, "#beta-desktop-link > a")
     _beta_mobile_button = (By.CSS_SELECTOR, "#beta-mobile-link > a")
-    _learn_more_button = (By.CSS_SELECTOR, ".more>a")
+    _learn_more_button = (By.CSS_SELECTOR, ".more > a")
     _left_carousel = (By.CSS_SELECTOR, "#carousel-left")
     _right_carousel = (By.CSS_SELECTOR, "#carousel-right")
-    _main_feature_header = (By.CSS_SELECTOR, "#main-feature>h2")
+    _main_feature_header = (By.CSS_SELECTOR, "#main-feature > h2")
 
     def go_to_channel_page(self):
         self.open("/firefox/channel")
