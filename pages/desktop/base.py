@@ -18,6 +18,7 @@ class Base(Page):
     _addons_link = (By.CSS_SELECTOR, '#nav-main-addons > a')
     _support_link = (By.CSS_SELECTOR, '#nav-main-support > a')
     _about_link = (By.CSS_SELECTOR, '#nav-main-about > a')
+    _menu_bar_billboard_locator = (By.CSS_SELECTOR, '.menu-bar ul li')
 
     @property
     def header(self):
@@ -26,6 +27,12 @@ class Base(Page):
     @property
     def footer(self):
         return self.Footer(self.testsetup)
+
+    @property
+    def menu_bar_billboard(self):
+        from pages.desktop.regions.menu_bar_billboard import MenuBarBillboard
+        return [MenuBarBillboard(self.testsetup, web_element) for web_element in
+                self.selenium.find_elements(*self._menu_bar_billboard_locator)]
 
     class Header(Page):
 
@@ -56,13 +63,13 @@ class Base(Page):
         @property
         def is_tabzilla_panel_visible(self):
             return self.is_element_visible(*self._tabzilla)
-    
+
         @property
         def is_tabzilla_searchbox_visible(self):
             return self.is_element_visible(*self._tabzilla_search_textbox)
 
     class Footer(Page):
-        
+
         _footer = (By.TAG_NAME, 'footer')
         _footer_mozilla_link = (By.CSS_SELECTOR, '.footer-logo > img')
         _contact_us_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(1) > a')
