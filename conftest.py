@@ -7,17 +7,15 @@ def pytest_addoption(parser):
         action='store',
         dest='nonbedrock',
         metavar='nonbedrock',
-        help='marks tests so they dont use bedrock branch')
-
+        help='marks tests so they do not use Bedrock branch')
 
 def pytest_configure(config):
     config.addinivalue_line(
-        "markers",
-        "nonbedrock: mark tests that are not using the bedrock branch on mozilla.org")
-
+    'markers',
+    'nonbedrock: mark tests s that they do not use Bedroc branch')
 
 def pytest_runtest_setup(item):
-    if '/b' in item.config.option.base_url:
+    if 'nonbedrock' in item.keywords:
         item.config.option.base_url = item.config.option.base_url.replace('/b', '')
     else:
         pass

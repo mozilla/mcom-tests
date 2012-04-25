@@ -10,7 +10,6 @@ import requests
 
 
 @pytest.mark.skip_selenium
-@pytest.mark.nonbedrock
 @pytest.mark.nondestructive
 class TestDownload(object):
 

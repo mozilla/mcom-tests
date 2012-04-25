@@ -9,50 +9,18 @@ from pages.desktop.contribute import Contribute
 from unittestzero import Assert
 
 
-
 class TestContribute:
 
-    areas_of_interest = [u'Area of interest?', u'Helping Users', u'Localization',
-                        u'Testing and QA', u'Coding', u'Add-ons', u'Marketing',
-                        u'Student Reps', u'Web Development', u'Developer Documentation',
-                        u'Systems Administration', u'User Research', u'Thunderbird',
-                        u'Accessibility', u'Other', u'I have a suggestion for Firefox', u'I need help with a Firefox issue']
+    @pytest.mark.nondestructive
+    def test_footer_section(self, mozwebqa):
+        contribute_page = Contribute(mozwebqa)
+        contribute_page.go_to_page()
+        Assert.true(contribute_page.footer.are_footer_links_visible)
 
     @pytest.mark.nondestructive
-    def test_want_to_help_area(self, mozwebqa):
-        contribute = Contribute(mozwebqa)
-        contribute.go_to_page()
-
-        help_form = contribute.help_form
-
-        Assert.equal('Want to help?', help_form.title)
-        Assert.equal('YOUR EMAIL HERE', help_form.email_placeholder)
-
-        for idx, area in enumerate(help_form.areas_of_interest_text):
-            Assert.equal(self.areas_of_interest[idx], area)
-
-        Assert.equal('Area of interest?', help_form.area_of_interest_selected_option)
-        Assert.equal(u'Submit\xa0\xbb', help_form.submit_button_text)
-
-        Assert.false(help_form.is_additional_info_visible)
-
-        help_form.click_email()
-
-        Assert.true(help_form.is_additional_info_visible)
-
-        Assert.equal('Send us a note and we can get you started right away.', help_form.note_message)
-        Assert.equal(u'Hi, I\u2019m interested in\u2026', help_form.comments_placeholder)
-        Assert.equal('I agree to the Privacy Policy', help_form.privacy_text)
-        Assert.contains('/privacy-policy', help_form.privacy_link)
-        Assert.equal(u'I\u2019d like to receive regular contribution news by email', help_form.newsletter_text)
-
-    @pytest.mark.nondestructive
-    def test_that_clicking_on_areas_of_interest_opens_the_help_form(self, mozwebqa):
-        contribute = Contribute(mozwebqa)
-        contribute.go_to_page()
-
-        help_form = contribute.help_form
-
-        Assert.false(help_form.is_additional_info_visible)
-        help_form.click_email()
-        Assert.true(help_form.is_additional_info_visible)
+    def test_header_section(self, mozwebqa):
+        contribute_page = Contribute(mozwebqa)
+        contribute_page.go_to_page()
+        Assert.true(contribute_page.header.is_tabzilla_panel_visible)
+        contribute_page.header.toggle_tabzilla_dropdown()
+        Assert.true(contribute_page.header.are_tabzilla_links_visible)
