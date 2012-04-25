@@ -3,3 +3,5 @@ rmpyc.sh
 /debug/**
 results
 venv
+.codeintel
+
