@@ -3,21 +3,31 @@ import pytest
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--nonbedrock',
+        '--bedrock',
         action='store',
-        dest='nonbedrock',
-        metavar='nonbedrock',
-        help='marks tests so they do not use Bedrock branch')
+        dest='bedrock',
+        metavar='bedrock',
+        help='marks tests so they use Bedrock branch')
+    parser.addoption(
+        '--skipsprod',
+        action='store',
+        dest='skipsprod',
+        metavar='skip',
+        help='marks tests as staging only and skips them on production')
 
 
 def pytest_configure(config):
     config.addinivalue_line(
     'markers',
-    'nonbedrock: marks tests so they do not use Bedrock branch')
+    'bedrock: marks tests so they use Bedrock branch')
 
 
 def pytest_runtest_setup(item):
-    if 'nonbedrock' in item.keywords:
-        item.config.option.base_url = item.config.option.base_url.replace('/b', '')
+    if  hasattr(item.obj, 'bedrock') and \
+        '/b' not in item.config.option.base_url:
+        item.config.option.base_url = item.config.option.base_url + '/b'
     else:
-        pass
+        item.config.option.base_url = item.config.option.base_url.replace('/b', '')
+    if  hasattr(item.obj, 'skipsprod') \
+        and 'allizom.org' not in item.config.option.base_url:
+        pytest.skip("skipping tests marked staging only")
