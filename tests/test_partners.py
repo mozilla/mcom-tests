@@ -9,7 +9,6 @@ from pages.desktop.partners import Partners
 from unittestzero import Assert
 
 
-@pytest.mark.skipsprod
 class TestPartners:
 
     @pytest.mark.nondestructive
