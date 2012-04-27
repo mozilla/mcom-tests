@@ -14,9 +14,9 @@ class Partners(Base):
         self.open('/apps/partners/')
 
     _marketplace_header_locator = (By.CSS_SELECTOR, '#masthead > h2 > a > img')
-    _apps_platform_billboard = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(1) >a')
-    _marketplace_billboard = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(2) >a')
-    _submit_apps_button = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(3) >a')
+    _apps_platform_billboard = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(1) > a')
+    _marketplace_billboard = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(2) > a')
+    _submit_apps_button = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(3) > a')
     _mdn_apps_link = (By.CSS_SELECTOR, '#mdn-link > a')
     _opening_soon_image = (By.CSS_SELECTOR, '#soon')
     _test_apps_image = (By.CSS_SELECTOR, '#test')

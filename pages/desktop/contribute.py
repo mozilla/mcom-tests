@@ -39,36 +39,36 @@ class Contribute(Base):
         _form_section_locator = (By.ID, 'help-form')
 
         @property
-        def get_help_form_tile(self):
+        def help_form_title(self):
             return self.selenium.find_element(*self._want_to_help_title_locator).text
 
         @property
-        def get_email_placeholder(self):
+        def email_placeholder(self):
             return self.selenium.find_element(*self._email_feild_locator).get_attribute('placeholder')
 
         @property
-        def get_areas_of_interest_text(self):
+        def areas_of_interest_text(self):
             return [area.text for area in  \
             Select(self.selenium.find_element(*self._area_of_interest_locator))]
 
         @property
-        def get_submit_button_text(self):
+        def submit_button_text(self):
             return self.selenium.find_element(*self._submit_button_locator).get_attribute_('value')
 
         @property
-        def get_note_message(self):
+        def note_message(self):
             return self.selenium.find_element(*self._note_message_locator).text
 
         @property
-        def get_comments_placeholder(self):
+        def comments_placeholder(self):
             return self.selenium.find_element(*self._comments_ocator).get_attribute('placeholder')
 
         @property
-        def get_privacy_text(self):
+        def privacy_text(self):
             return self.selenium.find_element(*self._privacy_title_locator).text
 
         @property
-        def get_privacy_link(self):
+        def privacy_link(self):
             return self.selenium.find_element(*self.privacy_title_link_locator).get_attribute('href')
 
         @property
