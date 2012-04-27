@@ -8,7 +8,7 @@ from pages.desktop.base import Base
 from selenium.webdriver.common.by import By
 
 
-class MissionPage(Base):
+class Mission(Base):
 
     _mission_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(1) > a')
     _forums_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(2) > a')
@@ -21,24 +21,21 @@ class MissionPage(Base):
     _get_involved_learn_more_link = (By.CSS_SELECTOR, '.reference:nth-of-type(2) > .more')
 
     def go_to_page(self):
-        self.open('/en-US/mission')
+        self.open('/mission/')
 
     @property
     def are_sidebar_links_visible(self):
-        self.is_element_visible(*self._mission_sidebar_link)
-        self.is_element_visible(*self._forums_sidebar_link)
-        self.is_element_visible(*self._governance_sidebar_link)
+        return self.is_element_visible(*self._mission_sidebar_link) and \
+        self.is_element_visible(*self._forums_sidebar_link) and \
+        self.is_element_visible(*self._governance_sidebar_link) and \
         self.is_element_visible(*self._history_sidebar_link)
-        return True
 
     @property
     def are_breadcrumb_links_visible(self):
-        self.is_element_visible(*self._home_breadcrumb_link)
+        return self.is_element_visible(*self._home_breadcrumb_link)  and \
         self.is_element_visible(*self._mission_breadcrumb_link)
-        return True
 
     @property
     def are_learn_more_links_visible(self):
-        self.is_element_visible(*self._our_projects_learn_more_link)
+        return self.is_element_visible(*self._our_projects_learn_more_link) and \
         self.is_element_visible(*self._get_involved_learn_more_link)
-        return True
