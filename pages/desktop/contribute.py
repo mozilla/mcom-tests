@@ -44,7 +44,7 @@ class Contribute(Base):
 
         @property
         def email_placeholder(self):
-            return self.selenium.find_element(*self._email_feild_locator).get_attribute('placeholder')
+            return self.selenium.find_element(*self._email_field_locator).get_attribute('placeholder')
 
         @property
         def areas_of_interest_text(self):

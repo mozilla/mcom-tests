@@ -38,5 +38,5 @@ class TestPartners:
     def test_submit_app_button(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.equal('https://marketplace.mozilla.org/en-US/login?to=/en-US/developers/',
+        Assert.equal('https://marketplace.mozilla.org/en-US/login',
                 partners_page.click_submit_apps_button)
