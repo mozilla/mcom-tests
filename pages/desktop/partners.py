@@ -5,6 +5,7 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
 from pages.desktop.base import Base
 
 
@@ -40,8 +41,5 @@ class Partners(Base):
 
     @property
     def click_submit_apps_button(self):
-        element = self.selenium.find_element(*self._submit_apps_button)
-        ActionChains(self.selenium).\
-        move_to_element(element).\
-        click().perform()
-        return self.url_current_page
+        element = self.selenium.find_element(*self._submit_apps_button).click()
+        return  self.selenium.current_url
