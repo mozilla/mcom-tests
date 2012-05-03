@@ -42,5 +42,5 @@ class Partners(Base):
     @property
     def click_submit_apps_button(self):
         element = self.selenium.find_element(*self._submit_apps_button).click()
-        WebDriverWait(self.selenium, self.timeout)
+        WebDriverWait(self.selenium, self.timeout).until(lambda s: s.title)
         return  self.selenium.current_url
