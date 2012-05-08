@@ -39,4 +39,4 @@ class TestPartners:
         partners_page.go_to_page()
         # changing url due to https://bugzilla.mozilla.org/show_bug.cgi?id=751903
         Assert.equal(partners_page.check_submit_apps_button_url,
-        'http://marketplace.mozilla.org/ecosystem/')
+        'https://marketplace.mozilla.org/ecosystem/')
