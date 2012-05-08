@@ -40,7 +40,7 @@ class Partners(Base):
         self.is_element_visible(*self._target_consumers_image)
 
     @property
-    def click_submit_apps_button(self):
-        element = self.selenium.find_element(*self._submit_apps_button).click()
-        WebDriverWait(self.selenium, self.timeout).until(lambda s: s.title)
-        return  self.selenium.current_url
+    def check_submit_apps_button_url(self):
+        element = self.selenium.find_element(*self._submit_apps_button)
+        url = element.get_attribute('href')
+        return url

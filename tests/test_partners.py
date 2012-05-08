@@ -34,8 +34,8 @@ class TestPartners:
         Assert.true(partners_page.is_opening_soon_image_visible)
 
     @pytest.mark.nondestructive
-    def test_submit_app_button(self, mozwebqa):
+    def test_submit_app_button_url(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.equal(partners_page.click_submit_apps_button,
-        'https://marketplace.mozilla.org/en-US/login')
+        Assert.equal(partners_page.check_submit_apps_button_url,
+        'http://marketplace.mozilla.org/')
