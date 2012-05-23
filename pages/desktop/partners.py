@@ -19,7 +19,7 @@ class Partners(Base):
     _marketplace_billboard = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(2) > a')
     _submit_apps_button = (By.CSS_SELECTOR, '.billboard.menu-bar > ul > li:nth-of-type(3) > a')
     _mdn_apps_link = (By.CSS_SELECTOR, '#mdn-link > a')
-    _opening_soon_image = (By.CSS_SELECTOR, '#soon')
+    _opening_soon_image = (By.CSS_SELECTOR, '#sign')
     _test_apps_image = (By.CSS_SELECTOR, '#test')
     _build_fanbase_image = (By.CSS_SELECTOR, '#build')
     _target_consumers_image = (By.CSS_SELECTOR, '#target')
