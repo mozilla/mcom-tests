@@ -75,11 +75,11 @@ class BootToGecko(Base):
         return self.is_element_visible(*self._new_web_standards_header)
 
     @property
-    def is_freedom_platforms_visible(self):
+    def is_freedom_platforms_header_visible(self):
         return self.is_element_visible(*self._freedom_platforms_header)
 
     @property
-    def is_developer_opportunities_visible(self):
+    def is_developer_opportunities_header_visible(self):
         return self.is_element_visible(*self._developer_opportunities_header)
 
     @property
