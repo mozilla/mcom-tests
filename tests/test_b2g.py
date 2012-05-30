@@ -34,8 +34,8 @@ class TestBootToGecko:
         Assert.true(b2g_page.is_mobile_devices_header_visible)
         Assert.true(b2g_page.is_welcome_section_visible)
         Assert.true(b2g_page.is_welcome_section_image_visible)
-        Assert.true(b2g_page.is_freedom_platforms_visible)
-        Assert.true(b2g_page.is_developer_opportunities_visible)
+        Assert.true(b2g_page.is_freedom_platforms_header_visible)
+        Assert.true(b2g_page.is_developer_opportunities_header_visible)
         Assert.true(b2g_page.is_customizations_for_oems_header_visible)
         Assert.true(b2g_page.is_more_information_section_visible)
 
