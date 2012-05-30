@@ -26,7 +26,7 @@ class TestBootToGecko:
         Assert.true(b2g_page.header.are_tabzilla_links_visible)
 
     @pytest.mark.nondestructive
-    def test_navbarsand_headings(self, mozwebqa):
+    def test_navbars_and_headings(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
         Assert.true(b2g_page.is_about_navbar_visible)
