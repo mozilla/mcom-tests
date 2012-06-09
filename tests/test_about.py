@@ -5,8 +5,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-from pages.desktop.about import AboutPage
 from unittestzero import Assert
+from pages.desktop.about import AboutPage
 
 
 class TestAboutPage:
