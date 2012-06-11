@@ -43,6 +43,7 @@ class Base(Page):
         _tabzilla_thunderbird_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(2) > a')
         _tabzilla_webfwd_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(1) > a')
         _tabzilla_labs_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(2) > a')
+        _tabzilla_webmaker_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(3) > a')
         _tabzilla_volunteer_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(1) > a')
         _tabzilla_work_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(2) > a')
         _tabzilla_findus_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(3) > a')
@@ -73,6 +74,7 @@ class Base(Page):
                 self.is_element_visible(*self._tabzilla_thunderbird_link) and \
                 self.is_element_visible(*self._tabzilla_webfwd_link) and \
                 self.is_element_visible(*self._tabzilla_labs_link) and \
+                self.is_element_visible(*self._tabzilla_webmaker_link) and \
                 self.is_element_visible(*self._tabzilla_volunteer_link) and \
                 self.is_element_visible(*self._tabzilla_work_link) and \
                 self.is_element_visible(*self._tabzilla_findus_link) and \
