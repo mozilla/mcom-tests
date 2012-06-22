@@ -29,25 +29,29 @@ class AboutPage(Base):
     _partnerships_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(2) > h4 > a')
     _brand_toolkit_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(1) > h4 > a')
 
-    @property
-    def are_major_links_present(self):
-        return self.is_element_present(*self._career_center_link) and \
-               self.is_element_present(*self._press_center_link) and  \
-               self.is_element_present(*self._mozilla_blog_link) and \
-               self.is_element_present(*self._privacy_center_link) and \
-               self.is_element_present(*self._forums_link) and \
-               self.is_element_present(*self._governance_link) and \
-               self.is_element_present(*self._get_involved_header_link) and \
-               self.is_element_present(*self._locations_link) and \
-               self.is_element_present(*self._partnerships_link) and \
-               self.is_element_present(*self._brand_toolkit_link)
+    major_links_list = [
+            _career_center_link,
+            _press_center_link,
+            # _mozilla_blog_link,
+            # _privacy_center_link,
+            # _forums_link,
+            # _governance_link,
+            # _get_involved_header_link,
+            # _locations_link,
+            # _partnerships_link,
+            # _brand_toolkit_link,
+        ]
+
+    nav_links_list = [
+            _mission_header_link,
+            _about_header_link,
+            _projects_header_link,
+            _get_involved_link,
+        ]
 
     @property
-    def are_nav_links_present(self):
-        return self.is_element_present(*self._mission_header_link) and \
-               self.is_element_present(*self._about_header_link) and \
-               self.is_element_present(*self._projects_header_link) and \
-               self.is_element_present(*self._get_involved_link)
+    def is_link_present(self, ltype, locator):
+        return self.is_element_present(ltype, locator)
 
     @property
     def is_know_mozilla_header_present(self):
