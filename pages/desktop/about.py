@@ -32,14 +32,14 @@ class AboutPage(Base):
     major_links_list = [
             _career_center_link,
             _press_center_link,
-            # _mozilla_blog_link,
-            # _privacy_center_link,
-            # _forums_link,
-            # _governance_link,
-            # _get_involved_header_link,
-            # _locations_link,
-            # _partnerships_link,
-            # _brand_toolkit_link,
+            _mozilla_blog_link,
+            _privacy_center_link,
+            _forums_link,
+            _governance_link,
+            _get_involved_header_link,
+            _locations_link,
+            _partnerships_link,
+            _brand_toolkit_link,
         ]
 
     nav_links_list = [
@@ -49,9 +49,8 @@ class AboutPage(Base):
             _get_involved_link,
         ]
 
-    @property
-    def is_link_present(self, ltype, locator):
-        return self.is_element_present(ltype, locator)
+    def is_link_present(self, *locator):
+        return self.is_element_present(*locator)
 
     @property
     def is_know_mozilla_header_present(self):
