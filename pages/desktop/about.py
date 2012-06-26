@@ -13,10 +13,10 @@ class AboutPage(Base):
     def go_to_page(self):
         self.open('/about/')
 
-    _mission_header_link = (By.CSS_SELECTOR, '#nav-main > ol > li:nth-child(1) > a')
-    _about_header_link = (By.CSS_SELECTOR, '#nav-main > ol > li:nth-child(2) > a')
-    _projects_header_link = (By.CSS_SELECTOR, '#nav-main > ol > li:nth-child(3) > a')
-    _get_involved_header_link = (By.CSS_SELECTOR, '#nav-main > ol > li:nth-child(4) > a')
+    _mission_header_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(1) > a')
+    _about_header_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(2) > a')
+    _projects_header_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(3) > a')
+    _get_involved_header_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(4) > a')
     _get_to_know_mozilla_header = (By.CSS_SELECTOR, '.large.center')
     _career_center_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(1) > h4 > a')
     _press_center_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(2) > h4 > a')

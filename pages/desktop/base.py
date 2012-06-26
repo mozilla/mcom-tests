@@ -83,7 +83,7 @@ class Base(Page):
     class Footer(Page):
 
         _footer = (By.TAG_NAME, 'footer')
-        _footer_mozilla_link = (By.CSS_SELECTOR, '.footer-logo img')
+        _footer_mozilla_link = (By.CSS_SELECTOR, '.footer-logo > img')
         _contact_us_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(1) > a')
         _privacy_policy_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(2) > a')
         _legal_notices_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(3) > a')
