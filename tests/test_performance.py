@@ -14,7 +14,8 @@ class TestPerformance:
     def test_footer_section(self, mozwebqa):
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
-        Assert.true(performance_page.footer.are_footer_links_visible)
+        for link in Performance.Footer.footer_links_list:
+            Assert.true(performance_page.is_element_visible(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

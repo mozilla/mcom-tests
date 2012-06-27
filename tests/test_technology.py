@@ -27,7 +27,8 @@ class TestTechnologyPage:
     def test_footer_section(self, mozwebqa):
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
-        Assert.true(technology_page.footer.are_footer_links_visible)
+        for link in Technology.Footer.footer_links_list:
+            Assert.true(technology_page.is_element_visible(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

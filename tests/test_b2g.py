@@ -15,7 +15,8 @@ class TestBootToGecko:
     def test_footer_section(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
-        Assert.true(b2g_page.footer.are_footer_links_visible)
+        for link in BootToGecko.Footer.footer_links_list:
+            Assert.true(b2g_page.is_element_visible(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

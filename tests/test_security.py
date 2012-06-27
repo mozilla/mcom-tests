@@ -15,7 +15,8 @@ class TestSecurity:
     def test_footer_section(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
-        Assert.true(security_page.footer.are_footer_links_visible)
+        for link in Security.Footer.footer_links_list:
+            Assert.true(security_page.is_element_visible(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

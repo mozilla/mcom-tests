@@ -49,9 +49,6 @@ class AboutPage(Base):
             _get_involved_link,
         ]
 
-    def is_link_present(self, *locator):
-        return self.is_element_present(*locator)
-
     @property
     def is_know_mozilla_header_present(self):
         return self.is_element_present(*self._get_to_know_mozilla_header)

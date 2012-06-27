@@ -11,11 +11,11 @@ from pages.desktop.about import AboutPage
 class TestAboutPage:
 
     @pytest.mark.nondestructive
-    @pytest.mark.parametrize('link', AboutPage.Footer.footer_links_list)
-    def test_footer_section(self, mozwebqa, link):
+    def test_footer_section(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.true(about_page.is_link_present(link))
+        for link in AboutPage.Footer.footer_links_list:
+            Assert.true(about_page.is_element_present(link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
@@ -26,15 +26,15 @@ class TestAboutPage:
         Assert.true(about_page.header.are_tabzilla_links_visible)
 
     @pytest.mark.nondestructive
-    @pytest.mark.parametrize('link', AboutPage.nav_links_list)
-    def test_navbar_links_are_present(self, mozwebqa, link):
+    def test_navbar_links_are_present(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.true(about_page.is_link_present(link))
+        for link in AboutPage.nav_links_list:
+            Assert.true(about_page.is_element_present(*link), link[1])
 
     @pytest.mark.nondestructive
-    @pytest.mark.parametrize('link', AboutPage.major_links_list)
-    def test_major_links_are_present(self, mozwebqa, link):
+    def test_major_links_are_present(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.true(about_page.is_link_present(*link))
+        for link in AboutPage.major_links_list:
+            Assert.true(about_page.is_element_present(*link), link[1])
