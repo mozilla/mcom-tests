@@ -28,7 +28,7 @@ class TestRedirects(object):
     def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
         url = mozwebqa.base_url + "/firefox/mobile/"
         response = requests.get(url)
-        result = mozwebqa.base_url + "/en-US/mobile/"
+        result = mozwebqa.base_url + "/firefox/fx/"
         Assert.equal(result, response.url)
 
     @pytest.mark.nondestructive
