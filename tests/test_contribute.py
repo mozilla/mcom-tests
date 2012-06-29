@@ -15,7 +15,8 @@ class TestContribute:
     def test_footer_section(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
-        Assert.true(contribute_page.footer.are_footer_links_visible)
+        for link in Contribute.Footer.footer_links_list:
+            Assert.true(contribute_page.is_element_visible(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

@@ -94,18 +94,18 @@ class Base(Page):
         _firefox_affiliates_link = (By.CSS_SELECTOR, '.span2:nth-of-type(2) > ul > li:nth-of-type(3) > a')
         _creative_commons_license = (By.CSS_SELECTOR, '.span3 > p > a')
 
-        @property
-        def are_footer_links_visible(self):
-            return  self.is_element_visible(*self._footer) and \
-            self.is_element_visible(*self._footer_mozilla_link) and \
-            self.is_element_visible(*self._contact_us_link) and \
-            self.is_element_visible(*self._privacy_policy_link) and \
-            self.is_element_visible(*self._legal_notices_link) and \
-            self.is_element_visible(*self._report_trademark_link) and \
-            self.is_element_visible(*self._twitter_link) and \
-            self.is_element_visible(*self._facebook_link) and \
-            self.is_element_visible(*self._firefox_affiliates_link) and \
-            self.is_element_visible(*self._creative_commons_license)
+        footer_links_list = [
+            _footer,
+            _footer_mozilla_link,
+            _contact_us_link,
+            _privacy_policy_link,
+            _legal_notices_link,
+            _report_trademark_link,
+            _twitter_link,
+            _facebook_link,
+            _firefox_affiliates_link,
+            _creative_commons_license,
+        ]
 
     class DownloadRegion(Page):
 

@@ -16,7 +16,8 @@ class TestPartners:
     def test_footer_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.true(partners_page.footer.are_footer_links_visible)
+        for link in Partners.Footer.footer_links_list:
+            Assert.true(partners_page.is_element_visible(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
