@@ -15,7 +15,7 @@ class TestAboutPage:
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         for link in AboutPage.Footer.footer_links_list:
-            Assert.true(about_page.is_element_present(link), link[1])
+            Assert.true(about_page.is_element_present(*link), link[1])
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
