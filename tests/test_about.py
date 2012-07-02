@@ -8,6 +8,7 @@ import pytest
 from unittestzero import Assert
 from pages.desktop.about import AboutPage
 
+
 class TestAboutPage:
 
     @pytest.mark.nondestructive
