@@ -84,15 +84,15 @@ class Base(Page):
 
         _footer = (By.TAG_NAME, 'footer')
         _footer_mozilla_link = (By.CSS_SELECTOR, '.footer-logo img')
-        _contact_us_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(1) > a')
-        _privacy_policy_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(2) > a')
-        _legal_notices_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(3) > a')
-        _report_trademark_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(4) > a')
-        _abuse_link = (By.CSS_SELECTOR, '.span2:nth-of-type(1) > ul > li:nth-of-type(5) > a')
-        _twitter_link = (By.CSS_SELECTOR, '.span2:nth-of-type(2) > ul > li:nth-of-type(1) > a')
-        _facebook_link = (By.CSS_SELECTOR, '.span2:nth-of-type(2) > ul > li:nth-of-type(2) > a')
-        _firefox_affiliates_link = (By.CSS_SELECTOR, '.span2:nth-of-type(2) > ul > li:nth-of-type(3) > a')
-        _creative_commons_license = (By.CSS_SELECTOR, '.span3 > p > a')
+        _contact_us_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(1) > a')
+        _privacy_policy_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(2) > a')
+        _legal_notices_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(3) > a')
+        _report_trademark_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(4) > a')
+        _abuse_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(5) > a')
+        _twitter_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(2) > li:nth-of-type(1) > a')
+        _facebook_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(2) > li:nth-of-type(2) > a')
+        _firefox_affiliates_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(2) > li:nth-of-type(3) > a')
+        _creative_commons_license = (By.CSS_SELECTOR, 'div.footer-license > p > a')
 
         footer_links_list = [
             _footer,
