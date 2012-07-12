@@ -22,8 +22,8 @@ class TestMission:
     def test_footer_section(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
-        # Assert.contains(mission_page.footer.expected_footer_logo_destination,
-        #     mission_page.footer.footer_logo_destination)
+        Assert.contains(mission_page.footer.expected_footer_logo_destination,
+            mission_page.footer.footer_logo_destination)
         Assert.contains(mission_page.footer.expected_footer_logo_img,
             mission_page.footer.footer_logo_img)
         for link in Mission.Footer.footer_links_list:

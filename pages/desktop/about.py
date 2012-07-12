@@ -52,3 +52,7 @@ class AboutPage(Base):
     @property
     def is_know_mozilla_header_present(self):
         return self.is_element_present(*self._get_to_know_mozilla_header)
+
+    class Footer(Base.Footer):
+        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo a')
+

@@ -93,3 +93,6 @@ class Contribute(Base):
         def click_area_of_interest(self):
             self.selenium.find_element(*self._area_of_interest_locator).click()
             self.wait_for_ajax()
+
+    class Footer(Base.Footer):
+        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo a')

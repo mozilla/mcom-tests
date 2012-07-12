@@ -22,8 +22,8 @@ class TestAboutPage:
             Assert.equal(about_page.get_response_code(url), 200)
         Assert.contains(about_page.footer.expected_footer_logo_img,
             about_page.footer.footer_logo_img)
-        # Assert.contains(about_page.footer.expected_footer_logo_destination,
-        #     about_page.footer.footer_logo_destination)
+        Assert.contains(about_page.footer.expected_footer_logo_destination,
+            about_page.footer.footer_logo_destination)
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
