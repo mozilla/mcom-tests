@@ -16,8 +16,12 @@ class TestPartners:
     def test_footer_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
+        Assert.contains(partners_page.footer.expected_footer_logo_destination,
+            partners_page.footer.footer_logo_destination)
+        Assert.contains(partners_page.footer.expected_footer_logo_img,
+            partners_page.footer.footer_logo_img)
         for link in Partners.Footer.footer_links_list:
-            Assert.true(partners_page.is_element_visible(*link), link[1])
+            Assert.contains(link.get('href'), partners_page.footer.footer_link_destination(link.get('text')))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

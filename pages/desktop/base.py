@@ -82,30 +82,57 @@ class Base(Page):
 
     class Footer(Page):
 
-        _footer = (By.TAG_NAME, 'footer')
-        _footer_mozilla_link = (By.CSS_SELECTOR, '.footer-logo img')
-        _contact_us_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(1) > a')
-        _privacy_policy_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(2) > a')
-        _legal_notices_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(3) > a')
-        _report_trademark_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(4) > a')
-        _abuse_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(1) > li:nth-of-type(5) > a')
-        _twitter_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(2) > li:nth-of-type(1) > a')
-        _facebook_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(2) > li:nth-of-type(2) > a')
-        _firefox_affiliates_link = (By.CSS_SELECTOR, 'ul.footer-nav:nth-of-type(2) > li:nth-of-type(3) > a')
-        _creative_commons_license = (By.CSS_SELECTOR, 'div.footer-license > p > a')
+        _footer_locator = (By.CSS_SELECTOR, '#colophon')
+        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo')
+        _footer_logo_img_locator = (By.CSS_SELECTOR, '.footer-logo img')
+        expected_footer_logo_destination = '/en-US/'
+        expected_footer_logo_img = '/media/img/sandstone/footer-mozilla.png'
 
         footer_links_list = [
-            _footer,
-            _footer_mozilla_link,
-            _contact_us_link,
-            _privacy_policy_link,
-            _legal_notices_link,
-            _report_trademark_link,
-            _twitter_link,
-            _facebook_link,
-            _firefox_affiliates_link,
-            _creative_commons_license,
+            {
+                'text': 'Creative Commons license',
+                'href': '/foundation/licensing/website-content.html',
+            },{
+                'text': 'Contact Us',
+                'href': '/en-US/about/contact.html#map-mountain_view',
+            },{
+                'text': 'Privacy Policy',
+                'href': '/en-US/privacy-policy.html',
+            },{
+                'text': 'Legal Notices',
+                'href': '/en-US/about/legal.html',
+            },{
+                'text': 'Report Trademark Abuse',
+                'href': '/en-US/legal/fraud-report/index.html',
+            },{
+                'text': 'Twitter',
+                'href': 'twitter.com/firefox',
+            },{
+                'text': 'Facebook',
+                'href': 'facebook.com/Firefox',
+            },{
+                'text': 'Firefox Affiliates',
+                'href': 'affiliates.mozilla.org',
+            },
         ]
+
+        def footer_link_destination(self, footer_link_text):
+            footer_link = self.selenium.find_element(*self._footer_locator).find_element(
+                By.LINK_TEXT, footer_link_text)
+            return footer_link.get_attribute('href')
+
+        def footer_link_functions(self, footer_link_href):
+            return self.get_response_code(footer_link_href)
+
+        @property
+        def footer_logo_destination(self):
+            footer_logo_link = self.selenium.find_element(*self._footer_logo_link_locator)
+            return footer_logo_link.get_attribute('href')
+
+        @property
+        def footer_logo_img(self):
+            footer_logo_img = self.selenium.find_element(*self._footer_logo_img_locator)
+            return footer_logo_img.get_attribute('src')
 
     class DownloadRegion(Page):
 
