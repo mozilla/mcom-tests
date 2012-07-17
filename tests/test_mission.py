@@ -11,6 +11,7 @@ from unittestzero import Assert
 class TestMission:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_sidebar_links(self, mozwebqa):
         missionPage = Mission(mozwebqa)
         missionPage.go_to_page()
@@ -22,8 +23,12 @@ class TestMission:
     def test_footer_section(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
+        Assert.contains(mission_page.footer.expected_footer_logo_destination,
+            mission_page.footer.footer_logo_destination)
+        Assert.contains(mission_page.footer.expected_footer_logo_img,
+            mission_page.footer.footer_logo_img)
         for link in Mission.Footer.footer_links_list:
-            Assert.true(mission_page.is_element_visible(*link), link[1])
+            Assert.contains(link.get('href'), mission_page.footer.footer_link_destination(link.get('text')))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
