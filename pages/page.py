@@ -10,6 +10,7 @@ Created on Jun 21, 2010
 import re
 import time
 import base64
+
 from unittestzero import Assert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
@@ -95,3 +96,14 @@ class Page(object):
             if self.selenium.execute_script("return jQuery.active == 0"):
                 return
         raise Exception("Wait for AJAX timed out after %s seconds" % count)
+
+    def get_response_code(self, url):
+        # return the response status
+        import urllib2
+        try:
+            urllib2.urlopen(url)
+            return 200
+        except urllib2.HTTPError, e:
+            return e.code
+
+
