@@ -12,6 +12,7 @@ from pages.desktop.about import AboutPage
 class TestAboutPage:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_footer_section(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()

@@ -11,6 +11,7 @@ from unittestzero import Assert
 class TestMission:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_sidebar_links(self, mozwebqa):
         missionPage = Mission(mozwebqa)
         missionPage.go_to_page()

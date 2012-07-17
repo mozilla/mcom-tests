@@ -39,6 +39,3 @@ class Mission(Base):
     def are_learn_more_links_visible(self):
         return self.is_element_visible(*self._our_projects_learn_more_link) and \
         self.is_element_visible(*self._get_involved_learn_more_link)
-
-    class Footer(Base.Footer):
-        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo a')
