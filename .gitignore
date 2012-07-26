@@ -3,6 +3,6 @@ rmpyc.sh
 /debug/**
 results
 venv
-.codeintel
+.codeintel/*
 .DS_Store
 
