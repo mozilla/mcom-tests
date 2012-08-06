@@ -51,7 +51,9 @@ class TestRedirectLanding(object):
     def test_redirect_old_firefox(self, mozwebqa):
         headers = {}
         headers.update(self.OLD_FIREFOX)
-        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/fx/',
+        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/new/',
+            headers)
+        self._test_one_redirect(mozwebqa, '/en-US/firefox/', '/en-US/firefox/new/',
             headers)
 
     @pytest.mark.nondestructive
