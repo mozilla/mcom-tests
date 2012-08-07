@@ -30,7 +30,7 @@ class TestProductsPage:
     def test_main_nav_section(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        for link in products_page.main_nav_link:
+        for link in products_page.main_nav_links_list:
             Assert.true(products_page.is_element_present(*link), link[1])
 
     @pytest.mark.nondestructive
@@ -46,7 +46,4 @@ class TestProductsPage:
         products_page.go_to_page()
         for link in products_page.products_link_list:
             Assert.true(products_page.is_element_visible(*link), link[1])
-
-
-
 

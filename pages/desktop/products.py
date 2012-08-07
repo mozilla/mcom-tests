@@ -17,7 +17,7 @@ class ProductsPage(Base):
     innovations_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(2) a')
     tools_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(3) a')
     platforms_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(4) a')
-    main_nav_link = [
+    main_nav_links_list = [
         products_nav_link,
         innovations_nav_link,
         tools_nav_link,
@@ -27,7 +27,7 @@ class ProductsPage(Base):
     _firefox_image = (By.CSS_SELECTOR, '#products li:nth-child(1) a img')
     _boot_to_gecko_image = (By.CSS_SELECTOR, '#products li:nth-child(2) a img')
     _marketplace_image = (By.CSS_SELECTOR, '#products li:nth-child(3) a img')
-    _persona_iamge = (By.CSS_SELECTOR, '#products li:nth-child(4) a img')
+    _persona_image = (By.CSS_SELECTOR, '#products li:nth-child(4) a img')
     _thunderbird_image = (By.CSS_SELECTOR, '#products li:nth-child(5) a img')
     _webmaker_image = (By.CSS_SELECTOR, '#products li:nth-child(6) a img')
     _webfwd_image = (By.CSS_SELECTOR, '#innovations li:nth-child(1) a img')
@@ -43,7 +43,7 @@ class ProductsPage(Base):
         _firefox_image,
         _boot_to_gecko_image,
         _marketplace_image,
-        _persona_iamge,
+        _persona_image,
         _thunderbird_image,
         _webfwd_image,
         _webmaker_image,
@@ -61,14 +61,14 @@ class ProductsPage(Base):
     _boot_to_gecko_product_link = (By.CSS_SELECTOR, '#products li:nth-child(2) a')
     _marketplace_product_link = (By.CSS_SELECTOR, '#products li:nth-child(3) a')
     _persona_product_link = (By.CSS_SELECTOR, '#products li:nth-child(4) a')
-    _thuderbird_product_link = (By.CSS_SELECTOR, '#products li:nth-child(5) a')
+    _thunderbird_product_link = (By.CSS_SELECTOR, '#products li:nth-child(5) a')
     _webmaker_product_link = (By.CSS_SELECTOR, '#products li:nth-child(6) a')
     products_link_list = [
         _firefox_product_link,
         _boot_to_gecko_product_link,
         _marketplace_product_link,
         _persona_product_link,
-        _thuderbird_product_link,
+        _thunderbird_product_link,
         _webmaker_product_link
     ]
 
