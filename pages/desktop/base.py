@@ -83,7 +83,7 @@ class Base(Page):
     class Footer(Page):
 
         _footer_locator = (By.CSS_SELECTOR, '#colophon')
-        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo')
+        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo > a')
         _footer_logo_img_locator = (By.CSS_SELECTOR, '.footer-logo img')
         expected_footer_logo_destination = '/en-US/'
         expected_footer_logo_img = '/media/img/sandstone/footer-mozilla.png'

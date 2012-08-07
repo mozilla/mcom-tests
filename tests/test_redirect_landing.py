@@ -51,7 +51,9 @@ class TestRedirectLanding(object):
     def test_redirect_old_firefox(self, mozwebqa):
         headers = {}
         headers.update(self.OLD_FIREFOX)
-        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/fx/',
+        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/new/',
+            headers)
+        self._test_one_redirect(mozwebqa, '/en-US/firefox/', '/en-US/firefox/new/',
             headers)
 
     @pytest.mark.nondestructive
@@ -94,11 +96,11 @@ class TestRedirectLanding(object):
     def test_redirect_locale_mobile(self, mozwebqa):
         headers = {}
         headers.update(self.MOBILE)
-        self._test_one_redirect(mozwebqa, '/de/firefox/', '/de/m/',
+        self._test_one_redirect(mozwebqa, '/de/firefox/', '/de/mobile/',
             headers)
 
         headers.update(self.DE_LOCALE)
-        self._test_one_redirect(mozwebqa, '/firefox/', '/de/m/',
+        self._test_one_redirect(mozwebqa, '/firefox/', '/de/mobile/',
             headers)
 
     @pytest.mark.nondestructive
