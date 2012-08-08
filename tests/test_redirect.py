@@ -84,3 +84,20 @@ class TestRedirects(object):
         self._test_get_redirect(mozwebqa,
             "/m/",
             "/en-US/firefox/fx/")
+
+    @pytest.mark.nondestructive
+    def test_rhino_docs_redirect(self, mozwebqa):
+        headers = {}
+        url = mozwebqa.base_url + '/rhino/doc.html'
+        result = 'https://developer.mozilla.org/en-US/docs/Rhino_documentation'
+        response = requests.get(url, headers=headers)
+        Assert.equal(result, response.url)
+
+    @pytest.mark.nondestructive
+    def test_rhino_download_redirect(self, mozwebqa):
+        headers = {}
+        url = mozwebqa.base_url + '/rhino/download.html'
+        result = \
+        'https://developer.mozilla.org/en-US/docs/Rhino/Download_Rhino?redirectlocale=en-US&redirectslug=RhinoDownload'
+        response = requests.get(url, headers=headers)
+        Assert.equal(result, response.url)
