@@ -10,7 +10,7 @@ from pages.page import Page
 
 
 class Base(Page):
-
+    
     _desktop_link = (By.CSS_SELECTOR, '#nav-main-features > a')
     _mobile_link = (By.CSS_SELECTOR, '#nav-main-mobile > a')
     _releases_link = (By.CSS_SELECTOR, '#nav-main-releases > a')
@@ -137,18 +137,18 @@ class Base(Page):
     class DownloadRegion(Page):
 
         _osx_download_locator = (By.CSS_SELECTOR, '.os_osx > a')
-        _windows_download_locator = (By.CSS_SELECTOR, 'os_windows > a')
-        _linux_download_locator = (By.CSS_SELECTOR, 'os_linux > a')
+        _windows_download_locator = (By.CSS_SELECTOR, '.os_windows > a')
+        _linux_download_locator = (By.CSS_SELECTOR, '.os_linux > a')
 
         _systems_and_languages_locator = (By.CSS_SELECTOR, '.download-other > a:nth-of-type(1)')
         _whats_new_locator = (By.CSS_SELECTOR, '.download-other > a:nth-of-type(2)')
         _privacy_locator = (By.CSS_SELECTOR, '.download-other > a:nth-of-type(3)')
 
         @property
-        def are_download_links_present(self):
-            return self.is_element_present(*self._osx_download_locator) or \
-            self.is_element_present(*self._windows_download_locator) or \
-            self.is_element_present(*self._linux_download_locator)
+        def is_download_link_visible(self):
+            return self.is_element_visible(*self._osx_download_locator) or \
+            self.is_element_visible(*self._windows_download_locator) or \
+            self.is_element_visible(*self._linux_download_locator)
 
         @property
         def are_secondary_links_visible(self):
