@@ -145,7 +145,7 @@ class Base(Page):
         _privacy_locator = (By.CSS_SELECTOR, '.download-other > a:nth-of-type(3)')
 
         @property
-        def are_download_links_present(self):
+        def is_download_link_visible(self):
             return self.is_element_visible(*self._osx_download_locator) or \
             self.is_element_visible(*self._windows_download_locator) or \
             self.is_element_visible(*self._linux_download_locator)
