@@ -46,5 +46,5 @@ class TestTechnologyPage:
     def test_download_button_section(self, mozwebqa):
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
-        Assert.true(technology_page.downloadRegion.are_download_links_present)
+        Assert.true(technology_page.downloadRegion.is_download_link_visible)
         Assert.true(technology_page.downloadRegion.are_secondary_links_visible)

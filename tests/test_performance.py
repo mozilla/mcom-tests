@@ -33,7 +33,7 @@ class TestPerformance:
     def test_download_button_section(self, mozwebqa):
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
-        Assert.true(performance_page.downloadRegion.are_download_links_present)
+        Assert.true(performance_page.downloadRegion.is_download_link_visible)
         Assert.true(performance_page.downloadRegion.are_secondary_links_visible)
 
     @pytest.mark.nondestructive
