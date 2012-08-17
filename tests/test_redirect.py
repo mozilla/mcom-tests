@@ -105,3 +105,12 @@ class TestRedirects(object):
         'https://developer.mozilla.org/en-US/docs/Rhino/Download_Rhino?redirectlocale=en-US&redirectslug=RhinoDownload'
         self._test_get_redirect(mozwebqa,
             origin, result)
+
+    @pytest.mark.nondestructive
+    def test_rhino_redirect(self, mozwebqa):
+        origin = mozwebqa.base_url + '/rhino/'
+        result = \
+        'https://developer.mozilla.org/en-US/docs/Rhino'
+        self._test_get_redirect(mozwebqa,
+            origin, result)
+
