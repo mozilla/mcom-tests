@@ -34,7 +34,7 @@ class TestSecurity:
     def test_download_button_section(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
-        Assert.true(security_page.downloadRegion.are_download_links_present)
+        Assert.true(security_page.downloadRegion.is_download_link_visible)
         Assert.true(security_page.downloadRegion.are_secondary_links_visible)
 
     @pytest.mark.nondestructive

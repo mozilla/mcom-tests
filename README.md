@@ -25,7 +25,7 @@ follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then
 create and activate a [virtualenv](http://www.virtualenv.org) (e.g. `virtualenv
 mcom-tests-env; source mcom-tests-env/bin/activate`) to create a clean
 "virtual environment" for just this project. Then you can
-`pip install -r requiremenst/requirements.txt` in your virtual environment
+`pip install -r requirements.txt` in your virtual environment
 without needing to use `sudo`.
 
 If you don't mind installing globally, just run
@@ -34,7 +34,7 @@ If you don't mind installing globally, just run
 
 followed by
 
-    sudo pip install -r requirements/requirements.txt
+    sudo pip install -r requirements.txt
 
 __note__
 
