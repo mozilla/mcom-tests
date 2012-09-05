@@ -114,3 +114,10 @@ class TestRedirects(object):
         self._test_get_redirect(mozwebqa,
             origin, result)
 
+    def test_redirect_firefox_home_the_product(self, mozwebqa):
+        self._test_get_redirect(mozwebqa,
+            "/mobile/home/",
+            "/en-US/mobile/")
+        self._test_get_redirect(mozwebqa,
+            "/fr/mobile/home/",
+            "/fr/mobile/")

@@ -26,6 +26,7 @@ class TestDownload(object):
         link = html.find('li', 'os_osx').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
+        print response.url
         Assert.equal(response.status_code, 200)
 
     def test_linux_download_button_returns_status_code_200(self, mozwebqa):
@@ -35,6 +36,7 @@ class TestDownload(object):
         link = html.find('li', 'os_linux').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
+        print response.url
         Assert.equal(response.status_code, 200)
 
     def test_windows_download_button_returns_status_code_200(self, mozwebqa):
@@ -45,6 +47,7 @@ class TestDownload(object):
         link = html.find('li', 'os_windows').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
+        print response.url
         Assert.equal(response.status_code, 200)
 
     def test_download_button_returns_status_code_200_using_google_chrome(self, mozwebqa):
@@ -56,4 +59,5 @@ class TestDownload(object):
         link = html.find('li', 'os_windows').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
+        print response.url
         Assert.equal(response.status_code, 200)
