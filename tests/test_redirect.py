@@ -11,9 +11,15 @@ import pytest
 @pytest.mark.skip_selenium
 class TestRedirects(object):
     def _test_get_redirect(self, mozwebqa, origin, final):
-        url = mozwebqa.base_url + origin
+        if origin.startswith('http'):
+            url = origin
+        else:
+            url = mozwebqa.base_url + origin
         response = requests.get(url)
-        result = mozwebqa.base_url + final
+        if final.startswith('http'):
+            result = final
+        else:
+            result = mozwebqa.base_url + final
         Assert.equal(result, response.url)
 
     @pytest.mark.nondestructive
@@ -86,6 +92,28 @@ class TestRedirects(object):
             "/en-US/firefox/fx/")
 
     @pytest.mark.nondestructive
+    def test_rhino_docs_redirect(self, mozwebqa):
+        origin = mozwebqa.base_url + '/rhino/doc.html'
+        result = 'https://developer.mozilla.org/en-US/docs/Rhino_documentation'
+        self._test_get_redirect(mozwebqa,
+            origin, result)
+
+    @pytest.mark.nondestructive
+    def test_rhino_download_redirect(self, mozwebqa):
+        origin = mozwebqa.base_url + '/rhino/download.html'
+        result = \
+        'https://developer.mozilla.org/en-US/docs/Rhino/Download_Rhino?redirectlocale=en-US&redirectslug=RhinoDownload'
+        self._test_get_redirect(mozwebqa,
+            origin, result)
+
+    @pytest.mark.nondestructive
+    def test_rhino_redirect(self, mozwebqa):
+        origin = mozwebqa.base_url + '/rhino/'
+        result = \
+        'https://developer.mozilla.org/en-US/docs/Rhino'
+        self._test_get_redirect(mozwebqa,
+            origin, result)
+
     def test_redirect_firefox_home_the_product(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
             "/mobile/home/",
