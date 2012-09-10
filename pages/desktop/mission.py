@@ -10,32 +10,26 @@ from selenium.webdriver.common.by import By
 
 class Mission(Base):
 
-    _mission_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(1) > a')
-    _forums_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(2) > a')
-    _governance_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(3) > a')
-    _history_sidebar_link = (By.CSS_SELECTOR, '.sidebar > nav > ul > li:nth-of-type(4) > a')
-    _home_breadcrumb_link = (By.CSS_SELECTOR, '.breadcrumbs > a')
-    _mission_breadcrumb_link = (By.CSS_SELECTOR, '.breadcrumbs > span')
-    _video_section = (By.CSS_SELECTOR, '.mozilla-video-control-overlay')
-    _our_projects_learn_more_link = (By.CSS_SELECTOR, '.reference:nth-of-type(1)  > .more')
-    _get_involved_learn_more_link = (By.CSS_SELECTOR, '.reference:nth-of-type(2) > .more')
+    _contribute_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(1) > h4 > a')
+    _history_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(2) > h4 > a')
+    _forums_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(3) > h4 > a')
+    _governance_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(4) > h4 > a')
+    _manifesto_midpage_link = (By.CSS_SELECTOR, '#main-content > div > p:nth-of-type(3) > a')
+    _video = (By.TAG_NAME, 'video')
+    _video_overlay = (By.CSS_SELECTOR, '.mozilla-video-control-overlay')
 
     def go_to_page(self):
         self.open('/mission/')
 
     @property
-    def are_sidebar_links_visible(self):
-        return self.is_element_visible(*self._mission_sidebar_link) and \
-        self.is_element_visible(*self._forums_sidebar_link) and \
-        self.is_element_visible(*self._governance_sidebar_link) and \
-        self.is_element_visible(*self._history_sidebar_link)
+    def are_midpage_links_visible(self):
+        return self.is_element_visible(*self._contribute_midpage_link) and \
+        self.is_element_visible(*self._forums_midpage_link) and \
+        self.is_element_visible(*self._governance_midpage_link) and \
+        self.is_element_visible(*self._history_midpage_link) and\
+        self.is_element_visible(*self._manifesto_midpage_link)
 
     @property
-    def are_breadcrumb_links_visible(self):
-        return self.is_element_visible(*self._home_breadcrumb_link)  and \
-        self.is_element_visible(*self._mission_breadcrumb_link)
-
-    @property
-    def are_learn_more_links_visible(self):
-        return self.is_element_visible(*self._our_projects_learn_more_link) and \
-        self.is_element_visible(*self._get_involved_learn_more_link)
+    def is_video_visible(self):
+        return self.is_element_visible(*self._video) and\
+               self.is_element_visible(*self._video_overlay)

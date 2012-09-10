@@ -11,12 +11,11 @@ from unittestzero import Assert
 class TestMission:
 
     @pytest.mark.nondestructive
-    def test_sidebar_links(self, mozwebqa):
+    def test_midpage_links(self, mozwebqa):
         missionPage = Mission(mozwebqa)
         missionPage.go_to_page()
-        Assert.true(missionPage.are_sidebar_links_visible)
-        Assert.true(missionPage.are_breadcrumb_links_visible)
-        Assert.true(missionPage.are_learn_more_links_visible)
+        Assert.true(missionPage.are_midpage_links_visible)
+        Assert.true(missionPage.is_video_visible)
 
     @pytest.mark.nondestructive
     @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
