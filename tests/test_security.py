@@ -43,8 +43,8 @@ class TestSecurity:
         security_page.go_to_page()
         Assert.true(security_page.are_menus_visible)
 
-        @pytest.mark.nondestructive
-        def test_are_screenshots_visible(self, mozwebqa):
-            security_page = Security(mozwebqa)
-            security_page.go_to_page()
-            Assert.true(security_page.are_screenshots_visible)
+    @pytest.mark.nondestructive
+    def test_are_screenshots_visible(self, mozwebqa):
+        security_page = Security(mozwebqa)
+        security_page.go_to_page()
+        Assert.true(security_page.are_screenshots_visible)
