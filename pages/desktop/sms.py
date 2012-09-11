@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from pages.desktop.base import Base
 
 
-class Sms(Base):
+class SMS(Base):
 
     def go_to_page(self):
         self.open('/firefox/sms/')
@@ -37,7 +37,7 @@ class Sms(Base):
     def is_google_play_link_visible(self):
         return self.is_element_visible(*self._google_play_link)
 
-    def submit_form(self, user='default'):
+    def submit_sms_form(self, user='default'):
         credentials = self.testsetup.credentials[user]
         phonetextbox = self.selenium.find_element(*self._phone_textbox)
         phonetextbox.send_keys(credentials['phone'])
