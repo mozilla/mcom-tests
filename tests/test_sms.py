@@ -7,20 +7,16 @@
 import pytest
 from unittestzero import Assert
 from pages.desktop.sms import SMS
+from tests.base_test import BaseTest
 
 
-class TestSMSPage:
+class TestSMSPage(BaseTest):
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
-        Assert.contains(sms_page.footer.expected_footer_logo_destination,
-            sms_page.footer.footer_logo_destination)
-        Assert.contains(sms_page.footer.expected_footer_logo_img,
-            sms_page.footer.footer_logo_img)
-        for link in sms_page.Footer.footer_links_list:
-            Assert.contains(link.get('href'), sms_page.footer.footer_link_destination(link.get('text')))
+        self.verify_footer_section(sms_page)
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
