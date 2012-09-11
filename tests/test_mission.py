@@ -4,11 +4,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-from pages.desktop.mission import Mission
 from unittestzero import Assert
 
+from pages.desktop.mission import Mission
+from tests.base_test import BaseTest
 
-class TestMission:
+
+class TestMission(BaseTest):
 
     @pytest.mark.nondestructive
     def test_midpage_links(self, mozwebqa):
@@ -18,16 +20,10 @@ class TestMission:
         Assert.true(missionPage.is_video_visible)
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_footer_section(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
-        Assert.contains(mission_page.footer.expected_footer_logo_destination,
-            mission_page.footer.footer_logo_destination)
-        Assert.contains(mission_page.footer.expected_footer_logo_img,
-            mission_page.footer.footer_logo_img)
-        for link in Mission.Footer.footer_links_list:
-            Assert.contains(link.get('href'), mission_page.footer.footer_link_destination(link.get('text')))
+        self.verify_footer_section(mission_page)
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
