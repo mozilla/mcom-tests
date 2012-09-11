@@ -14,7 +14,7 @@ class Security(Base):
     _menu_stay_in_control = (By.CSS_SELECTOR, '.menu-bar.billboard > ul > li:nth-of-type(3) > a')
     _menu_part_of_our_mission = (By.CSS_SELECTOR, '.menu-bar.billboard > ul > li:nth-of-type(4) > a')
 
-    _privacy_screeenshot = (By.CSS_SELECTOR, '#privacy > .row > .section-image > .platform-img.js')
+    _privacy_screenshot = (By.CSS_SELECTOR, '#privacy > .row > .section-image > .platform-img.js')
     _security_screenshot = (By.CSS_SELECTOR, '#secure > .row > .section-image > .platform-img.js')
     _control_image = (By.CSS_SELECTOR, '#control > .row > .section-image > .platform-img.js')
     _mission_image = (By.CSS_SELECTOR, '#mission > .row > .section-image.span4 > img')
