@@ -4,22 +4,19 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from unittestzero import Assert
-from pages.desktop.performance import Performance
 import pytest
 
+from pages.desktop.performance import Performance
+from tests.base_test import BaseTest
 
-class TestPerformance:
+
+class TestPerformance(BaseTest):
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
-        Assert.contains(performance_page.footer.expected_footer_logo_destination,
-            performance_page.footer.footer_logo_destination)
-        Assert.contains(performance_page.footer.expected_footer_logo_img,
-            performance_page.footer.footer_logo_img)
-        for link in Performance.Footer.footer_links_list:
-            Assert.contains(link.get('href'), performance_page.footer.footer_link_destination(link.get('text')))
+        self.verify_footer_section(performance_page)
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
