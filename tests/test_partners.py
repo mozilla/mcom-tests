@@ -24,9 +24,7 @@ class TestPartners(BaseTest):
     def test_header_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.true(partners_page.header.is_tabzilla_panel_visible)
-        partners_page.header.toggle_tabzilla_dropdown()
-        Assert.true(partners_page.header.are_tabzilla_links_visible)
+        self.verify_header_section(partners_page)
 
     @pytest.mark.nondestructive
     def test_partner_billboard_links(self, mozwebqa):

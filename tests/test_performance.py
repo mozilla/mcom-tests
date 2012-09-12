@@ -22,9 +22,7 @@ class TestPerformance(BaseTest):
     def test_header_section(self, mozwebqa):
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
-        Assert.true(performance_page.header.is_tabzilla_panel_visible)
-        performance_page.header.toggle_tabzilla_dropdown()
-        Assert.true(performance_page.header.are_tabzilla_links_visible)
+        self.verify_header_section(performance_page)
 
     @pytest.mark.nondestructive
     def test_download_button_section(self, mozwebqa):
