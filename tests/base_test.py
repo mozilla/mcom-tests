@@ -20,3 +20,9 @@ class BaseTest:
             url = page_object.footer.footer_link_href(link)
             Assert.true(page_object.is_valid_link(url))
 
+    def verify_header_section(self, page_object):
+        """Do the verification tasks that are common to all pages."""
+        Assert.true(page_object.header.is_tabzilla_panel_visible)
+        page_object.header.toggle_tabzilla_dropdown()
+        Assert.true(page_object.header.are_tabzilla_links_visible)
+

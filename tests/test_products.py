@@ -23,9 +23,7 @@ class TestProductsPage(BaseTest):
     def test_header_section(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        Assert.true(products_page.header.is_tabzilla_panel_visible)
-        products_page.header.toggle_tabzilla_dropdown()
-        Assert.true(products_page.header.are_tabzilla_links_visible)
+        self.verify_header_section(products_page)
 
     @pytest.mark.nondestructive
     def test_main_nav_section(self, mozwebqa):

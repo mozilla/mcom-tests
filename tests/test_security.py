@@ -23,9 +23,7 @@ class TestSecurity(BaseTest):
     def test_header_section(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
-        Assert.true(security_page.header.is_tabzilla_panel_visible)
-        security_page.header.toggle_tabzilla_dropdown()
-        Assert.true(security_page.header.are_tabzilla_links_visible)
+        self.verify_header_section(security_page)
 
     @pytest.mark.nondestructive
     def test_download_button_section(self, mozwebqa):

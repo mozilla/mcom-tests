@@ -34,9 +34,7 @@ class TestTechnologyPage(BaseTest):
     def test_header_section(self, mozwebqa):
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
-        Assert.true(technology_page.header.is_tabzilla_panel_visible)
-        technology_page.header.toggle_tabzilla_dropdown()
-        Assert.true(technology_page.header.are_tabzilla_links_visible)
+        self.verify_header_section(technology_page)
 
     @pytest.mark.nondestructive
     def test_download_button_section(self, mozwebqa):

@@ -22,9 +22,7 @@ class TestSMSPage(BaseTest):
     def test_header_section(self, mozwebqa):
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
-        Assert.true(sms_page.header.is_tabzilla_panel_visible)
-        sms_page.header.toggle_tabzilla_dropdown()
-        Assert.true(sms_page.header.are_tabzilla_links_visible)
+        self.verify_header_section(sms_page)
 
     @pytest.mark.nondestructive
     def test_send_sms(self, mozwebqa):
