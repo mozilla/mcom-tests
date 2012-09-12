@@ -14,10 +14,21 @@ class TestMission(BaseTest):
 
     @pytest.mark.nondestructive
     def test_midpage_links(self, mozwebqa):
-        missionPage = Mission(mozwebqa)
-        missionPage.go_to_page()
-        Assert.true(missionPage.are_midpage_links_visible)
-        Assert.true(missionPage.is_video_visible)
+        mission_page = Mission(mozwebqa)
+        mission_page.go_to_page()
+        for link in mission_page.midpage_links_list:
+            url = mission_page.midpage_link_href(link)
+            Assert.true(mission_page.is_valid_link(url), url + ' did not return a 200 status code.')
+
+    @pytest.mark.xfail(reason='Bug 790493 - One of the video srcs is invalid')
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=790493
+    @pytest.mark.nondestructive
+    def test_video(self, mozwebqa):
+        mission_page = Mission(mozwebqa)
+        mission_page.go_to_page()
+        Assert.true(mission_page.is_video_visible)
+        for src in mission_page.video_srcs:
+            Assert.true(mission_page.is_valid_link(src), src + ' did not return a 200 status code.')
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
