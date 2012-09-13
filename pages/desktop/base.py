@@ -10,7 +10,7 @@ from pages.page import Page
 
 
 class Base(Page):
-    
+
     _desktop_link = (By.CSS_SELECTOR, '#nav-main-features > a')
     _mobile_link = (By.CSS_SELECTOR, '#nav-main-mobile > a')
     _releases_link = (By.CSS_SELECTOR, '#nav-main-releases > a')
@@ -82,27 +82,46 @@ class Base(Page):
 
     class Footer(Page):
 
-        _footer_link_locator_expression = '#colophon a[href$="%s"]'
+        _footer_locator = (By.CSS_SELECTOR, '#colophon')
         _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo > a')
         _footer_logo_img_locator = (By.CSS_SELECTOR, '.footer-logo img')
         expected_footer_logo_destination = '/en-US/'
         expected_footer_logo_img = '/media/img/sandstone/footer-mozilla.png'
 
         footer_links_list = [
-             '/foundation/licensing/website-content.html',
-             '/about/contact.html#map-mountain_view',
-             '/privacy-policy.html',
-             '/about/legal.html',
-             '/legal/fraud-report/index.html',
-             'twitter.com/firefox',
-             'facebook.com/Firefox',
-             'affiliates.mozilla.org/'
+            {
+                'locator': (By.CSS_SELECTOR, '#colophon div.footer-license p:nth-child(1) a'),
+                'url_suffix': '/foundation/licensing/website-content.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(1) a'),
+                'url_suffix': '/about/contact.html#map-mountain_view',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(2) a'),
+                'url_suffix': '/privacy-policy.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(3) a'),
+                'url_suffix': '/about/legal.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(4) a'),
+                'url_suffix': '/legal/fraud-report/index.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(1) a'),
+                'url_suffix': 'twitter.com/firefox',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(2) a'),
+                'url_suffix': 'facebook.com/Firefox',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(3) a'),
+                'url_suffix': 'affiliates.mozilla.org/',
+            },
         ]
 
-        def footer_link_href(self, url_suffix):
-            return self.selenium.find_element(
-                By.CSS_SELECTOR,  self._footer_link_locator_expression % url_suffix
-            ).get_attribute('href')
+        def footer_link_destination(self, locator):
+            footer_link = self.selenium.find_element(*locator)
+            return footer_link.get_attribute('href')
+
+        def footer_link_functions(self, footer_link_href):
+            return self.get_response_code(footer_link_href)
 
         @property
         def footer_logo_destination(self):
@@ -127,11 +146,11 @@ class Base(Page):
         @property
         def is_download_link_visible(self):
             return self.is_element_visible(*self._osx_download_locator) or \
-            self.is_element_visible(*self._windows_download_locator) or \
-            self.is_element_visible(*self._linux_download_locator)
+                self.is_element_visible(*self._windows_download_locator) or \
+                self.is_element_visible(*self._linux_download_locator)
 
         @property
         def are_secondary_links_visible(self):
             return self.is_element_visible(*self._systems_and_languages_locator) and \
-            self.is_element_visible(*self._whats_new_locator) and \
-            self.is_element_visible(*self._privacy_locator)
+                self.is_element_visible(*self._whats_new_locator) and \
+                self.is_element_visible(*self._privacy_locator)

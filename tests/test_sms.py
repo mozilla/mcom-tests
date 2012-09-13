@@ -7,16 +7,18 @@
 import pytest
 from unittestzero import Assert
 from pages.desktop.sms import SMS
-from tests.base_test import BaseTest
 
 
-class TestSMSPage(BaseTest):
+class TestSMSPage():
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
-        self.verify_footer_section(sms_page)
+        for link in SMS.Footer.footer_links_list:
+            url = sms_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(sms_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

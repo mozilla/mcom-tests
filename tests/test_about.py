@@ -6,18 +6,23 @@
 
 import pytest
 from unittestzero import Assert
-
 from pages.desktop.about import AboutPage
-from tests.base_test import BaseTest
 
 
-class TestAboutPage(BaseTest):
+class TestAboutPage:
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        self.verify_footer_section(about_page)
+        Assert.contains(about_page.footer.expected_footer_logo_img,
+                        about_page.footer.footer_logo_img)
+        Assert.contains(about_page.footer.expected_footer_logo_destination,
+                        about_page.footer.footer_logo_destination)
+        for link in AboutPage.Footer.footer_links_list:
+            url = about_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(about_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

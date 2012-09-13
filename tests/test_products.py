@@ -6,18 +6,19 @@
 
 import pytest
 from unittestzero import Assert
-
 from pages.desktop.products import ProductsPage
-from tests.base_test import BaseTest
 
 
-class TestProductsPage(BaseTest):
+class TestProductsPage:
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        self.verify_footer_section(products_page)
+        for link in ProductsPage.Footer.footer_links_list:
+            url = products_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(products_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
@@ -47,4 +48,3 @@ class TestProductsPage(BaseTest):
         products_page.go_to_page()
         for link in products_page.products_link_list:
             Assert.true(products_page.is_element_visible(*link), link[1])
-
