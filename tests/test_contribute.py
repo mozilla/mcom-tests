@@ -5,19 +5,23 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+from pages.desktop.contribute import Contribute
 from unittestzero import Assert
 
-from pages.desktop.contribute import Contribute
-from tests.base_test import BaseTest
 
-
-class TestContribute(BaseTest):
+class TestContribute:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_footer_section(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
-        self.verify_footer_section(contribute_page)
+        Assert.contains(contribute_page.footer.expected_footer_logo_destination,
+            contribute_page.footer.footer_logo_destination)
+        Assert.contains(contribute_page.footer.expected_footer_logo_img,
+            contribute_page.footer.footer_logo_img)
+        for link in Contribute.Footer.footer_links_list:
+            Assert.contains(link.get('href'), contribute_page.footer.footer_link_destination(link.get('text')))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

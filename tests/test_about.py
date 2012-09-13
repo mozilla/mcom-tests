@@ -6,18 +6,25 @@
 
 import pytest
 from unittestzero import Assert
-
 from pages.desktop.about import AboutPage
-from tests.base_test import BaseTest
 
 
-class TestAboutPage(BaseTest):
+class TestAboutPage:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_footer_section(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        self.verify_footer_section(about_page)
+        for link in AboutPage.Footer.footer_links_list:
+            url = about_page.footer.footer_link_destination(link.get('text'))
+            Assert.contains(link.get('href'), url)
+            # the next line only exists for this page, to be a representative sample
+            Assert.equal(about_page.get_response_code(url), 200)
+        Assert.contains(about_page.footer.expected_footer_logo_img,
+            about_page.footer.footer_logo_img)
+        Assert.contains(about_page.footer.expected_footer_logo_destination,
+            about_page.footer.footer_logo_destination)
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
