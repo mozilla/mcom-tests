@@ -16,11 +16,13 @@ class TestBootToGecko:
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
         Assert.contains(b2g_page.footer.expected_footer_logo_destination,
-            b2g_page.footer.footer_logo_destination)
+                        b2g_page.footer.footer_logo_destination)
         Assert.contains(b2g_page.footer.expected_footer_logo_img,
-            b2g_page.footer.footer_logo_img)
+                        b2g_page.footer.footer_logo_img)
         for link in BootToGecko.Footer.footer_links_list:
-            Assert.contains(link.get('href'), b2g_page.footer.footer_link_destination(link.get('text')))
+            url = b2g_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(b2g_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

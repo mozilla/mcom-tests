@@ -16,11 +16,13 @@ class TestSecurity:
         security_page = Security(mozwebqa)
         security_page.go_to_page()
         Assert.contains(security_page.footer.expected_footer_logo_destination,
-            security_page.footer.footer_logo_destination)
+                        security_page.footer.footer_logo_destination)
         Assert.contains(security_page.footer.expected_footer_logo_img,
-            security_page.footer.footer_logo_img)
+                        security_page.footer.footer_logo_img)
         for link in Security.Footer.footer_links_list:
-            Assert.contains(link.get('href'), security_page.footer.footer_link_destination(link.get('text')))
+            url = security_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(security_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

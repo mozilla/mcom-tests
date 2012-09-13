@@ -15,11 +15,13 @@ class TestPerformance:
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
         Assert.contains(performance_page.footer.expected_footer_logo_destination,
-            performance_page.footer.footer_logo_destination)
+                        performance_page.footer.footer_logo_destination)
         Assert.contains(performance_page.footer.expected_footer_logo_img,
-            performance_page.footer.footer_logo_img)
+                        performance_page.footer.footer_logo_img)
         for link in Performance.Footer.footer_links_list:
-            Assert.contains(link.get('href'), performance_page.footer.footer_link_destination(link.get('text')))
+            url = performance_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(performance_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

@@ -12,16 +12,17 @@ from unittestzero import Assert
 class TestContribute:
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason="https://bugzilla.mozilla.org/show_bug.cgi?id=773787")
     def test_footer_section(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
         Assert.contains(contribute_page.footer.expected_footer_logo_destination,
-            contribute_page.footer.footer_logo_destination)
+                        contribute_page.footer.footer_logo_destination)
         Assert.contains(contribute_page.footer.expected_footer_logo_img,
-            contribute_page.footer.footer_logo_img)
+                        contribute_page.footer.footer_logo_img)
         for link in Contribute.Footer.footer_links_list:
-            Assert.contains(link.get('href'), contribute_page.footer.footer_link_destination(link.get('text')))
+            url = contribute_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(contribute_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

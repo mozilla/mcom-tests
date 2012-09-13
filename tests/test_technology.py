@@ -28,11 +28,13 @@ class TestTechnologyPage:
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
         Assert.contains(technology_page.footer.expected_footer_logo_destination,
-            technology_page.footer.footer_logo_destination)
+                        technology_page.footer.footer_logo_destination)
         Assert.contains(technology_page.footer.expected_footer_logo_img,
-            technology_page.footer.footer_logo_img)
+                        technology_page.footer.footer_logo_img)
         for link in Technology.Footer.footer_links_list:
-            Assert.contains(link.get('href'), technology_page.footer.footer_link_destination(link.get('text')))
+            url = technology_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(technology_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

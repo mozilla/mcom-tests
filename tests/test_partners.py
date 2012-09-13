@@ -17,11 +17,13 @@ class TestPartners:
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
         Assert.contains(partners_page.footer.expected_footer_logo_destination,
-            partners_page.footer.footer_logo_destination)
+                        partners_page.footer.footer_logo_destination)
         Assert.contains(partners_page.footer.expected_footer_logo_img,
-            partners_page.footer.footer_logo_img)
+                        partners_page.footer.footer_logo_img)
         for link in Partners.Footer.footer_links_list:
-            Assert.contains(link.get('href'), partners_page.footer.footer_link_destination(link.get('text')))
+            url = partners_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(partners_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
@@ -44,4 +46,4 @@ class TestPartners:
         partners_page.go_to_page()
         # changing url due to https://bugzilla.mozilla.org/show_bug.cgi?id=751903
         Assert.equal(partners_page.check_submit_apps_button_url,
-        'https://marketplace.mozilla.org/ecosystem/')
+                     'https://marketplace.mozilla.org/ecosystem/')
