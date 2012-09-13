@@ -106,9 +106,4 @@ class Page(object):
         except urllib2.HTTPError, e:
             return e.code
 
-    def is_valid_link(self, url):
-        if self.get_response_code(url) == 200:
-            return True
-        return False
-
 

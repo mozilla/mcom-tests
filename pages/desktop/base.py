@@ -82,27 +82,47 @@ class Base(Page):
 
     class Footer(Page):
 
-        _footer_link_locator_expression = '#colophon a[href$="%s"]'
+        _footer_locator = (By.CSS_SELECTOR, '#colophon')
         _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo > a')
         _footer_logo_img_locator = (By.CSS_SELECTOR, '.footer-logo img')
         expected_footer_logo_destination = '/en-US/'
         expected_footer_logo_img = '/media/img/sandstone/footer-mozilla.png'
 
         footer_links_list = [
-             '/foundation/licensing/website-content.html',
-             '/about/contact.html#map-mountain_view',
-             '/privacy-policy.html',
-             '/about/legal.html',
-             '/legal/fraud-report/index.html',
-             'twitter.com/firefox',
-             'facebook.com/Firefox',
-             'affiliates.mozilla.org/'
+            {
+                'text': 'Creative Commons license',
+                'href': '/foundation/licensing/website-content.html',
+            },{
+                'text': 'Contact Us',
+                'href': '/en-US/about/contact.html#map-mountain_view',
+            },{
+                'text': 'Privacy Policy',
+                'href': '/en-US/privacy-policy.html',
+            },{
+                'text': 'Legal Notices',
+                'href': '/en-US/about/legal.html',
+            },{
+                'text': 'Report Trademark Abuse',
+                'href': '/en-US/legal/fraud-report/index.html',
+            },{
+                'text': 'Twitter',
+                'href': 'twitter.com/firefox',
+            },{
+                'text': 'Facebook',
+                'href': 'facebook.com/Firefox',
+            },{
+                'text': 'Firefox Affiliates',
+                'href': 'affiliates.mozilla.org',
+            },
         ]
 
-        def footer_link_href(self, url_suffix):
-            return self.selenium.find_element(
-                By.CSS_SELECTOR,  self._footer_link_locator_expression % url_suffix
-            ).get_attribute('href')
+        def footer_link_destination(self, footer_link_text):
+            footer_link = self.selenium.find_element(*self._footer_locator).find_element(
+                By.LINK_TEXT, footer_link_text)
+            return footer_link.get_attribute('href')
+
+        def footer_link_functions(self, footer_link_href):
+            return self.get_response_code(footer_link_href)
 
         @property
         def footer_logo_destination(self):

@@ -6,18 +6,17 @@
 
 import pytest
 from unittestzero import Assert
-
 from pages.desktop.products import ProductsPage
-from tests.base_test import BaseTest
 
 
-class TestProductsPage(BaseTest):
+class TestProductsPage:
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        self.verify_footer_section(products_page)
+        for link in ProductsPage.Footer.footer_links_list:
+            Assert.contains(link.get('href'), products_page.footer.footer_link_destination(link.get('text')))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
