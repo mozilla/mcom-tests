@@ -35,7 +35,7 @@ class Page(object):
         if self._page_title:
             page_title = self.page_title
             Assert.equal(page_title, self._page_title,
-                         "Expected page title: %s. Actual page title: %s" % \
+                         "Expected page title: %s. Actual page title: %s" %
                          (self._page_title, page_title))
 
     @property
@@ -110,5 +110,3 @@ class Page(object):
         if self.get_response_code(url) == 200:
             return True
         return False
-
-

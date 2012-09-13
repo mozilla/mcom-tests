@@ -5,19 +5,24 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+from pages.desktop.b2g import BootToGecko
 from unittestzero import Assert
 
-from pages.desktop.b2g import BootToGecko
-from tests.base_test import BaseTest
 
-
-class TestBootToGecko(BaseTest):
+class TestBootToGecko:
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
-        self.verify_footer_section(b2g_page)
+        Assert.contains(b2g_page.footer.expected_footer_logo_destination,
+                        b2g_page.footer.footer_logo_destination)
+        Assert.contains(b2g_page.footer.expected_footer_logo_img,
+                        b2g_page.footer.footer_logo_img)
+        for link in BootToGecko.Footer.footer_links_list:
+            url = b2g_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(b2g_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

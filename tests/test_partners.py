@@ -5,20 +5,25 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+from pages.desktop.partners import Partners
 from unittestzero import Assert
 
-from pages.desktop.partners import Partners
-from tests.base_test import BaseTest
 
-
-class TestPartners(BaseTest):
+class TestPartners:
 
     @pytest.mark.nondestructive
     @pytest.mark.bedrock
     def test_footer_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        self.verify_footer_section(partners_page)
+        Assert.contains(partners_page.footer.expected_footer_logo_destination,
+                        partners_page.footer.footer_logo_destination)
+        Assert.contains(partners_page.footer.expected_footer_logo_img,
+                        partners_page.footer.footer_logo_img)
+        for link in Partners.Footer.footer_links_list:
+            url = partners_page.footer.footer_link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')))
+            Assert.true(partners_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
@@ -41,4 +46,4 @@ class TestPartners(BaseTest):
         partners_page.go_to_page()
         # changing url due to https://bugzilla.mozilla.org/show_bug.cgi?id=751903
         Assert.equal(partners_page.check_submit_apps_button_url,
-        'https://marketplace.mozilla.org/ecosystem/')
+                     'https://marketplace.mozilla.org/ecosystem/')
