@@ -25,9 +25,11 @@ class TestContribute:
             Assert.true(contribute_page.is_valid_link(url))
 
     @pytest.mark.nondestructive
-    def test_header_section(self, mozwebqa):
+    def test_tabzilla_links_are_correct(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
         Assert.true(contribute_page.header.is_tabzilla_panel_visible)
         contribute_page.header.toggle_tabzilla_dropdown()
-        Assert.true(contribute_page.header.are_tabzilla_links_visible)
+        for link in Contribute.Header.tabzilla_links_list:
+            url = contribute_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
