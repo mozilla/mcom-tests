@@ -17,8 +17,7 @@ class TestProductsPage:
         products_page.go_to_page()
         for link in ProductsPage.Footer.footer_links_list:
             url = products_page.footer.footer_link_destination(link.get('locator'))
-            Assert.true(url.endswith(link.get('url_suffix')))
-            Assert.true(products_page.is_valid_link(url))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

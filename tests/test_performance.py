@@ -20,8 +20,7 @@ class TestPerformance:
                         performance_page.footer.footer_logo_img)
         for link in Performance.Footer.footer_links_list:
             url = performance_page.footer.footer_link_destination(link.get('locator'))
-            Assert.true(url.endswith(link.get('url_suffix')))
-            Assert.true(performance_page.is_valid_link(url))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):

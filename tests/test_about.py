@@ -21,8 +21,10 @@ class TestAboutPage:
                         about_page.footer.footer_logo_destination)
         for link in AboutPage.Footer.footer_links_list:
             url = about_page.footer.footer_link_destination(link.get('locator'))
-            Assert.true(url.endswith(link.get('url_suffix')))
-            Assert.true(about_page.is_valid_link(url))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            # Note we are only doing this valid link checking in this test as each page
+            # has the same links
+            Assert.true(about_page.is_valid_link(url), '%s is not a valid url.' % url)
 
     @pytest.mark.nondestructive
     def test_header_section(self, mozwebqa):
