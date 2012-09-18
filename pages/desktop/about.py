@@ -13,30 +13,36 @@ class AboutPage(Base):
     def go_to_page(self):
         self.open('/about/')
 
-    _get_to_know_mozilla_header = (By.CSS_SELECTOR, '.large.center')
-    _career_center_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(1) > h4 > a')
-    _press_center_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(2) > h4 > a')
-    _mozilla_blog_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(3) > h4 > a')
-    _privacy_center_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(4) > h4 > a')
-    _forums_link = (By.CSS_SELECTOR, '.links:nth-of-type(1) > li:nth-of-type(5) > h4 > a')
-    _governance_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(5) > h4 > a')
-    _get_involved_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(4) > h4 > a')
-    _locations_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(3) > h4 > a')
-    _partnerships_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(2) > h4 > a')
-    _brand_toolkit_link = (By.CSS_SELECTOR, '.links:nth-of-type(2) > li:nth-of-type(1) > h4 > a')
-
     major_links_list = [
-        _career_center_link,
-        _press_center_link,
-        _mozilla_blog_link,
-        _privacy_center_link,
-        _forums_link,
-        _governance_link,
-        _locations_link,
-        _partnerships_link,
-        _brand_toolkit_link,
+        {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(1) a'),
+            'url_suffix': '/mission/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(2) a'),
+            'url_suffix': 'careers.mozilla.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(3) a'),
+            'url_suffix': 'blog.mozilla.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(4) a'),
+            'url_suffix': '/styleguide',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(5) a'),
+            'url_suffix': '/about/contact',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(1) a'),
+            'url_suffix': '/products/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(2) a'),
+            'url_suffix': '/contribute/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(3) a'),
+            'url_suffix': 'blog.mozilla.org/press/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(4) a'),
+            'url_suffix': '/privacy/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(5) a'),
+            'url_suffix': '/about/partnerships',
+        }
     ]
-
-    @property
-    def is_know_mozilla_header_present(self):
-        return self.is_element_present(*self._get_to_know_mozilla_header)
