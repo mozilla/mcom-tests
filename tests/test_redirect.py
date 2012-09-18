@@ -38,8 +38,8 @@ class TestRedirects(object):
     @pytest.mark.nondestructive
     def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-            "/firefox/mobile/",
-            "/en-US/firefox/fx/")
+                                "/firefox/mobile/",
+                                "/en-US/firefox/fx/")
 
     @pytest.mark.nondestructive
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
@@ -58,66 +58,70 @@ class TestRedirects(object):
     @pytest.mark.nondestructive
     def test_redirect_firefox_mobile_to_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-            "/firefox/mobile/releasenotes/",
-            "/en-US/mobile/releasenotes/")
+                                "/firefox/mobile/releasenotes/",
+                                "/en-US/mobile/releasenotes/")
 
     @pytest.mark.nondestructive
     def test_redirect_mobile_to_firefox_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-            "/mobile/faq/",
-            "/en-US/firefox/mobile/faq/")
+                                "/mobile/faq/",
+                                "/en-US/firefox/mobile/faq/")
         self._test_get_redirect(mozwebqa,
-            "/mobile/features/",
-            "/en-US/firefox/mobile/features/")
+                                "/mobile/features/",
+                                "/en-US/firefox/mobile/features/")
         self._test_get_redirect(mozwebqa,
-            "/mobile/platforms/",
-            "/en-US/firefox/mobile/platforms/")
+                                "/mobile/platforms/",
+                                "/en-US/firefox/mobile/platforms/")
 
     @pytest.mark.nondestructive
     def test_redirect_some_m_to_firefox_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-            "/m/faq/",
-            "/en-US/firefox/mobile/faq/")
+                                "/m/faq/",
+                                "/en-US/firefox/mobile/faq/")
         self._test_get_redirect(mozwebqa,
-            "/m/features/",
-            "/en-US/firefox/mobile/features/")
+                                "/m/features/",
+                                "/en-US/firefox/mobile/features/")
         self._test_get_redirect(mozwebqa,
-            "/m/platforms/",
-            "/en-US/firefox/mobile/platforms/")
+                                "/m/platforms/",
+                                "/en-US/firefox/mobile/platforms/")
 
     @pytest.mark.nondestructive
     def test_redirect_m(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-            "/m/",
-            "/en-US/firefox/fx/")
+                                "/m/",
+                                "/en-US/firefox/fx/")
 
     @pytest.mark.nondestructive
     def test_rhino_docs_redirect(self, mozwebqa):
         origin = mozwebqa.base_url + '/rhino/doc.html'
         result = 'https://developer.mozilla.org/en-US/docs/Rhino_documentation'
-        self._test_get_redirect(mozwebqa,
-            origin, result)
+        self._test_get_redirect(mozwebqa, origin, result)
 
     @pytest.mark.nondestructive
     def test_rhino_download_redirect(self, mozwebqa):
         origin = mozwebqa.base_url + '/rhino/download.html'
         result = \
-        'https://developer.mozilla.org/en-US/docs/Rhino/Download_Rhino?redirectlocale=en-US&redirectslug=RhinoDownload'
-        self._test_get_redirect(mozwebqa,
-            origin, result)
+            'https://developer.mozilla.org/en-US/docs/Rhino/Download_Rhino?redirectlocale=en-US&redirectslug=RhinoDownload'
+        self._test_get_redirect(mozwebqa, origin, result)
 
     @pytest.mark.nondestructive
     def test_rhino_redirect(self, mozwebqa):
         origin = mozwebqa.base_url + '/rhino/'
         result = \
-        'https://developer.mozilla.org/en-US/docs/Rhino'
-        self._test_get_redirect(mozwebqa,
-            origin, result)
+            'https://developer.mozilla.org/en-US/docs/Rhino'
+        self._test_get_redirect(mozwebqa, origin, result)
 
     def test_redirect_firefox_home_the_product(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-            "/mobile/home/",
-            "/en-US/mobile/")
+                                "/mobile/home/",
+                                "/en-US/mobile/")
         self._test_get_redirect(mozwebqa,
-            "/fr/mobile/home/",
-            "/fr/mobile/")
+                                "/fr/mobile/home/",
+                                "/fr/mobile/")
+
+    @pytest.mark.nondestructive
+    def test_notes_redirects_to_firefox_notes(self, mozwebqa):
+        url = mozwebqa.base_url + "/firefox/notes/"
+        response = requests.get(url)
+        Assert.contains("/firefox/", response.url)
+        Assert.contains("/releasenotes/", response.url)
