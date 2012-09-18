@@ -45,6 +45,5 @@ class TestPartners:
     def test_submit_app_button_url(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        # changing url due to https://bugzilla.mozilla.org/show_bug.cgi?id=751903
         Assert.equal(partners_page.check_submit_apps_button_url,
-                     'https://marketplace.mozilla.org/ecosystem/')
+                     'https://marketplace.mozilla.org/developers/')
