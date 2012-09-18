@@ -24,12 +24,14 @@ class TestSecurity:
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
-    def test_header_section(self, mozwebqa):
+    def test_tabzilla_links_are_correct(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
         Assert.true(security_page.header.is_tabzilla_panel_visible)
         security_page.header.toggle_tabzilla_dropdown()
-        Assert.true(security_page.header.are_tabzilla_links_visible)
+        for link in Security.Header.tabzilla_links_list:
+            url = security_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
     def test_download_button_section(self, mozwebqa):

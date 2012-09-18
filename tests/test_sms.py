@@ -20,12 +20,14 @@ class TestSMSPage():
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
-    def test_header_section(self, mozwebqa):
+    def test_tabzilla_links_are_correct(self, mozwebqa):
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
         Assert.true(sms_page.header.is_tabzilla_panel_visible)
         sms_page.header.toggle_tabzilla_dropdown()
-        Assert.true(sms_page.header.are_tabzilla_links_visible)
+        for link in SMS.Header.tabzilla_links_list:
+            url = sms_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
     def test_send_sms(self, mozwebqa):

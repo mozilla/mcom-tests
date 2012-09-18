@@ -30,25 +30,64 @@ class Base(Page):
     def downloadRegion(self):
         return self.DownloadRegion(self.testsetup)
 
+    def link_destination(self, locator):
+        link = self.selenium.find_element(*locator)
+        return link.get_attribute('href')
+
     class Header(Page):
 
         _tabzilla = (By.ID, 'tabzilla')
         _tabzilla_panel = (By.ID, 'tabzilla-panel')
-        _tabzilla_about_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(2) > a')
-        _tabzilla_mission_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(1) > a')
-        _tabzilla_projects_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(3) > a')
-        _tabzilla_support_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(4) > a')
-        _tabzilla_developer_network_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(5) > a')
-        _tabzilla_firefox_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(1) > a')
-        _tabzilla_thunderbird_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(2) > a')
-        _tabzilla_webfwd_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(1) > a')
-        _tabzilla_labs_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(2) > a')
-        _tabzilla_webmaker_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(3) > a')
-        _tabzilla_volunteer_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(1) > a')
-        _tabzilla_work_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(2) > a')
-        _tabzilla_findus_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(3) > a')
-        _tabzilla_joinus_link = (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(4) > a')
         _tabzilla_search_textbox = (By.CSS_SELECTOR, '#tabzilla-search #q')
+
+        tabzilla_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': '/mission/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': '/about/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': '/projects/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(4) > a'),
+                'url_suffix': 'support.mozilla.org/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(5) > a'),
+                'url_suffix': 'developer.mozilla.org/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': 'www.mozilla.org/firefox',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': 'www.mozilla.org/thunderbird',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': 'www.mozilla.org/b2g',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': 'webfwd.org/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': 'mozillalabs.com/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': 'www.mozilla.org/webmaker/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(1) > a'),
+                'url_suffix': 'www.mozilla.org/contribute/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(2) > a'),
+                'url_suffix': '/about/careers.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(3) > a'),
+                'url_suffix': '/about/mozilla-spaces/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(4) > a'),
+                'url_suffix': 'donate.mozilla.org/',
+            },
+        ]
 
         def toggle_tabzilla_dropdown(self):
             toggle_state = self.selenium.execute_script('return Tabzilla.opened')
@@ -62,23 +101,6 @@ class Base(Page):
         @property
         def is_tabzilla_search_box_visible(self):
             return self.is_element_visible(*self._tabzilla_search_textbox)
-
-        @property
-        def are_tabzilla_links_visible(self):
-            return self.is_element_visible(*self._tabzilla_mission_link) and \
-                self.is_element_visible(*self._tabzilla_about_link) and \
-                self.is_element_visible(*self._tabzilla_projects_link) and \
-                self.is_element_visible(*self._tabzilla_support_link) and \
-                self.is_element_visible(*self._tabzilla_developer_network_link) and \
-                self.is_element_visible(*self._tabzilla_firefox_link) and \
-                self.is_element_visible(*self._tabzilla_thunderbird_link) and \
-                self.is_element_visible(*self._tabzilla_webfwd_link) and \
-                self.is_element_visible(*self._tabzilla_labs_link) and \
-                self.is_element_visible(*self._tabzilla_webmaker_link) and \
-                self.is_element_visible(*self._tabzilla_volunteer_link) and \
-                self.is_element_visible(*self._tabzilla_work_link) and \
-                self.is_element_visible(*self._tabzilla_findus_link) and \
-                self.is_element_visible(*self._tabzilla_joinus_link)
 
     class Footer(Page):
 
