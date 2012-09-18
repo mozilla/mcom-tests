@@ -111,6 +111,7 @@ class TestRedirects(object):
             'https://developer.mozilla.org/en-US/docs/Rhino'
         self._test_get_redirect(mozwebqa, origin, result)
 
+    @pytest.mark.nondestructive
     def test_redirect_firefox_home_the_product(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/mobile/home/",
