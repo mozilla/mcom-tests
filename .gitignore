@@ -6,3 +6,4 @@ venv
 .codeintel/*
 .DS_Store
 *.yaml
+*.sh
