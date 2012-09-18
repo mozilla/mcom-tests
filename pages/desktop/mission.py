@@ -10,26 +10,38 @@ from selenium.webdriver.common.by import By
 
 class Mission(Base):
 
-    _contribute_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(1) > h4 > a')
-    _history_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(2) > h4 > a')
-    _forums_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(3) > h4 > a')
-    _governance_midpage_link = (By.CSS_SELECTOR, 'ul.links > li:nth-of-type(4) > h4 > a')
-    _manifesto_midpage_link = (By.CSS_SELECTOR, '#main-content > div > p:nth-of-type(3) > a')
-    _video = (By.TAG_NAME, 'video')
-    _video_overlay = (By.CSS_SELECTOR, '.mozilla-video-control-overlay')
+    major_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#main-content div.main a'),
+            'url_suffix': '/about/manifesto.html',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(1) a'),
+            'url_suffix': '/contribute/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(2) a'),
+            'url_suffix': '/about/history.html',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(3) a'),
+            'url_suffix': '/about/forums/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(4) a'),
+            'url_suffix': '/about/governance.html',
+        }
+    ]
+
+    _video_sources_locator = (By.CSS_SELECTOR, 'video source')
+    _video_overlay_locator = (By.CSS_SELECTOR, '.mozilla-video-control-overlay')
 
     def go_to_page(self):
         self.open('/mission/')
 
     @property
-    def are_midpage_links_visible(self):
-        return self.is_element_visible(*self._contribute_midpage_link) and \
-        self.is_element_visible(*self._forums_midpage_link) and \
-        self.is_element_visible(*self._governance_midpage_link) and \
-        self.is_element_visible(*self._history_midpage_link) and\
-        self.is_element_visible(*self._manifesto_midpage_link)
+    def is_video_overlay_visible(self):
+        return self.is_element_visible(*self._video_overlay_locator)
 
     @property
-    def is_video_visible(self):
-        return self.is_element_visible(*self._video) and\
-               self.is_element_visible(*self._video_overlay)
+    def video_sources_list(self):
+        srcs = []
+        for source in self.selenium.find_elements(*self._video_sources_locator):
+            srcs.append(source.get_attribute('src'))
+        return srcs
