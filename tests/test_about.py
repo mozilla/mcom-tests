@@ -38,11 +38,13 @@ class TestAboutPage:
             Assert.true(about_page.is_valid_link(url), '%s is not a valid url.' % url)
 
     @pytest.mark.nondestructive
-    def test_navbar_links_are_present(self, mozwebqa):
+    def test_navbar_links_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        for link in AboutPage.nav_links_list:
-            Assert.true(about_page.is_element_present(*link), link[1])
+        for link in AboutPage.Header.nav_links_list:
+            url = about_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(about_page.is_valid_link(url), '%s is not a valid url.' % url)
 
     @pytest.mark.nondestructive
     def test_major_links_are_present(self, mozwebqa):

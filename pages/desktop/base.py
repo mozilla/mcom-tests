@@ -11,13 +11,6 @@ from pages.page import Page
 
 class Base(Page):
 
-    _desktop_link = (By.CSS_SELECTOR, '#nav-main-features > a')
-    _mobile_link = (By.CSS_SELECTOR, '#nav-main-mobile > a')
-    _releases_link = (By.CSS_SELECTOR, '#nav-main-releases > a')
-    _addons_link = (By.CSS_SELECTOR, '#nav-main-addons > a')
-    _support_link = (By.CSS_SELECTOR, '#nav-main-support > a')
-    _about_link = (By.CSS_SELECTOR, '#nav-main-about > a')
-
     @property
     def header(self):
         return self.Header(self.testsetup)
@@ -87,6 +80,22 @@ class Base(Page):
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'donate.mozilla.org/',
             },
+        ]
+
+        nav_links_list = [
+            {
+                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(1) > a'),
+                'url_suffix': '/mission/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(2) > a'),
+                'url_suffix': '/about/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(3) > a'),
+                'url_suffix': '/products/',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(4) > a'),
+                'url_suffix': '/contribute/',
+            }
         ]
 
         def toggle_tabzilla_dropdown(self):
