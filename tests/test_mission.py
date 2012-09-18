@@ -38,7 +38,7 @@ class TestMission:
         Assert.contains(mission_page.footer.expected_footer_logo_img,
                         mission_page.footer.footer_logo_img)
         for link in Mission.Footer.footer_links_list:
-            url = mission_page.footer.footer_link_destination(link.get('locator'))
+            url = mission_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive

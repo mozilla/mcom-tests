@@ -19,7 +19,7 @@ class TestPerformance:
         Assert.contains(performance_page.footer.expected_footer_logo_img,
                         performance_page.footer.footer_logo_img)
         for link in Performance.Footer.footer_links_list:
-            url = performance_page.footer.footer_link_destination(link.get('locator'))
+            url = performance_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive

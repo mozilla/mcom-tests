@@ -20,7 +20,7 @@ class TestBootToGecko:
         Assert.contains(b2g_page.footer.expected_footer_logo_img,
                         b2g_page.footer.footer_logo_img)
         for link in BootToGecko.Footer.footer_links_list:
-            url = b2g_page.footer.footer_link_destination(link.get('locator'))
+            url = b2g_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
