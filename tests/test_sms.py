@@ -16,7 +16,7 @@ class TestSMSPage():
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
         for link in SMS.Footer.footer_links_list:
-            url = sms_page.footer.footer_link_destination(link.get('locator'))
+            url = sms_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive

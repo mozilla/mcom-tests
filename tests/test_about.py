@@ -20,7 +20,7 @@ class TestAboutPage:
         Assert.contains(about_page.footer.expected_footer_logo_destination,
                         about_page.footer.footer_logo_destination)
         for link in AboutPage.Footer.footer_links_list:
-            url = about_page.footer.footer_link_destination(link.get('locator'))
+            url = about_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
             # Note we are only doing this valid link checking in this test as each page
             # has the same links
