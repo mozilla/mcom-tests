@@ -147,13 +147,6 @@ class Base(Page):
             },
         ]
 
-        def footer_link_destination(self, locator):
-            footer_link = self.selenium.find_element(*locator)
-            return footer_link.get_attribute('href')
-
-        def footer_link_functions(self, footer_link_href):
-            return self.get_response_code(footer_link_href)
-
         @property
         def footer_logo_destination(self):
             footer_logo_link = self.selenium.find_element(*self._footer_logo_link_locator)

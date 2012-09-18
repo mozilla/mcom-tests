@@ -20,7 +20,7 @@ class TestSecurity:
         Assert.contains(security_page.footer.expected_footer_logo_img,
                         security_page.footer.footer_logo_img)
         for link in Security.Footer.footer_links_list:
-            url = security_page.footer.footer_link_destination(link.get('locator'))
+            url = security_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
