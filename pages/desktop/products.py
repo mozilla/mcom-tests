@@ -13,86 +13,125 @@ class ProductsPage(Base):
     def go_to_page(self):
         self.open('/products/')
 
-    products_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(1) a')
-    innovations_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(2) a')
-    tools_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(3) a')
-    platforms_nav_link = (By.CSS_SELECTOR, '#products-nav li:nth-child(4) a')
-    main_nav_links_list = [
-        products_nav_link,
-        innovations_nav_link,
-        tools_nav_link,
-        platforms_nav_link
+    product_nav_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#products-nav li:nth-child(1) a'),
+            'url_suffix': '/products/#products',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products-nav li:nth-child(2) a'),
+            'url_suffix': '/products/#innovations',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products-nav li:nth-child(3) a'),
+            'url_suffix': '/products/#tools',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products-nav li:nth-child(4) a'),
+            'url_suffix': '/products/#platforms',
+        }
     ]
 
-    _firefox_image = (By.CSS_SELECTOR, '#products li:nth-child(1) a img')
-    _boot_to_gecko_image = (By.CSS_SELECTOR, '#products li:nth-child(2) a img')
-    _marketplace_image = (By.CSS_SELECTOR, '#products li:nth-child(3) a img')
-    _persona_image = (By.CSS_SELECTOR, '#products li:nth-child(4) a img')
-    _thunderbird_image = (By.CSS_SELECTOR, '#products li:nth-child(5) a img')
-    _webmaker_image = (By.CSS_SELECTOR, '#products li:nth-child(6) a img')
-    _webfwd_image = (By.CSS_SELECTOR, '#innovations li:nth-child(1) a img')
-    _labs_image = (By.CSS_SELECTOR, '#innovations li:nth-child(2) a img')
-    _pancake_image = (By.CSS_SELECTOR, '#innovations li:nth-child(3) a img')
-    _dev_tools_image = (By.CSS_SELECTOR, '#tools li:nth-child(1) a img')
-    _bugzilla_image = (By.CSS_SELECTOR, '#tools li:nth-child(2) a img')
-    _firebug_image = (By.CSS_SELECTOR, '#tools li:nth-child(3) a img')
-    _gecko_image = (By.CSS_SELECTOR, '#platforms li:nth-child(1) a img')
-    _xul_runner_image = (By.CSS_SELECTOR, '#platforms li:nth-child(2) a img')
-    _future_products_image = (By.CSS_SELECTOR, '#platforms li:nth-child(3)')
     images_list = [
-        _firefox_image,
-        _boot_to_gecko_image,
-        _marketplace_image,
-        _persona_image,
-        _thunderbird_image,
-        _webfwd_image,
-        _webmaker_image,
-        _labs_image,
-        _pancake_image,
-        _dev_tools_image,
-        _bugzilla_image,
-        _firefox_image,
-        _gecko_image,
-        _xul_runner_image,
-        _future_products_image
+        {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(1) a img'),
+            'img_name_suffix': 'badge-firefox.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a img'),
+            'img_name_suffix': 'badge-b2g.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a img'),
+            'img_name_suffix': 'badge-marketplace.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(4) a img'),
+            'img_name_suffix': 'badge-persona.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(5) a img'),
+            'img_name_suffix': 'badge-thunderbird.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(6) a img'),
+            'img_name_suffix': 'badge-webmaker.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(1) a img'),
+            'img_name_suffix': 'badge-webfwd.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(2) a img'),
+            'img_name_suffix': 'badge-labs.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(3) a img'),
+            'img_name_suffix': 'badge-pancake.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#tools li:nth-child(1) a img'),
+            'img_name_suffix': 'badge-tools.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#tools li:nth-child(2) a img'),
+            'img_name_suffix': 'badge-bugzilla.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#tools li:nth-child(3) a img'),
+            'img_name_suffix': 'badge-firebug.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#platforms li:nth-child(1) a img'),
+            'img_name_suffix': 'badge-gecko.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#platforms li:nth-child(2) a img'),
+            'img_name_suffix': 'badge-xulrunner.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#platforms li:nth-child(3) img'),
+            'img_name_suffix': 'badge-reserved.jpg',
+        }
     ]
 
-    _firefox_product_link = (By.CSS_SELECTOR, '#products li:nth-child(1) a')
-    _boot_to_gecko_product_link = (By.CSS_SELECTOR, '#products li:nth-child(2) a')
-    _marketplace_product_link = (By.CSS_SELECTOR, '#products li:nth-child(3) a')
-    _persona_product_link = (By.CSS_SELECTOR, '#products li:nth-child(4) a')
-    _thunderbird_product_link = (By.CSS_SELECTOR, '#products li:nth-child(5) a')
-    _webmaker_product_link = (By.CSS_SELECTOR, '#products li:nth-child(6) a')
-    products_link_list = [
-        _firefox_product_link,
-        _boot_to_gecko_product_link,
-        _marketplace_product_link,
-        _persona_product_link,
-        _thunderbird_product_link,
-        _webmaker_product_link
+    products_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(1) a'),
+            'url_suffix': '/firefox/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a'),
+            'url_suffix': '/b2g/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a'),
+            'url_suffix': '/apps/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(4) a'),
+            'url_suffix': '/persona/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(5) a'),
+            'url_suffix': '/thunderbird/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#products li:nth-child(6) a'),
+            'url_suffix': '/webmaker/',
+        }
     ]
 
-    _webfwd_innovation_link = (By.CSS_SELECTOR, '#innovations li:nth-child(1) a')
-    _labs_innovation_link = (By.CSS_SELECTOR, '#innovations li:nth-child(2) a')
-    _pancake_innovation_link = (By.CSS_SELECTOR, '#innovations li:nth-child(3) a')
-    innovation_links_list = [
-        _webfwd_innovation_link,
-        _labs_innovation_link,
-        _pancake_innovation_link
+    innovations_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(1) a'),
+            'url_suffix': 'webfwd.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(2) a'),
+            'url_suffix': 'mozillalabs.com/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(3) a'),
+            'url_suffix': 'wiki.mozilla.org/Pancake',
+        }
     ]
 
-    _firefox_developer_tools_link = (By.CSS_SELECTOR, '#tools li:nth-child(1) a')
-    _bugzilla_tools_link = (By.CSS_SELECTOR, '#tools li:nth-child(2) a')
-    _firebug_tools_link = (By.CSS_SELECTOR, '#tools li:nth-child(3) a')
     tools_links_list = [
-        _firefox_developer_tools_link,
-        _bugzilla_tools_link,
-        _firebug_tools_link
+        {
+            'locator': (By.CSS_SELECTOR, '#tools li:nth-child(1) a'),
+            'url_suffix': '/Tools/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#tools li:nth-child(2) a'),
+            'url_suffix': 'www.bugzilla.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#tools li:nth-child(3) a'),
+            'url_suffix': 'getfirebug.com/',
+        }
     ]
 
-    _gecko_platform_link = (By.CSS_SELECTOR, '#platforms li:nth-child(1) a')
-    _xulrunner_platform_link = (By.CSS_SELECTOR, '#platforms li:nth-child(2) a')
-    platform_links = [
-        _gecko_platform_link,
-        _xulrunner_platform_link
+    platforms_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#platforms li:nth-child(1) a'),
+            'url_suffix': '/Gecko',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#platforms li:nth-child(2) a'),
+            'url_suffix': '/XULRunner',
+        }
     ]
