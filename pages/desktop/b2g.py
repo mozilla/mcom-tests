@@ -15,112 +15,108 @@ class BootToGecko(Base):
     def go_to_page(self):
         self.open('/b2g/')
 
-    _home_breadcrumb = (By.CSS_SELECTOR, '.breadcrumbs > a:nth-of-type(1)')
-    _boot_to_gecko_breadcrumb = (By.CSS_SELECTOR, '.breadcrumbs > a:nth-of-type(2)')
-    _home_navbar_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-of-type(1) > a')
-    _about_navbar_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-of-type(2) > a')
-    _faq_navbar_link = (By.CSS_SELECTOR, '#nav-main > ul > li:nth-of-type(3) > a')
-    _mobile_devices_header = (By.CSS_SELECTOR, '#main-feature > .large')
-    _welcome_section = (By.CSS_SELECTOR, '#primary')
-    _welcome_section_image = (By.CSS_SELECTOR, '#primary > img')
-    _new_web_standards_header = (By.CSS_SELECTOR, '.span5:nth-of-type(2) > h3:nth-of-type(1)')
-    _freedom_platforms_header = (By.CSS_SELECTOR, '.span5:nth-of-type(2) > h3:nth-of-type(2)')
-    _developer_opportunities_header = (By.CSS_SELECTOR, '.span5:nth-of-type(1) > h3:nth-of-type(1)')
-    _customizations_for_oems_header = (By.CSS_SELECTOR, '.span5:nth-of-type(1)> h3:nth-of-type(2)')
-    _consumer_freedom_header = (By.CSS_SELECTOR, '.span5:nth-of-type(1)> h3:nth-of-type(3)')
-    _more_information_section = (By.CSS_SELECTOR, '#more-info > h3')
-    _about_the_project_link = (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(1) > a')
-    _faq_link = (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(2) > a')
-    _mobile_web_api_link = (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(3) > a')
-    _web_platform_link = (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(4) > a')
-    _telefonica_link = (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(5) > a')
-    _gaia_link = (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(6) > a')
-    _recommended_reading_header = (By.CSS_SELECTOR, '#references > h4')
-    _boot_to_gecko_team_wiki_link = (By.CSS_SELECTOR, '#references > ul > li > a')
+    b2g_nav_links_list = [
+        {
+            'name': 'Home',
+            'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-of-type(1) > a'),
+            'url_suffix': '/b2g/',
+        }, {
+            'name': 'About',
+            'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-of-type(2) > a'),
+            'url_suffix': '/b2g/about/',
+        }, {
+            'name': 'FAQ',
+            'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-of-type(3) > a'),
+            'url_suffix': '/b2g/faq/',
+        }
+    ]
 
-    @property
-    def is_home_breadcrumb_visible(self):
-        return self.is_element_visible(*self._homebreadcrumb)
+    breadcrumb_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '.breadcrumbs > a:nth-of-type(1)'),
+            'url_suffix': '/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.breadcrumbs > a:nth-of-type(2)'),
+            'url_suffix': '/b2g/',
+        }
+    ]
 
-    @property
-    def is_boot_to_gecko_breadcrum_visible(self):
-        return self.is_element_visible(*self._)
+    more_information_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(1) > a'),
+            'url_suffix': 'blog.mozilla.org/blog/2012/07/02/firefox-mobile-os/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(2) > a'),
+            'url_suffix': '/b2g/about/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(3) > a'),
+            'url_suffix': '/b2g/faq/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(4) > a'),
+            'url_suffix': 'brendaneich.com/2012/02/mobile-web-api-evolution/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(5) > a'),
+            'url_suffix': 'blog.mozilla.com/blog/2012/02/27/mozilla-in-mobile-the-web-is-the-platform/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#more-info > ul > li:nth-of-type(6) > a'),
+            'url_suffix': 'pressoffice.telefonica.com/jsp/base.jsp?contenido=/jsp/notasdeprensa/notadetalle.jsp&selectNumReg=5&pagina=1&id=66&origen=notapres&idm=eng&pais=1&elem=17874',
+        }
+    ]
 
-    @property
-    def is_home_navbar_visible(self):
-        return self.is_element_visible(*self._home_navbar_link)
+    images_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#primary > img'),
+            'img_name_suffix': 'hero.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.span5:nth-of-type(1) figure img:nth-child(1)'),
+            'img_name_suffix': 'example-messages.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.span5:nth-of-type(1) figure img:nth-child(2)'),
+            'img_name_suffix': 'example-contacts.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.span5:nth-of-type(2) figure img:nth-child(1)'),
+            'img_name_suffix': 'example-incoming.jpg',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.span5:nth-of-type(2) figure img:nth-child(2)'),
+            'img_name_suffix': 'example-camera.jpg',
+        }
+    ]
 
-    @property
-    def is_about_navbar_visible(self):
-        return self.is_element_visible(*self._about_navbar_link)
-
-    @property
-    def is_faq_navbar_visible(self):
-        return self.is_element_visible(*self._faq_navbar_link)
+    _mobile_devices_header_locator = (By.CSS_SELECTOR, '#main-feature > .large')
+    _welcome_section_locator = (By.CSS_SELECTOR, '#primary')
+    _developer_opportunities_header_locator = (By.CSS_SELECTOR, '.span5:nth-of-type(1) > h3:nth-of-type(1)')
+    _customizations_for_oems_header_locator = (By.CSS_SELECTOR, '.span5:nth-of-type(1)> h3:nth-of-type(2)')
+    _consumer_freedom_header_locator = (By.CSS_SELECTOR, '.span5:nth-of-type(1)> h3:nth-of-type(3)')
+    _new_web_standards_header_locator = (By.CSS_SELECTOR, '.span5:nth-of-type(2) > h3:nth-of-type(1)')
+    _freedom_platforms_header_locator = (By.CSS_SELECTOR, '.span5:nth-of-type(2) > h3:nth-of-type(2)')
 
     @property
     def is_mobile_devices_header_visible(self):
-        return self.is_element_visible(*self._mobile_devices_header)
+        return self.is_element_visible(*self._mobile_devices_header_locator)
 
     @property
     def is_welcome_section_visible(self):
-        return self.is_element_visible(*self._welcome_section)
-
-    @property
-    def is_welcome_section_image_visible(self):
-        return self.is_element_visible(*self._welcome_section_image)
-
-    @property
-    def is_new_web_standards_header_visible(self):
-        return self.is_element_visible(*self._new_web_standards_header)
-
-    @property
-    def is_freedom_platforms_header_visible(self):
-        return self.is_element_visible(*self._freedom_platforms_header)
+        return self.is_element_visible(*self._welcome_section_locator)
 
     @property
     def is_developer_opportunities_header_visible(self):
-        return self.is_element_visible(*self._developer_opportunities_header)
+        return self.is_element_visible(*self._developer_opportunities_header_locator)
 
     @property
     def is_customizations_for_oems_header_visible(self):
-        return self.is_element_visible(*self._customizations_for_oems_header)
+        return self.is_element_visible(*self._customizations_for_oems_header_locator)
 
     @property
-    def is_more_information_section_visible(self):
-        return self.is_element_visible(*self._more_information_section)
+    def is_consumer_freedom_header_visible(self):
+        return self.is_element_visible(*self._consumer_freedom_header_locator)
 
     @property
-    def is_about_the_project_link_visible(self):
-        return self.is_element_visible(*self._about_the_project_link)
+    def is_new_web_standards_header_visible(self):
+        return self.is_element_visible(*self._new_web_standards_header_locator)
 
     @property
-    def is_faq_link_visible(self):
-        return self.is_element_visible(*self._faq_link)
-
-    @property
-    def is_mobile_web_api_link_visible(self):
-        return self.is_element_visible(*self._mobile_web_api_link)
-
-    @property
-    def is_web_platform_link_visible(self):
-        return self.is_element_visible(*self._web_platform_link)
-
-    @property
-    def is_telefonica_link_visible(self):
-        return self.is_element_visible(*self._telefonica_link)
-
-    @property
-    def is_gaia_link_visible(self):
-        return self.is_element_visible(*self._gaia_link)
-
-    @property
-    def is_recommended_reading_header_visible(self):
-        return self.is_element_visible(*self._recommended_reading_header)
-
-    @property
-    def is_boot_to_gecko_team_wiki_link_visible(self):
-        return self.is_element_visible(*self._boot_to_gecko_team_wiki_link)
+    def is_freedom_platforms_header_visible(self):
+        return self.is_element_visible(*self._freedom_platforms_header_locator)
 
     @property
     def about_page(self):
@@ -135,9 +131,9 @@ class BootToGecko(Base):
         def go_to_page(self):
             self.open('/b2g/about/')
 
-        _about_the_project_header = (By.CSS_SELECTOR, '.span6 > h1')
-        _technology_header = (By.CSS_SELECTOR, '.span6 > h2:nth-of-type(1)')
-        _open_standards_header = (By.CSS_SELECTOR, '.span6 > h2:nth-of-type(2)')
+        _about_the_project_header_locator = (By.CSS_SELECTOR, '.span6 > h1')
+        _technology_header_locator = (By.CSS_SELECTOR, '.span6 > h2:nth-of-type(1)')
+        _open_standards_header_locator = (By.CSS_SELECTOR, '.span6 > h2:nth-of-type(2)')
 
         @property
         def is_about_the_project_header_visible(self):
@@ -156,12 +152,12 @@ class BootToGecko(Base):
         def go_to_page(self):
             self.open('/b2g/faq/')
 
-        _faq_header = (By.CSS_SELECTOR, '.span6 > h1')
-        _what_is_boot_to_gecko_header = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(1)')
-        _aim_of_project_header = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(2)')
-        _team_size_header = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(3)')
-        _relationships_header = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(4)')
-        _webapi_replacement_header = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(5)')
+        _faq_header_locator = (By.CSS_SELECTOR, '.span6 > h1')
+        _what_is_boot_to_gecko_header_locator = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(1)')
+        _aim_of_project_header_locator = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(2)')
+        _team_size_header_locator = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(3)')
+        _relationships_header_locator = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(4)')
+        _webapi_replacement_header_locator = (By.CSS_SELECTOR, '.span6 > dl > dt:nth-of-type(5)')
 
         @property
         def is_faq_header_visible(self):
