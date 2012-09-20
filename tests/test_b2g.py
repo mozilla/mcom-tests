@@ -78,5 +78,8 @@ class TestBootToGecko:
     def test_about_page(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.about_page.go_to_page()
-        Assert.true(b2g_page.is_home_navbar_visible)
-        Assert.true(b2g_page.is_faq_navbar_visible)
+        for link in b2g_page.b2g_nav_links_list:
+            if link.get('name') != 'About':
+                url = b2g_page.link_destination(link.get('locator'))
+                Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+                Assert.true(b2g_page.is_valid_link(url), '%s is not a valid url.' % url)
