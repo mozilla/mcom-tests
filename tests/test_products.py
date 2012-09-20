@@ -30,22 +30,56 @@ class TestProductsPage:
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
-    def test_main_nav_section(self, mozwebqa):
+    def test_product_nav_links_are_correct(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        for link in products_page.main_nav_links_list:
-            Assert.true(products_page.is_element_present(*link), link[1])
+        for link in products_page.product_nav_links_list:
+            url = products_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(products_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
-    def test_image_section(self, mozwebqa):
+    def test_images_are_correct(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        for link in products_page.images_list:
-            Assert.true(products_page.is_element_present(*link), link[1])
+        for image in products_page.images_list:
+            src = products_page.image_source(image.get('locator'))
+            Assert.true(src.endswith(image.get('img_name_suffix')),
+                        '%s does not end with %s' % (src, image.get('img_name_suffix')))
+            Assert.true(products_page.is_valid_link(src), '%s is not a valid url' % src)
 
     @pytest.mark.nondestructive
-    def test_links_are_valid(self, mozwebqa):
+    def test_products_links_are_correct(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        for link in products_page.products_link_list:
-            Assert.true(products_page.is_element_visible(*link), link[1])
+        for link in products_page.products_links_list:
+            url = products_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(products_page.is_valid_link(url), '%s is not a valid url' % url)
+
+    @pytest.mark.nondestructive
+    def test_innovations_links_are_correct(self, mozwebqa):
+        products_page = ProductsPage(mozwebqa)
+        products_page.go_to_page()
+        for link in products_page.innovations_links_list:
+            url = products_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(products_page.is_valid_link(url), '%s is not a valid url' % url)
+
+    @pytest.mark.nondestructive
+    def test_tools_links_are_correct(self, mozwebqa):
+        products_page = ProductsPage(mozwebqa)
+        products_page.go_to_page()
+        for link in products_page.tools_links_list:
+            url = products_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(products_page.is_valid_link(url), '%s is not a valid url' % url)
+
+    @pytest.mark.nondestructive
+    def test_platforms_links_are_correct(self, mozwebqa):
+        products_page = ProductsPage(mozwebqa)
+        products_page.go_to_page()
+        for link in products_page.platforms_links_list:
+            url = products_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(products_page.is_valid_link(url), '%s is not a valid url' % url)
