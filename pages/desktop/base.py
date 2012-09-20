@@ -27,6 +27,10 @@ class Base(Page):
         link = self.selenium.find_element(*locator)
         return link.get_attribute('href')
 
+    def image_source(self, locator):
+        link = self.selenium.find_element(*locator)
+        return link.get_attribute('src')
+
     @property
     def video_sources_list(self):
         srcs = []
