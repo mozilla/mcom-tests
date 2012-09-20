@@ -26,70 +26,35 @@ class Contribute(Base):
         _area_of_interest_locator = (By.ID, 'id_interest')
         _submit_button_locator = (By.ID, 'form-submit')
 
-        _note_message_locator = (By.CSS_SELECTOR, '#form-details > .form-column-1 > p')
         _comments_locator = (By.ID, 'id_comments')
 
         _privacy_checkbox_locator = (By.ID, 'id_privacy')
         _privacy_title_locator = (By.CSS_SELECTOR, '.privacy-check-label span.title')
-        _privacy_title_link_locator = (By.CSS_SELECTOR, '.privacy-check-label span.title > a')
 
         _newsletter_checkbox_locator = (By.ID, 'id_newsletter')
         _newsletter_title_locator = (By.CSS_SELECTOR, '.field-newsletter > label')
 
-        _form_section_locator = (By.ID, 'help-form')
+        _recaptcha_table_locator = (By.ID, 'recaptcha_table')
+        _recaptcha_response_field_locator = (By.ID, 'recaptcha_response_field')
+
+        privacy_link = {
+            'locator': (By.CSS_SELECTOR, '.privacy-check-label span.title > a'),
+            'url_suffix': '/privacy-policy'
+        }
 
         @property
-        def help_form_title(self):
-            return self.selenium.find_element(*self._want_to_help_title_locator).text
+        def elements_are_visible(self):
+            return self.is_element_visible(*self._want_to_help_title_locator) and\
+                self.is_element_visible(*self._comments_locator) and\
+                self.is_element_visible(*self._area_of_interest_locator) and\
+                self.is_element_visible(*self._privacy_checkbox_locator) and\
+                self.is_element_visible(*self._privacy_title_locator) and\
+                self.is_element_visible(*self._newsletter_checkbox_locator) and\
+                self.is_element_visible(*self._newsletter_title_locator) and\
+                self.is_element_visible(*self._recaptcha_table_locator) and\
+                self.is_element_visible(*self._recaptcha_response_field_locator) and\
+                self.is_element_visible(*self._submit_button_locator)
 
-        @property
-        def email_placeholder(self):
-            return self.selenium.find_element(*self._email_field_locator).get_attribute('placeholder')
-
-        @property
-        def areas_of_interest_text(self):
-            return [area.text for area in  \
-            Select(self.selenium.find_element(*self._area_of_interest_locator))]
-
-        @property
-        def submit_button_text(self):
-            return self.selenium.find_element(*self._submit_button_locator).get_attribute_('value')
-
-        @property
-        def note_message(self):
-            return self.selenium.find_element(*self._note_message_locator).text
-
-        @property
-        def comments_placeholder(self):
-            return self.selenium.find_element(*self._comments_ocator).get_attribute('placeholder')
-
-        @property
-        def privacy_text(self):
-            return self.selenium.find_element(*self._privacy_title_locator).text
-
-        @property
-        def privacy_link(self):
-            return self.selenium.find_element(*self.privacy_title_link_locator).get_attribute('href')
-
-        @property
-        def get_newsletter_text(self):
-            return self.selenium.find_element(*self.newsletter_title_locator).text
-
-        @property
-        def is_additional_info_visible(self):
-            return self.is_element_visible(*self._privacy_title_locator) and \
-            self.is_element_visible(*self._privacy_checkbox_locator) and \
-            self.is_element_visible(*self._note_message_locator) and \
-            self.is_element_visible(*self._comments_locator) and \
-            self.is_element_visible(*self._newsletter_checkbox_locator) and \
-            self.is_element_visible(*self.newsletter_title_locator)
-
-        @property
         def click_email(self):
             self.selenium.find_element(*self._email_field_locator).click()
-            self.wait_for_ajax()
-
-        @property
-        def click_area_of_interest(self):
-            self.selenium.find_element(*self._area_of_interest_locator).click()
             self.wait_for_ajax()

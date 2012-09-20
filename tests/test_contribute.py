@@ -32,3 +32,16 @@ class TestContribute:
         for link in Contribute.Header.tabzilla_links_list:
             url = contribute_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+
+    @pytest.mark.nondestructive
+    def test_want_to_help_form_is_correct(self, mozwebqa):
+        contribute_page = Contribute(mozwebqa)
+        contribute_page.go_to_page()
+        help_form = contribute_page.help_form
+        # Expand the help form
+        help_form.click_email()
+        Assert.true(contribute_page.help_form.elements_are_visible)
+        privacy_link = help_form.privacy_link
+        url = contribute_page.link_destination(privacy_link.get('locator'))
+        Assert.true(url.endswith(privacy_link.get('url_suffix')), '%s does not end with %s' % (url, privacy_link.get('url_suffix')))
+        Assert.true(contribute_page.is_valid_link(url), '%s is not a valid url.' % url)
