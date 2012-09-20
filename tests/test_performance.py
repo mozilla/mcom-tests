@@ -40,17 +40,31 @@ class TestPerformance:
         Assert.true(performance_page.downloadRegion.are_secondary_links_visible)
 
     @pytest.mark.nondestructive
-    def test_performance_icons(self, mozwebqa):
+    def test_billboard_links_are_correct(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
-        Assert.true(performance_page.video_overlay)
-        Assert.true(performance_page.perf_web_ico)
-        Assert.true(performance_page.perf_hardware_ico)
+        for link in performance_page.billboard_links_list:
+            url = performance_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(performance_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
-    def test_performance_images(self, mozwebqa):
+    def test_performance_image_is_correct(self, mozwebqa):
         self.selenium = mozwebqa.selenium
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
-        Assert.true(performance_page.perf_hardware_img)
+        src = performance_page.perf_hardware_img_src
+        Assert.true(src.endswith('hardware-accel.png'))
+        Assert.true(performance_page.is_valid_link(src), '%s is not a valid url.' % src)
+
+    @pytest.mark.xfail(reason='Bug 792875 - Screencast Theora file is a 404 on Performance page')
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=792875
+    @pytest.mark.nondestructive
+    def test_video_is_correct(self, mozwebqa):
+        self.selenium = mozwebqa.selenium
+        performance_page = Performance(mozwebqa)
+        performance_page.go_to_page()
+        Assert.true(performance_page.is_video_overlay_visible)
+        for src in performance_page.video_sources_list:
+            Assert.true(performance_page.is_valid_link(src), '%s is not a valid url' % src)

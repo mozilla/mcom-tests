@@ -27,6 +27,13 @@ class Base(Page):
         link = self.selenium.find_element(*locator)
         return link.get_attribute('href')
 
+    @property
+    def video_sources_list(self):
+        srcs = []
+        for source in self.selenium.find_elements(*self._video_sources_locator):
+            srcs.append(source.get_attribute('src'))
+        return srcs
+
     class Header(Page):
 
         _tabzilla = (By.ID, 'tabzilla')

@@ -38,10 +38,3 @@ class Mission(Base):
     @property
     def is_video_overlay_visible(self):
         return self.is_element_visible(*self._video_overlay_locator)
-
-    @property
-    def video_sources_list(self):
-        srcs = []
-        for source in self.selenium.find_elements(*self._video_sources_locator):
-            srcs.append(source.get_attribute('src'))
-        return srcs
