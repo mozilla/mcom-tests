@@ -35,15 +35,26 @@ class TestPartners:
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
-    def test_partner_billboard_links(self, mozwebqa):
+    def test_partner_billboard_links_are_correct(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.true(partners_page.are_billboards_visible)
-        Assert.true(partners_page.is_opening_soon_image_visible)
+        for link in partners_page.billboard_links_list:
+            url = partners_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(partners_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
-    def test_submit_app_button_url(self, mozwebqa):
+    def test_mdn_apps_link_destination_is_correct(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.equal(partners_page.check_submit_apps_button_url,
-                     'https://marketplace.mozilla.org/developers/')
+        url = partners_page.mdn_apps_link_destination
+        Assert.contains('developer.mozilla.org', url)
+        Assert.contains('/apps', url)
+        Assert.true(partners_page.is_valid_link(url), '%s is not a valid url' % url)
+
+    @pytest.mark.nondestructive
+    def test_partner_images_are_present(self, mozwebqa):
+        partners_page = Partners(mozwebqa)
+        partners_page.go_to_page()
+        Assert.true(partners_page.is_opening_soon_image_visible)
+        Assert.true(partners_page.are_pointer_images_visible)
