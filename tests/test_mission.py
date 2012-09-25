@@ -20,8 +20,6 @@ class TestMission:
             Assert.true(mission_page.is_valid_link(url), '%s is not a valid url' % url)
         Assert.true(mission_page.is_video_overlay_visible)
 
-    @pytest.mark.xfail(reason='Bug 790493 - Mozilla 2011 story Theora file is a 404 on Mission page')
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=790493
     @pytest.mark.nondestructive
     def test_video_srcs_are_valid(self, mozwebqa):
         mission_page = Mission(mozwebqa)
