@@ -58,8 +58,6 @@ class TestPerformance:
         Assert.true(src.endswith('hardware-accel.png'))
         Assert.true(performance_page.is_valid_link(src), '%s is not a valid url.' % src)
 
-    @pytest.mark.xfail(reason='Bug 792875 - Screencast Theora file is a 404 on Performance page')
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=792875
     @pytest.mark.nondestructive
     def test_video_is_correct(self, mozwebqa):
         self.selenium = mozwebqa.selenium
