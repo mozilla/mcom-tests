@@ -41,13 +41,28 @@ class TestSecurity:
         Assert.true(security_page.downloadRegion.are_secondary_links_visible)
 
     @pytest.mark.nondestructive
-    def test_are_menus_visible(self, mozwebqa):
+    def test_billboard_links_are_correct(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
-        Assert.true(security_page.are_menus_visible)
+        for link in security_page.billboard_links_list:
+            url = security_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(security_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
-    def test_are_screenshots_visible(self, mozwebqa):
+    def test_section_links_are_correct(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
-        Assert.true(security_page.are_screenshots_visible)
+        for link in security_page.section_links_list:
+            url = security_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(security_page.is_valid_link(url), '%s is not a valid url' % url)
+
+    @pytest.mark.nondestructive
+    def test_images_are_correct(self, mozwebqa):
+        security_page = Security(mozwebqa)
+        security_page.go_to_page()
+        for image in security_page.images_list:
+            src = security_page.image_source(image.get('locator'))
+            Assert.contains(image.get('img_name_contains'), src)
+            Assert.true(security_page.is_valid_link(src), '%s is not a valid url' % src)
