@@ -13,15 +13,22 @@ from pages.desktop.technology import Technology
 class TestTechnologyPage:
 
     @pytest.mark.nondestructive
-    def test_billboard_links_are_visible(self, mozwebqa):
+    def test_billboard_links_are_correct(self, mozwebqa):
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
-        Assert.true(technology_page.is_developer_tools_link_visible)
-        Assert.true(technology_page.is_html5_link_visible)
-        Assert.true(technology_page.is_css_link_visible)
-        Assert.true(technology_page.is_apis_link_visible)
-        Assert.true(technology_page.is_svg_link_visible)
-        Assert.true(technology_page.is_security_link_visible)
+        for link in technology_page.billboard_links_list:
+            url = technology_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(technology_page.is_valid_link(url), '%s is not a valid url' % url)
+
+    @pytest.mark.nondestructive
+    def test_more_info_links_are_correct(self, mozwebqa):
+        technology_page = Technology(mozwebqa)
+        technology_page.go_to_page()
+        for link in technology_page.more_info_links_list:
+            url = technology_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(technology_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
