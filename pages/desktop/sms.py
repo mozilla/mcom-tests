@@ -14,24 +14,24 @@ class SMS(Base):
     def go_to_page(self):
         self.open('/firefox/sms/')
 
-    _device_support_link = (By.CSS_SELECTOR, '.more p:nth-child(1) a')
-    _learn_more_link = (By.CSS_SELECTOR, '.more p:nth-child(2) a')
     _send_link_button = (By.CSS_SELECTOR, '.button.arrow')
     _google_play_link = (By.CSS_SELECTOR, '.also a')
     _sms_confirmation = (By.CSS_SELECTOR, '.large')
     _phone_textbox = (By.CSS_SELECTOR, '#number')
 
+    info_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '.more p:nth-child(1) a'),
+            'url_suffix': '/firefox/mobile/platforms/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.more p:nth-child(2) a'),
+            'url_suffix': '/firefox/mobile/features/',
+        }
+    ]
+
     @property
     def is_textbox_visible(self):
         return self.is_element_visible(*self._phone_textbox)
-
-    @property
-    def is_learn_more_link_visible(self):
-        return self.is_element_visible(*self._learn_more_link)
-
-    @property
-    def is_device_support_link_visible(self):
-        return self.is_element_visible(*self._device_support_link)
 
     @property
     def is_google_play_link_visible(self):

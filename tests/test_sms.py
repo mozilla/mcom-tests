@@ -34,7 +34,14 @@ class TestSMSPage():
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
         Assert.true(sms_page.is_google_play_link_visible)
-        Assert.true(sms_page.is_device_support_link_visible)
-        Assert.true(sms_page.is_learn_more_link_visible)
         Assert.true(sms_page.is_textbox_visible)
         Assert.true(sms_page.submit_sms_form())
+
+    @pytest.mark.nondestructive
+    def test_info_links_are_correct(self, mozwebqa):
+        sms_page = SMS(mozwebqa)
+        sms_page.go_to_page()
+        for link in sms_page.info_links_list:
+            url = sms_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(sms_page.is_valid_link(url), '%s is not a valid url' % url)
