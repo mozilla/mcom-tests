@@ -50,4 +50,7 @@ class TestTechnologyPage:
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
         Assert.true(technology_page.downloadRegion.is_download_link_visible)
-        Assert.true(technology_page.downloadRegion.are_secondary_links_visible)
+        for link in technology_page.downloadRegion.secondary_links_list:
+            url = technology_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(technology_page.is_valid_link(url), '%s is not a valid url' % url)
