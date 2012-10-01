@@ -13,13 +13,36 @@ from pages.desktop.technology import Technology
 class TestTechnologyPage:
 
     @pytest.mark.nondestructive
-    def test_billboard_links_are_correct(self, mozwebqa):
+    def test_billboard_links_are_visible(self, mozwebqa):
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
+        bad_links = []
+        for link in technology_page.billboard_links_list:
+            if not technology_page.is_element_visible(*link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.nondestructive
+    def test_billboard_link_destinations_are_correct(self, mozwebqa):
+        technology_page = Technology(mozwebqa)
+        technology_page.go_to_page()
+        bad_links = []
         for link in technology_page.billboard_links_list:
             url = technology_page.link_destination(link.get('locator'))
-            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
-            Assert.true(technology_page.is_valid_link(url), '%s is not a valid url' % url)
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    @pytest.mark.nondestructive
+    def test_billboard_link_urls_are_valid(self, mozwebqa):
+        technology_page = Technology(mozwebqa)
+        technology_page.go_to_page()
+        bad_urls = []
+        for link in technology_page.billboard_links_list:
+            url = technology_page.link_destination(link.get('locator'))
+            if not technology_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
     def test_more_info_links_are_correct(self, mozwebqa):
