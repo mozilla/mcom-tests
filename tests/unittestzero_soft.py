@@ -59,3 +59,7 @@ class SoftAssertMetaclass(type):
 
 class SoftAssert(object):
     __metaclass__ = SoftAssertMetaclass
+
+    @classmethod
+    def summarize(self, failure_list):
+        Assert.equal(0, len(failure_list), '%s problems found: ' % len(failure_list) + ', '.join(failure_list))
