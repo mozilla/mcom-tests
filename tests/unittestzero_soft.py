@@ -41,25 +41,30 @@
 from unittestzero import Assert
 
 
-class SoftAssertMetaclass(type):
+class SoftAsserter(object):
+    """
+    Used to call soft asserts from within a test
+    """
+
+    def __init__(self):
+        # a list which collects failure messages
+        self._failure_list = []
 
     def __getattr__(self, name):
-
+        """
+        Passes calls to unittestzero.Assert to test the logic and generate failure messages
+        """
         def get(self, *args, **kwargs):
             try:
-                failure_list = args[0]
-                rest_of_args = args[1:]
                 method = getattr(Assert(), name)
-                method(*rest_of_args, **kwargs)
+                method(*args, **kwargs)
             except Exception as e:
-                failure_list.append(e.message)
-
+                # the assert failed, so add the failure message into the list
+                self._failure_list.append(e.message)
         return get.__get__(self)
 
-
-class SoftAssert(object):
-    __metaclass__ = SoftAssertMetaclass
-
-    @classmethod
-    def summarize(self, failure_list):
-        Assert.equal(0, len(failure_list), '%s problems found: ' % len(failure_list) + ', '.join(failure_list))
+    def summarize(self):
+        """
+        Checks whether any failures occurred and if so reports them all back via a failed assertion
+        """
+        Assert.equal(0, len(self._failure_list), '%s problems found: ' % len(self._failure_list) + ', '.join(self._failure_list))
