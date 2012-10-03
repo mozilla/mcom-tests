@@ -84,7 +84,7 @@ class ProductsPage(Base):
             'url_suffix': '/firefox/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a'),
-            'url_suffix': '/b2g/',
+            'url_suffix': '/firefoxos/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a'),
             'url_suffix': '/apps/',
