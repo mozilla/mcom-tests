@@ -35,7 +35,7 @@ class ProductsPage(Base):
             'img_name_suffix': 'badge-firefox.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a img'),
-            'img_name_suffix': 'badge-b2g.jpg',
+            'img_name_suffix': 'badge-firefoxos.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a img'),
             'img_name_suffix': 'badge-marketplace.jpg',
