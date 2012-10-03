@@ -34,6 +34,7 @@ class TestBootToGecko:
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason='test needs updating')
     def test_headings_are_present(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
@@ -46,6 +47,7 @@ class TestBootToGecko:
         Assert.true(b2g_page.is_freedom_platforms_header_visible)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason='test needs updating')
     def test_navbar_links_are_correct(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
@@ -56,6 +58,7 @@ class TestBootToGecko:
                 Assert.true(b2g_page.is_valid_link(url), '%s is not a valid url.' % url)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason='test needs updating')
     def test_more_information_links_are_correct(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
@@ -65,6 +68,7 @@ class TestBootToGecko:
             Assert.true(b2g_page.is_valid_link(url), '%s is not a valid url.' % url)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason='test needs updating')
     def test_images_are_correct(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.go_to_page()
@@ -75,6 +79,7 @@ class TestBootToGecko:
             Assert.true(b2g_page.is_valid_link(src), '%s is not a valid url' % src)
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason='test needs updating')
     def test_about_page(self, mozwebqa):
         b2g_page = BootToGecko(mozwebqa)
         b2g_page.about_page.go_to_page()
