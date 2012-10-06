@@ -33,6 +33,8 @@ class TestContribute:
             url = contribute_page.link_destination(link.get('locator'))
             Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
 
+    
+    @pytest.mark.xfail(reason = "XXXFIXME - xfailing until we can take a closer look")
     @pytest.mark.nondestructive
     def test_want_to_help_form_is_correct(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
