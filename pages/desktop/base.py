@@ -115,13 +115,6 @@ class Base(Page):
         def is_tabzilla_search_box_visible(self):
             return self.is_element_visible(*self._tabzilla_search_textbox)
 
-        @property
-        def are_tabzilla_links_visible(self):
-            for link in self.tabzilla_links_list:
-                if not self.is_element_visible(*link.get('locator')):
-                    return False
-            return True
-
     class Footer(Page):
 
         _footer_locator = (By.CSS_SELECTOR, '#colophon')
