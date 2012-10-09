@@ -44,7 +44,11 @@ class TestAboutPage:
         about_page.go_to_page()
         Assert.true(about_page.header.is_tabzilla_panel_visible)
         about_page.header.toggle_tabzilla_dropdown()
-        Assert.true(about_page.header.are_tabzilla_links_visible, 'Not all tabzilla links are visible.')
+        bad_links = []
+        for link in about_page.header.tabzilla_links_list:
+            if not about_page.is_element_visible(*link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_navbar_links_are_correct(self, mozwebqa):
