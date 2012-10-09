@@ -30,7 +30,6 @@ class TestAboutPage:
     def test_tabzilla_links_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.true(about_page.header.is_tabzilla_panel_visible)
         about_page.header.toggle_tabzilla_dropdown()
         for link in AboutPage.Header.tabzilla_links_list:
             url = about_page.link_destination(link.get('locator'))
@@ -38,6 +37,18 @@ class TestAboutPage:
             # Note we are only doing this valid link checking in this test as each page
             # has the same links
             Assert.true(about_page.is_valid_link(url), '%s is not a valid url.' % url)
+
+    @pytest.mark.nondestructive
+    def test_tabzilla_links_are_visible(self, mozwebqa):
+        about_page = AboutPage(mozwebqa)
+        about_page.go_to_page()
+        Assert.true(about_page.header.is_tabzilla_panel_visible)
+        about_page.header.toggle_tabzilla_dropdown()
+        bad_links = []
+        for link in about_page.header.tabzilla_links_list:
+            if not about_page.is_element_visible(*link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_navbar_links_are_correct(self, mozwebqa):
