@@ -37,7 +37,10 @@ class TestPerformance:
         performance_page = Performance(mozwebqa)
         performance_page.go_to_page()
         Assert.true(performance_page.downloadRegion.is_download_link_visible)
-        Assert.true(performance_page.downloadRegion.are_secondary_links_visible)
+        for link in performance_page.downloadRegion.secondary_links_list:
+            url = performance_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(performance_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
     def test_billboard_links_are_correct(self, mozwebqa):

@@ -38,7 +38,10 @@ class TestSecurity:
         security_page = Security(mozwebqa)
         security_page.go_to_page()
         Assert.true(security_page.downloadRegion.is_download_link_visible)
-        Assert.true(security_page.downloadRegion.are_secondary_links_visible)
+        for link in security_page.downloadRegion.secondary_links_list:
+            url = security_page.link_destination(link.get('locator'))
+            Assert.true(url.endswith(link.get('url_suffix')), '%s does not end with %s' % (url, link.get('url_suffix')))
+            Assert.true(security_page.is_valid_link(url), '%s is not a valid url' % url)
 
     @pytest.mark.nondestructive
     def test_billboard_links_are_correct(self, mozwebqa):
