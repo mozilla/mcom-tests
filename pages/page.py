@@ -68,7 +68,7 @@ class Page(object):
     def is_element_visible(self, *locator):
         try:
             return self.selenium.find_element(*locator).is_displayed()
-        except ElementNotVisibleException, NoSuchElementException:
+        except (ElementNotVisibleException, NoSuchElementException):
             # this will return a snapshot, which takes time.
             return False
 
