@@ -15,5 +15,8 @@ class TestNotes:
         notes_page = Notes(mozwebqa)
         notes_page.go_to_page()
         Assert.contains("Notes", notes_page.firefox_notes_header_text)
+        bad_urls = []
         for url in notes_page.all_links:
-            Assert.true(notes_page.is_valid_link(url), '%s is not a valid url.' % url)
+            if not notes_page.is_valid_link(url):
+                bad_urls.append('%s is not a valid url' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
