@@ -20,7 +20,7 @@ class TestLocalizations:
         localizations_page.go_to_page()
         languages = localizations_page.released_languages + localizations_page.beta_languages
         #languages = [localizations_page.language_by_id('ar')] # short list for debugging
-        bad_statuses = []
+        bad_links = []
         for language in languages:
             for (url, os_name) in ((language.windows_url, "Windows"),
                                    (language.osx_url, "OSX"),
@@ -28,7 +28,7 @@ class TestLocalizations:
                 response = requests.head(url, allow_redirects=False)
                 status = response.status_code
                 if status != 302:
-                    bad_statuses.append("Lang '%s' %s link: status %s"
+                    bad_links.append("Lang '%s' %s link: status %s"
                                             % (language.id, os_name, status))
-        Assert.equal(0, len(bad_statuses),
-                        'Expected status code 302.  ' + ",  ".join(bad_statuses))
+        Assert.equal(0, len(bad_links),
+                        'Expected status code 302.  ' + ",  ".join(bad_links))
