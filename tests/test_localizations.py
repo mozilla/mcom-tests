@@ -18,22 +18,17 @@ class TestLocalizations:
         '''
         localizations_page = Localizations(mozwebqa)
         localizations_page.go_to_page()
-
-        # get all languages from both tables
         languages = localizations_page.released_languages + localizations_page.beta_languages
         #languages = [localizations_page.language_by_id('ar')] # short list for debugging
-        failure_buffer = ''
-
+        bad_statuses = []
         for language in languages:
-            for (url, os) in ((language.windows_url, "Windows"),
-                              (language.osx_url, "OSX"),
-                              (language.linux_url, "Linux")):
+            for (url, os_name) in ((language.windows_url, "Windows"),
+                                   (language.osx_url, "OSX"),
+                                   (language.linux_url, "Linux")):
                 response = requests.head(url, allow_redirects=False)
                 status = response.status_code
                 if status != 302:
-                    failure_buffer = failure_buffer + \
-                                  "Lang '%s' %s link: status %s.  " % (language.id, os, status)
-
-        # generate a collective failure for failed link checks
-        if len(failure_buffer) > 0:
-            Assert.fail('Expected status code 302.  ' + failure_buffer)
+                    bad_statuses.append("Lang '%s' %s link: status %s"
+                                            % (language.id, os_name, status))
+        Assert.equal(0, len(bad_statuses),
+                        'Expected status code 302.  ' + ",  ".join(bad_statuses))
