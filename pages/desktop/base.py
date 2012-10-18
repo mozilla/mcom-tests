@@ -70,7 +70,7 @@ class Base(Page):
                 'url_suffix': 'mozillalabs.com/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(3) > a'),
-                'url_suffix': 'www.mozilla.org/webmaker/',
+                'url_suffix': 'webmaker.org/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'www.mozilla.org/contribute/',
