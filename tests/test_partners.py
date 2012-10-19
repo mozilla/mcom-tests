@@ -8,7 +8,7 @@ import pytest
 from pages.desktop.partners import Partners
 from unittestzero import Assert
 
-
+@pytest.mark.xfail(reason='bug 745033')
 class TestPartners:
 
     @pytest.mark.nondestructive
