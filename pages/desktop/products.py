@@ -96,7 +96,7 @@ class ProductsPage(Base):
             'url_suffix': '/thunderbird/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(6) a'),
-            'url_suffix': '/webmaker/',
+            'url_suffix': 'webmaker.org/',
         }
     ]
 
