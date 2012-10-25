@@ -61,6 +61,7 @@ class TestApps:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(reason='Bug 805113')
     def test_page_link_urls_are_valid(self, mozwebqa):
         apps_page = Apps(mozwebqa)
         apps_page.go_to_page()
