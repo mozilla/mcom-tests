@@ -126,3 +126,9 @@ class TestRedirects(object):
         response = requests.get(url)
         Assert.contains("/firefox/", response.url)
         Assert.contains("/releasenotes/", response.url)
+
+    @pytest.mark.nondestructive
+    def test_all_older_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + "/firefox/all-older.html"
+        response = requests.get(url)
+        Assert.contains("/firefox/new", response.url)
