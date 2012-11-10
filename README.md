@@ -1,7 +1,7 @@
 Mozilla.com Selenium Tests
 ============================
 
-This repository holds automated tests for [http://www.mozilla.com][MOZ]
+This repository holds automated tests for [http://www.mozilla.org][MOZ]
 
 [MOZ]: http://www.mozilla.org
 
