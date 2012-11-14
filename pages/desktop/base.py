@@ -132,7 +132,7 @@ class Base(Page):
                 'url_suffix': '/about/contact.html#map-mountain_view',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(2) a'),
-                'url_suffix': '/privacy-policy.html',
+                'url_suffix': '/privacy/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(3) a'),
                 'url_suffix': '/about/legal.html',
