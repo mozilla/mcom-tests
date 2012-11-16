@@ -38,6 +38,7 @@ class SMS(Base):
         return self.is_element_visible(*self._google_play_link)
 
     def submit_sms_form(self, user='default'):
+        self.testsetup.credentials = {'default': {'phone': '+911234567890'}}
         credentials = self.testsetup.credentials[user]
         phonetextbox = self.selenium.find_element(*self._phone_textbox)
         phonetextbox.send_keys(credentials['phone'])
