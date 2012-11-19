@@ -72,6 +72,7 @@ class TestApps:
                 bad_urls.append('%s is not a valid url' % url)
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
+    @pytest.mark.xfail(reason='Bug 813048 - Page not found returned if clicking the "Pomodoro" app')
     @pytest.mark.nondestructive
     def test_showcased_apps_link_urls_are_valid(self, mozwebqa):
         apps_page = Apps(mozwebqa)
