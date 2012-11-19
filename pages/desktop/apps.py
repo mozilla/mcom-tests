@@ -17,7 +17,7 @@ class Apps(Base):
     page_links_list = [
         {
             'locator': (By.ID, 'marketplace-button'),
-            'url_suffix': 'marketplace.mozilla.org/',
+            'url_suffix': 'marketplace.firefox.com/',
         }, {
             'locator': (By.CSS_SELECTOR, '#showcased-nonfx a'),
             'url_suffix': '/mobile/aurora/',
@@ -32,10 +32,10 @@ class Apps(Base):
             'url_suffix': '#productivity',
         }, {
             'locator': (By.CSS_SELECTOR, '#build ul li:nth-of-type(1) > a'),
-            'url_suffix': 'marketplace.mozilla.org/developers/',
+            'url_suffix': 'marketplace.firefox.com/developers/',
         }, {
             'locator': (By.CSS_SELECTOR, '#build ul li:nth-of-type(2) > a'),
-            'url_suffix': 'marketplace.mozilla.org/developers/partners',
+            'url_suffix': 'marketplace.firefox.com/developers/partners',
         }
     ]
 
