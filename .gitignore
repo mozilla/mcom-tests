@@ -3,3 +3,8 @@ rmpyc.sh
 /debug/**
 results
 venv
+.codeintel/*
+.DS_Store
+*.yaml
+*.sh
+

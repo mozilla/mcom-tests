@@ -1,7 +1,7 @@
 Mozilla.com Selenium Tests
 ============================
 
-This repository holds automated tests for [http://www.mozilla.com][MOZ]
+This repository holds automated tests for [http://www.mozilla.org][MOZ]
 
 [MOZ]: http://www.mozilla.org
 
@@ -25,7 +25,7 @@ follow `sudo easy_install pip` with `sudo pip install virtualenv`, and then
 create and activate a [virtualenv](http://www.virtualenv.org) (e.g. `virtualenv
 mcom-tests-env; source mcom-tests-env/bin/activate`) to create a clean
 "virtual environment" for just this project. Then you can
-`pip install -r requiremenst/requirements.txt` in your virtual environment
+`pip install -r requirements.txt` in your virtual environment
 without needing to use `sudo`.
 
 If you don't mind installing globally, just run
@@ -34,7 +34,7 @@ If you don't mind installing globally, just run
 
 followed by
 
-    sudo pip install -r requirements/requirements.txt
+    sudo pip install -r requirements.txt
 
 __note__
 
@@ -45,7 +45,7 @@ If you are running on Ubuntu/Debian you will need to first do
 to install the required Python libraries.
 
 ### Selenium
-Once this is all set up you will need to download and start a Selenium server. You can download the latest Selenium server from [here][Selenium Downloads]. The filename will be something like 'selenium-server-standalone-x.x.jar (where x.x is current shipping version)'
+Once this is all set up, you will need to download and start a Selenium server. You can download the latest Selenium server from [here][Selenium Downloads]. The filename will be something like 'selenium-server-standalone-x.x.jar (where x.x is current shipping version)'
 
 To start the Selenium server run the following command:
 
@@ -60,7 +60,7 @@ Change the path/name to the downloaded Selenium server file.
 Once the above prerequisites have been met you can run the tests using the
 following command:
 
-   py.test --api=rc --baseurl=http://www.mozilla.org --browser=*firefox
+	py.test --driver=firefox --destructive 	
 
 Writing Tests
 -------------
@@ -73,7 +73,7 @@ we'd like to ask you to do:
 3. Fork this project with your own GitHub account
 4. Make sure all tests are passing, and submit a pull request with your changes
 
-[GitHub Templates]: https://github.com/AutomatedTester/mozwebqa-test-templates
+[GitHub Templates]: https://github.com/mozilla/mozwebqa-test-templates
 [Style Guide]: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
 
 License
