@@ -23,8 +23,8 @@ class TestAboutPage:
         for link in AboutPage.Footer.footer_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('%s does not end with %s ,\n' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_footer_section_urls(self, mozwebqa):
@@ -38,8 +38,8 @@ class TestAboutPage:
         for link in AboutPage.Footer.footer_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not about_page.is_valid_link(url):
-                bad_links.append('%s is not a valid url.' % url)
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('%s is not a valid url ,\n.' % url)
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_tabzilla_links_are_correct(self, mozwebqa):
@@ -51,8 +51,8 @@ class TestAboutPage:
         for link in AboutPage.Header.tabzilla_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('%s does not end with %s ,\n' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_tabzilla_links_are_valid(self, mozwebqa):
@@ -64,8 +64,8 @@ class TestAboutPage:
         for link in AboutPage.Header.tabzilla_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not about_page.is_valid_link(url):
-                bad_links.append('%s is not a valid url.' % url)
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('%s is not a valid url ,\n.' % url)
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_tabzilla_links_are_visible(self, mozwebqa):
@@ -76,8 +76,8 @@ class TestAboutPage:
         bad_links = []
         for link in about_page.header.tabzilla_links_list:
             if not about_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('The link at %s is not visible,\n' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_navbar_links_are_visible(self, mozwebqa):
@@ -86,8 +86,8 @@ class TestAboutPage:
         bad_links = []
         for link in about_page.Header.nav_links_list:
             if not about_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('The link at %s is not visible,\n' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_navbar_link_destinations_are_correct(self, mozwebqa):
@@ -97,8 +97,8 @@ class TestAboutPage:
         for link in about_page.Header.nav_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('%s does not end with %s ,\n' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_navbar_link_urls_are_valid(self, mozwebqa):
@@ -108,8 +108,8 @@ class TestAboutPage:
         for link in about_page.Header.nav_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not about_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+                bad_urls.append('%s is not a valid url ,\n' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found:\n' % len(bad_urls) + ''.join(bad_urls))
 
     @pytest.mark.nondestructive
     def test_major_links_are_visible(self, mozwebqa):
@@ -118,8 +118,8 @@ class TestAboutPage:
         bad_links = []
         for link in about_page.major_links_list:
             if not about_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('The link at %s is not visible,\n' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
@@ -129,9 +129,10 @@ class TestAboutPage:
         for link in about_page.major_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+                bad_links.append('%s does not end with %s \n,' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found:\n' % len(bad_links) + ''.join(bad_links))
 
+    @pytest.mark.xfail(reason='Bug 688904 - Firefox brand toolkit link broken on stage (http://www-dev.allizom.org/en-US/firefox/brand/)')
     @pytest.mark.nondestructive
     def test_major_link_urls_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
@@ -140,5 +141,5 @@ class TestAboutPage:
         for link in about_page.major_links_list:
             url = about_page.link_destination(link.get('locator'))
             if not about_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+                bad_urls.append('%s is not a valid url ,\n' % url)
+        Assert.equal(0, len(bad_urls), '%s bad urls found:\n' % len(bad_urls) + ''.join(bad_urls))
