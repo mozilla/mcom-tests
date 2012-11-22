@@ -16,33 +16,33 @@ class AboutPage(Base):
     major_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(1) a'),
-            'url_suffix': '/mission/',
+            'url_suffix': 'careers.mozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(2) a'),
-            'url_suffix': 'careers.mozilla.org/',
+            'url_suffix': 'blog.mozilla.org/press/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(3) a'),
             'url_suffix': 'blog.mozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(4) a'),
-            'url_suffix': '/styleguide',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(5) a'),
-            'url_suffix': '/about/contact',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(1) a'),
-            'url_suffix': '/products/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(2) a'),
-            'url_suffix': '/contribute/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(3) a'),
-            'url_suffix': 'blog.mozilla.org/press/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(4) a'),
             'url_suffix': '/privacy/',
         }, {
-            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(5) a'),
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(5) a'),
+            'url_suffix': '/about/forums/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(1) a'),
+            'url_suffix': '/firefox/brand/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(2) a'),
             'url_suffix': '/about/partnerships',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(3) a'),
+            'url_suffix': '/about/contact',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(4) a'),
+            'url_suffix': '/contribute/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(5) a'),
+            'url_suffix': '/about/governance.html',
         }
     ]
