@@ -22,7 +22,7 @@ class TestAboutPage:
         about_page.are_links_correct(about_page.Footer.footer_links_list)
 
     @pytest.mark.nondestructive
-    def test_footer_section_link_are_valid(self, mozwebqa):
+    def test_footer_section_links_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         Assert.contains(about_page.footer.expected_footer_logo_destination,
