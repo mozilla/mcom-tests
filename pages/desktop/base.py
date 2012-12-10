@@ -7,6 +7,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from pages.page import Page
+from unittestzero import Assert
 
 
 class Base(Page):
@@ -30,6 +31,29 @@ class Base(Page):
     def image_source(self, locator):
         link = self.selenium.find_element(*locator)
         return link.get_attribute('src')
+
+    def are_links_correct(self, link_list):
+        bad_links = []
+        for link in link_list:
+            url = self.link_destination(link.get('locator'))
+            if not url.endswith(link.get('url_suffix')):
+                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    def are_links_valid(self, link_list):
+        bad_links = []
+        for link in link_list:
+            url = self.link_destination(link.get('locator'))
+            if not self.is_valid_link(url):
+                bad_links.append('%s is not a valid url.' % url)
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+
+    def are_links_visible(self, link_list):
+        bad_links = []
+        for link in link_list:
+            if not self.is_element_visible(*link.get('locator')):
+                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
+        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     class Header(Page):
 
