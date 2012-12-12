@@ -9,8 +9,8 @@ Created on Jun 21, 2010
 '''
 import re
 import time
-import base64
 
+import requests
 from unittestzero import Assert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
@@ -99,14 +99,11 @@ class Page(object):
 
     def get_response_code(self, url):
         # return the response status
-        import urllib2
-        try:
-            urllib2.urlopen(url)
-            return 200
-        except urllib2.HTTPError, e:
-            return e.code
+        requests_config = {'max_retries': 5}
+        r = requests.get(url, verify=False, config=requests_config)
+        return r.status_code
 
     def is_valid_link(self, url):
-        if self.get_response_code(url) == 200:
+        if self.get_response_code(url) == requests.codes.ok:
             return True
         return False
