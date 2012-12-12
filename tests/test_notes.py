@@ -29,8 +29,9 @@ class TestNotes:
         links = html.findAll('a')
         for link in links:
             url = self.make_absolute(link['href'], mozwebqa.base_url)
-            if not notes_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = notes_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     def make_absolute(self, url, base_url):
