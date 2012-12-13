@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from unittestzero import Assert
 from pages.desktop.sms import SMS
 
@@ -47,8 +48,9 @@ class TestSMSPage():
         bad_urls = []
         for link in sms_page.info_links_list:
             url = sms_page.link_destination(link.get('locator'))
-            if not sms_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = sms_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive

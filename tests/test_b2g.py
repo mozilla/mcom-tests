@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from pages.desktop.b2g import BootToGecko
 from unittestzero import Assert
 
@@ -79,8 +80,9 @@ class TestBootToGecko:
         bad_urls = []
         for link in b2g_page.b2g_nav_links_list:
             url = b2g_page.link_destination(link.get('locator'))
-            if not b2g_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = b2g_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive

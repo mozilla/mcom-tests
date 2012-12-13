@@ -4,6 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from pages.desktop.mission import Mission
 from unittestzero import Assert
 
@@ -39,8 +40,9 @@ class TestMission:
         bad_urls = []
         for link in mission_page.major_links_list:
             url = mission_page.link_destination(link.get('locator'))
-            if not mission_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = mission_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -49,8 +51,9 @@ class TestMission:
         mission_page.go_to_page()
         bad_srcs = []
         for src in mission_page.video_sources_list:
-            if not mission_page.is_valid_link(src):
-                bad_srcs.append('%s is not a valid url' % src)
+            response_code = mission_page.get_response_code(src)
+            if response_code != requests.codes.ok:
+                bad_srcs.append('%s is not a valid url - status code: %s.' % (src, response_code))
         Assert.equal(0, len(bad_srcs), '%s bad urls found: ' % len(bad_srcs) + ', '.join(bad_srcs))
 
     @pytest.mark.nondestructive

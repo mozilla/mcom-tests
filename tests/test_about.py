@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from unittestzero import Assert
 from pages.desktop.about import AboutPage
 
@@ -12,7 +13,7 @@ from pages.desktop.about import AboutPage
 class TestAboutPage:
 
     @pytest.mark.nondestructive
-    def test_footer_section_links(self, mozwebqa):
+    def test_footer_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         Assert.contains(about_page.footer.expected_footer_logo_destination,
@@ -27,22 +28,23 @@ class TestAboutPage:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_footer_section_urls(self, mozwebqa):
+    def test_footer_links_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         Assert.contains(about_page.footer.expected_footer_logo_destination,
                         about_page.footer.footer_logo_destination)
         Assert.contains(about_page.footer.expected_footer_logo_img,
                         about_page.footer.footer_logo_img)
-        bad_links = []
+        bad_urls = []
         for link in AboutPage.Footer.footer_links_list:
             url = about_page.link_destination(link.get('locator'))
-            if not about_page.is_valid_link(url):
-                bad_links.append('%s is not a valid url.' % url)
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+            response_code = about_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
+        Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
+    def test_tabzilla_link_destinations_are_corrects(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         Assert.true(about_page.header.is_tabzilla_panel_visible)
@@ -60,12 +62,13 @@ class TestAboutPage:
         about_page.go_to_page()
         Assert.true(about_page.header.is_tabzilla_panel_visible)
         about_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
+        bad_urls = []
         for link in AboutPage.Header.tabzilla_links_list:
             url = about_page.link_destination(link.get('locator'))
-            if not about_page.is_valid_link(url):
-                bad_links.append('%s is not a valid url.' % url)
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+            response_code = about_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
+        Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
     def test_tabzilla_links_are_visible(self, mozwebqa):
@@ -107,8 +110,9 @@ class TestAboutPage:
         bad_urls = []
         for link in about_page.Header.nav_links_list:
             url = about_page.link_destination(link.get('locator'))
-            if not about_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = about_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -139,6 +143,7 @@ class TestAboutPage:
         bad_urls = []
         for link in about_page.major_links_list:
             url = about_page.link_destination(link.get('locator'))
-            if not about_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = about_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))

@@ -3,9 +3,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import pytest
+import requests
 from unittestzero import Assert
 from pages.desktop.performance import Performance
-import pytest
 
 
 class TestPerformance:
@@ -73,8 +74,9 @@ class TestPerformance:
         bad_urls = []
         for link in performance_page.billboard_links_list:
             url = performance_page.link_destination(link.get('locator'))
-            if not performance_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = performance_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -83,7 +85,8 @@ class TestPerformance:
         performance_page.go_to_page()
         src = performance_page.perf_hardware_img_src
         Assert.true(src.endswith('hardware-accel.png'))
-        Assert.true(performance_page.is_valid_link(src), '%s is not a valid url.' % src)
+        response_code = performance_page.get_response_code(src)
+        Assert.equal(response_code, requests.codes.ok, '%s is not a valid url - status code: %s.' % (src, response_code))
 
     @pytest.mark.nondestructive
     def test_video_srcs_are_valid(self, mozwebqa):
@@ -91,7 +94,8 @@ class TestPerformance:
         performance_page.go_to_page()
         bad_srcs = []
         for src in performance_page.video_sources_list:
-            if not performance_page.is_valid_link(src):
-                bad_srcs.append('%s is not a valid url' % src)
+            response_code = performance_page.get_response_code(src)
+            if response_code != requests.codes.ok:
+                bad_srcs.append('%s is not a valid url - status code: %s.' % (src, response_code))
         Assert.equal(0, len(bad_srcs), '%s bad urls found: ' % len(bad_srcs) + ', '.join(bad_srcs))
         Assert.true(performance_page.is_video_overlay_visible)
