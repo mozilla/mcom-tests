@@ -102,8 +102,3 @@ class Page(object):
         requests_config = {'max_retries': 5}
         r = requests.get(url, verify=False, config=requests_config)
         return r.status_code
-
-    def is_valid_link(self, url):
-        if self.get_response_code(url) == requests.codes.ok:
-            return True
-        return False

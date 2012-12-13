@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from pages.desktop.contribute import Contribute
 from unittestzero import Assert
 
@@ -51,4 +52,5 @@ class TestContribute:
         privacy_link = help_form.privacy_link
         url = contribute_page.link_destination(privacy_link.get('locator'))
         Assert.true(url.endswith(privacy_link.get('url_suffix')), '%s does not end with %s' % (url, privacy_link.get('url_suffix')))
-        Assert.true(contribute_page.is_valid_link(url), '%s is not a valid url.' % url)
+        response_code = contribute_page.get_response_code(url)
+        Assert.equal(response_code, requests.codes.ok, '%s is not a valid url - status code: %s.' % (url, response_code))
