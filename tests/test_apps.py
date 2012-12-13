@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from pages.desktop.apps import Apps
 from unittestzero import Assert
 
@@ -12,7 +13,7 @@ from unittestzero import Assert
 class TestApps:
 
     @pytest.mark.nondestructive
-    def test_footer_section(self, mozwebqa):
+    def test_footer_link_destinations_are_correct(self, mozwebqa):
         apps_page = Apps(mozwebqa)
         apps_page.go_to_page()
         Assert.contains(apps_page.footer.expected_footer_logo_destination,
@@ -67,8 +68,9 @@ class TestApps:
         bad_urls = []
         for link in apps_page.page_links_list:
             url = apps_page.link_destination(link.get('locator'))
-            if not apps_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = apps_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -78,8 +80,9 @@ class TestApps:
         bad_urls = []
         for link in apps_page.showcased_apps_links:
             url = link.get_attribute('href')
-            if not apps_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = apps_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive

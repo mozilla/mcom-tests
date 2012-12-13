@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
 from unittestzero import Assert
 from pages.desktop.products import ProductsPage
 
@@ -67,8 +68,9 @@ class TestProductsPage:
         bad_urls = []
         for link in products_page.product_nav_links_list:
             url = products_page.link_destination(link.get('locator'))
-            if not products_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = products_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -99,8 +101,9 @@ class TestProductsPage:
         bad_urls = []
         for image in products_page.images_list:
             url = products_page.image_source(image.get('locator'))
-            if not products_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = products_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -131,8 +134,9 @@ class TestProductsPage:
         bad_urls = []
         for link in products_page.products_links_list:
             url = products_page.link_destination(link.get('locator'))
-            if not products_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = products_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -163,8 +167,9 @@ class TestProductsPage:
         bad_urls = []
         for link in products_page.innovations_links_list:
             url = products_page.link_destination(link.get('locator'))
-            if not products_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = products_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -195,8 +200,9 @@ class TestProductsPage:
         bad_urls = []
         for link in products_page.tools_links_list:
             url = products_page.link_destination(link.get('locator'))
-            if not products_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = products_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
@@ -227,6 +233,7 @@ class TestProductsPage:
         bad_urls = []
         for link in products_page.platforms_links_list:
             url = products_page.link_destination(link.get('locator'))
-            if not products_page.is_valid_link(url):
-                bad_urls.append('%s is not a valid url' % url)
+            response_code = products_page.get_response_code(url)
+            if response_code != requests.codes.ok:
+                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
