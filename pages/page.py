@@ -15,6 +15,7 @@ from unittestzero import Assert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotVisibleException
+from requests.exceptions import Timeout
 
 http_regex = re.compile('https?://((\w+\.)+\w+\.\w+)')
 
@@ -52,6 +53,18 @@ class Page(object):
 
     def open(self, url_fragment):
         self.selenium.get(self.base_url + url_fragment)
+
+    def select_option(self, value, locator):
+        dropdown = self.selenium.find_element(*locator)
+        option_found = False
+        all_options = dropdown.find_elements_by_tag_name("option")
+        for option in all_options:
+            if option.get_attribute("value") == value:
+                option_found = True
+                option.click()
+                break
+        if option_found == False:
+            raise Exception("Option '" + value + "' was not found, thus not selectable.")
 
     def is_element_present(self, *locator):
         self.selenium.implicitly_wait(0)
@@ -100,5 +113,9 @@ class Page(object):
     def get_response_code(self, url):
         # return the response status
         requests_config = {'max_retries': 5}
-        r = requests.get(url, verify=False, config=requests_config)
-        return r.status_code
+        timeout = 2
+        try:
+            r = requests.get(url, verify=False, config=requests_config, timeout=timeout)
+            return r.status_code
+        except Timeout:
+            return 408
