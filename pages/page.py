@@ -113,9 +113,8 @@ class Page(object):
     def get_response_code(self, url):
         # return the response status
         requests_config = {'max_retries': 5}
-        timeout = 2
         try:
-            r = requests.get(url, verify=False, config=requests_config, timeout=timeout)
+            r = requests.get(url, verify=False, config=requests_config, timeout=self.timeout)
             return r.status_code
         except Timeout:
             return 408
