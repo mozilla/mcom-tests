@@ -7,7 +7,7 @@ import requests
 import pytest
 from pages.desktop.mozillabased import MozillaBasedPage
 from unittestzero import Assert
-
+from BeautifulSoup import BeautifulStoneSoup
 
 class TestMozillaBasedPagePage:
 
@@ -131,13 +131,18 @@ class TestMozillaBasedPagePage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
+    @pytest.mark.skip_selenium
     @pytest.mark.nondestructive
     def test_product_link_urls_are_valid(self, mozwebqa):
         mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
+        url = "%s/projects/mozilla-based/" % mozwebqa.base_url
+        page_response = requests.get(url)
+        html = BeautifulStoneSoup(page_response.content)
         bad_urls = []
-        for link in mozillabased_page.product_link_list:
-            url = mozillabased_page.link_destination(link.get('locator'))
+        product_list = html.find('ul', 'productlist')
+        product_links = product_list.findAll('a', href=True)
+        for link in product_links:
+            url = link['href']
             response_code = mozillabased_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
