@@ -8,10 +8,6 @@ from pages.desktop.base import Base
 
 
 class MozillaBasedPage(Base):
-    _productlist_locator = (By.CSS_SELECTOR, '.productlist')
-    _product_locator = (By.CSS_SELECTOR, 'li > h3 > a')
-    _logo_locator = (By.CSS_SELECTOR, 'img')
-    _billboard_locator = (By.CSS_SELECTOR, '#featured.billboard')
 
     def go_to_page(self):
         self.open('/projects/mozilla-based/')
