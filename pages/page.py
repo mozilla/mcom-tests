@@ -54,6 +54,18 @@ class Page(object):
     def open(self, url_fragment):
         self.selenium.get(self.base_url + url_fragment)
 
+    def select_option(self, value, locator):
+        dropdown = self.selenium.find_element(*locator)
+        option_found = False
+        all_options = dropdown.find_elements_by_tag_name("option")
+        for option in all_options:
+            if option.get_attribute("value") == value:
+                option_found = True
+                option.click()
+                break
+        if option_found is False:
+            raise Exception("Option '" + value + "' was not found, thus not selectable.")
+
     def is_element_present(self, *locator):
         self.selenium.implicitly_wait(0)
         try:
@@ -97,12 +109,3 @@ class Page(object):
             if self.selenium.execute_script("return jQuery.active == 0"):
                 return
         raise Exception("Wait for AJAX timed out after %s seconds" % count)
-
-    def get_response_code(self, url):
-        # return the response status
-        requests_config = {'max_retries': 5}
-        try:
-            r = requests.head(url, verify=False, allow_redirects=True, config=requests_config, timeout=self.timeout)
-            return r.status_code
-        except Timeout:
-            return 408
