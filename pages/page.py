@@ -15,7 +15,6 @@ from unittestzero import Assert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotVisibleException
-from requests.exceptions import Timeout
 
 http_regex = re.compile('https?://((\w+\.)+\w+\.\w+)')
 
