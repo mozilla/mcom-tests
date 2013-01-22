@@ -109,3 +109,9 @@ class Page(object):
             if self.selenium.execute_script("return jQuery.active == 0"):
                 return
         raise Exception("Wait for AJAX timed out after %s seconds" % count)
+
+    def get_response_code(self, url):
+        # return the response status
+        requests_config = {'max_retries': 5}
+        r = requests.get(url, verify=False, config=requests_config)
+        return r.status_code
