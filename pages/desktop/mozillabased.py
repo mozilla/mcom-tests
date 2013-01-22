@@ -13,16 +13,6 @@ class MozillaBasedPage(Base):
     _logo_locator = (By.CSS_SELECTOR, 'img')
     _billboard_locator = (By.CSS_SELECTOR, '#featured.billboard')
 
-    _get_mozilla_updates_email_input = (By.ID, 'id_email')
-    _get_mozilla_updates_country_select = (By.ID, 'country')
-    _get_mozilla_updates_privacy_checkbox = (By.ID, 'id_privacy')
-    _get_mozilla_updates_submit_button = (By.ID, 'footer_email_submit')
-
-    _valid_email = 'noreply@mozilla.com'
-    _invalid_email = 'noreplymozilla.com'
-    _country = 'US'
-    _get_mozilla_updates_success_url = 'https://donate.mozilla.org/page/st/sign-up-for-mozilla'
-
     def go_to_page(self):
         self.open('/projects/mozilla-based/')
 
