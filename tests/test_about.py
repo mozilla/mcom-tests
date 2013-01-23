@@ -203,7 +203,7 @@ class TestAboutPage:
         about_page.select_option(country, about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
         about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox).click()
         about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_submit_button).click()
-        Assert.true(success_url == about_page.url_current_page[:len(success_url)], \
+        Assert.true(success_url == about_page.url_current_page[:len(success_url)],
             'Expected current URL to be %s, found %s instead.' % (success_url, about_page.url_current_page[:len(success_url)]))
 
     def test_get_mozilla_updates_form_invalid_email(self, mozwebqa):
@@ -218,7 +218,7 @@ class TestAboutPage:
         about_page.select_option(country, about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
         about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox).click()
         about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_submit_button).click()
-        Assert.true(mozillabased_url == about_page.url_current_page[:len(mozillabased_url)], \
+        Assert.true(mozillabased_url == about_page.url_current_page[:len(mozillabased_url)],
             'Expected current URL to be %s, found %s instead.' % (mozillabased_url, about_page.url_current_page[:len(mozillabased_url)]))
 
     def test_get_mozilla_updates_form_privacy_policy_unchecked(self, mozwebqa):
@@ -232,5 +232,5 @@ class TestAboutPage:
         about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).send_keys(valid_email)
         about_page.select_option(country, about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
         about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_submit_button).click()
-        Assert.true(mozillabased_url == about_page.url_current_page[:len(mozillabased_url)], \
+        Assert.true(mozillabased_url == about_page.url_current_page[:len(mozillabased_url)],
             'Expected current URL to be %s, found %s instead.' % (mozillabased_url, about_page.url_current_page[:len(mozillabased_url)]))
