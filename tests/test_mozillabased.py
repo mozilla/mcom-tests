@@ -9,6 +9,7 @@ from pages.desktop.mozillabased import MozillaBasedPage
 from unittestzero import Assert
 from BeautifulSoup import BeautifulStoneSoup
 
+
 class TestMozillaBasedPagePage:
 
     @pytest.mark.nondestructive
