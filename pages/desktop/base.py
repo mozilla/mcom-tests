@@ -196,3 +196,15 @@ class Base(Page):
                 'url_suffix': '/en-US/privacy-policy',
             },
         ]
+
+        def input_email(self, email):
+            self.selenium.find_element(*_get_mozilla_updates_email_input).send_keys(email)
+
+        def check_privacy_checkbox(self):
+            self.selenium.find_element(*_get_mozilla_updates_privacy_checkbox).click()
+
+        def submit_form(self):
+            self.selenium.find_element(*_get_mozilla_updates_submit_button).click()
+
+        def trigger_email_form(self):
+            self.selenium.find_element(*_get_mozilla_updates_email_input).click()

@@ -152,7 +152,7 @@ class TestAboutPage:
     def test_get_mozilla_updates_links_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).click()
+        about_page.GetMozillaUpdates.trigger_email_form()
         about_page.wait_for_element_visible(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox)
         bad_links = []
         for link in about_page.GetMozillaUpdates.get_mozilla_updates_link_list:
@@ -187,7 +187,7 @@ class TestAboutPage:
     def test_get_mozilla_updates_form_elements_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).click()
+        about_page.GetMozillaUpdates.trigger_email_form()
         about_page.wait_for_element_visible(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox)
         about_page.is_element_visible(*about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
 
@@ -197,12 +197,12 @@ class TestAboutPage:
         country = 'US'
         success_url = 'https://donate.mozilla.org/page/st/sign-up-for-mozilla'
         about_page.go_to_page()
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).click()
+        about_page.GetMozillaUpdates.trigger_email_form()
         about_page.wait_for_element_visible(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox)
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).send_keys(valid_email)
+        about_page.GetMozillaUpdates.input_email(valid_email)
         about_page.select_option(country, about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox).click()
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_submit_button).click()
+        about_page.GetMozillaUpdates.check_privacy_checkbox()
+        about_page.GetMozillaUpdates.submit_form()
         Assert.true(success_url == about_page.url_current_page[:len(success_url)],
             'Expected current URL to be %s, found %s instead.' % (success_url, about_page.url_current_page[:len(success_url)]))
 
@@ -212,12 +212,12 @@ class TestAboutPage:
         country = 'US'
         about_page.go_to_page()
         mozillabased_url = about_page.url_current_page
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).click()
+        about_page.GetMozillaUpdates.trigger_email_form()
         about_page.wait_for_element_visible(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox)
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).send_keys(invalid_email)
+        about_page.GetMozillaUpdates.input_email(invalid_email)
         about_page.select_option(country, about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox).click()
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_submit_button).click()
+        about_page.GetMozillaUpdates.check_privacy_checkbox()
+        about_page.GetMozillaUpdates.submit_form()
         Assert.true(mozillabased_url == about_page.url_current_page[:len(mozillabased_url)],
             'Expected current URL to be %s, found %s instead.' % (mozillabased_url, about_page.url_current_page[:len(mozillabased_url)]))
 
@@ -227,10 +227,10 @@ class TestAboutPage:
         country = 'US'
         about_page.go_to_page()
         mozillabased_url = about_page.url_current_page
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).click()
+        about_page.GetMozillaUpdates.trigger_email_form()
         about_page.wait_for_element_visible(*about_page.GetMozillaUpdates._get_mozilla_updates_privacy_checkbox)
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_email_input).send_keys(valid_email)
+        about_page.GetMozillaUpdates.input_email(valid_email)
         about_page.select_option(country, about_page.GetMozillaUpdates._get_mozilla_updates_country_select)
-        about_page.selenium.find_element(*about_page.GetMozillaUpdates._get_mozilla_updates_submit_button).click()
+        about_page.GetMozillaUpdates.submit_form()
         Assert.true(mozillabased_url == about_page.url_current_page[:len(mozillabased_url)],
             'Expected current URL to be %s, found %s instead.' % (mozillabased_url, about_page.url_current_page[:len(mozillabased_url)]))
