@@ -182,29 +182,3 @@ class Base(Page):
             return self.is_element_visible(*self._systems_and_languages_locator) and \
                 self.is_element_visible(*self._whats_new_locator) and \
                 self.is_element_visible(*self._privacy_locator)
-
-    class GetMozillaUpdates(Page):
-
-        _get_mozilla_updates_email_input = (By.ID, 'id_email')
-        _get_mozilla_updates_country_select = (By.ID, 'country')
-        _get_mozilla_updates_privacy_checkbox = (By.ID, 'id_privacy')
-        _get_mozilla_updates_submit_button = (By.ID, 'footer_email_submit')
-
-        get_mozilla_updates_link_list = [
-            {
-                'locator': (By.CSS_SELECTOR, 'label.privacy-check-label > span > a'),
-                'url_suffix': '/en-US/privacy-policy',
-            },
-        ]
-
-        def input_email(self, email):
-            self.selenium.find_element(*_get_mozilla_updates_email_input).send_keys(email)
-
-        def check_privacy_checkbox(self):
-            self.selenium.find_element(*_get_mozilla_updates_privacy_checkbox).click()
-
-        def submit_form(self):
-            self.selenium.find_element(*_get_mozilla_updates_submit_button).click()
-
-        def trigger_email_form(self):
-            self.selenium.find_element(*_get_mozilla_updates_email_input).click()
