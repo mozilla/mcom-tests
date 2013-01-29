@@ -102,7 +102,7 @@ class Page(object):
         # return the response status
         requests_config = {'max_retries': 5}
         try:
-            r = requests.head(url, verify=False, allow_redirects=True, config=requests_config, timeout=self.timeout)
+            r = requests.get(url, verify=False, allow_redirects=True, config=requests_config, timeout=self.timeout)
             return r.status_code
         except Timeout:
             return 408
