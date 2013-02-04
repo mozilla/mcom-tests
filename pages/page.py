@@ -15,7 +15,6 @@ from unittestzero import Assert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotVisibleException
-from requests.exceptions import Timeout
 
 http_regex = re.compile('https?://((\w+\.)+\w+\.\w+)')
 
@@ -101,8 +100,5 @@ class Page(object):
     def get_response_code(self, url):
         # return the response status
         requests_config = {'max_retries': 5}
-        try:
-            r = requests.get(url, verify=False, allow_redirects=True, config=requests_config, timeout=self.timeout)
-            return r.status_code
-        except Timeout:
-            return 408
+        r = requests.get(url, verify=False, config=requests_config)
+        return r.status_code
