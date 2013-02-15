@@ -82,7 +82,7 @@ class Base(Page):
                 'url_suffix': '/about/mozilla-spaces/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(4) > a'),
-                'url_suffix': 'donate.mozilla.org/',
+                'url_suffix': 'sendto.mozilla.org/',
             },
         ]
 
