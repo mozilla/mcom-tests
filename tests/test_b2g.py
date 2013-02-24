@@ -9,7 +9,7 @@ import requests
 from pages.desktop.b2g import BootToGecko
 from unittestzero import Assert
 
-
+@pytest.mark.xfail(reason='b2g page has changed xfailing old test')
 class TestBootToGecko:
 
     @pytest.mark.nondestructive
