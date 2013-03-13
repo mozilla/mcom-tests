@@ -144,3 +144,10 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/en-US/projects/firefox/3.6.13/whatsnew/'
         response = requests.get(url)
         Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.nondestructive
+    def test_partners_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/b2g/'
+        response = requests.get(url)
+        Assert.contains('/partners/', response.url)
+
