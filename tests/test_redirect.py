@@ -151,3 +151,10 @@ class TestRedirects(object):
         response = requests.get(url)
         Assert.contains('/partners/', response.url)
 
+    @pytest.mark.nondestructive
+    def test_firefox_metro_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/metrofirefox'
+        response = requests.head(url)
+        Assert.not_equal(response.status_code, 404)
+
+
