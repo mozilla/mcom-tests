@@ -44,8 +44,8 @@ class TestSecurity:
     def test_download_button_section(self, mozwebqa):
         security_page = Security(mozwebqa)
         security_page.go_to_page()
-        Assert.true(security_page.downloadRegion.is_download_link_visible)
-        Assert.true(security_page.downloadRegion.are_secondary_links_visible)
+        Assert.true(security_page.download_firefox.is_download_link_visible)
+        Assert.true(security_page.download_firefox.are_secondary_links_visible)
 
     @pytest.mark.nondestructive
     def test_billboard_links_are_visible(self, mozwebqa):
