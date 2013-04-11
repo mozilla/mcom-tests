@@ -28,8 +28,8 @@ class TestLocalizations:
                 url = link['href']
                 response = requests.head(url, allow_redirects=False)
                 status = response.status_code
-                if status != 302:
+                if not (300 < status <= 302):
                     bad_links.append("Lang '%s' %s link: status %s"
-                                     % (language['id'], link['class'], status))
+                                     % (language['id'], link['href'], status))
         Assert.equal(0, len(bad_links),
                      "Expected status code 302.  " + ",  ".join(bad_links))
