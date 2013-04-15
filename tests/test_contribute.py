@@ -106,9 +106,10 @@ class TestContribute:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.xfail(reason="XXXFIXME - xfailing until we can take a closer look")
     @pytest.mark.nondestructive
     def test_want_to_help_form_is_correct(self, mozwebqa):
+        if mozwebqa.base_url == 'https://www.allizom.org':
+            pytest.xfail(reason='Bug 793002 - reCaptcha key for staging is bad')
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
         help_form = contribute_page.help_form
