@@ -67,6 +67,7 @@ class TestContribute:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
+    @pytest.xfail(reason='863449 link to developer.mozilla.org is broken')
     def test_tools_link_urls_are_valid(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
