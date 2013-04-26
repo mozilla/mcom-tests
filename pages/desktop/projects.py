@@ -12,7 +12,7 @@ class Projects(Base):
 
     def go_to_page(self):
         self.open('/research/projects/')
-      
+
     billboard_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(1) > a'),
@@ -43,7 +43,7 @@ class Projects(Base):
             'url_suffix': '#asmjs',
         }
     ]
-    
+
     projects_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#rust > div.intro > ul > li:nth-of-type(1) > a'),
