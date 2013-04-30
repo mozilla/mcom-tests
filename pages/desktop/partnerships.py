@@ -83,23 +83,24 @@ class Partnerships(Base):
         _submit_button = (By.ID, 'sf-form-submit')
 
         @property
-        def are_elements_visible(self):
-            return self.is_element_visible(*self._get_started_title) \
-                and self.is_element_visible(*self._first_name_textbox) \
-                and self.is_element_visible(*self._last_name_textbox) \
-                and self.is_element_visible(*self._title_textbox) \
-                and self.is_element_visible(*self._company_textbox) \
-                and self.is_element_visible(*self._website_textbox) \
-                and self.is_element_visible(*self._email_textbox) \
-                and self.is_element_visible(*self._phone_textbox) \
-                and self.is_element_visible(*self._mobile_textbox) \
-                and self.is_element_visible(*self._address_textbox) \
-                and self.is_element_visible(*self._city_textbox) \
-                and self.is_element_visible(*self._country_textbox) \
-                and self.is_element_visible(*self._zip_textbox) \
-                and self.is_element_visible(*self._interest_field) \
-                and self.is_element_visible(*self._description_textbox) \
-                and self.is_element_visible(*self._submit_button) \
+        def fields_list(self):
+            return [
+            self._first_name_textbox, self._last_name_textbox,
+            self._title_textbox, self._company_textbox,
+            self._website_textbox, self._email_textbox,
+            self._phone_textbox, self._mobile_textbox,
+            self._address_textbox, self._city_textbox,
+            self._country_textbox, self._zip_textbox,
+            self._interest_field, self._description_textbox
+        ]
+
+        @property
+        def is_title_visible(self):
+            return self.is_element_visible(*self._get_started_title)
+
+        @property
+        def is_submit_button_visible(self):
+            return self.is_element_visible(*self._submit_button)
 
         @property
         def is_present(self):
