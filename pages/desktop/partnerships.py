@@ -6,6 +6,7 @@
 
 from selenium.webdriver.common.by import By
 from pages.desktop.base import Base
+from pages.page import Page
 
 
 class Partnerships(Base):
@@ -56,3 +57,50 @@ class Partnerships(Base):
             'img_name_contains': 'icon-cobrand',
         }
     ]
+
+    @property
+    def partner_form(self):
+        return self.PartnerForm(self.testsetup)
+
+    class PartnerForm(Page):
+
+        _form_locator = (By.ID, 'partner-form')
+        _get_started_title = (By.CSS_SELECTOR, '#partner-form > h3')
+        _first_name_textbox = (By.ID, 'first_name')
+        _last_name_textbox = (By.ID, 'last_name')
+        _title_textbox = (By.ID, 'title')
+        _company_textbox = (By.ID, 'company')
+        _website_textbox = (By.ID, 'URL')
+        _email_textbox = (By.ID, 'email')
+        _phone_textbox = (By.ID, 'phone')
+        _mobile_textbox = (By.ID, 'mobile')
+        _address_textbox = (By.ID, 'street')
+        _city_textbox = (By.ID, 'city')
+        _country_textbox = (By.ID, 'country')
+        _zip_textbox = (By.ID, 'zip')
+        _interest_field = (By.ID, 'interest')
+        _description_textbox = (By.ID, 'description')
+        _submit_button = (By.ID, 'sf-form-submit')
+
+        @property
+        def are_elements_visible(self):
+            return self.is_element_visible(*self._get_started_title) \
+                and self.is_element_visible(*self._first_name_textbox) \
+                and self.is_element_visible(*self._last_name_textbox) \
+                and self.is_element_visible(*self._title_textbox) \
+                and self.is_element_visible(*self._company_textbox) \
+                and self.is_element_visible(*self._website_textbox) \
+                and self.is_element_visible(*self._email_textbox) \
+                and self.is_element_visible(*self._phone_textbox) \
+                and self.is_element_visible(*self._mobile_textbox) \
+                and self.is_element_visible(*self._address_textbox) \
+                and self.is_element_visible(*self._city_textbox) \
+                and self.is_element_visible(*self._country_textbox) \
+                and self.is_element_visible(*self._zip_textbox) \
+                and self.is_element_visible(*self._interest_field) \
+                and self.is_element_visible(*self._description_textbox) \
+                and self.is_element_visible(*self._submit_button) \
+
+        @property
+        def is_present(self):
+            return self.is_element_present(*self._form_locator)
