@@ -39,49 +39,49 @@ class Base(Page):
 
         tabzilla_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': '/mission/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/about/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) >  div > ul > li:nth-of-type(3) > a'),
                 'url_suffix': '/projects/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'support.mozilla.org/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > ul > li:nth-of-type(5) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(5) > a'),
                 'url_suffix': 'developer.mozilla.org/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'www.mozilla.org/firefox',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': 'www.mozilla.org/thunderbird',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(3) > a'),
                 'url_suffix': 'www.mozilla.org/firefoxos',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'webfwd.org/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': 'mozillalabs.com/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(3) > a'),
                 'url_suffix': 'webmaker.org/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(1) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'www.mozilla.org/contribute/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(2) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/about/careers.html',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(3) > a'),
                 'url_suffix': '/about/mozilla-spaces/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'sendto.mozilla.org/Join-Tabzilla',
             },
         ]
@@ -103,9 +103,9 @@ class Base(Page):
         ]
 
         def toggle_tabzilla_dropdown(self):
-            toggle_state = self.selenium.execute_script('return Tabzilla.opened')
+            toggle_state = self.selenium.execute_script('Tabzilla.close()')
             self.selenium.find_element(*self._tabzilla).click()
-            WebDriverWait(self.selenium, 5).until(lambda state: toggle_state != state.execute_script('return Tabzilla.opened'))
+            WebDriverWait(self.selenium, 5).until(lambda state: toggle_state == state.execute_script('Tabzilla.open()'))
 
         @property
         def is_tabzilla_panel_visible(self):
