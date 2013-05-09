@@ -76,3 +76,14 @@ class TestPartnerships:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+
+    @pytest.mark.nondestructive
+    def test_partner_form_is_visible(self, mozwebqa):
+        partnerships_page = Partnerships(mozwebqa)
+        partnerships_page.go_to_page()
+        partner_form = partnerships_page.partner_form
+        Assert.true(partner_form.is_form_present)
+        Assert.true(partner_form.is_title_visible, 'The title is not visible on the form')
+        for field in partner_form.fields_list:
+            Assert.true(partner_form.is_element_visible(*field), 'The %s field is not visible on the form' % field[1:])
+        Assert.true(partner_form.is_submit_button_visible, 'The submit button is not visible on the form')
