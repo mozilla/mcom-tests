@@ -82,7 +82,7 @@ class TestPartnerships:
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
         partner_form = partnerships_page.partner_form
-        Assert.true(partner_form.is_present)
+        Assert.true(partner_form.is_form_present)
         Assert.true(partner_form.is_title_visible, 'The title is not visible on the form')
         for field in partner_form.fields_list:
             Assert.true(partner_form.is_element_visible(*field), 'The %s field is not visible on the form' % field[1:])
