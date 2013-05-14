@@ -35,6 +35,7 @@ class TestNotes:
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     def make_absolute(self, url, base_url):
+        url = url.strip(" ")
         if url.startswith('http'):
             return url
         return base_url + url
