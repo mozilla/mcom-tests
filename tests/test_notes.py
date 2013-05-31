@@ -20,6 +20,7 @@ class TestNotes:
 
     @pytest.mark.skip_selenium
     @pytest.mark.nondestructive
+    @pytest.xfail('Bug 876961 - Careers link broken on dev')
     def test_that_all_links_are_valid(self, mozwebqa):
         notes_page = Notes(mozwebqa)
         url = mozwebqa.base_url + notes_page.notes_page_url
@@ -38,4 +39,7 @@ class TestNotes:
         url = url.strip(" ")
         if url.startswith('http'):
             return url
+        elif url.startswith('//'):
+            return 'http:' + url
+
         return base_url + url
