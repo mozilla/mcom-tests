@@ -160,25 +160,3 @@ class Base(Page):
         def footer_logo_img(self):
             footer_logo_img = self.selenium.find_element(*self._footer_logo_img_locator)
             return footer_logo_img.get_attribute('src')
-
-    class DownloadRegion(Page):
-
-        _osx_download_locator = (By.CSS_SELECTOR, '.os_osx > a')
-        _windows_download_locator = (By.CSS_SELECTOR, '.os_windows > a')
-        _linux_download_locator = (By.CSS_SELECTOR, '.os_linux > a')
-
-        _systems_and_languages_locator = (By.CSS_SELECTOR, '.download-other.os_linux.os_osx.os_windows > a:nth-of-type(1)')
-        _whats_new_locator = (By.CSS_SELECTOR, '.download-other.os_linux.os_osx.os_windows > a:nth-of-type(2)')
-        _privacy_locator = (By.CSS_SELECTOR, '.download-other.os_linux.os_osx.os_windows > a:nth-of-type(3)')
-
-        @property
-        def is_download_link_visible(self):
-            return self.is_element_visible(*self._osx_download_locator) or \
-                self.is_element_visible(*self._windows_download_locator) or \
-                self.is_element_visible(*self._linux_download_locator)
-
-        @property
-        def are_secondary_links_visible(self):
-            return self.is_element_visible(*self._systems_and_languages_locator) and \
-                self.is_element_visible(*self._whats_new_locator) and \
-                self.is_element_visible(*self._privacy_locator)
