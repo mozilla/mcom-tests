@@ -132,6 +132,7 @@ class TestMozillaBasedPagePage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
+
     @pytest.mark.skip_selenium
     @pytest.mark.nondestructive
     def test_product_link_urls_are_valid(self, mozwebqa):
