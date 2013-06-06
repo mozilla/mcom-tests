@@ -46,6 +46,7 @@ class TestPartners:
         partners_page.go_to_page()
         bad_images = []
         Assert.true(partners_page.is_partner_with_us_button_visible)
+        partners_page.click_partner_page_one_button()
         for image in partners_page.partner_images_pager_list_one:
             if not partners_page.is_element_visible(*image.get('locator')):
                 bad_images.append('The image at %s is not visible' % image.get('locator')[1:])
