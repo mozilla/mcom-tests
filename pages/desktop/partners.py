@@ -26,6 +26,7 @@ class Partners(Base):
     _android_menu_icon_locator = (By.CSS_SELECTOR, '#menu-android > a')
     _form_icon_locator = (By.CSS_SELECTOR, 'menu-form > a')
     _partner_pager_button_locator = (By.CSS_SELECTOR, '.pager-tabs > li:nth-of-type(2) > a')
+    _partner_page_one_button_locator = (By.CSS_SELECTOR, '.pager-tabs a[href="#mozilla-pager-page-1"]')
     partner_images_pager_list_one = [
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(1) > img'),
@@ -276,3 +277,6 @@ class Partners(Base):
     @property
     def is_phone_overlay_visible(self):
         return self.is_element_visible(*self._phone_image_locator)
+
+    def click_partner_page_one_button(self):
+        self.selenium.find_element(*self._partner_page_one_button_locator).click()
