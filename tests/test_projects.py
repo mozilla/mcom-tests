@@ -21,7 +21,7 @@ class TestProjects:
         bad_links = []
         for link in Projects.Header.tabzilla_links_list:
             url = projects_page.link_destination(link.get('locator'))
-            if not url.endswith(link.get('url_suffix')):
+            if url.find(link.get('url_suffix')) < 1:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
