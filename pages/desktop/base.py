@@ -129,7 +129,7 @@ class Base(Page):
         footer_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#colophon div.footer-license p:nth-child(1) a'),
-                'url_suffix': '/foundation/licensing/website-content.html',
+                'url_suffix': '/foundation/licensing/website-content/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(1) a'),
                 'url_suffix': '/about/contact.html#map-mountain_view',
