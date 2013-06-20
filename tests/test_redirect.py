@@ -49,11 +49,10 @@ class TestRedirects(object):
         Assert.equal(result, response.url)
 
     @pytest.mark.nondestructive
-    def test_redirect_to_trailing_slash(self, mozwebqa):
+    def test_redirect_community_to_contribute(self, mozwebqa):
         url = mozwebqa.base_url + "/community/"
         response = requests.get(url)
-        result = mozwebqa.base_url + "/community/"
-        Assert.equal(result, response.url)
+        Assert.contains("/contribute/", response.url)
 
     @pytest.mark.nondestructive
     def test_redirect_firefox_mobile_to_mobile(self, mozwebqa):
