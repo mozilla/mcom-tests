@@ -20,7 +20,6 @@ class TestNotes:
 
     @pytest.mark.skip_selenium
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason='Bug 876961 - Careers link broken on dev')
     def test_that_all_links_are_valid(self, mozwebqa):
         notes_page = Notes(mozwebqa)
         url = mozwebqa.base_url + notes_page.notes_page_url
