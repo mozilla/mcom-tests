@@ -85,7 +85,7 @@ class Contribute(Base):
             'img_name_suffix': 'dinohead.png',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(4) > img'),
-            'img_name_suffix': 'firefox.png',
+            'img_name_suffix': 'firefox.png?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(5) > img'),
             'img_name_suffix': 'localization.png',
