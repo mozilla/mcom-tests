@@ -42,9 +42,9 @@ class Apps(Base):
     _showcased_apps_links_locator = (By.CSS_SELECTOR, 'div.billboard a')
     _sign_up_form_locator = (By.ID, 'footer-email-form')
     _sign_up_form_email_input_locator = (By.ID, 'id_email')
-    _sign_up_form_html_radio_locator = (By.ID, 'id_fmt_0')
-    _sign_up_form_text_radio_locator = (By.ID, 'id_fmt_1')
-    _sign_up_form_privacy_checkbox_locator = (By.ID, 'id_privacy')
+    _sign_up_form_html_radio_locator = (By.CSS_SELECTOR, '.field-format > label:nth-of-type(1)')
+    _sign_up_form_text_radio_locator = (By.CSS_SELECTOR, '.field-format > label:nth-of-type(2)')
+    _sign_up_form_privacy_checkbox_locator = (By.CSS_SELECTOR, '.privacy-check-label')
     _sign_up_form_submit_button_locator = (By.ID, 'footer_email_submit')
 
     @property
@@ -65,3 +65,5 @@ class Apps(Base):
 
     def expand_sign_up_form(self):
         self.selenium.find_element(*self._sign_up_form_email_input_locator).click()
+        WebDriverWait(self.selenium, self.timeout).until(lambda s: s.find_element(*self._sign_up_form_text_radio_locator))
+
