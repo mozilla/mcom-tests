@@ -32,13 +32,13 @@ class ProductsPage(Base):
     images_list = [
         {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(1) a img'),
-            'img_name_suffix': 'badge-firefox.jpg',
+            'img_name_suffix': 'badge-firefox.jpg?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a img'),
-            'img_name_suffix': 'badge-firefoxos.jpg',
+            'img_name_suffix': 'badge-firefoxos.jpg?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-marketplace.jpg',
+            'img_name_suffix': 'badge-marketplace.jpg?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(4) a img'),
             'img_name_suffix': 'badge-persona.jpg',
@@ -81,7 +81,7 @@ class ProductsPage(Base):
             'url_suffix': '/firefox/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a'),
-            'url_suffix': '/partners/',
+            'url_suffix': '/firefox/os/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a'),
             'url_suffix': '/apps/',
