@@ -61,7 +61,7 @@ class Base(Page):
                 'url_suffix': 'www.mozilla.org/thunderbird',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(3) > a'),
-                'url_suffix': 'www.mozilla.org/firefoxos',
+                'url_suffix': 'www.mozilla.org/firefox/os',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'webfwd.org/',
