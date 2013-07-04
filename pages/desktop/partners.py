@@ -10,9 +10,6 @@ from pages.desktop.base import Base
 
 class Partners(Base):
 
-    def go_to_page(self):
-        self.open('/firefox/partners/')
-
     _firefox_os_header_locator = (By.CSS_SELECTOR, '#main-feature > h2')
     _welcome_section_locator = (By.CSS_SELECTOR, '#primary')
     _new_web_standards_header_locator = (By.CSS_SELECTOR, '#secondary div.section:nth-of-type(1) > h3:nth-of-type(1)')
@@ -27,6 +24,14 @@ class Partners(Base):
     _form_icon_locator = (By.CSS_SELECTOR, 'menu-form > a')
     _partner_pager_button_locator = (By.CSS_SELECTOR, '.pager-tabs > li:nth-of-type(2) > a')
     _partner_page_one_button_locator = (By.CSS_SELECTOR, '.pager-tabs a[href="#mozilla-pager-page-1"]')
+    _partner_with_us_button_locator = (By.CSS_SELECTOR, '.partner-button > a')
+    _phone_foxtail_image_locator = (By.CSS_SELECTOR, '.phone > #screen-overview > #foxtail')
+    _phone_os_image_locator = (By.ID, 'screen-os')
+    _os_overview_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(1)')
+    _operators_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(2)')
+    _phone_marketplace_image_locator = (By.ID, 'screen-marketplace')
+    _phone_image_locator = (By.CSS_SELECTOR, '.phone-overlay')
+
     partner_images_pager_list_one = [
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(1) > img'),
@@ -161,13 +166,6 @@ class Partners(Base):
         }
     ]
 
-    _partner_with_us_button_locator = (By.CSS_SELECTOR, '.partner-button > a')
-    _phone_foxtail_image_locator = (By.CSS_SELECTOR, '.phone > #screen-overview > #foxtail')
-    _phone_os_image_locator = (By.ID, 'screen-os')
-    _os_overview_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(1)')
-    _operators_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(2)')
-    _phone_marketplace_image_locator = (By.ID, 'screen-marketplace')
-    _phone_image_locator = (By.CSS_SELECTOR, '.phone-overlay')
     _operators_image_list = [
         {
             'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(1) > img'),
@@ -246,6 +244,10 @@ class Partners(Base):
             'url_suffix': 'americamovil.png'
         }
     ]
+
+    def go_to_page(self):
+        self.open('/firefox/partners/')
+        self.wait_for_element_visible(*self._partner_with_us_button_locator)
 
     def click_partner_pager_button(self):
         return self.selenium.find_element(*self._partner_pager_button_locator).click()
