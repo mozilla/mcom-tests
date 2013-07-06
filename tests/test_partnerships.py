@@ -87,3 +87,19 @@ class TestPartnerships:
         for field in partner_form.fields_list:
             Assert.true(partner_form.is_element_visible(*field), 'The %s field is not visible on the form' % field[1:])
         Assert.true(partner_form.is_submit_button_visible, 'The submit button is not visible on the form')
+
+    @pytest.mark.nondestructive
+    def test_partner_form_submit_is_successful(self, mozwebqa):
+        partnerships_page = Partnerships(mozwebqa)
+        partnerships_page.go_to_page()
+        partner_form = partnerships_page.partner_form
+        field_values = [
+            'John', 'Smith', 'Mr',
+            'Company Ltd', 'www.company.com', 'noreply@mozilla.com',
+            '123456789', '123456789', '25 Park Street',
+            'Boston', 'Massachusetts', 'US', '02129', 'Firefox for Android', 'Description'
+            ]
+        partner_form.fill_out_form(field_values)
+        partner_form.submit_form()
+        partner_form.wait_for_element_visible(*partner_form._form_success_locator)
+        Assert.true(partner_form.is_form_success_visible, 'Form success section is not visible')
