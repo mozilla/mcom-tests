@@ -91,7 +91,7 @@ class Page(object):
             time.sleep(1)
             count += 1
             if count == self.timeout:
-                raise Exception(*locator + ' has not loaded')
+                raise Exception(':'.join(locator) + ' has not loaded')
 
     def wait_for_element_visible(self, *locator):
         count = 0
@@ -99,7 +99,7 @@ class Page(object):
             time.sleep(1)
             count += 1
             if count == self.timeout:
-                raise Exception(*locator + " is not visible")
+                raise Exception(':'.join(locator) + " is not visible")
 
     def wait_for_ajax(self):
         count = 0
