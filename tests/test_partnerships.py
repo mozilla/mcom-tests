@@ -11,6 +11,7 @@ from pages.desktop.partnerships import Partnerships
 
 
 class TestPartnerships:
+
     @pytest.mark.nondestructive
     def test_section_links_are_visible(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
@@ -101,5 +102,5 @@ class TestPartnerships:
             ]
         partner_form.fill_out_form(field_values)
         partner_form.submit_form()
-        partner_form.wait_for_element_visible(*partner_form._form_success_locator)
+        partner_form.wait_for_form_success_visible()
         Assert.true(partner_form.is_form_success_visible, 'Form success section is not visible')

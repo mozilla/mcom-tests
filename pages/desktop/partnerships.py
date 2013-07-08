@@ -118,6 +118,12 @@ class Partnerships(Base):
         def is_form_error_visible(self):
             return self.is_element_visible(*self._form_error_locator)
 
+        def wait_for_form_success_visible(self):
+            self.wait_for_element_visible(*self._form_success_locator)
+
+        def wait_for_form_error_visible(self):
+            self.wait_for_element_visible(*self._form_error_locator)
+
         def fill_out_form(self, values):
             for field_locator, value in zip(self.fields_list, values):
                 field = self.selenium.find_element(*field_locator)
