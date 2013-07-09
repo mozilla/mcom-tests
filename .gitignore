@@ -7,6 +7,3 @@ venv
 .DS_Store
 *.yaml
 *.sh
-*.sublime-project
-*.sublime-workspace
-mcom-tests-notes.txt
