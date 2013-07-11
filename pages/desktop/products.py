@@ -32,13 +32,13 @@ class ProductsPage(Base):
     images_list = [
         {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(1) a img'),
-            'img_name_suffix': 'badge-firefox.jpg',
+            'img_name_suffix': 'badge-firefox.jpg?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a img'),
-            'img_name_suffix': 'badge-firefoxos.jpg',
+            'img_name_suffix': 'badge-firefoxos.jpg?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-marketplace.jpg',
+            'img_name_suffix': 'badge-marketplace.jpg?2013-06',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(4) a img'),
             'img_name_suffix': 'badge-persona.jpg',
@@ -54,10 +54,7 @@ class ProductsPage(Base):
         }, {
             'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(2) a img'),
             'img_name_suffix': 'badge-labs.jpg',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-pancake.jpg',
-        }, {
+        },  {
             'locator': (By.CSS_SELECTOR, '#tools li:nth-child(1) a img'),
             'img_name_suffix': 'badge-tools.jpg',
         }, {
@@ -84,7 +81,7 @@ class ProductsPage(Base):
             'url_suffix': '/firefox/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(2) a'),
-            'url_suffix': '/firefoxos/',
+            'url_suffix': '/firefox/os/',
         }, {
             'locator': (By.CSS_SELECTOR, '#products li:nth-child(3) a'),
             'url_suffix': '/apps/',
@@ -107,9 +104,6 @@ class ProductsPage(Base):
         }, {
             'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(2) a'),
             'url_suffix': 'mozillalabs.com/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(3) a'),
-            'url_suffix': 'wiki.mozilla.org/Pancake',
         }
     ]
 

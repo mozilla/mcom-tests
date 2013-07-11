@@ -54,6 +54,18 @@ class Page(object):
     def open(self, url_fragment):
         self.selenium.get(self.base_url + url_fragment)
 
+    def select_option(self, value, locator):
+        dropdown = self.selenium.find_element(*locator)
+        option_found = False
+        all_options = dropdown.find_elements_by_tag_name("option")
+        for option in all_options:
+            if option.get_attribute("value") == value:
+                option_found = True
+                option.click()
+                break
+        if option_found is False:
+            raise Exception("Option '" + value + "' was not found, thus not selectable.")
+
     def is_element_present(self, *locator):
         self.selenium.implicitly_wait(0)
         try:
@@ -79,7 +91,7 @@ class Page(object):
             time.sleep(1)
             count += 1
             if count == self.timeout:
-                raise Exception(*locator + ' has not loaded')
+                raise Exception(':'.join(locator) + ' has not loaded')
 
     def wait_for_element_visible(self, *locator):
         count = 0
@@ -87,7 +99,7 @@ class Page(object):
             time.sleep(1)
             count += 1
             if count == self.timeout:
-                raise Exception(*locator + " is not visible")
+                raise Exception(':'.join(locator) + " is not visible")
 
     def wait_for_ajax(self):
         count = 0

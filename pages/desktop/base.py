@@ -61,7 +61,7 @@ class Base(Page):
                 'url_suffix': 'www.mozilla.org/thunderbird',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(3) > a'),
-                'url_suffix': 'www.mozilla.org/firefoxos',
+                'url_suffix': 'www.mozilla.org/firefox/os',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'webfwd.org/',
@@ -83,7 +83,10 @@ class Base(Page):
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'sendto.mozilla.org/Join-Tabzilla',
-            },
+            }, {
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(5) > a'),
+                'url_suffix': '/about/partnerships/',
+            }
         ]
 
         nav_links_list = [
@@ -126,18 +129,21 @@ class Base(Page):
         footer_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#colophon div.footer-license p:nth-child(1) a'),
-                'url_suffix': '/foundation/licensing/website-content.html',
+                'url_suffix': '/foundation/licensing/website-content/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(1) a'),
                 'url_suffix': '/about/contact.html#map-mountain_view',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(2) a'),
-                'url_suffix': '/privacy/',
+                'url_suffix': '/about/partnerships/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(3) a'),
-                'url_suffix': '/about/legal.html',
+                'url_suffix': '/privacy/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(4) a'),
+                'url_suffix': '/about/legal.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(5) a'),
                 'url_suffix': '/legal/fraud-report/index.html',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(1) a'),

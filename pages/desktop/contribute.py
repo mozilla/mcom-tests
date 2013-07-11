@@ -12,6 +12,101 @@ from pages.page import Page
 
 class Contribute(Base):
 
+    details_links = [
+        {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://support.mozilla.org/kb/superheroes-wanted',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'http://support.mozillamessaging.com/kb/superheroes-wanted',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'http://quality.mozilla.org/teams/desktop-firefox/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'http://quality.mozilla.org/teams/web-qa/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(3)'),
+            'url_suffix': 'http://quality.mozilla.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(3) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://developer.mozilla.org/en/Introduction',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(3) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'http://www.whatcanidoformozilla.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(4) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://affiliates.mozilla.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(4) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'https://wiki.mozilla.org/MarketingGuide',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(5) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://wiki.mozilla.org/L10n',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(5) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'https://wiki.mozilla.org/L10n:Web_parts',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(6) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://wiki.mozilla.org/Webdev/GetInvolved',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(6) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'https://wiki.mozilla.org/Gaia/Hacking',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(7) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://addons.mozilla.org/developers/docs/getting-started',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(7) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'https://wiki.mozilla.org/AMO:Editors/Applying',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(8) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://blog.mozilla.org/creative/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(9) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://developer.mozilla.org/docs/Project:How_to_Help',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(10) >.content > p > a:nth-of-type(1)'),
+            'url_suffix': 'https://webmaker.org/',
+        }, {
+            'locator': (By.CSS_SELECTOR, 'li:nth-of-type(10) >.content > p > a:nth-of-type(2)'),
+            'url_suffix': 'https://webmaker.org/events/',
+        }
+    ]
+
+    images_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(1) > img'),
+            'img_name_suffix': 'sumo.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(2) > img'),
+            'img_name_suffix': 'qmo.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(3) > img'),
+            'img_name_suffix': 'dinohead.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(4) > img'),
+            'img_name_suffix': 'firefox.png?2013-06',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(5) > img'),
+            'img_name_suffix': 'localization.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(6) > img'),
+            'img_name_suffix': 'web.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(7) > img'),
+            'img_name_suffix': 'addons.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(8) > img'),
+            'img_name_suffix': 'creativecollective.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(9) > img'),
+            'img_name_suffix': 'mdn.png',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(10) > img'),
+            'img_name_suffix': 'webmaker.png',
+        }
+    ]
+
     def go_to_page(self):
         self.open('/contribute/')
 

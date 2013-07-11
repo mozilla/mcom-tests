@@ -19,7 +19,7 @@ class Mission(Base):
             'url_suffix': '/contribute/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(2) a'),
-            'url_suffix': '/about/history.html',
+            'url_suffix': '/about/history/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(3) a'),
             'url_suffix': '/about/forums/',

@@ -49,11 +49,10 @@ class TestRedirects(object):
         Assert.equal(result, response.url)
 
     @pytest.mark.nondestructive
-    def test_redirect_to_trailing_slash(self, mozwebqa):
+    def test_redirect_community_to_contribute(self, mozwebqa):
         url = mozwebqa.base_url + "/community/"
         response = requests.get(url)
-        result = mozwebqa.base_url + "/community/"
-        Assert.equal(result, response.url)
+        Assert.contains("/contribute/", response.url)
 
     @pytest.mark.nondestructive
     def test_redirect_firefox_mobile_to_mobile(self, mozwebqa):
@@ -132,3 +131,29 @@ class TestRedirects(object):
         url = mozwebqa.base_url + "/firefox/all-older.html"
         response = requests.get(url)
         Assert.contains("/firefox/new", response.url)
+    
+    @pytest.mark.nondestructive
+    def test_old_firstrun_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + "/en-US/projects/firefox/3.6.13/firstrun/"
+        response = requests.get(url)
+        Assert.not_equal(response.status_code, 404)
+    
+    @pytest.mark.nondestructive
+    def test_old_whatsnew_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/en-US/projects/firefox/3.6.13/whatsnew/'
+        response = requests.get(url)
+        Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.nondestructive
+    def test_partners_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/b2g/'
+        response = requests.get(url)
+        Assert.contains('/partners/', response.url)
+
+    @pytest.mark.nondestructive
+    def test_firefox_metro_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/metrofirefox'
+        response = requests.head(url)
+        Assert.not_equal(response.status_code, 404)
+
+
