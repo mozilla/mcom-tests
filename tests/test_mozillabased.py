@@ -112,21 +112,25 @@ class TestMozillaBasedPagePage:
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_product_links_are_visible(self, mozwebqa):
+    @pytest.mark.parametrize('link_list', ['product_link_list_1', 'product_link_list_2', 'product_link_list_3', 'product_link_list_4', 'product_link_list_5', 'product_link_list_6', 'product_link_list_7'])
+    def test_product_links_are_visible(self, mozwebqa, link_list):
         mozillabased_page = MozillaBasedPage(mozwebqa)
         mozillabased_page.go_to_page()
         bad_links = []
-        for link in mozillabased_page.product_link_list:
+        links = getattr(mozillabased_page, link_list)
+        for link in links:
             if not mozillabased_page.is_element_visible(*link.get('locator')):
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_product_link_destinations_are_correct(self, mozwebqa):
+    @pytest.mark.parametrize('link_list', ['product_link_list_1', 'product_link_list_2', 'product_link_list_3', 'product_link_list_4', 'product_link_list_5', 'product_link_list_6', 'product_link_list_7'])
+    def test_product_link_destinations_are_correct(self, mozwebqa, link_list):
         mozillabased_page = MozillaBasedPage(mozwebqa)
         mozillabased_page.go_to_page()
         bad_links = []
-        for link in mozillabased_page.product_link_list:
+        links = getattr(mozillabased_page, link_list)
+        for link in links:
             url = mozillabased_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
