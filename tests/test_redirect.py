@@ -156,4 +156,8 @@ class TestRedirects(object):
         response = requests.head(url)
         Assert.not_equal(response.status_code, 404)
 
-
+    @pytest.mark.nondestructive
+    def test_locale_redirect_for_newsletter(self, mozwebqa):
+        url = mozwebqa.base_url + '/newsletter'
+        response = requests.get(url, headers={'Accept-Language': 'pl'})
+        Assert.equal(response.url, mozwebqa.base_url + '/pl/newsletter/')
