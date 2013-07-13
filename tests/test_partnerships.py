@@ -8,6 +8,7 @@ import pytest
 import requests
 from unittestzero import Assert
 from pages.desktop.partnerships import Partnerships
+from mocks.mock_partnership_request import MockPartnershipRequest
 
 
 class TestPartnerships:
@@ -94,13 +95,8 @@ class TestPartnerships:
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
         partner_form = partnerships_page.partner_form
-        field_values = [
-            'John', 'Smith', 'Mr',
-            'Company Ltd', 'www.company.com', 'noreply@mozilla.com',
-            '123456789', '123456789', '25 Park Street',
-            'Boston', 'Massachusetts', 'US', '02129', 'Firefox for Android', 'Description'
-            ]
-        partner_form.fill_out_form(field_values)
+        partnership_request = MockPartnershipRequest()
+        partner_form.fill_out_form(partnership_request)
         partner_form.submit_form()
         partner_form.wait_for_form_success_visible()
         Assert.true(partner_form.is_form_success_visible, 'Form success section is not visible')

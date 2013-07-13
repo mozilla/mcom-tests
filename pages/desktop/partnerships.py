@@ -125,8 +125,9 @@ class Partnerships(Base):
             self.wait_for_element_visible(*self._form_error_locator)
 
         def fill_out_form(self, values):
-            for field_locator, value in zip(self.fields_list, values):
+            for field_locator in self.fields_list:
                 field = self.selenium.find_element(*field_locator)
+                value = values[field_locator[1]]
                 if field.tag_name == 'select':
                     self.select_option(value, field_locator)
                 else:
