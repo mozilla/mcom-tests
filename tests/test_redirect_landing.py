@@ -11,7 +11,8 @@ import pytest
 @pytest.mark.skip_selenium
 class TestRedirectLanding(object):
     DE_LOCALE = {'Accept-Language': 'de'}
-    FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/17.0 Firefox/17.0'}
+    FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:22.0) Gecko/22.0 Firefox/22.0'}
+    ESR_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/17.0 Firefox/17.0'}
     OLD_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) Gecko/16.0 Firefox/16.0'}
     NON_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.4 Safari/537.1'}
     MOBILE = {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 4.0.3; de-ch; HTC Sensation Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}
@@ -40,6 +41,26 @@ class TestRedirectLanding(object):
     def test_redirect_locale_firefox(self, mozwebqa):
         headers = {}
         headers.update(self.FIREFOX)
+        self._test_one_redirect(mozwebqa, '/de/firefox/', '/de/firefox/fx/',
+            headers)
+
+        headers.update(self.DE_LOCALE)
+        self._test_one_redirect(mozwebqa, '/firefox/', '/de/firefox/fx/',
+            headers)
+
+    @pytest.mark.nondestructive
+    def test_redirect_esr_firefox(self, mozwebqa):
+        headers = {}
+        headers.update(self.ESR_FIREFOX)
+        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/fx/',
+            headers)
+        self._test_one_redirect(mozwebqa, '/en-US/firefox/', '/en-US/firefox/fx/',
+            headers)
+
+    @pytest.mark.nondestructive
+    def test_redirect_locale_esr_firefox(self, mozwebqa):
+        headers = {}
+        headers.update(self.ESR_FIREFOX)
         self._test_one_redirect(mozwebqa, '/de/firefox/', '/de/firefox/fx/',
             headers)
 
