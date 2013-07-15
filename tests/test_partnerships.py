@@ -90,7 +90,6 @@ class TestPartnerships:
             Assert.true(partner_form.is_element_visible(*field), 'The %s field is not visible on the form' % field[1:])
         Assert.true(partner_form.is_submit_button_visible, 'The submit button is not visible on the form')
 
-    @pytest.mark.nondestructive
     def test_partner_form_submit_is_successful(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
