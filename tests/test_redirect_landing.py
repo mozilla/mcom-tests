@@ -34,18 +34,18 @@ class TestRedirectLanding(object):
     def test_redirect_firefox(self, mozwebqa):
         headers = {}
         headers.update(self.FIREFOX)
-        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/fx/',
+        self._test_one_redirect(mozwebqa, '/firefox/', '/en-US/firefox/new/',
             headers)
 
     @pytest.mark.nondestructive
     def test_redirect_locale_firefox(self, mozwebqa):
         headers = {}
         headers.update(self.FIREFOX)
-        self._test_one_redirect(mozwebqa, '/de/firefox/', '/de/firefox/fx/',
+        self._test_one_redirect(mozwebqa, '/de/firefox/', '/de/firefox/new/',
             headers)
 
         headers.update(self.DE_LOCALE)
-        self._test_one_redirect(mozwebqa, '/firefox/', '/de/firefox/fx/',
+        self._test_one_redirect(mozwebqa, '/firefox/', '/de/firefox/new/',
             headers)
 
     @pytest.mark.nondestructive
