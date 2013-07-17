@@ -36,7 +36,7 @@ class TestSecurity:
         bad_links = []
         for link in Security.Header.tabzilla_links_list:
             url = security_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix'))  < 1:
+            if url.find(link.get('url_suffix')) < 1:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
@@ -133,15 +133,3 @@ class TestSecurity:
             if not image.get('img_name_contains') in src:
                 bad_images.append('%s does not contain %s' % (src, image.get('img_name_contains')))
         Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
-
-    @pytest.mark.nondestructive
-    def test_images_srcs_are_valid(self, mozwebqa):
-        security_page = Security(mozwebqa)
-        security_page.go_to_page()
-        bad_urls = []
-        for image in security_page.images_list:
-            url = security_page.image_source(image.get('locator'))
-            response_code = security_page.get_response_code(url)
-            if response_code != requests.codes.ok:
-                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
