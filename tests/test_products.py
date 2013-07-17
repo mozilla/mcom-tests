@@ -95,18 +95,6 @@ class TestProductsPage:
         Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
 
     @pytest.mark.nondestructive
-    def test_images_srcs_are_valid(self, mozwebqa):
-        products_page = ProductsPage(mozwebqa)
-        products_page.go_to_page()
-        bad_urls = []
-        for image in products_page.images_list:
-            url = products_page.image_source(image.get('locator'))
-            response_code = products_page.get_response_code(url)
-            if response_code != requests.codes.ok:
-                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @pytest.mark.nondestructive
     def test_products_links_are_visible(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
