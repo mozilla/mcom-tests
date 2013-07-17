@@ -74,7 +74,7 @@ class TestRedirectLanding(object):
         headers = {}
         headers.update(self.ESR_FIREFOX)
         headers.update(self.ACCEPT_LANGUAGE)
-        self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
+        self._test_redirect(mozwebqa, '/firefox/', '/firefox/fx/', headers)
 
     @pytest.mark.nondestructive
     def test_redirect_esr_firefox_using_locale(self, mozwebqa):
@@ -82,7 +82,7 @@ class TestRedirectLanding(object):
         headers.update(self.ESR_FIREFOX)
         for locale in self.LOCALES:
             headers.update(self.ACCEPT_LANGUAGE)
-            self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
+            self._test_redirect(mozwebqa, '/firefox/', '/firefox/fx/', headers)
 
     @pytest.mark.nondestructive
     def test_redirect_ios_using_en_US(self, mozwebqa):
