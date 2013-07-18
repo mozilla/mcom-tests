@@ -52,7 +52,7 @@ class Security(Base):
             'url_suffix': '/legal/privacy/firefox.html',
         }, {
             'locator': (By.CSS_SELECTOR, '#mission > .row > .section-list.span3 > li:nth-of-type(2) > p > a'),
-            'url_suffix': '/about/mission.html',
+            'url_suffix': '/mission/',
         }
     ]
 
