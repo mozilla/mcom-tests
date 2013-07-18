@@ -22,7 +22,7 @@ class Privacy(Base):
             'url_suffix': '/legal/privacy/firefox.html',
         }, {
             'locator': (By.CSS_SELECTOR, '.policy-thunderbird'),
-            'url_suffix': 'http://www.mozilla.org/en-US/thunderbird/legal/privacy/',
+            'url_suffix': '/en-US/thunderbird/legal/privacy/',
         }, {
             'locator': (By.CSS_SELECTOR, '.policy-marketplace'),
             'url_suffix': 'https://marketplace.firefox.com/privacy-policy',
