@@ -15,61 +15,61 @@ class Contribute(Base):
     details_links = [
         {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://support.mozilla.org/kb/superheroes-wanted',
+            'url_suffix': '//support.mozilla.org/kb/superheroes-wanted',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'http://support.mozillamessaging.com/kb/superheroes-wanted',
+            'url_suffix': '//support.mozillamessaging.com/kb/superheroes-wanted',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'http://quality.mozilla.org/teams/desktop-firefox/',
+            'url_suffix': '//quality.mozilla.org/teams/desktop-firefox/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'http://quality.mozilla.org/teams/web-qa/',
+            'url_suffix': '//quality.mozilla.org/teams/web-qa/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(3)'),
-            'url_suffix': 'http://quality.mozilla.org/',
+            'url_suffix': '//quality.mozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(3) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://developer.mozilla.org/en/Introduction',
+            'url_suffix': '//developer.mozilla.org/en/Introduction',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(3) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'http://www.whatcanidoformozilla.org/',
+            'url_suffix': '//www.whatcanidoformozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(4) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://affiliates.mozilla.org/',
+            'url_suffix': '//affiliates.mozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(4) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'https://wiki.mozilla.org/MarketingGuide',
+            'url_suffix': '//wiki.mozilla.org/MarketingGuide',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(5) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://wiki.mozilla.org/L10n',
+            'url_suffix': '//wiki.mozilla.org/L10n',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(5) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'https://wiki.mozilla.org/L10n:Web_parts',
+            'url_suffix': '//wiki.mozilla.org/L10n:Web_parts',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(6) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://wiki.mozilla.org/Webdev/GetInvolved',
+            'url_suffix': '//wiki.mozilla.org/Webdev/GetInvolved',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(6) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'https://wiki.mozilla.org/Gaia/Hacking',
+            'url_suffix': '//wiki.mozilla.org/Gaia/Hacking',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(7) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://addons.mozilla.org/developers/docs/getting-started',
+            'url_suffix': '//addons.mozilla.org/developers/docs/getting-started',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(7) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'https://wiki.mozilla.org/AMO:Editors/Applying',
+            'url_suffix': '//wiki.mozilla.org/AMO:Editors/Applying',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(8) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://blog.mozilla.org/creative/',
+            'url_suffix': '/blog.mozilla.org/creative/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(9) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://developer.mozilla.org/docs/Project:How_to_Help',
+            'url_suffix': '//developer.mozilla.org/docs/Project:How_to_Help',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(10) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': 'https://webmaker.org/',
+            'url_suffix': '/webmaker.org/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(10) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': 'https://webmaker.org/events/',
+            'url_suffix': '/webmaker.org/events/',
         }
     ]
 
