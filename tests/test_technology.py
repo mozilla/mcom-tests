@@ -68,7 +68,6 @@ class TestTechnologyPage:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason="Bug 882555 - /demos doesn't load -- redirects ad-naseum")
     def test_more_info_link_urls_are_valid(self, mozwebqa):
         technology_page = Technology(mozwebqa)
         technology_page.go_to_page()
