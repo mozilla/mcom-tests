@@ -65,6 +65,8 @@ class Partnerships(Base):
     class PartnerForm(Page):
 
         _form_locator = (By.ID, 'partner-form')
+        _form_success_locator = (By.ID, 'partner-form-success')
+        _form_error_locator = (By.ID, 'partner-form-error')
         _get_started_title_locator = (By.CSS_SELECTOR, '#partner-form > h3')
         _first_name_textbox_locator = (By.ID, 'first_name')
         _last_name_textbox_locator = (By.ID, 'last_name')
@@ -76,6 +78,7 @@ class Partnerships(Base):
         _mobile_textbox_locator = (By.ID, 'mobile')
         _address_textbox_locator = (By.ID, 'street')
         _city_textbox_locator = (By.ID, 'city')
+        _state_textbox_locator = (By.ID, 'state')
         _country_textbox_locator = (By.ID, 'country')
         _zip_textbox_locator = (By.ID, 'zip')
         _interest_field_locator = (By.ID, 'interest')
@@ -90,8 +93,9 @@ class Partnerships(Base):
             self._website_textbox_locator, self._email_textbox_locator,
             self._phone_textbox_locator, self._mobile_textbox_locator,
             self._address_textbox_locator, self._city_textbox_locator,
-            self._country_textbox_locator, self._zip_textbox_locator,
-            self._interest_field_locator, self._description_textbox_locator
+            self._state_textbox_locator, self._country_textbox_locator,
+            self._zip_textbox_locator, self._interest_field_locator,
+            self._description_textbox_locator
         ]
 
         @property
@@ -105,3 +109,29 @@ class Partnerships(Base):
         @property
         def is_form_present(self):
             return self.is_element_present(*self._form_locator)
+
+        @property
+        def is_form_success_visible(self):
+            return self.is_element_visible(*self._form_success_locator)
+
+        @property
+        def is_form_error_visible(self):
+            return self.is_element_visible(*self._form_error_locator)
+
+        def wait_for_form_success_visible(self):
+            self.wait_for_element_visible(*self._form_success_locator)
+
+        def wait_for_form_error_visible(self):
+            self.wait_for_element_visible(*self._form_error_locator)
+
+        def fill_out_form(self, values):
+            for field_locator in self.fields_list:
+                field = self.selenium.find_element(*field_locator)
+                value = values[field_locator[1]]
+                if field.tag_name == 'select':
+                    self.select_option(value, field_locator)
+                else:
+                    field.send_keys(value)
+
+        def submit_form(self):
+            self.selenium.find_element(*self._submit_button_locator).click()

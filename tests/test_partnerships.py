@@ -8,9 +8,11 @@ import pytest
 import requests
 from unittestzero import Assert
 from pages.desktop.partnerships import Partnerships
+from mocks.mock_partnership_request import MockPartnershipRequest
 
 
 class TestPartnerships:
+
     @pytest.mark.nondestructive
     def test_section_links_are_visible(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
@@ -75,3 +77,13 @@ class TestPartnerships:
         for field in partner_form.fields_list:
             Assert.true(partner_form.is_element_visible(*field), 'The %s field is not visible on the form' % field[1:])
         Assert.true(partner_form.is_submit_button_visible, 'The submit button is not visible on the form')
+
+    def test_partner_form_submit_is_successful(self, mozwebqa):
+        partnerships_page = Partnerships(mozwebqa)
+        partnerships_page.go_to_page()
+        partner_form = partnerships_page.partner_form
+        partnership_request = MockPartnershipRequest()
+        partner_form.fill_out_form(partnership_request)
+        partner_form.submit_form()
+        partner_form.wait_for_form_success_visible()
+        Assert.true(partner_form.is_form_success_visible, 'Form success section is not visible')
