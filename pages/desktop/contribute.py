@@ -51,7 +51,7 @@ class Contribute(Base):
             'url_suffix': '//wiki.mozilla.org/Webdev/GetInvolved',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(6) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': '//wiki.mozilla.org/Gaia/Hacking',
+            'url_suffix': '//developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(7) >.content > p > a:nth-of-type(1)'),
             'url_suffix': '//addons.mozilla.org/developers/docs/getting-started',
