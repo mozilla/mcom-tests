@@ -161,3 +161,40 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/newsletter'
         response = requests.get(url, headers={'Accept-Language': 'pl'})
         Assert.equal(response.url, mozwebqa.base_url + '/pl/newsletter/')
+
+    @pytest.mark.nondestructive
+    def test_mpl_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/MPL'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.nondestructive
+    def test_xbl_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/XBL/'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.nondestructive
+    def test_npl_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/NPL'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.nondestructive
+    def test_hp7_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/hp7/'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.nondestructive
+    def test_js_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/js/'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.not_equal(response.status_code, 404)
+
+    @pytest.mark.xfail
+    @pytest.mark.nondestructive
+    def test_rdf_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/rdf'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.not_equal(response.status_code, 404)
