@@ -31,7 +31,6 @@ class TestLocalizations:
             for link in links:
                 url = link['href']
                 response = requests.head(url, allow_redirects=True)
-                status = response.status_code
                 if language['id'] not in response.url:
                     bad_links.append("Lang '%s' not in response: %s \n"
                                      % (language['id'], response.url))
