@@ -20,7 +20,7 @@ class TestRedirectLanding(object):
         "lv", "mai", "mk", "ml", "mn", "mr", "nb-NO", "nl", "nn-NO", "nso",
         "or", "pa-IN", "pl", "pt-BR", "pt-PT", "rm", "ro", "ru", "si", "sk",
         "sl", "son", "sq", "sr", "sv-SE", "sw", "ta", "ta-LK", "te", "th", "tr",
-        "uk", "vi", "zh-CN","zh-TW", "zu"
+        "uk", "vi", "zh-CN", "zh-TW", "zu"
     )
     ACCEPT_LANGUAGE = {'Accept-Language': 'en-US'}
     FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0'}
@@ -94,7 +94,7 @@ class TestRedirectLanding(object):
         headers = {}
         headers.update(self.ESR_FIREFOX)
         for locale in self.LOCALES:
-            if locale in ['zu','ak','lg', 'mai']:
+            if locale in ['zu', 'ak', 'lg', 'mai']:
                 self.ACCEPT_LANGUAGE['Accept-Language'] = locale
                 headers.update(self.ACCEPT_LANGUAGE)
                 self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)

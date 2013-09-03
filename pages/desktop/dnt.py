@@ -20,11 +20,11 @@ class DoNotTrack(Base):
     _enable_dnt_link_locator = (By.CSS_SELECTOR, '.sidebar-inset > p > a')
     tracking_protection_links_list = [
         {
-            'locator':  (By.CSS_SELECTOR, '.sidebar-box > p > a:nth-of-type(1)'),
+            'locator': (By.CSS_SELECTOR, '.sidebar-box > p > a:nth-of-type(1)'),
             'url_suffix': 'ie.microsoft.com/testdrive/Browser/TrackingProtectionLists/faq.html'
         },
         {
-            'locator':  (By.CSS_SELECTOR, '.sidebar-box > p > a:nth-of-type(2)'),
+            'locator': (By.CSS_SELECTOR, '.sidebar-box > p > a:nth-of-type(2)'),
             'url_suffix': 'dnt-enabler.tpl'
         }
     ]
