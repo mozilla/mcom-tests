@@ -85,14 +85,14 @@ class Partnerships(Base):
         @property
         def fields_list(self):
             return [
-            self._first_name_textbox_locator, self._last_name_textbox_locator,
-            self._title_textbox_locator, self._company_textbox_locator,
-            self._website_textbox_locator, self._email_textbox_locator,
-            self._phone_textbox_locator, self._mobile_textbox_locator,
-            self._address_textbox_locator, self._city_textbox_locator,
-            self._country_textbox_locator, self._zip_textbox_locator,
-            self._interest_field_locator, self._description_textbox_locator
-        ]
+                self._first_name_textbox_locator, self._last_name_textbox_locator,
+                self._title_textbox_locator, self._company_textbox_locator,
+                self._website_textbox_locator, self._email_textbox_locator,
+                self._phone_textbox_locator, self._mobile_textbox_locator,
+                self._address_textbox_locator, self._city_textbox_locator,
+                self._country_textbox_locator, self._zip_textbox_locator,
+                self._interest_field_locator, self._description_textbox_locator
+            ]
 
         @property
         def is_title_visible(self):

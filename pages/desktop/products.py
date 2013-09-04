@@ -54,7 +54,7 @@ class ProductsPage(Base):
         }, {
             'locator': (By.CSS_SELECTOR, '#innovations li:nth-child(2) a img'),
             'img_name_suffix': 'badge-labs.jpg',
-        },  {
+        }, {
             'locator': (By.CSS_SELECTOR, '#tools li:nth-child(1) a img'),
             'img_name_suffix': 'badge-tools.jpg',
         }, {

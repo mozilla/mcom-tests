@@ -4,7 +4,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from pages.desktop.base import Base
 
@@ -66,4 +65,3 @@ class Apps(Base):
     def expand_sign_up_form(self):
         self.selenium.find_element(*self._sign_up_form_email_input_locator).click()
         WebDriverWait(self.selenium, self.timeout).until(lambda s: s.find_element(*self._sign_up_form_text_radio_locator))
-
