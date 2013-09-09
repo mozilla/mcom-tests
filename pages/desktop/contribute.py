@@ -14,7 +14,7 @@ class Contribute(Base):
     details_links = [
         {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': '//support.mozilla.org/kb/superheroes-wanted',
+            'url_suffix': '//support.mozilla.org/get-involved',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(2)'),
             'url_suffix': '//support.mozillamessaging.com/kb/superheroes-wanted',
@@ -29,7 +29,7 @@ class Contribute(Base):
             'url_suffix': '//quality.mozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(3) >.content > p > a:nth-of-type(1)'),
-            'url_suffix': '//developer.mozilla.org/en/Introduction',
+            'url_suffix': '//developer.mozilla.org/docs/Introduction',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(3) >.content > p > a:nth-of-type(2)'),
             'url_suffix': '//www.whatcanidoformozilla.org/',
@@ -50,7 +50,7 @@ class Contribute(Base):
             'url_suffix': '//wiki.mozilla.org/Webdev/GetInvolved',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(6) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': '//developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking',
+            'url_suffix': '//developer.mozilla.org/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(7) >.content > p > a:nth-of-type(1)'),
             'url_suffix': '//addons.mozilla.org/developers/docs/getting-started',
