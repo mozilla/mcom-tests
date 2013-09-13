@@ -113,7 +113,7 @@ class Page(object):
     def get_response_code(self, url):
         # return the response status
         #this sets max_retries to 5
-        requests.adapters.DEFAULT_RETRIES = 20
+        requests.adapters.DEFAULT_RETRIES = 10
         try:
             r = requests.get(url, verify=False, allow_redirects=True, timeout=self.timeout)
             return r.status_code
