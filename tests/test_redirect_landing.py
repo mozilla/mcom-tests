@@ -23,8 +23,8 @@ class TestRedirectLanding(object):
         "uk", "vi", "zh-CN", "zh-TW", "zu"
     )
     ACCEPT_LANGUAGE = {'Accept-Language': 'en-US'}
-    FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0'}
-    ESR_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/17.0 Firefox/17.0'}
+    FIREFOX = {'User-Agent': ' Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:24.0) Gecko/20100101 Firefox/24.0'}
+    ESR_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/17.0 Firefox/17.0.8'}
     OLD_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) Gecko/16.0 Firefox/16.0'}
     MOBILE = {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 4.0.3; HTC Sensation Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}
     NON_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.4 Safari/537.1'}
