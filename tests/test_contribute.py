@@ -96,8 +96,6 @@ class TestContribute:
 
     @pytest.mark.nondestructive
     def test_want_to_help_form_is_correct(self, mozwebqa):
-        if mozwebqa.base_url == 'https://www.allizom.org':
-            pytest.xfail(reason='Bug 793002 - reCaptcha key for staging is bad')
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
         help_form = contribute_page.help_form
