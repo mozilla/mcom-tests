@@ -161,3 +161,9 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/newsletter'
         response = requests.get(url, headers={'Accept-Language': 'pl'})
         Assert.equal(response.url, mozwebqa.base_url + '/pl/newsletter/')
+
+    @pytest.mark.nondestructive
+    def test_firefox_os_mobile_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/firefox/mobile/faq/?os=firefox-os'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.contains('/firefox/os/faq/', response.url)
