@@ -91,7 +91,7 @@ class Page(object):
             time.sleep(1)
             count += 1
             if count == self.timeout:
-                raise Exception(':'.join(locator) + ' has not loaded')
+                raise Exception(':'.join(locator[0]) + ' has not loaded')
 
     def wait_for_element_visible(self, *locator):
         count = 0
@@ -99,7 +99,7 @@ class Page(object):
             time.sleep(1)
             count += 1
             if count == self.timeout:
-                raise Exception(':'.join(locator) + " is not visible")
+                raise Exception(':'.join(locator[0]) + " is not visible")
 
     def wait_for_ajax(self):
         count = 0
@@ -115,7 +115,13 @@ class Page(object):
         #this sets max_retries to 5
         requests.adapters.DEFAULT_RETRIES = 10
         try:
-            r = requests.get(url, verify=False, allow_redirects=True, timeout=self.timeout)
+            r = requests.get(
+                    url,
+                    verify=False,
+                    allow_redirects=True,
+                    timeout=self.timeout,
+                    headers={'Accept-Language': 'en'},
+                )
             return r.status_code
         except Timeout:
             return 408
