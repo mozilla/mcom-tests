@@ -167,3 +167,13 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/firefox/mobile/faq/?os=firefox-os'
         response = requests.get(url, headers={'Accept-Language': 'en-US'})
         Assert.contains('/firefox/os/faq/', response.url)
+
+    @pytest.mark.nondestructive
+    def test_account_manager_redirect(self, mozwebqa):
+        """
+        Test that /firefox/account manager redirects
+        to /persona
+        """
+        url = mozwebqa.base_url + '/firefox/accountmanager'
+        response = requests.get(url, headers={'Accept-Language': 'en-US'})
+        Assert.contains('/persona', response.url)
