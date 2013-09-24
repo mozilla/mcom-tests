@@ -12,9 +12,9 @@ from unittestzero import Assert
 @pytest.mark.nondestructive
 class TestLocalisedDownloadLinks:
 
-    link_check_url = '/firefox/all.html'
+    link_check_url = '/firefox/organizations/all.html'
 
-    def test_links_on_firefox_all(self, language_link):
+    def test_links_on_firefox_organization_all(self, language_link):
         response = requests.head(language_link['url'], allow_redirects=True, timeout=20)
         Assert.contains(language_link['id'], response.url)
         response = requests.head(language_link['url'], allow_redirects=False, timeout=20)
