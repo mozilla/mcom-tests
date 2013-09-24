@@ -177,3 +177,33 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/firefox/accountmanager'
         response = requests.get(url, headers={'Accept-Language': 'en-US'})
         Assert.contains('/persona', response.url)
+
+    @pytest.mark.nondestructive
+    def test_firefox_new_redirect_zh_CN(self, mozwebqa):
+        """
+        test that zh-CN Accept-Language users are redirected
+        to zh-CN on /firefox/new/
+        """
+        url = mozwebqa.base_url + '/firefox/new'
+        response = requests.get(url, headers={'Accept-Language': 'zh-CN'})
+        Assert.contains('zh-CN', response.url)
+
+    @pytest.mark.nondestructive
+    def test_firefox_new_redirect_ta(self, mozwebqa):
+        """
+        test that ta Accept-Language users are redirected to
+        ta on /firefox/new
+        """
+        url = mozwebqa.base_url + '/firefox/new'
+        response = requests.get(url, headers={'Accept-Language': 'ta'})
+        Assert.contains('ta', response.url)
+
+    @pytest.mark.nondestructive
+    def test_firefox_new_redirect_son(self, mozwebqa):
+        """
+        test that son Accept-Language users are redirected to
+        son on /firefox/new
+        """
+        url = mozwebqa.base_url + '/firefox/new'
+        response = requests.get(url, headers={'Accept-Language': 'son'})
+        Assert.contains('son', response.url)
