@@ -13,7 +13,7 @@ class Mission(Base):
     major_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#main-content div.main a'),
-            'url_suffix': '/about/manifesto.html',
+            'url_suffix': '/about/manifesto/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(1) a'),
             'url_suffix': '/contribute/',
