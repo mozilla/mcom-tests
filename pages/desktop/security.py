@@ -39,9 +39,6 @@ class Security(Base):
             'locator': (By.CSS_SELECTOR, '#privacy > .row > .section-list.span3 > li:nth-of-type(4) > p > a'),
             'url_suffix': 'support.mozilla.org/kb/Clear%20Recent%20History#w_how-do-i-remove-a-single-website-from-my-history',
         }, {
-            'locator': (By.CSS_SELECTOR, '#secure > .row > .section-list.span3 > li:nth-of-type(1) > p > a'),
-            'url_suffix': 'support.mozilla.org/kb/Site%20Identity%20Button',
-        }, {
             'locator': (By.CSS_SELECTOR, '#control > .row > .section-list.span3 > li:nth-of-type(1) > p > a'),
             'url_suffix': '/plugincheck/',
         }, {
