@@ -177,3 +177,14 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/firefox/accountmanager'
         response = requests.get(url, headers={'Accept-Language': 'en-US'})
         Assert.contains('/persona', response.url)
+
+    @pytest.mark.nondestructive
+    def test_beta_redirect(self, mozwebqa):
+        """
+        Test beta.mozilla.org redirects to
+        http://www.mozilla.org/firefox/channel/
+        """
+        url = 'http://beta.mozilla.org'
+        response = requests.get(url)
+        Assert.contains('/en-US/firefox/channel', response.url)
+        Assert.equal(200, response.status_code)
