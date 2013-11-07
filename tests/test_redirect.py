@@ -68,9 +68,10 @@ class TestRedirects(object):
         self._test_get_redirect(mozwebqa,
                                 "/mobile/features/",
                                 "/en-US/firefox/mobile/features/")
-        self._test_get_redirect(mozwebqa,
-                                "/mobile/platforms/",
-                                "/en-US/firefox/mobile/platforms/")
+        url = mozwebqa.base_url + "/mobile/platforms/"
+        response = requests.get(url)
+        Assert.equal(response.status_code, 200)
+        Assert.contains('support.mozilla.org', response.url)
 
     @pytest.mark.nondestructive
     def test_redirect_some_m_to_firefox_mobile(self, mozwebqa):
@@ -80,9 +81,10 @@ class TestRedirects(object):
         self._test_get_redirect(mozwebqa,
                                 "/m/features/",
                                 "/en-US/firefox/mobile/features/")
-        self._test_get_redirect(mozwebqa,
-                                "/m/platforms/",
-                                "/en-US/firefox/mobile/platforms/")
+        url = mozwebqa.base_url + "/m/platforms/"
+        response = requests.get(url)
+        Assert.equal(response.status_code, 200)
+        Assert.contains('support.mozilla.org', response.url)
 
     @pytest.mark.nondestructive
     def test_redirect_m(self, mozwebqa):
