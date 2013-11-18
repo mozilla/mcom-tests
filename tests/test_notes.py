@@ -12,6 +12,8 @@ from pages.desktop.notes import Notes
 
 class TestNotes:
 
+    @pytest.mark.xfail("config.getvalue('base_url') == 'https://www.allizom.org'",
+                       reason="Bug 939707 - [stage] What's New link returns error 404")
     @pytest.mark.nondestructive
     def test_that_notes_page_is_reachable(self, mozwebqa):
         notes_page = Notes(mozwebqa)
