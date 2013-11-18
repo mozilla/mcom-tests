@@ -20,7 +20,6 @@ class TestStatus(object):
         response = requests.get(url)
         Assert.equal(response.status_code, 404)
 
-    @pytest.mark.xfail(reason='Bug 744671 - x-robots-tag header not set after redirect')
     @pytest.mark.nondestructive
     def test_xrobots_tag_is_present(self, mozwebqa):
         """Test for X-Robots-Tag header"""
