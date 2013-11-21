@@ -95,32 +95,32 @@ class TestProductsPage:
         Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
 
     @pytest.mark.nondestructive
-    def test_products_links_are_visible(self, mozwebqa):
+    def test_firefox_links_are_visible(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_links = []
-        for link in products_page.products_links_list:
+        for link in products_page.firefox_links_list:
             if not products_page.is_element_visible(*link.get('locator')):
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_products_link_destinations_are_correct(self, mozwebqa):
+    def test_firefox_link_destinations_are_correct(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_links = []
-        for link in products_page.products_links_list:
+        for link in products_page.firefox_links_list:
             url = products_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_products_link_urls_are_valid(self, mozwebqa):
+    def test_firefox_link_urls_are_valid(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_urls = []
-        for link in products_page.products_links_list:
+        for link in products_page.firefox_links_list:
             url = products_page.link_destination(link.get('locator'))
             response_code = products_page.get_response_code(url)
             if response_code != requests.codes.ok:
@@ -128,32 +128,32 @@ class TestProductsPage:
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_innovations_links_are_visible(self, mozwebqa):
+    def test_mozilla_links_are_visible(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_links = []
-        for link in products_page.innovations_links_list:
+        for link in products_page.mozilla_links_list:
             if not products_page.is_element_visible(*link.get('locator')):
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_innovations_link_destinations_are_correct(self, mozwebqa):
+    def test_mozilla_link_destinations_are_correct(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_links = []
-        for link in products_page.innovations_links_list:
+        for link in products_page.mozilla_links_list:
             url = products_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_innovations_link_urls_are_valid(self, mozwebqa):
+    def test_mozilla_link_urls_are_valid(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_urls = []
-        for link in products_page.innovations_links_list:
+        for link in products_page.mozilla_links_list:
             url = products_page.link_destination(link.get('locator'))
             response_code = products_page.get_response_code(url)
             if response_code != requests.codes.ok:
@@ -161,65 +161,32 @@ class TestProductsPage:
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_tools_links_are_visible(self, mozwebqa):
+    def test_developers_links_are_visible(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_links = []
-        for link in products_page.tools_links_list:
+        for link in products_page.developers_links_list:
             if not products_page.is_element_visible(*link.get('locator')):
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_tools_link_destinations_are_correct(self, mozwebqa):
+    def test_developers_link_destinations_are_correct(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_links = []
-        for link in products_page.tools_links_list:
+        for link in products_page.developers_links_list:
             url = products_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_tools_link_urls_are_valid(self, mozwebqa):
+    def test_developers_link_urls_are_valid(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
         bad_urls = []
-        for link in products_page.tools_links_list:
-            url = products_page.link_destination(link.get('locator'))
-            response_code = products_page.get_response_code(url)
-            if response_code != requests.codes.ok:
-                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @pytest.mark.nondestructive
-    def test_platforms_links_are_visible(self, mozwebqa):
-        products_page = ProductsPage(mozwebqa)
-        products_page.go_to_page()
-        bad_links = []
-        for link in products_page.platforms_links_list:
-            if not products_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
-    def test_platforms_link_destinations_are_correct(self, mozwebqa):
-        products_page = ProductsPage(mozwebqa)
-        products_page.go_to_page()
-        bad_links = []
-        for link in products_page.platforms_links_list:
-            url = products_page.link_destination(link.get('locator'))
-            if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
-    def test_platforms_link_urls_are_valid(self, mozwebqa):
-        products_page = ProductsPage(mozwebqa)
-        products_page.go_to_page()
-        bad_urls = []
-        for link in products_page.platforms_links_list:
+        for link in products_page.developers_links_list:
             url = products_page.link_destination(link.get('locator'))
             response_code = products_page.get_response_code(url)
             if response_code != requests.codes.ok:
