@@ -30,7 +30,7 @@ class AboutPage(Base):
             'url_suffix': '/styleguide',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(1) li:nth-child(5) a'),
-            'url_suffix': '/about/contact',
+            'url_suffix': '/contact/spaces/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(1) a'),
             'url_suffix': '/products/',
