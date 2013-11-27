@@ -132,18 +132,21 @@ class Base(Page):
                 'url_suffix': '/foundation/licensing/website-content/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(1) a'),
-                'url_suffix': '/about/contact.html#map-mountain_view',
+                'url_suffix': '/contact/spaces/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(2) a'),
                 'url_suffix': '/about/partnerships/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(3) a'),
-                'url_suffix': '/privacy/',
+                'url_suffix': 'contribute/EOYFR2013-tabzilla?source=mozillaorg_footer',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(4) a'),
-                'url_suffix': '/about/legal.html',
+                'url_suffix': '/privacy/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(5) a'),
+                'url_suffix': '/about/legal.html',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(6) a'),
                 'url_suffix': '/legal/fraud-report/index.html',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(1) a'),
