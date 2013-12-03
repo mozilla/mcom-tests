@@ -190,3 +190,14 @@ class TestRedirects(object):
         response = requests.get(url)
         Assert.contains('/en-US/firefox/channel', response.url)
         Assert.equal(200, response.status_code)
+
+    @pytest.mark.nondestructive
+    def test_apps_redirect(self, mozwebqa):
+        """
+        Test mozilla.org/apps redirects to
+        http[s]://marketplace.firefox.com
+        """
+        url = mozwebqa.base_url + '/apps'
+        response = requests.get(url)
+        Assert.contains('marketplace.firefox.com', response.url)
+        Assert.equal(200, response.status_code)
