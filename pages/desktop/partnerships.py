@@ -20,7 +20,7 @@ class Partnerships(Base):
             'url_suffix': '/en-US/about/partnerships/distribution/',
         }, {
             'locator': (By.CSS_SELECTOR, '#marketplace > p > a'),
-            'url_suffix': '/en-US/apps/',
+            'url_suffix': 'marketplace.firefox.com/developers/',
         }
     ]
 
