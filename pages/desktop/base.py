@@ -82,7 +82,7 @@ class Base(Page):
                 'url_suffix': '/about/mozilla-spaces/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
-                'url_suffix': 'sendto.mozilla.org/Join-Tabzilla',
+                'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla?icn=tabz&source=tabzilla_donate&amount=20',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(5) > a'),
                 'url_suffix': '/about/partnerships/',
@@ -138,7 +138,7 @@ class Base(Page):
                 'url_suffix': '/about/partnerships/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(3) a'),
-                'url_suffix': 'contribute/EOYFR2013-tabzilla?source=mozillaorg_footer',
+                'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla?source=mozillaorg_footer&amount=20',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(4) a'),
                 'url_suffix': '/privacy/',
