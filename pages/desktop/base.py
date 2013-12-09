@@ -106,9 +106,9 @@ class Base(Page):
         ]
 
         def toggle_tabzilla_dropdown(self):
-            toggle_state = self.selenium.execute_script('Tabzilla.close()')
             self.selenium.find_element(*self._tabzilla).click()
-            WebDriverWait(self.selenium, 7).until(lambda state: toggle_state == state.execute_script('Tabzilla.open()'))
+            WebDriverWait(self.selenium, self.timeout).until(
+                lambda s: s.find_element(*self._tabzilla).get_attribute('class') == "tabzilla-opened")
 
         @property
         def is_tabzilla_panel_visible(self):
