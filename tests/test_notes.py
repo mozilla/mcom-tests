@@ -20,6 +20,8 @@ class TestNotes:
         notes_page.go_to_page()
         Assert.contains("Notes", notes_page.firefox_notes_header_text)
 
+    @pytest.mark.xfail("config.getvalue('base_url') == 'https://www.allizom.org'",
+                       reason="Bug 939707 - [stage] What's New link returns error 404")
     @pytest.mark.skip_selenium
     @pytest.mark.nondestructive
     def test_that_all_links_are_valid(self, mozwebqa):
