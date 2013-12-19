@@ -150,12 +150,18 @@ class Base(Page):
                 'url_suffix': '/legal/fraud-report/index.html',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(1) a'),
-                'url_suffix': 'twitter.com/firefox',
+                'url_suffix': 'twitter.com/mozilla',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(2) a'),
-                'url_suffix': 'facebook.com/Firefox',
+                'url_suffix': 'twitter.com/firefox',
             }, {
                 'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(3) a'),
+                'url_suffix': 'facebook.com/mozilla',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(4) a'),
+                'url_suffix': 'facebook.com/Firefox',
+            }, {
+                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(5) a'),
                 'url_suffix': 'affiliates.mozilla.org/',
             },
         ]
