@@ -122,10 +122,10 @@ class ProductsPage(Base):
             'url_suffix': 'getfirebug.com/',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(3) a'),
-            'url_suffix': 'developer.mozilla.org/XULRunner',
+            'url_suffix': '/XULRunner',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(4) a'),
-            'url_suffix': 'developer.mozilla.org/Gecko',
+            'url_suffix': '/Gecko',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(5) a'),
             'url_suffix': '/Apps/Reference',
