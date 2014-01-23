@@ -145,8 +145,6 @@ class Contribute(Base):
                 self.is_element_visible(*self._privacy_title_locator) and\
                 self.is_element_visible(*self._newsletter_checkbox_locator) and\
                 self.is_element_visible(*self._newsletter_title_locator) and\
-                self.is_element_visible(*self._recaptcha_table_locator) and\
-                self.is_element_visible(*self._recaptcha_response_field_locator) and\
                 self.is_element_visible(*self._submit_button_locator)
 
         def click_email(self):
