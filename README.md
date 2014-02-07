@@ -47,6 +47,15 @@ To run tests locally, it's a simple case of calling the command below from this 
 
 For more command line options, see https://github.com/davehunt/pytest-mozwebqa
 
+Pre-commit Hook
+---------------
+
+If you are on Linux or Mac OS, copy the file pre-commit to your git hooks folder
+
+	cp pre-commit .git/hooks/
+
+This  will add a pre-commit hook to run WebQA's flake8 configuration.
+
 Writing Tests
 -------------
 
