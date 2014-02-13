@@ -32,7 +32,7 @@ class TestRedirects(object):
     def test_fennec_redirects_to_mobile(self, mozwebqa):
         url = mozwebqa.base_url + "/fennec/"
         response = requests.get(url)
-        result = mozwebqa.base_url + "/en-US/mobile/"
+        result = mozwebqa.base_url + "/en-US/firefox/partners/"
         Assert.equal(result, response.url)
 
     @pytest.mark.nondestructive
@@ -116,7 +116,7 @@ class TestRedirects(object):
     def test_redirect_firefox_home_the_product(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/mobile/home/",
-                                "/en-US/mobile/")
+                                "/en-US/firefox/partners/")
         self._test_get_redirect(mozwebqa,
                                 "/fr/mobile/home/",
                                 "/fr/mobile/")
