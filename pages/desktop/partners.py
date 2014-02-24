@@ -147,22 +147,6 @@ class Partners(Base):
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(12) > img'),
             'img_name_suffix': 'wikipedia.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(13) > img'),
-            'img_name_suffix': 'wired.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(14) > img'),
-            'img_name_suffix': 'terra.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(15) > img'),
-            'img_name_suffix': 'airbnb.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(16) > img'),
-            'img_name_suffix': 'disney.png'
         }
     ]
 
