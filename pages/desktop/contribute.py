@@ -17,7 +17,7 @@ class Contribute(Base):
             'url_suffix': '//support.mozilla.org/get-involved',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(1) >.content > p > a:nth-of-type(2)'),
-            'url_suffix': '//support.mozillamessaging.com/kb/superheroes-wanted',
+            'url_suffix': '//support.mozilla.org/get-involved',
         }, {
             'locator': (By.CSS_SELECTOR, 'li:nth-of-type(2) >.content > p > a:nth-of-type(1)'),
             'url_suffix': '//quality.mozilla.org/teams/desktop-firefox/',
