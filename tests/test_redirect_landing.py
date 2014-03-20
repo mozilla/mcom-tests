@@ -33,7 +33,6 @@ class TestRedirectLanding(object):
     def _test_redirect(self, mozwebqa, origin, final, headers):
         url = mozwebqa.base_url + origin
         response = requests.get(url, headers=headers)
-        ##result = mozwebqa.base_url + final
         Assert.contains(final, response.url)
 
     @pytest.mark.nondestructive
