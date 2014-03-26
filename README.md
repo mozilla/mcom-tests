@@ -11,6 +11,12 @@ Running Tests
 ### Python
 Before you will be able to run these tests you will need to have Python 2.6 installed.
 
+If you are running on Ubuntu/Debian you will need to first do
+
+    sudo apt-get install python-setuptools
+
+to install the required Python libraries.
+
 __note__
 
 The instructions below will install the required Python libraries into your
@@ -33,11 +39,7 @@ followed by
 
 __note__
 
-If you are running on Ubuntu/Debian you will need to first do
 
-    sudo apt-get install python-setuptools
-
-to install the required Python libraries.
 
 ### Running tests locally
 
