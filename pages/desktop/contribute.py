@@ -6,7 +6,6 @@
 
 from selenium.webdriver.common.by import By
 from pages.desktop.base import Base
-from pages.page import Page
 
 
 class Contribute(Base):
@@ -99,54 +98,34 @@ class Contribute(Base):
             'img_name_suffix': 'creativecollective.png',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(9) > img'),
-            'img_name_suffix': 'mdn.png',
+            'img_name_suffix': 'mdn.png?03-2014',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(10) > img'),
             'img_name_suffix': 'webmaker.png',
         }
     ]
 
+    locations_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(1) > a > img'),
+            'img_name_suffix': 'map-th-northamerica.png?03-2014'
+        }, {
+            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(2) > a > img'),
+            'img_name_suffix': 'map-th-europe.png?03-2014'
+        }, {
+            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(3) > a > img'),
+            'img_name_suffix': 'map-th-latinamerica.png?03-2014'
+        }, {
+            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(4) > a > img'),
+            'img_name_suffix': 'map-th-africamideast.png?03-2014'
+        }, {
+            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(5) > a > img'),
+            'img_name_suffix': 'map-th-asia.png?03-2014'
+        }, {
+            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(6) > a > img'),
+            'img_name_suffix': 'map-th-southpole.png?03-2014'
+        }
+    ]
+
     def go_to_page(self):
         self.open('/contribute/')
-
-    @property
-    def help_form(self):
-        return self.HelpForm(self.testsetup)
-
-    class HelpForm(Page):
-
-        _want_to_help_title_locator = (By.CSS_SELECTOR, 'div.row > .form-column-1 > h3')
-        _email_field_locator = (By.ID, 'id_email')
-        _area_of_interest_locator = (By.ID, 'id_interest')
-        _submit_button_locator = (By.ID, 'form-submit')
-
-        _comments_locator = (By.ID, 'id_comments')
-
-        _privacy_checkbox_locator = (By.ID, 'id_privacy')
-        _privacy_title_locator = (By.CSS_SELECTOR, '.privacy-check-label span.title')
-
-        _newsletter_checkbox_locator = (By.ID, 'id_newsletter')
-        _newsletter_title_locator = (By.CSS_SELECTOR, '.field-newsletter > label')
-
-        _recaptcha_table_locator = (By.ID, 'recaptcha_table')
-        _recaptcha_response_field_locator = (By.ID, 'recaptcha_response_field')
-
-        privacy_link = {
-            'locator': (By.CSS_SELECTOR, '.privacy-check-label span.title > a'),
-            'url_suffix': '/privacy-policy'
-        }
-
-        @property
-        def elements_are_visible(self):
-            return self.is_element_visible(*self._want_to_help_title_locator) and\
-                self.is_element_visible(*self._comments_locator) and\
-                self.is_element_visible(*self._area_of_interest_locator) and\
-                self.is_element_visible(*self._privacy_checkbox_locator) and\
-                self.is_element_visible(*self._privacy_title_locator) and\
-                self.is_element_visible(*self._newsletter_checkbox_locator) and\
-                self.is_element_visible(*self._newsletter_title_locator) and\
-                self.is_element_visible(*self._submit_button_locator)
-
-        def click_email(self):
-            self.selenium.find_element(*self._email_field_locator).click()
-            self.wait_for_ajax()
