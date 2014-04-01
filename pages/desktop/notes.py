@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 class Notes(Base):
 
-    _firefox_notes_header_locator = (By.CSS_SELECTOR, '#main-feature > h2')
+    _firefox_notes_header_locator = (By.CSS_SELECTOR, '.notes-head > h1')
     _notes_page_url = '/firefox/notes/'
 
     def go_to_page(self):
