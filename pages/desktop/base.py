@@ -64,12 +64,9 @@ class Base(Page):
                 'url_suffix': 'www.mozilla.org/firefox/os',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': 'webfwd.org/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': 'mozillalabs.com/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(3) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': 'webmaker.org/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(1) > a'),
