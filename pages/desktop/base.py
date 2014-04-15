@@ -64,10 +64,10 @@ class Base(Page):
                 'url_suffix': 'www.mozilla.org/firefox/os',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': 'mozillalabs.com/',
+                'url_suffix': 'webmaker.org/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(2) > a'),
-                'url_suffix': 'webmaker.org/',
+                'url_suffix': 'research/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(1) > a'),
                 'url_suffix': 'www.mozilla.org/contribute/',
