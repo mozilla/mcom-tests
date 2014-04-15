@@ -50,12 +50,6 @@ class ProductsPage(Base):
             'img_name_suffix': 'badge-openbadges.png',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(4) a img'),
-            'img_name_suffix': 'badge-labs.jpg',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(5) a img'),
-            'img_name_suffix': 'badge-webfwd.jpg',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(6) a img'),
             'img_name_suffix': 'badge-thunderbird.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(1) a img'),
@@ -103,12 +97,6 @@ class ProductsPage(Base):
             'url_suffix': 'openbadges.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(4) a'),
-            'url_suffix': 'mozillalabs.com/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(5) a'),
-            'url_suffix': 'webfwd.org/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(6) a'),
             'url_suffix': '/thunderbird/',
         }
     ]
