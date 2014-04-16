@@ -58,7 +58,7 @@ class AboutPage(Base):
     sign_up_form_link_list = [
         {
             'locator': (By.CSS_SELECTOR, 'label.privacy-check-label > span > a'),
-            'url_suffix': '/en-US/privacy-policy',
+            'url_suffix': '/privacy/',
         },
     ]
 
