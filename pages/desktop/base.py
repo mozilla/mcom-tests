@@ -118,48 +118,55 @@ class Base(Page):
     class Footer(Page):
 
         _footer_locator = (By.CSS_SELECTOR, '#colophon')
-        _footer_logo_link_locator = (By.CSS_SELECTOR, '.footer-logo > a')
-        _footer_logo_img_locator = (By.CSS_SELECTOR, '.footer-logo img')
+        _footer_logo_link_locator = (By.CSS_SELECTOR, 'h1.logo> a')
+        _footer_logo_img_locator = (By.CSS_SELECTOR, 'h1.logo> a >img')
         expected_footer_logo_destination = '/en-US/'
         expected_footer_logo_img = '/media/img/sandstone/footer-mozilla.png'
 
         footer_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#colophon div.footer-license p:nth-child(1) a'),
+                'locator': (By.CSS_SELECTOR, '#colophon p.license a'),
                 'url_suffix': '/foundation/licensing/website-content/',
+
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(1) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(1) >a'),
                 'url_suffix': '/contact/spaces/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(2) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(2) >a'),
                 'url_suffix': '/about/partnerships/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(3) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(3) >a'),
                 'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-newdefault?source=mozillaorg_footer',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(4) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(4) >a'),
+                'url_suffix': 'affiliates.mozilla.org/',
+            }, {
+                'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(5) >a'),
+                'url_suffix': '/contribute/page/',
+            }, {
+                'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(1) >a'),
                 'url_suffix': '/privacy/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(5) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(2) >a'),
                 'url_suffix': '/about/legal.html',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(1) li:nth-child(6) a'),
-                'url_suffix': '/legal/fraud-report/index.html',
+                'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(3) >a'),
+                'url_suffix': '/legal/fraud-report/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(1) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-social>li:nth-child(1) > ul > li:nth-child(1) > a'),
                 'url_suffix': 'twitter.com/mozilla',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(2) a'),
-                'url_suffix': 'twitter.com/firefox',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(3) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-social>li:nth-child(1) > ul > li:nth-child(2) > a'),
                 'url_suffix': 'facebook.com/mozilla',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(4) a'),
+                'locator': (By.CSS_SELECTOR, 'ul.links-social>li:nth-child(2) > ul > li:nth-child(1) > a'),
+                'url_suffix': 'twitter.com/firefox',
+            }, {
+                'locator': (By.CSS_SELECTOR, 'ul.links-social>li:nth-child(2) > ul > li:nth-child(2) > a'),
                 'url_suffix': 'facebook.com/Firefox',
             }, {
-                'locator': (By.CSS_SELECTOR, '#colophon ul.footer-nav:nth-of-type(2) li:nth-child(5) a'),
-                'url_suffix': 'affiliates.mozilla.org/',
+                'locator': (By.CSS_SELECTOR, 'ul.links-social>li:nth-child(2) > ul > li:nth-child(3) > a'),
+                'url_suffix': 'www.youtube.com/firefoxchannel',
             },
         ]
 
