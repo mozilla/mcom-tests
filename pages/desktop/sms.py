@@ -25,7 +25,7 @@ class SMS(Base):
             'url_suffix': 'support.mozilla.org/kb/will-firefox-work-my-mobile-device',
         }, {
             'locator': (By.CSS_SELECTOR, '.more p:nth-child(2) a'),
-            'url_suffix': '/firefox/mobile/features/',
+            'url_suffix': '/firefox/android/',
         }
     ]
 

@@ -72,10 +72,10 @@ class ProductsPage(Base):
     firefox_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(1) a'),
-            'url_suffix': '/firefox/features/',
+            'url_suffix': '/firefox/desktop/',
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(2) a'),
-            'url_suffix': '/firefox/mobile/features/',
+            'url_suffix': '/firefox/android/',
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(3) a'),
             'url_suffix': '/firefox/os/',
