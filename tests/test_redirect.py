@@ -39,7 +39,7 @@ class TestRedirects(object):
     def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/firefox/mobile/",
-                                "/en-US/firefox/fx/")
+                                "/en-US/firefox/new/")
 
     @pytest.mark.nondestructive
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
@@ -64,10 +64,10 @@ class TestRedirects(object):
     def test_redirect_mobile_to_firefox_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/mobile/faq/",
-                                "/en-US/firefox/mobile/faq/")
+                                "/en-US/firefox/android/faq/")
         self._test_get_redirect(mozwebqa,
                                 "/mobile/features/",
-                                "/en-US/firefox/mobile/features/")
+                                "/en-US/firefox/android/")
         url = mozwebqa.base_url + "/mobile/platforms/"
         response = requests.get(url)
         Assert.equal(response.status_code, 200)
@@ -77,10 +77,10 @@ class TestRedirects(object):
     def test_redirect_some_m_to_firefox_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/m/faq/",
-                                "/en-US/firefox/mobile/faq/")
+                                "/en-US/firefox/android/faq/")
         self._test_get_redirect(mozwebqa,
                                 "/m/features/",
-                                "/en-US/firefox/mobile/features/")
+                                "/en-US/firefox/android/")
         url = mozwebqa.base_url + "/m/platforms/"
         response = requests.get(url)
         Assert.equal(response.status_code, 200)
@@ -90,7 +90,7 @@ class TestRedirects(object):
     def test_redirect_m(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/m/",
-                                "/en-US/firefox/fx/")
+                                "/en-US/firefox/new/")
 
     @pytest.mark.nondestructive
     def test_rhino_docs_redirect(self, mozwebqa):
@@ -203,12 +203,33 @@ class TestRedirects(object):
         Assert.equal(200, response.status_code)
 
     @pytest.mark.nondestructive
-    def test_techonology_redirect(self, mozwebqa):
+    def test_technology_redirect(self, mozwebqa):
         """
         Test mozilla.org/firefox/technology redirects to
         http[s]://developer.mozilla.org/docs/Tools
         """
         url = mozwebqa.base_url + '/firefox/technology'
+        response = requests.get(url, allow_redirects=False)
+        Assert.equal(301, response.status_code)
+
+    @pytest.mark.nondestructive
+    def test_performance_redirect(self, mozwebqa):
+        """
+        Test mozilla.org/firefox/performance redirects to
+        http[s]://www.mozilla.org/en-US/firefox/desktop/fast/
+        """
+        url = mozwebqa.base_url + '/firefox/performance'
         response = requests.get(url)
-        Assert.contains('/docs/Tools', response.url)
+        Assert.contains('/firefox/desktop/fast/', response.url)
+        Assert.equal(200, response.status_code)
+
+    @pytest.mark.nondestructive
+    def test_security_redirect(self, mozwebqa):
+        """
+        Test mozilla.org/firefox/security redirects to
+        http[s]://www.mozilla.org/en-US/firefox/desktop/trust/
+        """
+        url = mozwebqa.base_url + '/firefox/security'
+        response = requests.get(url)
+        Assert.contains('/firefox/desktop/trust/', response.url)
         Assert.equal(200, response.status_code)
