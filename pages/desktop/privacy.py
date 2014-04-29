@@ -21,6 +21,12 @@ class Privacy(Base):
             'locator': (By.CSS_SELECTOR, '.policy-firefox'),
             'url_suffix': '/privacy/firefox/',
         }, {
+            'locator': (By.CSS_SELECTOR, '.policy-firefox-os'),
+            'url_suffix': '/privacy/firefox-os/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.policy-firefox-cloud'),
+            'url_suffix': '/privacy/firefox-cloud/',
+        }, {
             'locator': (By.CSS_SELECTOR, '.policy-marketplace'),
             'url_suffix': 'https://marketplace.firefox.com/privacy-policy',
         }, {
