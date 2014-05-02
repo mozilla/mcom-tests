@@ -5,7 +5,7 @@
 
 import pytest
 import requests
-from BeautifulSoup import BeautifulStoneSoup
+from bs4 import BeautifulSoup
 from unittestzero import Assert
 from pages.desktop.notes import Notes
 
@@ -24,7 +24,7 @@ class TestNotes:
         notes_page = Notes(mozwebqa)
         url = mozwebqa.base_url + notes_page.notes_page_url
         page_response = requests.get(url)
-        html = BeautifulStoneSoup(page_response.content)
+        html = BeautifulSoup(page_response.content)
         bad_urls = []
         links = html.findAll('a')
         for link in links:

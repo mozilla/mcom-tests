@@ -3,10 +3,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from BeautifulSoup import BeautifulStoneSoup
-from unittestzero import Assert
+
 import pytest
 import requests
+from bs4 import BeautifulSoup
+from unittestzero import Assert
 
 
 @pytest.mark.skip_selenium
@@ -22,7 +23,7 @@ class TestDownload(object):
     def test_osx_download_button_returns_status_code_200(self, mozwebqa):
         url = self.download_base_url(mozwebqa.base_url)
         response = requests.get(url)
-        html = BeautifulStoneSoup(response.content)
+        html = BeautifulSoup(response.content)
         link = html.find('li', 'os_osx').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
@@ -32,7 +33,7 @@ class TestDownload(object):
     def test_linux_download_button_returns_status_code_200(self, mozwebqa):
         url = self.download_base_url(mozwebqa.base_url)
         response = requests.get(url)
-        html = BeautifulStoneSoup(response.content)
+        html = BeautifulSoup(response.content)
         link = html.find('li', 'os_linux').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
@@ -43,7 +44,7 @@ class TestDownload(object):
 
         url = self.download_base_url(mozwebqa.base_url)
         response = requests.get(url)
-        html = BeautifulStoneSoup(response.content)
+        html = BeautifulSoup(response.content)
         link = html.find('li', 'os_windows').a['href']
         print link
         response = requests.head(link, allow_redirects=True)
@@ -55,7 +56,7 @@ class TestDownload(object):
         url = self.download_base_url(mozwebqa.base_url)
         response = requests.get(url,
         headers={'User-Agent': 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.872.0 Safari/535.2'})
-        html = BeautifulStoneSoup(response.content)
+        html = BeautifulSoup(response.content)
         link = html.find('li', 'os_windows').a['href']
         print link
         response = requests.head(link, allow_redirects=True)

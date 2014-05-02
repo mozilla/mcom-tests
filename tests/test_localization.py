@@ -5,7 +5,7 @@
 
 import pytest
 import requests
-from BeautifulSoup import BeautifulStoneSoup
+from bs4 import BeautifulSoup
 from unittestzero import Assert
 
 
@@ -16,7 +16,7 @@ class TestLocalizations:
     def get_language_rows(self, mozwebqa):
         url = "%s/firefox/all.html" % mozwebqa.base_url
         page_response = requests.get(url)
-        html = BeautifulStoneSoup(page_response.content)
+        html = BeautifulSoup(page_response.content)
         language_rows = html.findAll('tr', id=True)
         return language_rows
 
