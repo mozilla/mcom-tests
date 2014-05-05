@@ -92,15 +92,18 @@ class Contribute(Base):
             'img_name_suffix': 'web.png',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(7) > img'),
-            'img_name_suffix': 'addons.png',
+            'img_name_suffix': 'marketplace.png',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(8) > img'),
-            'img_name_suffix': 'creativecollective.png',
+            'img_name_suffix': 'addons.png',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(9) > img'),
-            'img_name_suffix': 'mdn.png?03-2014',
+            'img_name_suffix': 'creativecollective.png',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(10) > img'),
+            'img_name_suffix': 'mdn.png?03-2014',
+        }, {
+            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(11) > img'),
             'img_name_suffix': 'webmaker.png',
         }
     ]
