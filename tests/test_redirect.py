@@ -119,7 +119,7 @@ class TestRedirects(object):
                                 "/en-US/firefox/partners/")
         self._test_get_redirect(mozwebqa,
                                 "/fr/mobile/home/",
-                                "/fr/mobile/")
+                                "/fr/firefox/partners/")
 
     @pytest.mark.nondestructive
     def test_notes_redirects_to_firefox_notes(self, mozwebqa):
