@@ -114,12 +114,10 @@ class TestRedirects(object):
 
     @pytest.mark.nondestructive
     def test_redirect_firefox_home_the_product(self, mozwebqa):
-        self._test_get_redirect(mozwebqa,
-                                "/mobile/home/",
-                                "/en-US/firefox/partners/")
-        self._test_get_redirect(mozwebqa,
-                                "/fr/mobile/home/",
-                                "/fr/mobile/")
+        result = \
+            'https://blog.mozilla.org/services/2012/08/31/retiring-firefox-home/'
+        self._test_get_redirect(mozwebqa, '/mobile/home/', result)
+        self._test_get_redirect(mozwebqa, '/fr/mobile/home/', result)
 
     @pytest.mark.nondestructive
     def test_notes_redirects_to_firefox_notes(self, mozwebqa):
