@@ -5,7 +5,7 @@
 
 import pytest
 import requests
-from BeautifulSoup import BeautifulStoneSoup
+from bs4 import BeautifulSoup
 from unittestzero import Assert
 
 
@@ -20,7 +20,7 @@ class TestLocalisedDownloadLinks:
         '''
         url = "%s/%s" % (mozwebqa.base_url, link)
         page_response = requests.get(url)
-        html = BeautifulStoneSoup(page_response.content)
+        html = BeautifulSoup(page_response.content)
         language_rows = html.findAll('tr', id=True)
         return language_rows
 
