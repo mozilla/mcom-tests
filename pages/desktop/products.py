@@ -90,7 +90,7 @@ class ProductsPage(Base):
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(2) a'),
             'url_suffix': 'webmaker.org/',
         }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(4) a'),
+            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(3) a'),
             'url_suffix': '/thunderbird/',
         }
     ]
