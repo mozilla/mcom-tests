@@ -47,9 +47,6 @@ class ProductsPage(Base):
             'img_name_suffix': 'badge-webmaker.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-openbadges.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(4) a img'),
             'img_name_suffix': 'badge-thunderbird.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(1) a img'),
@@ -94,9 +91,6 @@ class ProductsPage(Base):
             'url_suffix': 'webmaker.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(3) a'),
-            'url_suffix': 'openbadges.org/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(4) a'),
             'url_suffix': '/thunderbird/',
         }
     ]
