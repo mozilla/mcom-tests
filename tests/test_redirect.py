@@ -45,7 +45,14 @@ class TestRedirects(object):
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
         url = mozwebqa.base_url + "/aurora/"
         response = requests.get(url)
-        result = mozwebqa.base_url + "/en-US/firefox/aurora/"
+        result = mozwebqa.base_url + "/en-US/firefox/channel/#aurora"
+        Assert.equal(result, response.url)
+
+    @pytest.mark.nondestructive
+    def test_beta_redirects_to_firefox_beta(self, mozwebqa):
+        url = mozwebqa.base_url + "/beta/"
+        response = requests.get(url)
+        result = mozwebqa.base_url + "/en-US/firefox/channel/#beta"
         Assert.equal(result, response.url)
 
     @pytest.mark.nondestructive
@@ -179,14 +186,25 @@ class TestRedirects(object):
         Assert.contains('/persona', response.url)
 
     @pytest.mark.nondestructive
+    def test_aurora_redirect(self, mozwebqa):
+        """
+        Test aurora.mozilla.org redirects to
+        http://www.mozilla.org/firefox/channel/#aurora
+        """
+        url = 'http://aurora.mozilla.org'
+        response = requests.get(url)
+        Assert.contains('/en-US/firefox/channel#aurora', response.url)
+        Assert.equal(200, response.status_code)
+
+    @pytest.mark.nondestructive
     def test_beta_redirect(self, mozwebqa):
         """
         Test beta.mozilla.org redirects to
-        http://www.mozilla.org/firefox/channel/
+        http://www.mozilla.org/firefox/channel/#beta
         """
         url = 'http://beta.mozilla.org'
         response = requests.get(url)
-        Assert.contains('/en-US/firefox/channel', response.url)
+        Assert.contains('/en-US/firefox/channel#beta', response.url)
         Assert.equal(200, response.status_code)
 
     @pytest.mark.nondestructive
