@@ -44,16 +44,18 @@ class TestRedirects(object):
     @pytest.mark.nondestructive
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
         url = mozwebqa.base_url + "/aurora/"
-        response = requests.get(url)
-        result = mozwebqa.base_url + "/en-US/firefox/channel/#aurora"
-        Assert.equal(result, response.url)
+        response = requests.get(url, allow_redirects=False)
+        Assert.equal(response.headers['location'],
+                     mozwebqa.base_url + "/firefox/channel/#aurora")
+        Assert.equal(response.status_code, 301)
 
     @pytest.mark.nondestructive
     def test_beta_redirects_to_firefox_beta(self, mozwebqa):
         url = mozwebqa.base_url + "/beta/"
-        response = requests.get(url)
-        result = mozwebqa.base_url + "/en-US/firefox/channel/#beta"
-        Assert.equal(result, response.url)
+        response = requests.get(url, allow_redirects=False)
+        Assert.equal(response.headers['location'],
+                     mozwebqa.base_url + "/firefox/channel/#beta")
+        Assert.equal(response.status_code, 302)
 
     @pytest.mark.nondestructive
     def test_redirect_community_to_contribute(self, mozwebqa):
@@ -193,7 +195,8 @@ class TestRedirects(object):
         """
         url = 'http://aurora.mozilla.org'
         response = requests.get(url)
-        Assert.contains('/en-US/firefox/channel/#aurora', response.url)
+        Assert.equal(response.history[-1].headers['location'],
+                     'http://www.mozilla.org/en-US/firefox/channel/#aurora')
         Assert.equal(200, response.status_code)
 
     @pytest.mark.nondestructive
