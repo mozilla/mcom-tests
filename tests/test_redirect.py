@@ -195,8 +195,9 @@ class TestRedirects(object):
         """
         url = 'http://aurora.mozilla.org'
         response = requests.get(url)
-        Assert.equal(response.history[-1].headers['location'],
-                     'http://www.mozilla.org/en-US/firefox/channel/#aurora')
+        Assert.contains(
+            'http://www.mozilla.org/firefox/channel/#aurora',
+            [r.headers.get('location', '') for r in response.history])
         Assert.equal(200, response.status_code)
 
     @pytest.mark.nondestructive
@@ -207,7 +208,9 @@ class TestRedirects(object):
         """
         url = 'http://beta.mozilla.org'
         response = requests.get(url)
-        Assert.contains('/en-US/firefox/channel/#beta', response.url)
+        Assert.contains(
+            'http://www.mozilla.org/en-US/firefox/channel/#beta',
+            [r.headers.get('location', '') for r in response.history])
         Assert.equal(200, response.status_code)
 
     @pytest.mark.nondestructive
