@@ -80,6 +80,8 @@ class TestProjects:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail(
+        reason='Bug 874837 - Invalid link to http://lljs.org/ on http://www.mozilla.org/en-US/research/projects/')
     def test_projects_link_urls_are_valid(self, mozwebqa):
         projects_page = Projects(mozwebqa)
         projects_page.go_to_page()
