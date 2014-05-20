@@ -16,10 +16,6 @@ class TestProductsPage:
     def test_footer_section(self, mozwebqa):
         products_page = ProductsPage(mozwebqa)
         products_page.go_to_page()
-        Assert.contains(products_page.footer.expected_footer_logo_destination,
-                        products_page.footer.footer_logo_destination)
-        Assert.contains(products_page.footer.expected_footer_logo_img,
-                        products_page.footer.footer_logo_img)
         bad_links = []
         for link in ProductsPage.Footer.footer_links_list:
             url = products_page.link_destination(link.get('locator'))

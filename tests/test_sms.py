@@ -57,10 +57,6 @@ class TestSMSPage():
     def test_footer_section(self, mozwebqa):
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
-        Assert.contains(sms_page.footer.expected_footer_logo_destination,
-                        sms_page.footer.footer_logo_destination)
-        Assert.contains(sms_page.footer.expected_footer_logo_img,
-                        sms_page.footer.footer_logo_img)
         bad_links = []
         for link in sms_page.Footer.footer_links_list:
             url = sms_page.link_destination(link.get('locator'))

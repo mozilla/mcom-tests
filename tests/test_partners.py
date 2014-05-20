@@ -15,10 +15,6 @@ class TestPartners:
     def test_footer_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
-        Assert.contains(partners_page.footer.expected_footer_logo_destination,
-                        partners_page.footer.footer_logo_destination)
-        Assert.contains(partners_page.footer.expected_footer_logo_img,
-                        partners_page.footer.footer_logo_img)
         bad_links = []
         for link in Partners.Footer.footer_links_list:
             url = partners_page.link_destination(link.get('locator'))

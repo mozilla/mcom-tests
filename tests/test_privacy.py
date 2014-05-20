@@ -15,10 +15,6 @@ class TestPrivacy:
     def test_footer_section(self, mozwebqa):
         privacy_page = Privacy(mozwebqa)
         privacy_page.go_to_page()
-        Assert.contains(privacy_page.footer.expected_footer_logo_destination,
-                        privacy_page.footer.footer_logo_destination)
-        Assert.contains(privacy_page.footer.expected_footer_logo_img,
-                        privacy_page.footer.footer_logo_img)
         bad_links = []
         for link in Privacy.Footer.footer_links_list:
             url = privacy_page.link_destination(link.get('locator'))

@@ -16,10 +16,6 @@ class TestAboutPage:
     def test_footer_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.contains(about_page.footer.expected_footer_logo_destination,
-                        about_page.footer.footer_logo_destination)
-        Assert.contains(about_page.footer.expected_footer_logo_img,
-                        about_page.footer.footer_logo_img)
         bad_links = []
         for link in AboutPage.Footer.footer_links_list:
             url = about_page.link_destination(link.get('locator'))
@@ -31,10 +27,6 @@ class TestAboutPage:
     def test_footer_links_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.contains(about_page.footer.expected_footer_logo_destination,
-                        about_page.footer.footer_logo_destination)
-        Assert.contains(about_page.footer.expected_footer_logo_img,
-                        about_page.footer.footer_logo_img)
         bad_urls = []
         for link in AboutPage.Footer.footer_links_list:
             url = about_page.link_destination(link.get('locator'))

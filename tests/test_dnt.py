@@ -15,10 +15,6 @@ class TestDoNotTrack:
     def test_footer_section(self, mozwebqa):
         dnt_page = DoNotTrack(mozwebqa)
         dnt_page.go_to_page()
-        Assert.contains(dnt_page.footer.expected_footer_logo_destination,
-                        dnt_page.footer.footer_logo_destination)
-        Assert.contains(dnt_page.footer.expected_footer_logo_img,
-                        dnt_page.footer.footer_logo_img)
         bad_links = []
         for link in DoNotTrack.Footer.footer_links_list:
             url = dnt_page.link_destination(link.get('locator'))

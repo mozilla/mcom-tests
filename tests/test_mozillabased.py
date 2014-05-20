@@ -29,10 +29,6 @@ class TestMozillaBasedPagePage:
     def test_footer_section_links(self, mozwebqa):
         page = MozillaBasedPage(mozwebqa)
         page.go_to_page()
-        Assert.contains(page.footer.expected_footer_logo_destination,
-                        page.footer.footer_logo_destination)
-        Assert.contains(page.footer.expected_footer_logo_img,
-                        page.footer.footer_logo_img)
         bad_links = []
         for link in MozillaBasedPage.Footer.footer_links_list:
             url = page.link_destination(link.get('locator'))
