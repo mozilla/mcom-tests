@@ -47,10 +47,6 @@ class TestContribute:
     def test_footer_section(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
-        Assert.contains(contribute_page.footer.expected_footer_logo_destination,
-                        contribute_page.footer.footer_logo_destination)
-        Assert.contains(contribute_page.footer.expected_footer_logo_img,
-                        contribute_page.footer.footer_logo_img)
         bad_links = []
         for link in Contribute.Footer.footer_links_list:
             url = contribute_page.link_destination(link.get('locator'))

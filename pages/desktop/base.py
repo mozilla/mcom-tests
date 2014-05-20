@@ -119,10 +119,6 @@ class Base(Page):
 
         _footer_locator = (By.CSS_SELECTOR, '#colophon')
         _footer_logo_link_locator = (By.CSS_SELECTOR, 'h1.logo> a')
-        _footer_logo_img_locator = (By.CSS_SELECTOR, 'h1.logo> a >img')
-        expected_footer_logo_destination = '/en-US/'
-        expected_footer_logo_img = '/media/img/sandstone/footer-mozilla.png'
-
         footer_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#colophon p.license a'),
@@ -175,13 +171,7 @@ class Base(Page):
             footer_logo_link = self.selenium.find_element(*self._footer_logo_link_locator)
             return footer_logo_link.get_attribute('href')
 
-        @property
-        def footer_logo_img(self):
-            footer_logo_img = self.selenium.find_element(*self._footer_logo_img_locator)
-            return footer_logo_img.get_attribute('src')
-
     class DownloadRegion(Page):
-
         _osx_download_locator = (By.CSS_SELECTOR, '.os_osx > a')
         _windows_download_locator = (By.CSS_SELECTOR, '.os_windows > a')
         _linux_download_locator = (By.CSS_SELECTOR, '.os_linux > a')
