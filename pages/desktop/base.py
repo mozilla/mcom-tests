@@ -73,7 +73,7 @@ class Base(Page):
                 'url_suffix': 'www.mozilla.org/contribute/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(2) > a'),
-                'url_suffix': '/about/careers.html',
+                'url_suffix': '//careers.mozilla.org/?icn=tabz',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(3) > a'),
                 'url_suffix': '/about/mozilla-spaces/',
