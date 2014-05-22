@@ -55,13 +55,31 @@ class TestLocalisedDownloadLinks:
                                      % (language['id'], link['href'], status))
         return bad_links
 
+    def get_ssl_text_in_links(self, mozwebqa, language_rows):
+        '''
+            Check that there is SSL in response URLs.
+        '''
+        bad_links = []
+        for language in language_rows:
+            links = language.findAll('a')
+            for link in links:
+                url = link['href']
+                response = requests.head(url, allow_redirects=False)
+                if not ('SSL' in response.url):
+                    bad_links.append("Lang '%s' %s link: url %s"
+                                    % (language['id'], link, response.url))
+        return bad_links
+
     def test_links_on_firefox_all(self, mozwebqa):
         language_rows = self.get_language_rows(mozwebqa)
         result = self.get_locale_code_from_links(mozwebqa, language_rows)
         Assert.equal(0, len(result), " ".join(result))
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
+        urls = self.get_ssl_text_in_links(mozwebqa, language_rows)
         Assert.equal(0, len(second_result),
                      "Expected status code 302.  " + ",  ".join(second_result))
+        Assert.equal(0, len(urls),
+                     "Expected SSL in url.  " + ",  ".join(urls))
 
     def test_links_on_firefox_organization_all(self, mozwebqa):
         language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all.html')
@@ -70,3 +88,6 @@ class TestLocalisedDownloadLinks:
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
         Assert.equal(0, len(second_result),
                      "Expected status code 302.  " + ",  ".join(second_result))
+        urls = self.get_ssl_text_in_links(mozwebqa, language_rows)
+        Assert.equal(0, len(urls),
+                     "Expected SSL in url.  " + ",  ".join(urls))
