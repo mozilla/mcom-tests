@@ -20,7 +20,6 @@ class TestNotes:
 
     @pytest.mark.skip_selenium
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason="Bug 1021333 - Broken link to Firefox 32.0a2 Aurora release notes URL")
     def test_that_all_links_are_valid(self, mozwebqa):
         notes_page = Notes(mozwebqa)
         url = mozwebqa.base_url + notes_page.notes_page_url
