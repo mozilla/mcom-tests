@@ -74,13 +74,7 @@ class TestPartners:
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
         partners_page.click_os_menu()
-        partners_page.selenium.maximize_window()
-        partners_page.click_os_menu()
         partners_page.click_operators_button()
-        partners_page.click_operators_button()
-        partners_page.click_operators_button()
-        partners_page.click_operators_button()
-
         bad_images = []
         for image in partners_page._operators_image_list:
             if not partners_page.is_element_visible(*image.get('locator')):

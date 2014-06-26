@@ -5,6 +5,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from pages.desktop.base import Base
 
 
@@ -22,13 +24,13 @@ class Partners(Base):
     _marketplace_menu_icon_locator = (By.CSS_SELECTOR, '#menu-marketplace > a')
     _android_menu_icon_locator = (By.CSS_SELECTOR, '#menu-android > a')
     _form_icon_locator = (By.CSS_SELECTOR, 'menu-form > a')
-    _partner_pager_button_locator = (By.CSS_SELECTOR, '.pager-tabs > li:nth-of-type(2) > a')
-    _partner_page_one_button_locator = (By.CSS_SELECTOR, '#mozilla-pager-page-1-tab"]')
+    _partner_pager_button_locator = (By.CSS_SELECTOR, '#mozilla-pager-page-2-tab')
+    _partner_page_one_button_locator = (By.CSS_SELECTOR, '#mozilla-pager-page-1-tab')
     _partner_with_us_button_locator = (By.CSS_SELECTOR, '.partner-button > a')
     _phone_foxtail_image_locator = (By.CSS_SELECTOR, '.phone > #screen-overview > #foxtail')
     _phone_os_image_locator = (By.ID, 'screen-os')
     _os_overview_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(1)')
-    _operators_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(2)')
+    _operators_button_locator = (By.CSS_SELECTOR, '#os > .article-header > nav.tween > a.view-section[data-section=os-operators]:nth-of-type(2)')
     _phone_marketplace_image_locator = (By.ID, 'screen-marketplace')
     _phone_image_locator = (By.CSS_SELECTOR, '.phone-overlay')
 
@@ -101,10 +103,9 @@ class Partners(Base):
 
     partner_images_pager_list_two = [
         {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(1) > img'),
-            'img_name_suffix': 'smartcom.png'
-        },
-        {
+            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(2) > img'),
+            'img_name_suffix': 'portugaltelecom.png'
+        }, {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(2) > img'),
             'img_name_suffix': 'portugaltelecom.png'
         },
@@ -243,10 +244,14 @@ class Partners(Base):
         return self.selenium.find_element(*self._marketplace_menu_icon_locator).click()
 
     def click_os_menu(self):
-        return self.selenium.find_element(*self._os_menu_icon_locator).click()
+        self.selenium.find_element(*self._os_menu_icon_locator).click()
+        WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._os_overview_button_locator))
 
     def click_operators_button(self):
-        return self.selenium.find_element(*self._operators_button_locator).click()
+        WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._operators_button_locator))
+        self.selenium.find_element(*self._operators_button_locator).click()
+        element = WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._partner_with_us_button_locator))
+        return element
 
     @property
     def is_marketplace_image_visible(self):
