@@ -23,7 +23,7 @@ class Partners(Base):
     _android_menu_icon_locator = (By.CSS_SELECTOR, '#menu-android > a')
     _form_icon_locator = (By.CSS_SELECTOR, 'menu-form > a')
     _partner_pager_button_locator = (By.CSS_SELECTOR, '.pager-tabs > li:nth-of-type(2) > a')
-    _partner_page_one_button_locator = (By.CSS_SELECTOR, '.pager-tabs a[href="#mozilla-pager-page-1"]')
+    _partner_page_one_button_locator = (By.CSS_SELECTOR, '#mozilla-pager-page-1-tab"]')
     _partner_with_us_button_locator = (By.CSS_SELECTOR, '.partner-button > a')
     _phone_foxtail_image_locator = (By.CSS_SELECTOR, '.phone > #screen-overview > #foxtail')
     _phone_os_image_locator = (By.ID, 'screen-os')
