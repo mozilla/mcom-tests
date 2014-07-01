@@ -250,7 +250,7 @@ class Partners(Base):
     def click_operators_button(self):
         WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._operators_button_locator))
         self.selenium.find_element(*self._operators_button_locator).click()
-        element = WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._partner_with_us_button_locator))
+        element = WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._operators_image_list[-1]['locator']))
         return element
 
     @property
