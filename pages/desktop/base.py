@@ -79,7 +79,7 @@ class Base(Page):
                 'url_suffix': '/about/mozilla-spaces/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
-                'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-newdefault?icn=tabz&source=tabzilla_textlink',
+                'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-newdefault?icn=tabz&source=mozillaorg_default_tabzillaTXT',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(5) > a'),
                 'url_suffix': '/about/partnerships/',
@@ -132,7 +132,7 @@ class Base(Page):
                 'url_suffix': '/about/partnerships/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(3) >a'),
-                'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-newdefault?source=mozillaorg_footer',
+                'url_suffix': '//sendto.mozilla.org/page/contribute/Give-Now?source=mozillaorg_default_footer',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(4) >a'),
                 'url_suffix': 'affiliates.mozilla.org/',
