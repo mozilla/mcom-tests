@@ -79,7 +79,7 @@ class Base(Page):
                 'url_suffix': '/about/mozilla-spaces/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
-                'url_suffix': '//sendto.mozilla.org/page/contribute/EOYFR2013-newdefault?icn=tabz&source=mozillaorg_default_tabzillaTXT',
+                'url_suffix': '//sendto.mozilla.org/page/contribute/Give-Now?icn=tabz&source=mozillaorg_default_tabzillaTXT',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(5) > a'),
                 'url_suffix': '/about/partnerships/',
