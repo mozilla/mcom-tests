@@ -28,18 +28,21 @@ class Projects(Base):
             'url_suffix': '#emscripten',
         }, {
             'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(5) > a'),
-            'url_suffix': '#sweetjs',
+            'url_suffix': '#daala',
         }, {
             'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(6) > a'),
-            'url_suffix': '#lljs',
+            'url_suffix': '#sweetjs',
         }, {
             'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(7) > a'),
-            'url_suffix': '#broadwayjs',
+            'url_suffix': '#lljs',
         }, {
             'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(8) > a'),
-            'url_suffix': '#parallel',
+            'url_suffix': '#broadwayjs',
         }, {
             'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(9) > a'),
+            'url_suffix': '#parallel',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#project-list > ul > li:nth-of-type(10) > a'),
             'url_suffix': '#asmjs',
         }
     ]
