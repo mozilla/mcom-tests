@@ -20,7 +20,8 @@ class Partners(Base):
     _developer_opportunities_header_locator = (By.CSS_SELECTOR, '#secondary div.section:nth-of-type(3) > h3')
     _consumer_freedom_header_locator = (By.CSS_SELECTOR, '#secondary div.section:nth-of-type(4) > h3')
     _overview_menu_icon_locator = (By.CSS_SELECTOR, '#menu-overview > a')
-    _os_menu_icon_locator = (By.CSS_SELECTOR, '#menu-os > a')
+    _os_menu_icon_locator = (By.ID, 'menu-os')
+    _os_menu_icon_link_locator = (By.CSS_SELECTOR, '#menu-os > a')
     _marketplace_menu_icon_locator = (By.CSS_SELECTOR, '#menu-marketplace > a')
     _android_menu_icon_locator = (By.CSS_SELECTOR, '#menu-android > a')
     _form_icon_locator = (By.CSS_SELECTOR, 'menu-form > a')
@@ -29,8 +30,8 @@ class Partners(Base):
     _partner_with_us_button_locator = (By.CSS_SELECTOR, '.partner-button > a')
     _phone_foxtail_image_locator = (By.CSS_SELECTOR, '.phone > #screen-overview > #foxtail')
     _phone_os_image_locator = (By.ID, 'screen-os')
-    _os_overview_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section:nth-of-type(1)')
-    _operators_button_locator = (By.CSS_SELECTOR, '#os > .article-header > nav.tween > a.view-section[data-section=os-operators]:nth-of-type(2)')
+    _os_overview_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section[data-section=os-overview]')
+    _operators_button_locator = (By.CSS_SELECTOR, '#os > .article-header > .tween > a.view-section[data-section=os-operators]')
     _phone_marketplace_image_locator = (By.ID, 'screen-marketplace')
     _phone_image_locator = (By.CSS_SELECTOR, '.phone-overlay')
 
@@ -244,8 +245,9 @@ class Partners(Base):
         return self.selenium.find_element(*self._marketplace_menu_icon_locator).click()
 
     def click_os_menu(self):
-        self.selenium.find_element(*self._os_menu_icon_locator).click()
-        WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._os_overview_button_locator))
+        self.selenium.find_element(*self._os_menu_icon_link_locator).click()
+        WebDriverWait(self.selenium, self.timeout).until(
+                lambda s: s.find_element(*self._os_menu_icon_locator).get_attribute('class') == 'active')
 
     def click_operators_button(self):
         WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._operators_button_locator))
