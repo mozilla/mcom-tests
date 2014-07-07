@@ -245,7 +245,7 @@ class Partners(Base):
 
     def click_os_menu(self):
         self.selenium.find_element(*self._os_menu_icon_locator).click()
-        WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._os_overview_button_locator))
+        WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._phone_os_image_locator))
 
     def click_operators_button(self):
         WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._operators_button_locator))
