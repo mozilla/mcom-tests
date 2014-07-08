@@ -92,6 +92,9 @@ class ProductsPage(Base):
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(3) a'),
             'url_suffix': '/thunderbird/',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#mozilla > .links > .link-flat:nth-child(1)'),
+            'url_suffix': 'about/mozilla-based/',
         }
     ]
 
@@ -111,5 +114,11 @@ class ProductsPage(Base):
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(5) a'),
             'url_suffix': '/Apps/Reference',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#developers > .links > .link-flat:nth-of-type(1)'),
+            'url_suffix': 'developer.mozilla.org/docs/Tools',
+        }, {
+            'locator': (By.CSS_SELECTOR, '#developers > .links > .link-flat:nth-of-type(2)'),
+            'url_suffix': 'developer.mozilla.org/',
         }
     ]
