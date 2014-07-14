@@ -260,3 +260,11 @@ class TestRedirects(object):
         url = mozwebqa.base_url + '/firefox/new'
         response = requests.get(url, headers={'Accept-Language': locale})
         Assert.contains(locale, response.url)
+
+    @pytest.mark.nondestructive
+    def test_policy_archive_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/privacy/archive/'
+        response = requests.get(url)
+        Assert.equal(response.status_code, 200)
+        Assert.equal(response.history[0].status_code, 301)
+        Assert.true(response.history[0].headers['location'].endswith('/en-US/privacy/archive/'))
