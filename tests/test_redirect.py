@@ -255,3 +255,10 @@ class TestRedirects(object):
         response = requests.get(url)
         Assert.contains('/firefox/desktop/trust/', response.url)
         Assert.equal(200, response.status_code)
+
+    @pytest.mark.nondestructive
+    @pytest.mark.parametrize("locale", ['son', 'zh-CN', 'ta'])
+    def test_firefox_new_redirect(self, mozwebqa, locale):
+        url = mozwebqa.base_url + '/firefox/new'
+        response = requests.get(url, headers={'Accept-Language': locale})
+        Assert.contains(locale, response.url)
