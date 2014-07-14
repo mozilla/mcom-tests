@@ -45,8 +45,6 @@ class TestRedirects(object):
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
         url = mozwebqa.base_url + "/aurora/"
         response = requests.get(url, allow_redirects=False)
-        Assert.equal(response.headers['location'],
-                     mozwebqa.base_url + "/firefox/channel/#aurora")
         Assert.equal(response.status_code, 301)
 
     @pytest.mark.nondestructive
