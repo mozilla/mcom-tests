@@ -194,7 +194,7 @@ class TestRedirects(object):
         url = 'http://aurora.mozilla.org'
         response = requests.get(url)
         Assert.contains(
-            'http://www.mozilla.org/firefox/channel/#aurora',
+            'https://www.mozilla.org/firefox/channel/#aurora',
             [r.headers.get('location', '') for r in response.history])
         Assert.equal(200, response.status_code)
 
