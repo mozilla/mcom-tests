@@ -137,6 +137,10 @@ class Communities(Contact):
         self.selenium.find_element(By.CSS_SELECTOR,
                                    '#nav-communities > ul > li[data-id=africa] > a').click()
 
+    def click_balkans(self):
+        self.selenium.find_element(By.CSS_SELECTOR,
+                                    '#nav-communities > ul > li[data-id=balkans] > a').click()
+
     @property
     def north_america_communities(self):
         return self.selenium.find_elements(By.CSS_SELECTOR,
@@ -161,6 +165,11 @@ class Communities(Contact):
     def africa_middle_east_communities(self):
         return self.selenium.find_elements(By.CSS_SELECTOR,
                                            '#nav-communities > ul > li[data-id=africa] > .submenu > li')
+
+    @property
+    def balkans_communities(self):
+        return self.selenium.find_elements(By.CSS_SELECTOR,
+                                            '#nav-communities > ul > li[data-id=balkans] > .submenu > li')
 
     @property
     def region_list(self):
@@ -202,7 +211,10 @@ class Communities(Contact):
         }, {
             'locator': (By.CSS_SELECTOR, '#nav-communities > ul > li[data-id=hispano] > a'),
             'url_suffix': '/contact/communities/hispano/'
-        },
+        }, {
+            'locator': (By.CSS_SELECTOR, '#nav-communities > ul > li[data-id=balkans] > a'),
+            'url_suffix': '/contact/communities/balkans/'
+        }
     ]
 
     region_legend_links_list = [

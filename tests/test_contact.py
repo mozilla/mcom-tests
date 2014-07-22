@@ -102,7 +102,8 @@ class TestContact:
             communities_page.latin_america_communities,
             communities_page.europe_communities,
             communities_page.asia_south_pacific_communities,
-            communities_page.africa_middle_east_communities
+            communities_page.africa_middle_east_communities,
+            communities_page.balkans_communities
         ]
         bad_communities = []
         for index, action in enumerate(click_regions):
