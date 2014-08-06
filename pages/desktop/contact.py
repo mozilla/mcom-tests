@@ -296,6 +296,7 @@ class Communities(Contact):
         'contact/communities/slovakia/',
         'contact/communities/slovenia/',
         'contact/communities/spain/',
+        'contact/communities/sweden/',
         'contact/communities/switzerland/',
         'contact/communities/turkey/',
         'contact/communities/ukraine/',
