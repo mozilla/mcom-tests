@@ -23,8 +23,10 @@ class Contact(Base):
                                      '#page-content > .category-tabs > li[data-id=communities] > a')
 
     def wait_until_element_visible(self, element):
+        ## overriding timeout here to higher value of 360
+        timeout = 360
         self.selenium.execute_script("window.scrollTo(0, 0)")
-        WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of(element))
+        WebDriverWait(self.selenium, timeout).until(EC.visibility_of(element))
 
     @property
     def spaces_tab(self):
