@@ -288,6 +288,7 @@ class Communities(Contact):
         'contact/communities/kosovo/',
         'contact/communities/lithuania/',
         'contact/communities/macedonia/',
+        'contact/communities/montenegro/',
         'contact/communities/the-netherlands/',
         'contact/communities/norway/',
         'contact/communities/poland/',
