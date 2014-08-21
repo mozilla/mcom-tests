@@ -49,7 +49,7 @@ class AboutPage(Base):
         }
     ]
 
-    _sign_up_form_locator = (By.ID, 'footer-email-form')
+    _sign_up_form_locator = (By.ID, 'mozorg-newsletter-form')
     _sign_up_form_email_input_locator = (By.ID, 'id_email')
     _sign_up_form_country_select_locator = (By.ID, 'country')
     _sign_up_form_privacy_checkbox_locator = (By.ID, 'id_privacy')
