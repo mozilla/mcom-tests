@@ -11,7 +11,7 @@ from pages.desktop.base import Base
 class DoNotTrack(Base):
 
     def go_to_page(self):
-        self.open('/dnt')
+        self.open('/firefox/dnt/')
 
     _dnt_status_wrapper_locator = (By.ID, 'dnt-status-wrapper')
     _dnt_status_text_locator = (By.CSS_SELECTOR, '#dnt-status > h4')
