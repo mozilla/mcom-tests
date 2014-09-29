@@ -93,14 +93,10 @@ class TestRedirectLanding(object):
         headers = {}
         headers.update(self.ESR_FIREFOX)
         for locale in self.LOCALES:
-            if locale in ['zu', 'ak', 'lg', 'mai']:
+            if locale in ['zu', 'ak', 'lg', 'mai', 'mn']:
                 self.ACCEPT_LANGUAGE['Accept-Language'] = locale
                 headers.update(self.ACCEPT_LANGUAGE)
                 self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
-            elif locale == 'mn':
-                self.ACCEPT_LANGUAGE['Accept-Language'] = locale
-                headers.update(self.ACCEPT_LANGUAGE)
-                self._test_redirect(mozwebqa, '/firefox/', '/firefox/channel/', headers)
             elif locale in ["ja", "zh-TW"]:
                 self.ACCEPT_LANGUAGE['Accept-Language'] = locale
                 headers.update(self.ACCEPT_LANGUAGE)
