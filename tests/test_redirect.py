@@ -275,4 +275,4 @@ class TestRedirects(object):
         response = requests.get(url)
         Assert.equal(response.status_code, 200)
         Assert.equal(response.history[0].status_code, 301)
-        Assert.equal(response.history[-1].headers['location'].endswith('/firefox/dnt/'))
+        Assert.true(response.history[-1].headers['location'].endswith('/firefox/dnt/'))
