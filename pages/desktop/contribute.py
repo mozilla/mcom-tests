@@ -13,65 +13,6 @@ class Contribute(Base):
     def go_to_page(self):
         self.open('/contribute/')
 
-    images_list = [
-        {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(1) > img'),
-            'img_name_suffix': 'sumo.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(2) > img'),
-            'img_name_suffix': 'qmo.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(3) > img'),
-            'img_name_suffix': 'dinohead.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(4) > img'),
-            'img_name_suffix': 'firefox.png?2013-06',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(5) > img'),
-            'img_name_suffix': 'localization.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(6) > img'),
-            'img_name_suffix': 'web.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(7) > img'),
-            'img_name_suffix': 'marketplace.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(8) > img'),
-            'img_name_suffix': 'addons.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(9) > img'),
-            'img_name_suffix': 'creativecollective.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(10) > img'),
-            'img_name_suffix': 'mdn.png?03-2014',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.contribute-options > li:nth-child(11) > img'),
-            'img_name_suffix': 'webmaker.png',
-        }
-    ]
-
-    locations_list = [
-        {
-            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(1) > a > img'),
-            'img_name_suffix': 'map-th-northamerica.png?03-2014'
-        }, {
-            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(2) > a > img'),
-            'img_name_suffix': 'map-th-europe.png?03-2014'
-        }, {
-            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(3) > a > img'),
-            'img_name_suffix': 'map-th-latinamerica.png?03-2014'
-        }, {
-            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(4) > a > img'),
-            'img_name_suffix': 'map-th-africamideast.png?03-2014'
-        }, {
-            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(5) > a > img'),
-            'img_name_suffix': 'map-th-asia.png?03-2014'
-        }, {
-            'locator': (By.CSS_SELECTOR, '.locations > li:nth-child(6) > a > img'),
-            'img_name_suffix': 'map-th-southpole.png?03-2014'
-        }
-    ]
-
     major_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#contribute-nav-menu li:nth-child(1) a'),

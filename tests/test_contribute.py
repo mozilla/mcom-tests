@@ -13,41 +13,6 @@ from unittestzero import Assert
 class TestContribute:
 
     @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason='Contribute page redesign')
-    def test_images_are_visible(self, mozwebqa):
-        contribute_page = Contribute(mozwebqa)
-        contribute_page.go_to_page()
-        bad_images = []
-        for image in contribute_page.images_list:
-            if not contribute_page.is_element_visible(*image.get('locator')):
-                bad_images.append('The image at %s is not visible' % image.get('locator')[1:])
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
-
-    @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason='Contribute page redesign')
-    def test_image_srcs_are_correct(self, mozwebqa):
-        contribute_page = Contribute(mozwebqa)
-        contribute_page.go_to_page()
-        bad_images = []
-        for image in contribute_page.images_list:
-            src = contribute_page.image_source(image.get('locator'))
-            if not src.endswith(image.get('img_name_suffix')):
-                bad_images.append('%s does not end with %s' % (src, image.get('img_name_suffix')))
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
-
-    @pytest.mark.nondestructive
-    @pytest.mark.xfail(reason='Contribute page redesign')
-    def test_location_image_srcs_are_correct(self, mozwebqa):
-        contribute_page = Contribute(mozwebqa)
-        contribute_page.go_to_page()
-        bad_images = []
-        for image in contribute_page.locations_list:
-            src = contribute_page.image_source(image.get('locator'))
-            if not src.endswith(image.get('img_name_suffix')):
-                bad_images.append('%s does not end with %s' % (src, image.get('img_name_suffix')))
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
-
-    @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
