@@ -24,14 +24,14 @@ class Contribute(Base):
             'locator': (By.CSS_SELECTOR, '#contribute-nav-menu li:nth-child(3) a'),
             'url_suffix': 'stories/',
         }, {
-            'locator': (By.CSS_SELECTOR, '.section.landing-mission .cta a'),
+            'locator': (By.CSS_SELECTOR, '#landing-mission .mission-cta a'),
             'url_suffix': '//videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm',
         }, {
             'locator': (By.CSS_SELECTOR, '.section.landing-howto a'),
             'url_suffix': 'signup/',
         }, {
             'locator': (By.CSS_SELECTOR, '.other-actions li:nth-child(1) a'),
-            'url_suffix': 'Give-Now?source=mozillaorg_default_footer&ref=volunteer_getinvolvedpage201410&utm_campaign=volunteer_getinvolvedpage201410&utm_source=newsletter-mofo&utm_medium=referral',
+            'url_suffix': 'Give-Now?source=mozillaorg&ref=volunteer_getinvolvedpage201410&utm_campaign=volunteer_getinvolvedpage201410&utm_source=mozillaorg&utm_medium=referral',
         }, {
             'locator': (By.CSS_SELECTOR, '.other-actions li:nth-child(2) a'),
             'url_suffix': 'firefox/',
