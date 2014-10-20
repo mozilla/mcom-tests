@@ -144,9 +144,12 @@ class Base(Page):
                 'url_suffix': '/privacy/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(2) >a'),
-                'url_suffix': '/about/legal/',
+                'url_suffix': '/privacy/websites/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(3) >a'),
+                'url_suffix': '/about/legal/',
+            }, {
+                'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(4) >a'),
                 'url_suffix': '/legal/fraud-report/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-social>li:nth-child(1) > ul > li:nth-child(1) > a'),
