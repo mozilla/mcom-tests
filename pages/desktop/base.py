@@ -144,7 +144,7 @@ class Base(Page):
                 'url_suffix': '/privacy/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(2) >a'),
-                'url_suffix': '/privacy/websites/',
+                'url_suffix': '/privacy/websites/#cookies',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(3) >a'),
                 'url_suffix': '/about/legal/',
