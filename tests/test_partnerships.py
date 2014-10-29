@@ -11,15 +11,6 @@ from pages.desktop.partnerships import Partnerships
 
 
 class TestPartnerships:
-    @pytest.mark.nondestructive
-    def test_section_links_are_visible(self, mozwebqa):
-        partnerships_page = Partnerships(mozwebqa)
-        partnerships_page.go_to_page()
-        bad_links = []
-        for link in partnerships_page.section_links_list:
-            if not partnerships_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_section_link_destinations_are_correct(self, mozwebqa):
@@ -43,16 +34,6 @@ class TestPartnerships:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @pytest.mark.nondestructive
-    def test_images_are_visible(self, mozwebqa):
-        partnerships_page = Partnerships(mozwebqa)
-        partnerships_page.go_to_page()
-        bad_images = []
-        for image in partnerships_page.images_list:
-            if not partnerships_page.is_element_visible(*image.get('locator')):
-                bad_images.append('The image at %s is not visible' % image.get('locator')[1:])
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
 
     @pytest.mark.nondestructive
     def test_image_srcs_are_correct(self, mozwebqa):

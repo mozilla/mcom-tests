@@ -49,5 +49,3 @@ class TestDoNotTrack:
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-        for link in dnt_page.tracking_protection_links_list:
-            Assert.true(dnt_page.are_tracking_protection_links_visible(link.get('locator')))
