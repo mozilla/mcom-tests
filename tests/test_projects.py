@@ -26,16 +26,6 @@ class TestProjects:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_billboard_links_are_visible(self, mozwebqa):
-        projects_page = Projects(mozwebqa)
-        projects_page.go_to_page()
-        bad_links = []
-        for link in projects_page.billboard_links_list:
-            if not projects_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
     def test_billboard_link_destinations_are_correct(self, mozwebqa):
         projects_page = Projects(mozwebqa)
         projects_page.go_to_page()
@@ -57,16 +47,6 @@ class TestProjects:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @pytest.mark.nondestructive
-    def test_projects_links_are_visible(self, mozwebqa):
-        projects_page = Projects(mozwebqa)
-        projects_page.go_to_page()
-        bad_links = []
-        for link in projects_page.projects_links_list:
-            if not projects_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_projects_link_destinations_are_correct(self, mozwebqa):
