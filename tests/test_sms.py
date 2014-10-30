@@ -13,14 +13,6 @@ from pages.desktop.sms import SMS
 class TestSMSPage():
 
     @pytest.mark.nondestructive
-    def test_send_sms(self, mozwebqa):
-        sms_page = SMS(mozwebqa)
-        sms_page.go_to_page()
-        Assert.true(sms_page.is_google_play_link_visible)
-        Assert.true(sms_page.is_textbox_visible)
-        Assert.true(sms_page.submit_sms_form())
-
-    @pytest.mark.nondestructive
     def test_info_link_destinations_are_correct(self, mozwebqa):
         sms_page = SMS(mozwebqa)
         sms_page.go_to_page()
