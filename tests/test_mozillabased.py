@@ -12,16 +12,6 @@ from unittestzero import Assert
 class TestMozillaBasedPagePage:
 
     @pytest.mark.nondestructive
-    def test_breadcrumbs_links_are_visible(self, mozwebqa):
-        mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
-        bad_links = []
-        for link in mozillabased_page.breadcrumbs_link_list:
-            if not mozillabased_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
     def test_breadcrumbs_link_destinations_are_correct(self, mozwebqa):
         mozillabased_page = MozillaBasedPage(mozwebqa)
         mozillabased_page.go_to_page()
@@ -43,16 +33,6 @@ class TestMozillaBasedPagePage:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @pytest.mark.nondestructive
-    def test_main_feature_links_are_visible(self, mozwebqa):
-        mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
-        bad_links = []
-        for link in mozillabased_page.main_feature_link_list:
-            if not mozillabased_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_main_feature_link_destinations_are_correct(self, mozwebqa):
@@ -88,8 +68,7 @@ class TestMozillaBasedPagePage:
             status = response.status_code
             if status > 400:
                 bad_links.append('Broken logo %s  product %s' % (link['logo'], link['text']))
-        Assert.equal(0, len(bad_links),
-            ''.join(bad_links))
+        Assert.equal(0, len(bad_links), ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_featured_images_links_are_correct(self, mozwebqa):
@@ -102,8 +81,7 @@ class TestMozillaBasedPagePage:
             status = response.status_code
             if status > 400:
                 bad_links.append('Broken logo %s  product %s' % (link['logo'], link['text']))
-        Assert.equal(0, len(bad_links),
-            ''.join(bad_links))
+        Assert.equal(0, len(bad_links), ''.join(bad_links))
 
     @pytest.mark.nondestructive
     def test_footer_section_links(self, mozwebqa):

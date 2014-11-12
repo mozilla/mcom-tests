@@ -67,19 +67,6 @@ class TestContact:
         self.check_bad_links(communities_page, communities_page.region_nav_links_list)
 
     @pytest.mark.nondestructive
-    def test_community_links_are_correct(self, mozwebqa):
-        communities_page = Communities(mozwebqa)
-        communities_page.go_to_page()
-        bad_links = []
-        communities_links = communities_page.communities_links
-        for index, url_suffix in enumerate(communities_page.communities_links_suffix_list):
-            url = communities_links[index].get_attribute('href')
-            if not url.endswith(url_suffix):
-                bad_links.append('%s does not end with %s' % (url, url_suffix))
-        Assert.equal(0, len(bad_links), '%s bad links found: '
-                     % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
     def test_region_legend_links_are_correct(self, mozwebqa):
         communities_page = Communities(mozwebqa)
         communities_page.go_to_page()

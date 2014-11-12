@@ -39,7 +39,7 @@ class TestRedirects(object):
     def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 "/firefox/mobile/",
-                                "/en-US/firefox/new/")
+                                "/en-US/firefox/android/")
 
     @pytest.mark.nondestructive
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
