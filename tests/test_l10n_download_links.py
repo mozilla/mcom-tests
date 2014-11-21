@@ -63,8 +63,16 @@ class TestLocalisedDownloadLinks:
         Assert.equal(0, len(second_result),
                      "Expected status code 302.  " + ",  ".join(second_result))
 
-    def test_links_on_firefox_organization_all(self, mozwebqa):
-        language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all.html')
+    def test_links_on_firefox_organization_all_build_next(self, mozwebqa):
+        language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all/#builds-next')
+        result = self.get_locale_code_from_links(mozwebqa, language_rows)
+        Assert.equal(0, len(result), " ".join(result))
+        second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
+        Assert.equal(0, len(second_result),
+                     "Expected status code 302.  " + ",  ".join(second_result))
+
+    def test_links_on_firefox_organization_all_build(self, mozwebqa):
+        language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all/#builds')
         result = self.get_locale_code_from_links(mozwebqa, language_rows)
         Assert.equal(0, len(result), " ".join(result))
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
