@@ -18,7 +18,7 @@ class HomePage(Base):
     major_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#promo-1 a'),
-            'url_suffix': '//openstandard.mozilla.org/',
+            'url_suffix': '/firefox/independent/#play',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-2 a'),
             'url_suffix': '/privacy/you/',
@@ -27,16 +27,16 @@ class HomePage(Base):
             'url_suffix': '/firefox/desktop/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-6 a'),
-            'url_suffix': '//webmaker.org/',
+            'url_suffix': '//sendto.mozilla.org/page/contribute/givenow-1page?preset=2&source=mozillaorg_largeblock&ref=EOYFR2014&utm_campaign=EOYFR2014&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_largeblock',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-8 a'),
-            'url_suffix': '//webmaker.org/appmaker',
+            'url_suffix': '//webmaker.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-10 a'),
-            'url_suffix': '/firefox/desktop/trust/',
+            'url_suffix': '/firefox/developer/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-11 a'),
-            'url_suffix': '//support.mozilla.org/get-involved',
+            'url_suffix': '//gear.mozilla.org/?ref=OMG_launch&utm_campaign=OMG_launch&utm_source=gear.mozilla.org&utm_medium=referral&utm_content=mozillaorg_largeblock',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-16 .twt-actions a:nth-child(1)'),
             'url_suffix': '//twitter.com/firefox',
@@ -44,11 +44,8 @@ class HomePage(Base):
             'locator': (By.CSS_SELECTOR, '#firefox-download-section header a'),
             'url_suffix': '/firefox/',
         }, {
-            'locator': (By.CSS_SELECTOR, '#open-standard .more-large'),
-            'url_suffix': '//openstandard.mozilla.org/',
-        }, {
             'locator': (By.CSS_SELECTOR, '#upcoming-events .more-large'),
-            'url_suffix': '//reps.mozilla.org/events/',
+            'url_suffix': '/contribute/events/',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-btn'),
             'url_suffix': '/contribute/',
@@ -74,9 +71,6 @@ class HomePage(Base):
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox-promo-link img'),
             'img_name_suffix': 'firefox-logo-wordmark-white.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '.os-header img'),
-            'img_name_suffix': 'tos-wordmark-high-res.png',
         }
     ]
 
