@@ -80,7 +80,7 @@ class Base(Page):
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': ('//sendto.mozilla.org/page/contribute/givenow-seq?'
-                               'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+                               'preset=2&source=mozillaorg_tabzillaTXT&ref=EOYFR2014&utm_campaign=EOYFR2014'
                                '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_tabzillaTXT&icn=tabz'),
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(5) > a'),
@@ -135,7 +135,7 @@ class Base(Page):
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(3) >a'),
                 'url_suffix': ('//sendto.mozilla.org/page/contribute/givenow-seq?'
-                               'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+                               'preset=2&source=mozillaorg_footer&ref=EOYFR2014&utm_campaign=EOYFR2014'
                                '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_footer'),
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(4) >a'),
