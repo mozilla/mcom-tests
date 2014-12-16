@@ -53,7 +53,7 @@ class Projects(Base):
             'url_suffix': 'www.rust-lang.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#rust > div.intro > ul > li:nth-of-type(2) > a'),
-            'url_suffix': 'github.com/mozilla/rust',
+            'url_suffix': 'github.com/rust-lang/rust',
         }, {
             'locator': (By.CSS_SELECTOR, '#servo > div.intro > ul > li > a'),
             'url_suffix': 'github.com/mozilla/servo',
