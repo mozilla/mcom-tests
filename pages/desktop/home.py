@@ -63,9 +63,6 @@ class HomePage(Base):
 
     images_list = [
         {
-            'locator': (By.CSS_SELECTOR, '.container h1 img'),
-            'img_name_suffix': 'mozilla-wordmark-white-high-res.png',
-        }, {
             'locator': (By.CSS_SELECTOR, '.primary img'),
             'img_name_suffix': 'firefox-logo.png',
         }, {
