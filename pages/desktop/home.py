@@ -27,10 +27,10 @@ class HomePage(Base):
             'url_suffix': '/firefox/desktop/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-6 a'),
-            'url_suffix': '//sendto.mozilla.org/page/contribute/givenow-seq?preset=2&source=mozillaorg_largeblock&ref=EOYFR2014&utm_campaign=EOYFR2014&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_largeblock',
+            'url_suffix': '//webmaker.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-8 a'),
-            'url_suffix': '//webmaker.org/',
+            'url_suffix': '//webmaker.org/appmaker',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-10 a'),
             'url_suffix': '/firefox/developer/',
