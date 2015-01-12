@@ -186,15 +186,15 @@ class TestRedirects(object):
         Assert.contains('/persona', response.url)
 
     @pytest.mark.nondestructive
-    def test_aurora_redirect(self, mozwebqa):
+    def test_developer_redirect(self, mozwebqa):
         """
         Test aurora.mozilla.org redirects to
-        http://www.mozilla.org/firefox/channel/#aurora
+        http://www.mozilla.org/firefox/channel/#developer
         """
         url = 'http://aurora.mozilla.org'
         response = requests.get(url)
         Assert.contains(
-            'https://www.mozilla.org/firefox/channel/#aurora',
+            'https://www.mozilla.org/firefox/channel/#developer',
             [r.headers.get('location', '') for r in response.history])
         Assert.equal(200, response.status_code)
 
