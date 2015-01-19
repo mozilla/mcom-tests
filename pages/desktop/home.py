@@ -21,13 +21,13 @@ class HomePage(Base):
             'url_suffix': '/firefox/independent/#play',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-2 a'),
-            'url_suffix': '/privacy/you/',
+            'url_suffix': '//advocacy.mozilla.org/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-5 .fxos-link'),
             'url_suffix': '/firefox/desktop/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-6 a'),
-            'url_suffix': '//webmaker.org/',
+            'url_suffix': '/privacy/you/',
         }, {
             'locator': (By.CSS_SELECTOR, '#promo-8 a'),
             'url_suffix': '//webmaker.org/appmaker',
