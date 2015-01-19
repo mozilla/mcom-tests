@@ -17,30 +17,6 @@ class HomePage(Base):
 
     major_links_list = [
         {
-            'locator': (By.CSS_SELECTOR, '#promo-1 a'),
-            'url_suffix': '/firefox/independent/#play',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-2 a'),
-            'url_suffix': '/privacy/you/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-5 .fxos-link'),
-            'url_suffix': '/firefox/desktop/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-6 a'),
-            'url_suffix': '//webmaker.org/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-8 a'),
-            'url_suffix': '//webmaker.org/appmaker',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-10 a'),
-            'url_suffix': '/firefox/developer/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-11 a'),
-            'url_suffix': '//gear.mozilla.org/?ref=OMG_launch&utm_campaign=OMG_launch&utm_source=gear.mozilla.org&utm_medium=referral&utm_content=mozillaorg_largeblock',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#promo-16 .twt-actions a:nth-child(1)'),
-            'url_suffix': '//twitter.com/firefox',
-        }, {
             'locator': (By.CSS_SELECTOR, '#firefox-download-section header a'),
             'url_suffix': '/firefox/',
         }, {
@@ -59,6 +35,57 @@ class HomePage(Base):
             'locator': (By.CSS_SELECTOR, '#secondary-links li:nth-child(3) a'),
             'url_suffix': '//support.mozilla.org/',
         }
+    ]
+
+    promo_links_list = [
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-1 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-2 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-3 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-4 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-5 .fxos-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-6 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-7 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-8 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-9 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-10 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-11 .panel-link')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-12 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-13 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-14 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-15 > a')
+        },
+        {
+            'locator': (By.CSS_SELECTOR, '#promo-16 .twt-actions a:nth-child(1)')
+        },
     ]
 
     images_list = [
