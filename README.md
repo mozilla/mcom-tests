@@ -47,7 +47,7 @@ To run tests locally, it's a simple case of calling the command below from this 
 
     py.test --driver=firefox
 
-For more command line options, see https://github.com/davehunt/pytest-mozwebqa
+For more command line options, see https://github.com/mozilla/pytest-mozwebqa
 
 Writing Tests
 -------------
