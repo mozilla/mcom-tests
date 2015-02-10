@@ -29,40 +29,40 @@ class ProductsPage(Base):
     images_list = [
         {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(1) a img'),
-            'img_name_suffix': 'badge-firefox.jpg?2013-06',
+            'img_name_suffix': 'badge-firefox.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(2) a img'),
-            'img_name_suffix': 'badge-android.jpg',
+            'img_name_suffix': 'badge-android.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-firefoxos.jpg?2013-06',
+            'img_name_suffix': 'badge-firefoxos.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox li:nth-child(4) a img'),
-            'img_name_suffix': 'badge-marketplace.jpg?2013-06',
+            'img_name_suffix': 'badge-marketplace.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(1) a img'),
-            'img_name_suffix': 'badge-persona.jpg',
+            'img_name_suffix': 'badge-persona.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(2) a img'),
-            'img_name_suffix': 'badge-webmaker.jpg',
+            'img_name_suffix': 'badge-webmaker.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#mozilla li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-thunderbird.jpg',
+            'img_name_suffix': 'badge-thunderbird.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(1) a img'),
-            'img_name_suffix': 'badge-bugzilla.jpg',
+            'img_name_suffix': 'badge-bugzilla.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(2) a img'),
-            'img_name_suffix': 'badge-firebug.jpg',
+            'img_name_suffix': 'badge-firebug.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(3) a img'),
-            'img_name_suffix': 'badge-xulrunner.jpg',
+            'img_name_suffix': 'badge-xulrunner.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(4) img'),
-            'img_name_suffix': 'badge-gecko.jpg',
+            'img_name_suffix': 'badge-gecko.*.jpg',
         }, {
             'locator': (By.CSS_SELECTOR, '#developers li:nth-child(5) img'),
-            'img_name_suffix': 'badge-api.jpg',
+            'img_name_suffix': 'badge-api.*.jpg',
         }
     ]
 

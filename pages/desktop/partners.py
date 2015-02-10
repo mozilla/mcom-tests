@@ -37,93 +37,93 @@ class Partners(Base):
     partner_images_pager_list_one = [
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(1) > img'),
-            'img_name_suffix': 'telefonica.png'
+            'img_name_suffix': 'telefonica.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(2) > img'),
-            'img_name_suffix': 'dt.png'
+            'img_name_suffix': 'dt.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(3) > img'),
-            'img_name_suffix': 'lg.png'
+            'img_name_suffix': 'lg.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(4) > img'),
-            'img_name_suffix': 'qualcomm.png'
+            'img_name_suffix': 'qualcomm.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(5) > img'),
-            'img_name_suffix': 'zte.png'
+            'img_name_suffix': 'zte.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(6) > img'),
-            'img_name_suffix': 'telenor.png'
+            'img_name_suffix': 'telenor.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(7) > img'),
-            'img_name_suffix': 'americamovil.png'
+            'img_name_suffix': 'americamovil.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(8) > img'),
-            'img_name_suffix': 'tcl.png'
+            'img_name_suffix': 'tcl.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(9) > img'),
-            'img_name_suffix': 'telecomitalia.png'
+            'img_name_suffix': 'telecomitalia.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(10) > img'),
-            'img_name_suffix': 'chinaunicom.png'
+            'img_name_suffix': 'chinaunicom.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(11) > img'),
-            'img_name_suffix': 'kddi.png'
+            'img_name_suffix': 'kddi.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(12) > img'),
-            'img_name_suffix': 'sprint.png'
+            'img_name_suffix': 'sprint.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(13) > img'),
-            'img_name_suffix': 'singtel.png'
+            'img_name_suffix': 'singtel.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(14) > img'),
-            'img_name_suffix': 'etisalat.png'
+            'img_name_suffix': 'etisalat.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(15) > img'),
-            'img_name_suffix': 'koreatelecom.png'
+            'img_name_suffix': 'koreatelecom.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(16) > img'),
-            'img_name_suffix': 'vimpelcom.png'
+            'img_name_suffix': 'vimpelcom.*.png'
         }
     ]
 
     partner_images_pager_list_two = [
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(2) > img'),
-            'img_name_suffix': 'portugaltelecom.png'
+            'img_name_suffix': 'portugaltelecom.*.png'
         }, {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(2) > img'),
-            'img_name_suffix': 'portugaltelecom.png'
+            'img_name_suffix': 'portugaltelecom.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(3) > img'),
-            'img_name_suffix': 'megafon.png'
+            'img_name_suffix': 'megafon.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(4) > img'),
-            'img_name_suffix': 'facebook.png'
+            'img_name_suffix': 'facebook.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(5) > img'),
-            'img_name_suffix': 'twitter.png'
+            'img_name_suffix': 'twitter.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(6) > img'),
-            'img_name_suffix': 'soundcloud.png'
+            'img_name_suffix': 'soundcloud.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(7) > img'),
@@ -131,23 +131,23 @@ class Partners(Base):
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(8) > img'),
-            'img_name_suffix': 'box.png'
+            'img_name_suffix': 'box.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(9) > img'),
-            'img_name_suffix': 'ea.png'
+            'img_name_suffix': 'ea.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(10) > img'),
-            'img_name_suffix': 'ebay.png'
+            'img_name_suffix': 'ebay.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(11) > img'),
-            'img_name_suffix': 'cuttherope.png'
+            'img_name_suffix': 'cuttherope.*.png'
         },
         {
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(12) > img'),
-            'img_name_suffix': 'wikipedia.png'
+            'img_name_suffix': 'wikipedia.*.png'
         }
     ]
 

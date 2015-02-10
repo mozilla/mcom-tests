@@ -3,6 +3,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from fnmatch import fnmatchcase
 
 import pytest
 import requests
@@ -66,8 +67,8 @@ class TestProductsPage:
         bad_images = []
         for image in products_page.images_list:
             src = products_page.image_source(image.get('locator'))
-            if not src.endswith(image.get('img_name_suffix')):
-                bad_images.append('%s does not end with %s' % (src, image.get('img_name_suffix')))
+            if not fnmatchcase(src, '*/' + image.get('img_name_suffix')):
+                bad_images.append('%s does not match %s' % (src, image.get('img_name_suffix')))
         Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
 
     @pytest.mark.nondestructive

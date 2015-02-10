@@ -25,7 +25,7 @@ class DoNotTrack(Base):
         },
         {
             'locator': (By.CSS_SELECTOR, '.sidebar-box > p > a:nth-of-type(2)'),
-            'url_suffix': 'dnt-enabler.tpl'
+            'url_suffix': 'dnt-enabler.*.tpl'
         }
     ]
 
