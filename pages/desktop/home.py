@@ -91,10 +91,10 @@ class HomePage(Base):
     images_list = [
         {
             'locator': (By.CSS_SELECTOR, '.primary img'),
-            'img_name_suffix': 'firefox-logo.png',
+            'img_name_suffix': 'firefox-logo.*.png',
         }, {
             'locator': (By.CSS_SELECTOR, '#firefox-promo-link img'),
-            'img_name_suffix': 'firefox-logo-wordmark-white.png',
+            'img_name_suffix': 'firefox-logo-wordmark-white.*.png',
         }
     ]
 

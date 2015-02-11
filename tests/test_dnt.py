@@ -3,6 +3,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from fnmatch import fnmatchcase
 
 import pytest
 from pages.desktop.dnt import DoNotTrack
@@ -46,6 +47,6 @@ class TestDoNotTrack:
         bad_links = []
         for link in dnt_page.tracking_protection_links_list:
             url = dnt_page.link_destination(link.get('locator'))
-            if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
+            if not fnmatchcase(url, '*/' + link.get('url_suffix')):
+                bad_links.append('%s does not match %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
