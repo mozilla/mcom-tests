@@ -23,7 +23,7 @@ class Contact(Base):
                                      '#page-content > .category-tabs > li[data-id=communities] > a')
 
     def wait_until_element_visible(self, element):
-        ## overriding timeout here to higher value of 360
+        # overriding timeout here to higher value of 360
         timeout = 360
         self.selenium.execute_script("window.scrollTo(0, 0)")
         WebDriverWait(self.selenium, timeout).until(EC.visibility_of(element))
@@ -141,7 +141,7 @@ class Communities(Contact):
 
     def click_balkans(self):
         self.selenium.find_element(By.CSS_SELECTOR,
-                                    '#nav-communities > ul > li[data-id=balkans] > a').click()
+                                   '#nav-communities > ul > li[data-id=balkans] > a').click()
 
     @property
     def north_america_communities(self):
@@ -171,7 +171,7 @@ class Communities(Contact):
     @property
     def balkans_communities(self):
         return self.selenium.find_elements(By.CSS_SELECTOR,
-                                            '#nav-communities > ul > li[data-id=balkans] > .submenu > li')
+                                           '#nav-communities > ul > li[data-id=balkans] > .submenu > li')
 
     @property
     def region_list(self):

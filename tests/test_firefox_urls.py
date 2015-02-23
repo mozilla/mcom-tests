@@ -45,4 +45,3 @@ class TestFirefoxURLs(object):
             response = requests.get(url, timeout=3)
             assert response.status_code == 200, 'got status {} from {}'.format(
                 response.status_code, url)
-
