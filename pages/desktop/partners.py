@@ -71,34 +71,6 @@ class Partners(Base):
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(9) > img'),
             'img_name_suffix': 'telecomitalia.*.png'
         },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(10) > img'),
-            'img_name_suffix': 'chinaunicom.*.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(11) > img'),
-            'img_name_suffix': 'kddi.*.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(12) > img'),
-            'img_name_suffix': 'sprint.*.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(13) > img'),
-            'img_name_suffix': 'singtel.*.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(14) > img'),
-            'img_name_suffix': 'etisalat.*.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(15) > img'),
-            'img_name_suffix': 'koreatelecom.*.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-1 > .logos > li:nth-of-type(16) > img'),
-            'img_name_suffix': 'vimpelcom.*.png'
-        }
     ]
 
     partner_images_pager_list_two = [
@@ -145,89 +117,6 @@ class Partners(Base):
             'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(11) > img'),
             'img_name_suffix': 'cuttherope.*.png'
         },
-        {
-            'locator': (By.CSS_SELECTOR, '#page-mozilla-pager-page-2 > .logos > li:nth-of-type(12) > img'),
-            'img_name_suffix': 'wikipedia.*.png'
-        }
-    ]
-
-    _operators_image_list = [
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(1) > img'),
-            'url_suffix': 'telefonica.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(2) > img'),
-            'url_suffix': 'dt.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(3) > img'),
-            'url_suffix': 'lg.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(4) > img'),
-            'url_suffix': 'qualcomm.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(5) > img'),
-            'url_suffix': 'zte.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(6) > img'),
-            'url_suffix': 'telenor.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(7) > img'),
-            'url_suffix': 'kddi.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(8) > img'),
-            'url_suffix': 'tcl.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(9) > img'),
-            'url_suffix': 'telecomitalia.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(10) > img'),
-            'url_suffix': 'chinaunicom.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(11) > img'),
-            'url_suffix': 'sprint.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(12) > img'),
-            'url_suffix': 'vimpelcom.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(13) > img'),
-            'url_suffix': 'singtel.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(14) > img'),
-            'url_suffix': 'etisalat.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(15) > img'),
-            'url_suffix': 'koreatelecom.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(16) > img'),
-            'url_suffix': 'smartcom.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(17) > img'),
-            'url_suffix': 'megafon.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(18) > img'),
-            'url_suffix': 'portugaltelecom.png'
-        },
-        {
-            'locator': (By.CSS_SELECTOR, '#os-operators-logos1 > li:nth-of-type(19) > img'),
-            'url_suffix': 'americamovil.png'
-        }
     ]
 
     def go_to_page(self):
@@ -250,7 +139,8 @@ class Partners(Base):
     def click_operators_button(self):
         WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._operators_button_locator))
         self.selenium.find_element(*self._operators_button_locator).click()
-        element = WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._operators_image_list[-1]['locator']))
+        element = WebDriverWait(self.selenium, self.timeout).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, '#os-operators-headline')))
         return element
 
     @property
