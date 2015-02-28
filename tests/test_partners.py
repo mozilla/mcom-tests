@@ -9,7 +9,7 @@ from pages.desktop.partners import Partners
 from unittestzero import Assert
 
 
-class TestPartners:
+class TestPartners(object):
 
     @pytest.mark.nondestructive
     def test_footer_section(self, mozwebqa):
@@ -19,19 +19,6 @@ class TestPartners:
         for link in Partners.Footer.footer_links_list:
             url = partners_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
-        partners_page = Partners(mozwebqa)
-        partners_page.go_to_page()
-        Assert.true(partners_page.header.is_tabzilla_panel_visible)
-        partners_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in Partners.Header.tabzilla_links_list:
-            url = partners_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
@@ -75,8 +62,3 @@ class TestPartners:
         partners_page.go_to_page()
         partners_page.click_os_menu()
         partners_page.click_operators_button()
-        bad_images = []
-        for image in partners_page._operators_image_list:
-            if not partners_page.is_element_visible(*image.get('locator')):
-                bad_images.append('The image at %s is not visible' % image.get('locator')[1:])
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
