@@ -37,23 +37,22 @@ class AboutPage(Base):
 
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(1) a'),
-            'url_suffix': '/products/',
+            'url_suffix': '/about/leadership/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(2) a'),
-            'url_suffix': '/contribute/',
+            'url_suffix': '/products/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(3) a'),
-            'url_suffix': 'blog.mozilla.org/press/',
+            'url_suffix': '/contribute/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(4) a'),
-            'url_suffix': '/privacy/',
+            'url_suffix': 'blog.mozilla.org/press/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(5) a'),
-            'url_suffix': '/about/partnerships',
+            'url_suffix': '/privacy/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(6) a'),
             'url_suffix': '/foundation/'
-
         }
     ]
 
