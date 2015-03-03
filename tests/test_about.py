@@ -36,7 +36,7 @@ class TestAboutPage:
         Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_tabzilla_link_destinations_are_corrects(self, mozwebqa):
+    def test_tabzilla_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         Assert.true(about_page.header.is_tabzilla_panel_visible)
