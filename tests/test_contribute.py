@@ -75,23 +75,3 @@ class TestContribute:
         signup_page = Signup(mozwebqa)
         signup_page.go_to_page()
         Assert.true(signup_page.is_sign_up_form_present, 'The sign up form is not present on the page.')
-
-    def test_sign_up_with_valid_email(self, mozwebqa):
-        valid_email = 'noreply@mozilla.com'
-        country = 'us'
-        name = 'mozilla'
-        success_url_slug = 'thankyou'
-        contribute_page = Contribute(mozwebqa)
-        contribute_page.go_to_page()
-        signup_page = contribute_page.click_signup()
-        signup_page.click_testing_area()
-        signup_page.select_option('testing-firefox', signup_page._sign_up_form_select_testing_area_locator)
-        signup_page.input_name(name)
-        signup_page.input_email(valid_email)
-        signup_page.select_option(country, signup_page._sign_up_form_country_select_locator)
-        signup_page.select_html_format()
-        signup_page.check_privacy_checkbox()
-        signup_page.submit_form()
-        Assert.true(success_url_slug in signup_page.url_current_page,
-                    'Expected current URL slug to be %s, but was not found in %s.' %
-                    (success_url_slug, signup_page.url_current_page))

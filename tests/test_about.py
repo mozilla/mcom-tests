@@ -190,22 +190,6 @@ class TestAboutPage:
         about_page.wait_for_element_visible(*about_page._sign_up_form_privacy_checkbox_locator)
         about_page.is_element_visible(*about_page._sign_up_form_country_select_locator)
 
-    def test_sign_up_form_submit_is_successful(self, mozwebqa):
-        about_page = AboutPage(mozwebqa)
-        valid_email = 'noreply@mozilla.com'
-        country = 'US'
-        success_url_slug = 'sign-up-for-mozilla'
-        about_page.go_to_page()
-        about_page.expand_sign_up_form()
-        about_page.wait_for_element_visible(*about_page._sign_up_form_privacy_checkbox_locator)
-        about_page.input_email(valid_email)
-        about_page.select_option(country, about_page._sign_up_form_country_select_locator)
-        about_page.check_privacy_checkbox()
-        about_page.submit_form()
-        Assert.true(success_url_slug in about_page.url_current_page,
-                    'Expected current URL slug to be %s, but was not found in %s.' %
-                    (success_url_slug, about_page.url_current_page))
-
     def test_sign_up_form_invalid_email(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         invalid_email = 'noreplymozilla.com'
