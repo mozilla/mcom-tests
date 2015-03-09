@@ -67,14 +67,7 @@ class Signup(Contribute):
         self.open('/contribute/signup')
 
     _testing_area_locator = (By.CSS_SELECTOR, '.categories .option #category-testing')
-    _sign_up_form_select_testing_area_locator = (By.ID, 'id_area_testing')
     _sign_up_form_locator = (By.CSS_SELECTOR, '.personal')
-    _sign_up_form_name_input_locator = (By.ID, 'id_name')
-    _sign_up_form_email_input_locator = (By.ID, 'id_email')
-    _sign_up_form_country_select_locator = (By.ID, 'id_country')
-    _sign_up_form_privacy_checkbox_locator = (By.ID, 'id_privacy')
-    _sign_up_form_html_format_radio_button_locator = (By.CSS_SELECTOR, '.form-format input[type=radio][value=H]')
-    _sign_up_form_submit_button_locator = (By.CSS_SELECTOR, 'button')
 
     def click_testing_area(self):
         self.selenium.find_element(*self._testing_area_locator).click()
@@ -93,21 +86,6 @@ class Signup(Contribute):
             'locator': (By.CSS_SELECTOR, 'button'),
         },
     ]
-
-    def input_name(self, name):
-        self.selenium.find_element(*self._sign_up_form_name_input_locator).send_keys(name)
-
-    def input_email(self, email):
-        self.selenium.find_element(*self._sign_up_form_email_input_locator).send_keys(email)
-
-    def check_privacy_checkbox(self):
-        self.selenium.find_element(*self._sign_up_form_privacy_checkbox_locator).click()
-
-    def select_html_format(self):
-        self.selenium.find_element(*self._sign_up_form_html_format_radio_button_locator).click()
-
-    def submit_form(self):
-        self.selenium.find_element(*self._sign_up_form_submit_button_locator).click()
 
     @property
     def is_sign_up_form_present(self):

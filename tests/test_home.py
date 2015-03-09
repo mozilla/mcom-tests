@@ -120,19 +120,3 @@ class TestHomePage:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    def test_sign_up_form_submit_is_successful(self, mozwebqa):
-        home_page = HomePage(mozwebqa)
-        valid_email = 'noreply@mozilla.com'
-        country = 'US'
-        success_url_slug = 'sign-up-for-mozilla'
-        home_page.go_to_page()
-        home_page.expand_sign_up_form()
-        home_page.wait_for_element_visible(*home_page._sign_up_form_privacy_checkbox_locator)
-        home_page.input_email(valid_email)
-        home_page.select_option(country, home_page._sign_up_form_country_select_locator)
-        home_page.check_privacy_checkbox()
-        home_page.submit_form()
-        Assert.true(success_url_slug in home_page.url_current_page,
-                    'Expected current URL slug to be %s, but was not found in %s.' %
-                    (success_url_slug, home_page.url_current_page))
