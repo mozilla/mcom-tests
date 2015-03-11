@@ -95,7 +95,7 @@ class Signup(Contribute):
 
         element = self.selenium.find_element(*self._coding_subtopic_locator)
         select = Select(element)
-        select.select_by_value(coding_subtopics[randint(0,6)])
+        select.select_by_value(coding_subtopics[randint(0, 6)])
 
     def select_random_testing_subtopic(self):
         subtopics = ['testing-firefox', 'testing-addons', 'testing-marketplace',
@@ -103,8 +103,7 @@ class Signup(Contribute):
 
         element = self.selenium.find_element(*self._testing_subtopic_locator)
         select = Select(element)
-        select.select_by_value(subtopics[randint(0,4)])
-
+        select.select_by_value(subtopics[randint(0, 4)])
 
     sign_up_form_fields = [
         {
@@ -146,6 +145,7 @@ class Signup(Contribute):
     def click_submit_button(self):
         self.selenium.find_element(*self._submit_button_locator).click()
         return ConfirmationPage(self.testsetup)
+
 
 class ConfirmationPage(Contribute):
 
