@@ -72,16 +72,6 @@ class TestHomePage:
         Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_images_are_visible(self, mozwebqa):
-        home_page = HomePage(mozwebqa)
-        home_page.go_to_page()
-        bad_images = []
-        for image in home_page.images_list:
-            if not home_page.is_element_visible(*image.get('locator')):
-                bad_images.append('The image at %s is not visible' % image.get('locator')[1:])
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
-
-    @pytest.mark.nondestructive
     def test_image_srcs_are_correct(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()

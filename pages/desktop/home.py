@@ -86,16 +86,6 @@ class HomePage(Base):
         },
     ]
 
-    images_list = [
-        {
-            'locator': (By.CSS_SELECTOR, '.primary img'),
-            'img_name_suffix': 'firefox-logo.*.png',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#firefox-promo-link img'),
-            'img_name_suffix': 'firefox-logo-wordmark-white.*.png',
-        }
-    ]
-
     _sign_up_form_locator = (By.ID, 'mozorg-newsletter-form')
 
     sign_up_form_link_list = [
