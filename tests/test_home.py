@@ -72,17 +72,6 @@ class TestHomePage:
         Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @pytest.mark.nondestructive
-    def test_image_srcs_are_correct(self, mozwebqa):
-        home_page = HomePage(mozwebqa)
-        home_page.go_to_page()
-        bad_images = []
-        for image in home_page.images_list:
-            src = home_page.image_source(image.get('locator'))
-            if not fnmatchcase(src, '*/' + image.get('img_name_suffix')):
-                bad_images.append('%s does not match %s' % (src, image.get('img_name_suffix')))
-        Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
-
-    @pytest.mark.nondestructive
     def test_sign_up_form_is_visible(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
