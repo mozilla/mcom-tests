@@ -3,8 +3,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from fnmatch import fnmatchcase
-
 import pytest
 import requests
 from unittestzero import Assert
@@ -14,6 +12,8 @@ from pages.desktop.home import HomePage
 class TestHomePage:
 
     @pytest.mark.nondestructive
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason='Bug 1143814 - Missing "Upcoming Events" section and Mozilla Reps Tweets on dev')
     def test_promo_links_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
         home_page.go_to_page()
@@ -25,6 +25,8 @@ class TestHomePage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason='Bug 1143814 - Missing "Upcoming Events" section and Mozilla Reps Tweets on dev')
     @pytest.mark.nondestructive
     def test_major_link_urls_are_valid(self, mozwebqa):
         home_page = HomePage(mozwebqa)
@@ -37,6 +39,8 @@ class TestHomePage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
+    @pytest.mark.xfail("'-dev' in config.getvalue('base_url')",
+                       reason='Bug 1143814 - Missing "Upcoming Events" section and Mozilla Reps Tweets on dev')
     @pytest.mark.nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
         home_page = HomePage(mozwebqa)
