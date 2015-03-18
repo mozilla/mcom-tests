@@ -142,7 +142,7 @@ class Base(Page):
                 'url_suffix': 'affiliates.mozilla.org/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(5) >a'),
-                'url_suffix': '/contribute/page/',
+                'url_suffix': '//wiki.mozilla.org/Webdev/GetInvolved/mozilla.org',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-legal>li:nth-of-type(1) >a'),
                 'url_suffix': '/privacy/',
