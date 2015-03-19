@@ -46,10 +46,13 @@ class TestLocalizations:
             links = language.findAll('a')
             for link in links:
                 url = link['href']
-                response = requests.head(url, allow_redirects=False)
-                status = response.status_code
-                if not (300 < status <= 302):
-                    bad_links.append("Lang '%s' %s link: status %s"
-                                     % (language['id'], link['href'], status))
+                try:
+                    response = requests.head(url, allow_redirects=False)
+                    status = response.status_code
+                    if not (300 < status <= 302):
+                        bad_links.append("Lang '%s' %s link: status %s" %
+                                         (language['id'], link['href'], status))
+                except Exception, e:
+                    bad_links.append("Exception thrown: %s url: %s" % (e, url))
         Assert.equal(0, len(bad_links),
                      "Expected status code 302.  " + ",  ".join(bad_links))

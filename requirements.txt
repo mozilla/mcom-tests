@@ -11,6 +11,6 @@ py==1.4.15
 pytest==2.3.5
 pytest-mozwebqa
 pytest-xdist==1.8
-requests==2.4.3
+requests==2.6.0
 selenium
 wsgiref==0.1.2
