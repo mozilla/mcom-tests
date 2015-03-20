@@ -36,7 +36,7 @@ class TestDownload(object):
     def test_windows_download_button_returns_status_code_200(self, mozwebqa):
         response = requests.get(mozwebqa.base_url)
         html = BeautifulSoup(response.content)
-        link = html.find('li', 'os_windows').a['href']
+        link = html.find('li', 'os_win').a['href']
         link = mozwebqa.base_url + link
         response = requests.head(link, allow_redirects=True)
         print response.url
@@ -49,7 +49,7 @@ class TestDownload(object):
                                           (KHTML, like Gecko) Chrome/35.0.1916.153 \
                                           Safari/537.36'})
         html = BeautifulSoup(response.content)
-        link = html.find('li', 'os_windows').a['href']
+        link = html.find('li', 'os_win').a['href']
         link = mozwebqa.base_url + link
         response = requests.head(link, allow_redirects=True)
         print response.url
