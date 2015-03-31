@@ -24,19 +24,6 @@ class TestDoNotTrack:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @pytest.mark.nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
-        dnt_page = DoNotTrack(mozwebqa)
-        dnt_page.go_to_page()
-        Assert.true(dnt_page.header.is_tabzilla_panel_visible)
-        dnt_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in DoNotTrack.Header.tabzilla_links_list:
-            url = dnt_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @pytest.mark.nondestructive
     def test_status_section(self, mozwebqa):
         dnt_page = DoNotTrack(mozwebqa)
         dnt_page.go_to_page()
