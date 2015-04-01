@@ -44,10 +44,7 @@ class Base(Page):
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/about/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) >  div > ul > li:nth-of-type(3) > a'),
-                'url_suffix': '/projects/',
-            }, {
+            },
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'support.mozilla.org/',
             }, {
@@ -55,7 +52,7 @@ class Base(Page):
                 'url_suffix': 'developer.mozilla.org/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': 'www.mozilla.org/firefox',
+                'url_suffix': 'www.mozilla.org/firefox/products',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': 'www.mozilla.org/thunderbird',
@@ -97,7 +94,7 @@ class Base(Page):
                 'url_suffix': '/about/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(3) > a'),
-                'url_suffix': '/products/',
+                'url_suffix': '/firefox/products/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(4) > a'),
                 'url_suffix': '/contribute/',
