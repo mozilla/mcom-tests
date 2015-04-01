@@ -19,7 +19,7 @@ class MozillaBasedPage(Base):
             'url_suffix': '/en-US/',
         }, {
             'locator': (By.CSS_SELECTOR, 'nav.breadcrumbs > a:nth-of-type(2)'),
-            'url_suffix': '/en-US/products/',
+            'url_suffix': '/en-US/firefox/products/',
         },
     ]
 

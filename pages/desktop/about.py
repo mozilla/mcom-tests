@@ -40,7 +40,7 @@ class AboutPage(Base):
             'url_suffix': '/about/leadership/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(2) a'),
-            'url_suffix': '/products/',
+            'url_suffix': '/firefox/products/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links:nth-of-type(2) li:nth-child(3) a'),
             'url_suffix': '/contribute/',
