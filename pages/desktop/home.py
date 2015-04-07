@@ -9,17 +9,10 @@ from pages.desktop.base import Base
 
 
 class HomePage(Base):
-
-    def go_to_page(self):
-        self.open('')
-
     major_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#firefox-download-section header a'),
             'url_suffix': '/firefox/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#upcoming-events .more-large'),
-            'url_suffix': '/contribute/events/',
         }, {
             'locator': (By.CSS_SELECTOR, '.contribute-btn'),
             'url_suffix': '/contribute/',
@@ -94,6 +87,21 @@ class HomePage(Base):
             'url_suffix': '/privacy/',
         },
     ]
+
+    def __init__(self, testsetup):
+        super(HomePage, self).__init__(testsetup)
+        # issue mozilla/mcom-tests#399
+        # events area of home page will come and go based on whether
+        # remo is responding at the time of deployment. This is reliably
+        # testable on stage and prod, but not dev.
+        if 'www-dev.allizom.org' not in self.base_url:
+            self.major_links_list.append({
+                'locator': (By.CSS_SELECTOR, '#upcoming-events .more-large'),
+                'url_suffix': '/contribute/events/',
+            })
+
+    def go_to_page(self):
+        self.open('')
 
     @property
     def is_sign_up_form_present(self):
