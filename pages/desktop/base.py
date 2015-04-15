@@ -45,10 +45,10 @@ class Base(Page):
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/about/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(4) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(3) > a'),
                 'url_suffix': 'support.mozilla.org/',
             }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(5) > a'),
+                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'developer.mozilla.org/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(1) > a'),
