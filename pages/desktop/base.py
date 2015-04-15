@@ -44,7 +44,7 @@ class Base(Page):
             }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(2) > a'),
                 'url_suffix': '/about/',
-            },
+            }, {
                 'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(4) > a'),
                 'url_suffix': 'support.mozilla.org/',
             }, {
