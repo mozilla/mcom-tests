@@ -28,6 +28,10 @@ class TestNotes:
         bad_urls = []
         links = html.findAll('a')
         for link in links:
+            # see both blog.mozilla.com and blog.mozilla.org domains
+            if 'blog.mozilla.' in link['href']:
+                # skip for issue 408: blog.m.o links not working via jenkins
+                continue
             url = self.make_absolute(link['href'], mozwebqa.base_url)
             response_code = notes_page.get_response_code(url)
             if response_code != requests.codes.ok:
