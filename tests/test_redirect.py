@@ -10,17 +10,22 @@ import pytest
 
 @pytest.mark.skip_selenium
 class TestRedirects(object):
-    def _test_get_redirect(self, mozwebqa, origin, final):
+    def _test_get_redirect(self, mozwebqa, origin, final,
+                           allow_redirects=True, status_code=301):
         if origin.startswith('http'):
             url = origin
         else:
             url = mozwebqa.base_url + origin
-        response = requests.get(url)
+        response = requests.get(url, allow_redirects=allow_redirects)
         if final.startswith('http'):
             result = final
         else:
             result = mozwebqa.base_url + final
-        Assert.equal(result, response.url)
+        if allow_redirects:
+            Assert.equal(response.url, result)
+        else:
+            Assert.equal(response.headers['location'], result)
+            Assert.equal(response.status_code, status_code)
 
     @pytest.mark.nondestructive
     def test_redirects_from_mozilla_dot_com(self, mozwebqa):
@@ -49,11 +54,10 @@ class TestRedirects(object):
 
     @pytest.mark.nondestructive
     def test_beta_redirects_to_firefox_beta(self, mozwebqa):
-        url = mozwebqa.base_url + "/beta/"
-        response = requests.get(url, allow_redirects=False)
-        Assert.equal(response.headers['location'],
-                     mozwebqa.base_url + "/firefox/channel/#beta")
-        Assert.equal(response.status_code, 302)
+        self._test_get_redirect(mozwebqa,
+                                '/beta/',
+                                '/firefox/channel/#beta',
+                                False, 302)
 
     @pytest.mark.nondestructive
     def test_redirect_community_to_contribute(self, mozwebqa):
@@ -62,10 +66,31 @@ class TestRedirects(object):
         Assert.contains("/contribute/", response.url)
 
     @pytest.mark.nondestructive
-    def test_redirect_firefox_mobile_to_mobile(self, mozwebqa):
+    def test_redirect_mobile_notes_to_android_notes(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
-                                "/firefox/mobile/releasenotes/",
-                                "/en-US/mobile/releasenotes/")
+                                '/mobile/notes/',
+                                '/firefox/android/notes/',
+                                False)
+        self._test_get_redirect(mozwebqa,
+                                '/mobile/beta/notes/',
+                                '/firefox/android/beta/notes/',
+                                False)
+        self._test_get_redirect(mozwebqa,
+                                '/mobile/aurora/notes/',
+                                '/firefox/android/aurora/notes/',
+                                False)
+        self._test_get_redirect(mozwebqa,
+                                '/mobile/37.0/releasenotes/',
+                                '/firefox/android/37.0/releasenotes/',
+                                False)
+        self._test_get_redirect(mozwebqa,
+                                '/mobile/37.0beta/releasenotes/',
+                                '/firefox/android/37.0beta/releasenotes/',
+                                False)
+        self._test_get_redirect(mozwebqa,
+                                '/mobile/37.0a2/auroranotes/',
+                                '/firefox/android/37.0a2/auroranotes/',
+                                False)
 
     @pytest.mark.nondestructive
     def test_redirect_mobile_to_firefox_mobile(self, mozwebqa):
