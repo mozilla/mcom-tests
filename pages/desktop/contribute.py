@@ -4,7 +4,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from random import randint
+
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+
 from pages.desktop.base import Base
 
 
@@ -68,9 +72,38 @@ class Signup(Contribute):
 
     _testing_area_locator = (By.CSS_SELECTOR, '.categories .option #category-testing')
     _sign_up_form_locator = (By.CSS_SELECTOR, '.personal')
+    _coding_topic_locator = (By.CSS_SELECTOR, 'label.category-coding')
+    _testing_topic_locator = (By.CSS_SELECTOR, 'label.category-testing')
+    _coding_subtopic_locator = (By.ID, 'id_area_coding')
+    _testing_subtopic_locator = (By.ID, 'id_area_testing')
+    _submit_button_locator = (By.CSS_SELECTOR, '.submit button')
 
     def click_testing_area(self):
         self.selenium.find_element(*self._testing_area_locator).click()
+
+    def click_coding_topic(self):
+        self.selenium.find_element(*self._coding_topic_locator).click()
+
+    def click_testing_topic(self):
+        self.selenium.find_element(*self._testing_topic_locator).click()
+
+    def select_random_coding_subtopic(self):
+        coding_subtopics = ['coding-firefox', 'coding-firefoxos',
+                            'coding-websites', 'coding-addons',
+                            'coding-marketplace', 'coding-webcompat',
+                            'coding-cloud']
+
+        element = self.selenium.find_element(*self._coding_subtopic_locator)
+        select = Select(element)
+        select.select_by_value(coding_subtopics[randint(0, 6)])
+
+    def select_random_testing_subtopic(self):
+        subtopics = ['testing-firefox', 'testing-addons', 'testing-marketplace',
+                     'testing-websites', 'testing-webcompat']
+
+        element = self.selenium.find_element(*self._testing_subtopic_locator)
+        select = Select(element)
+        select.select_by_value(subtopics[randint(0, 4)])
 
     sign_up_form_fields = [
         {
@@ -81,12 +114,42 @@ class Signup(Contribute):
         }, {
             'locator': (By.ID, 'id_country'),
         }, {
-            'locator': (By.ID, 'id_privacy'),
+            'locator': (By.CSS_SELECTOR, 'input[type="radio"][value="T"]'),
         }, {
-            'locator': (By.CSS_SELECTOR, 'button'),
+            'locator': (By.ID, 'id_privacy'),
         },
     ]
 
     @property
     def is_sign_up_form_present(self):
         return self.is_element_present(*self._sign_up_form_locator)
+
+    def complete_sign_up_form(self):
+        # Name
+        element = self.selenium.find_element(*self.sign_up_form_fields[0]['locator'])
+        element.send_keys('QA Test User')
+        # Email
+        element = self.selenium.find_element(*self.sign_up_form_fields[1]['locator'])
+        element.send_keys('f1258291@trbvm.com')
+        # Country
+        element = self.selenium.find_element(*self.sign_up_form_fields[2]['locator'])
+        select = Select(element)
+        select.select_by_value('us')
+        # Format
+        element = self.selenium.find_element(*self.sign_up_form_fields[3]['locator'])
+        element.click()
+        # Privacy
+        element = self.selenium.find_element(*self.sign_up_form_fields[4]['locator'])
+        element.click()
+
+    def click_submit_button(self):
+        self.selenium.find_element(*self._submit_button_locator).click()
+        return ConfirmationPage(self.testsetup)
+
+
+class ConfirmationPage(Contribute):
+
+    _confirmation_text_locator = (By.CSS_SELECTOR, '#thankyou .section-tagline')
+
+    def confirmation_text(self):
+        return (self.selenium.find_element(*self._confirmation_text_locator)).text

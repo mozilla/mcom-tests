@@ -6,8 +6,11 @@
 
 import pytest
 import requests
-from pages.desktop.contribute import Contribute, Signup
+
 from unittestzero import Assert
+
+from pages.desktop.contribute import Contribute, Signup
+
 
 
 class TestContribute:
@@ -75,3 +78,27 @@ class TestContribute:
         signup_page = Signup(mozwebqa)
         signup_page.go_to_page()
         Assert.true(signup_page.is_sign_up_form_present, 'The sign up form is not present on the page.')
+
+    def test_coding_signup_form(self, mozwebqa):
+        signup_page = Signup(mozwebqa)
+        signup_page.go_to_page()
+
+        signup_page.click_coding_topic()
+        signup_page.select_random_coding_subtopic()
+
+        signup_page.complete_sign_up_form()
+        confirmation_page = signup_page.click_submit_button()
+
+        Assert.true('coding' in confirmation_page.confirmation_text())
+
+    def test_testing_signup_form(self, mozwebqa):
+        signup_page = Signup(mozwebqa)
+        signup_page.go_to_page()
+
+        signup_page.click_testing_topic()
+        signup_page.select_random_testing_subtopic()
+
+        signup_page.complete_sign_up_form()
+        confirmation_page = signup_page.click_submit_button()
+
+        Assert.true('testing' in confirmation_page.confirmation_text())
