@@ -12,7 +12,6 @@ from unittestzero import Assert
 from pages.desktop.contribute import Contribute, Signup
 
 
-
 class TestContribute:
 
     @pytest.mark.nondestructive
