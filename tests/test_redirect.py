@@ -276,3 +276,21 @@ class TestRedirects(object):
         Assert.equal(response.status_code, 200)
         Assert.equal(response.history[0].status_code, 301)
         Assert.true(response.history[-1].headers['location'].endswith('/firefox/dnt/'))
+
+    @pytest.mark.nondestructive
+    def test_firefox_os_notes_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/firefox/os/notes/'
+        response = requests.get(url)
+        Assert.equal(response.status_code, 200)
+        Assert.equal(response.history[0].status_code, 301)
+        Assert.equal(response.history[0].headers['location'],
+                     'https://developer.mozilla.org/Firefox_OS/Releases')
+
+    @pytest.mark.nondestructive
+    def test_firefox_os_notes_version_redirect(self, mozwebqa):
+        url = mozwebqa.base_url + '/firefox/os/notes/2.0'
+        response = requests.get(url)
+        Assert.equal(response.status_code, 200)
+        Assert.equal(response.history[0].status_code, 301)
+        Assert.equal(response.history[0].headers['location'],
+                     'https://developer.mozilla.org/Firefox_OS/Releases/2.0')
