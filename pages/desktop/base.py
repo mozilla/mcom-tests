@@ -136,7 +136,7 @@ class Base(Page):
                                '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_footer'),
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(4) >a'),
-                'url_suffix': 'affiliates.mozilla.org/',
+                'url_suffix': '/contribute/friends/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(5) >a'),
                 'url_suffix': '//wiki.mozilla.org/Webdev/GetInvolved/mozilla.org',
