@@ -10,18 +10,31 @@ import pytest
 
 @pytest.mark.skip_selenium
 class TestRedirectLanding(object):
+    # List of the current supported locales on /firefox/new/
     LOCALES = (
-        "ach", "af", "ak", "ar", "as", "ast", "be", "bg",
-        "bn-BD", "bn-IN", "br", "bs", "ca", "cs", "csb", "cy", "da",
-        "de", "el", "en-GB", "en-ZA", "eo", "es-AR", "es-CL", "es-ES",
-        "es-MX", "et", "eu", "fa", "ff", "fi", "fr", "fy-NL", "ga-IE",
-        "gd", "gl", "gu-IN", "he", "hi-IN", "hr", "hu", "hy-AM", "id",
-        "is", "it", "ja", "kk", "km", "kn", "ko", "ku", "lg", "lij", " lt",
-        "lv", "mai", "mk", "ml", "mr", "nb-NO", "nl", "nn-NO", "nso",
-        "or", "pa-IN", "pl", "pt-BR", "pt-PT", "rm", "ro", "ru", "si", "sk",
-        "sl", "son", "sq", "sr", "sv-SE", "sw", "ta", "ta-LK", "te", "th", "tr",
-        "uk", "vi", "zh-CN", "zh-TW", "zu"
+        'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg', 'bn-IN', 'br', 'ca',
+        'cs', 'cy', 'da', 'de', 'dsb', 'el', 'en-GB', 'eo', 'es-AR', 'es-CL',
+        'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE',
+        'gd', 'gl', 'he', 'hi-IN', 'hr', 'hsb', 'hu', 'hy-AM', 'id', 'is', 'it',
+        'ja', 'ka', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'lv', 'mk', 'ml', 'mr',
+        'ms', 'my', 'nb-NO', 'nl', 'nn-NO', 'oc', 'pa-IN', 'pl', 'pt-BR',
+        'pt-PT', 'rm', 'ro', 'ru', 'sk', 'sl', 'son', 'sq', 'sr', 'sv-SE', 'ta',
+        'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'xh', 'zh-CN', 'zh-TW'
     )
+    # List of some locale name variants including unsupported short names and
+    # obsolete ab-CD-style names, which could be included in the visitors'
+    # Accept-Language HTTP header and should be redirected to the respective
+    # canonical locales
+    LOCALE_VARIANTS = {
+        'en': 'en-US',
+        'en-CA': 'en-US',
+        'es': 'es-ES',
+        'es-419': 'es-ES',
+        'fr-FR': 'fr',
+        'ja-JP-mac': 'ja',
+        'pt': 'pt-BR',
+        'ta-LK': 'ta',
+    }
     ACCEPT_LANGUAGE = {'Accept-Language': 'en-US'}
     FIREFOX = {'User-Agent': ' Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:24.0) Gecko/20100101 Firefox/24.0'}
     ESR_FIREFOX = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:17.0) Gecko/17.0 Firefox/17.0.8'}
@@ -71,21 +84,29 @@ class TestRedirectLanding(object):
         self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
 
     @pytest.mark.nondestructive
-    def test_redirect_firefox_using_locale(self, mozwebqa, path='/firefox/'):
+    def test_redirect_firefox_using_locale(self, mozwebqa):
         headers = {}
         headers.update(self.FIREFOX)
         for locale in self.LOCALES:
-            headers.update(self.ACCEPT_LANGUAGE)
-            url = mozwebqa.base_url + path
-            response = requests.get(url, headers=headers)
-            assert '/firefox/fx/' or '/firefox/new/' in response.url
+            headers.update({'Accept-Language': locale})
+            final = '/%s/firefox/new/' % locale
+            self._test_redirect(mozwebqa, '/firefox/', final, headers)
+
+    @pytest.mark.nondestructive
+    def test_redirect_firefox_using_locale_variant(self, mozwebqa):
+        headers = {}
+        headers.update(self.FIREFOX)
+        for variant, locale in self.LOCALE_VARIANTS.items():
+            headers.update({'Accept-Language': variant})
+            final = '/%s/firefox/new/' % locale
+            self._test_redirect(mozwebqa, '/firefox/', final, headers)
 
     @pytest.mark.nondestructive
     def test_redirect_mobile_using_locale(self, mozwebqa):
         headers = {}
         headers.update(self.MOBILE)
         for locale in self.LOCALES:
-            headers.update(self.ACCEPT_LANGUAGE)
+            headers.update({'Accept-Language': locale})
             self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
 
     @pytest.mark.nondestructive
@@ -93,23 +114,6 @@ class TestRedirectLanding(object):
         headers = {}
         headers.update(self.ESR_FIREFOX)
         for locale in self.LOCALES:
-            if locale in ['zu', 'ak', 'lg', 'mai', 'mn']:
-                self.ACCEPT_LANGUAGE['Accept-Language'] = locale
-                headers.update(self.ACCEPT_LANGUAGE)
-                self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
-            elif locale in ["ja", "zh-TW"]:
-                self.ACCEPT_LANGUAGE['Accept-Language'] = locale
-                headers.update(self.ACCEPT_LANGUAGE)
-                self._test_redirect(mozwebqa, '/firefox/', '/firefox/', headers)
-            elif locale == "ko":
-                self.ACCEPT_LANGUAGE['Accept-Language'] = locale
-                headers.update(self.ACCEPT_LANGUAGE)
-                self._test_redirect(mozwebqa, '/firefox/', '/ko/', headers)
-            elif locale == "zh-CN":
-                self.ACCEPT_LANGUAGE['Accept-Language'] = locale
-                headers.update(self.ACCEPT_LANGUAGE)
-                self._test_redirect(mozwebqa, '/firefox/', '/', headers)
-            else:
-                self.ACCEPT_LANGUAGE['Accept-Language'] = locale
-                headers.update(self.ACCEPT_LANGUAGE)
-                self._test_redirect(mozwebqa, '/firefox/', '/firefox/new/', headers)
+            headers.update({'Accept-Language': locale})
+            final = '/%s/firefox/new/' % locale
+            self._test_redirect(mozwebqa, '/firefox/', final, headers)
