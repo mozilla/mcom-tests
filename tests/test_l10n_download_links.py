@@ -13,10 +13,10 @@ from unittestzero import Assert
 @pytest.mark.nondestructive
 class TestLocalisedDownloadLinks:
 
-    def get_language_rows(self, mozwebqa, link='/firefox/all.html'):
+    def get_language_rows(self, mozwebqa, link='/firefox/all/'):
         '''
             Get all links for each locale on the page under test.
-            The default page under test is /firefox/all.html .
+            The default page under test is /firefox/all/ .
         '''
         url = "%s/%s" % (mozwebqa.base_url, link)
         page_response = requests.get(url)
@@ -64,7 +64,15 @@ class TestLocalisedDownloadLinks:
                      "Expected status code 302.  " + ",  ".join(second_result))
 
     def test_links_on_firefox_organization_all(self, mozwebqa):
-        language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all.html')
+        language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all/')
+        result = self.get_locale_code_from_links(mozwebqa, language_rows)
+        Assert.equal(0, len(result), " ".join(result))
+        second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
+        Assert.equal(0, len(second_result),
+                     "Expected status code 302.  " + ",  ".join(second_result))
+
+    def test_links_on_thunderbird_all(self, mozwebqa):
+        language_rows = self.get_language_rows(mozwebqa, link='/thunderbird/all/')
         result = self.get_locale_code_from_links(mozwebqa, language_rows)
         Assert.equal(0, len(result), " ".join(result))
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
