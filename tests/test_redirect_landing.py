@@ -12,14 +12,9 @@ import pytest
 class TestRedirectLanding(object):
     # List of the current supported locales on /firefox/new/
     LOCALES = (
-        'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg', 'bn-IN', 'br', 'ca',
-        'cs', 'cy', 'da', 'de', 'dsb', 'el', 'en-GB', 'eo', 'es-AR', 'es-CL',
-        'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE',
-        'gd', 'gl', 'he', 'hi-IN', 'hr', 'hsb', 'hu', 'hy-AM', 'id', 'is', 'it',
-        'ja', 'ka', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'lv', 'mk', 'ml', 'mr',
-        'ms', 'my', 'nb-NO', 'nl', 'nn-NO', 'oc', 'pa-IN', 'pl', 'pt-BR',
-        'pt-PT', 'rm', 'ro', 'ru', 'sk', 'sl', 'son', 'sq', 'sr', 'sv-SE', 'ta',
-        'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'xh', 'zh-CN', 'zh-TW'
+        'ar', 'ast', 'bg', 'bn-IN', 'ca', 'cs', 'de', 'dsb', 'el', 'en-GB',
+        'es-CL', 'es-ES', 'fr', 'fy-NL', 'gd', 'it', 'ja', 'ko', 'nl',
+        'pt-BR', 'pt-PT', 'ru', 'sv-SE', 'tr', 'uk', 'zh-TW'
     )
     # List of some locale name variants including unsupported short names and
     # obsolete ab-CD-style names, which could be included in the visitors'
