@@ -6,7 +6,7 @@ import requests
 
 @pytest.mark.skip_selenium
 @pytest.mark.nondestructive
-class TestThunerbirdURLs(object):
+class TestThunderbirdURLs(object):
 
     paths = [
         '/thunderbird/all/',
