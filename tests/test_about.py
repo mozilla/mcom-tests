@@ -10,9 +10,12 @@ from unittestzero import Assert
 from pages.desktop.about import AboutPage
 
 
+link_check = pytest.mark.link_check
+nondestructive = pytest.mark.nondestructive
+
 class TestAboutPage:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_footer_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -23,7 +26,8 @@ class TestAboutPage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_footer_links_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -35,7 +39,7 @@ class TestAboutPage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_tabzilla_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -48,7 +52,8 @@ class TestAboutPage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_tabzilla_links_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -62,7 +67,7 @@ class TestAboutPage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_tabzilla_links_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -74,7 +79,7 @@ class TestAboutPage:
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_navbar_links_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -84,7 +89,7 @@ class TestAboutPage:
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_navbar_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -95,7 +100,8 @@ class TestAboutPage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_navbar_link_urls_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -107,7 +113,7 @@ class TestAboutPage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -118,7 +124,8 @@ class TestAboutPage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_major_link_urls_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -130,13 +137,13 @@ class TestAboutPage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_sign_up_form_is_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
         Assert.true(about_page.is_sign_up_form_present, 'The sign up form is not present on the page.')
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_sign_up_form_fields_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -147,7 +154,7 @@ class TestAboutPage:
                 bad_fields.append('The field at %s is not visible' % field.get('locator')[1:])
         Assert.equal(0, len(bad_fields), '%s bad fields found: ' % len(bad_fields) + ', '.join(bad_fields))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_sign_up_form_links_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -159,7 +166,7 @@ class TestAboutPage:
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_sign_up_form_link_destinations_are_correct(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -170,7 +177,8 @@ class TestAboutPage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_sign_up_form_link_urls_are_valid(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
@@ -182,7 +190,7 @@ class TestAboutPage:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_sign_up_form_elements_are_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()

@@ -9,9 +9,12 @@ from pages.desktop.mission import Mission
 from unittestzero import Assert
 
 
+link_check = pytest.mark.link_check
+nondestructive = pytest.mark.nondestructive
+
 class TestMission:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
@@ -22,7 +25,8 @@ class TestMission:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_major_link_urls_are_valid(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
@@ -34,7 +38,8 @@ class TestMission:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_video_srcs_are_valid(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
@@ -45,7 +50,7 @@ class TestMission:
                 bad_srcs.append('%s is not a valid url - status code: %s.' % (src, response_code))
         Assert.equal(0, len(bad_srcs), '%s bad urls found: ' % len(bad_srcs) + ', '.join(bad_srcs))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_footer_section(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()
@@ -56,7 +61,7 @@ class TestMission:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_tabzilla_links_are_correct(self, mozwebqa):
         mission_page = Mission(mozwebqa)
         mission_page.go_to_page()

@@ -9,8 +9,11 @@ from bs4 import BeautifulSoup
 from unittestzero import Assert
 
 
-@pytest.mark.skip_selenium
-@pytest.mark.nondestructive
+nondestructive = pytest.mark.nondestructive
+skip_selenium = pytest.mark.skip_selenium
+
+@nondestructive
+@skip_selenium
 class TestLocalisedDownloadLinks:
 
     def get_language_rows(self, mozwebqa, link='/firefox/all/'):

@@ -11,8 +11,11 @@ from bs4 import BeautifulSoup
 from unittestzero import Assert
 
 
-@pytest.mark.skip_selenium
-@pytest.mark.nondestructive
+nondestructive = pytest.mark.nondestructive
+skip_selenium = pytest.mark.skip_selenium
+
+@nondestructive
+@skip_selenium
 class TestDownload(object):
 
     def test_osx_download_button_returns_status_code_200(self, mozwebqa):

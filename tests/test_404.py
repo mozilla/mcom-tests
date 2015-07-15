@@ -10,17 +10,21 @@ import requests
 from unittestzero import Assert
 
 
-@pytest.mark.skip_selenium
+nonbedrock = pytest.mark.nonbedrock
+nondestructive = pytest.mark.nondestructive
+skip_selenium = pytest.mark.skip_selenium
+
+@skip_selenium
 class TestStatus(object):
 
-    @pytest.mark.nondestructive
-    @pytest.mark.nonbedrock
+    @nonbedrock
+    @nondestructive
     def test_status_code_returns_404(self, mozwebqa):
         url = mozwebqa.base_url + '/abck'
         response = requests.get(url)
         Assert.equal(response.status_code, 404)
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_xrobots_tag_is_present(self, mozwebqa):
         """Test for X-Robots-Tag header"""
         url = mozwebqa.base_url

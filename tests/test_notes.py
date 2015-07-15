@@ -10,16 +10,21 @@ from unittestzero import Assert
 from pages.desktop.notes import Notes
 
 
+link_check = pytest.mark.link_check
+nondestructive = pytest.mark.nondestructive
+skip_selenium = pytest.mark.skip_selenium
+
 class TestNotes:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_that_notes_page_is_reachable(self, mozwebqa):
         notes_page = Notes(mozwebqa)
         notes_page.go_to_page()
         Assert.contains("Notes", notes_page.firefox_notes_header_text)
 
-    @pytest.mark.skip_selenium
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
+    @skip_selenium
     def test_that_all_links_are_valid(self, mozwebqa):
         notes_page = Notes(mozwebqa)
         url = mozwebqa.base_url + notes_page.notes_page_url

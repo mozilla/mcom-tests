@@ -9,9 +9,11 @@ from pages.desktop.partners import Partners
 from unittestzero import Assert
 
 
+nondestructive = pytest.mark.nondestructive
+
 class TestPartners(object):
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_footer_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
@@ -22,14 +24,14 @@ class TestPartners(object):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_overview_section_image(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.selenium.maximize_window()
         partners_page.go_to_page()
         Assert.true(partners_page.is_phone_overlay_visible)
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_os_section(self, mozwebqa):
         partners_page = Partners(mozwebqa)
         partners_page.go_to_page()
