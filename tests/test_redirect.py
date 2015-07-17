@@ -127,7 +127,7 @@ class TestRedirects(object):
     @pytest.mark.nondestructive
     def test_rhino_docs_redirect(self, mozwebqa):
         origin = mozwebqa.base_url + '/rhino/doc.html'
-        result = 'https://developer.mozilla.org/en-US/docs/Rhino_documentation'
+        result = 'https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Documentation'
         self._test_get_redirect(mozwebqa, origin, result)
 
     @pytest.mark.nondestructive
