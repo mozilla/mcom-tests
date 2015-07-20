@@ -8,9 +8,9 @@ import requests
 from pages.desktop.mission import Mission
 from unittestzero import Assert
 
-
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
+
 
 class TestMission:
 

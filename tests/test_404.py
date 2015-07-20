@@ -14,6 +14,7 @@ nonbedrock = pytest.mark.nonbedrock
 nondestructive = pytest.mark.nondestructive
 skip_selenium = pytest.mark.skip_selenium
 
+
 @skip_selenium
 class TestStatus(object):
 

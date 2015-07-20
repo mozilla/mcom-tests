@@ -9,10 +9,10 @@ from bs4 import BeautifulSoup
 from unittestzero import Assert
 from pages.desktop.notes import Notes
 
-
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
 skip_selenium = pytest.mark.skip_selenium
+
 
 class TestNotes:
 

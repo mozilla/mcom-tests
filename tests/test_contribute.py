@@ -14,6 +14,7 @@ from pages.desktop.contribute import Contribute, Signup
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
 
+
 class TestContribute:
 
     @nondestructive

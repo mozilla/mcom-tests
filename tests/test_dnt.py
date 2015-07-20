@@ -11,6 +11,7 @@ from unittestzero import Assert
 
 nondestructive = pytest.mark.nondestructive
 
+
 class TestDoNotTrack:
 
     @nondestructive

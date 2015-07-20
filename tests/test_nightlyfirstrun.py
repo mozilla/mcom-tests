@@ -13,6 +13,7 @@ from pages.desktop.nightlyfirstrun import NightlyFirstRun
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
 
+
 class TestNightlyFirstRun:
 
     @nondestructive

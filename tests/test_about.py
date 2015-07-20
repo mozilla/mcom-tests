@@ -9,9 +9,9 @@ import requests
 from unittestzero import Assert
 from pages.desktop.about import AboutPage
 
-
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
+
 
 class TestAboutPage:
 

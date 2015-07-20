@@ -9,9 +9,9 @@ import requests
 from unittestzero import Assert
 from pages.desktop.partnerships import Partnerships
 
-
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
+
 
 class TestPartnerships:
 

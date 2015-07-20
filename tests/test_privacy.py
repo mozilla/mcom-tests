@@ -8,8 +8,8 @@ import pytest
 from unittestzero import Assert
 from pages.desktop.privacy import Privacy
 
-
 nondestructive = pytest.mark.nondestructive
+
 
 class TestPrivacy:
 

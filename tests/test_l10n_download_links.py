@@ -12,6 +12,7 @@ from unittestzero import Assert
 nondestructive = pytest.mark.nondestructive
 skip_selenium = pytest.mark.skip_selenium
 
+
 @nondestructive
 @skip_selenium
 class TestLocalisedDownloadLinks:

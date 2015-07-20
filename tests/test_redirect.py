@@ -7,10 +7,10 @@ from unittestzero import Assert
 import requests
 import pytest
 
-
 nondestructive = pytest.mark.nondestructive
 parametrize = pytest.mark.parametrize
 skip_selenium = pytest.mark.skip_selenium
+
 
 @skip_selenium
 class TestRedirects(object):

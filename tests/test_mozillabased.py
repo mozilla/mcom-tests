@@ -8,9 +8,9 @@ import pytest
 from pages.desktop.mozillabased import MozillaBasedPage
 from unittestzero import Assert
 
-
 link_check = pytest.mark.link_check
 nondestructive = pytest.mark.nondestructive
+
 
 class TestMozillaBasedPagePage:
 

@@ -8,8 +8,8 @@ import pytest
 from pages.desktop.partners import Partners
 from unittestzero import Assert
 
-
 nondestructive = pytest.mark.nondestructive
+
 
 class TestPartners(object):
 

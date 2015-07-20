@@ -10,6 +10,7 @@ from unittestzero import Assert
 
 nondestructive = pytest.mark.nondestructive
 
+
 class TestContact:
 
     def check_bad_links(self, page, link_list):
