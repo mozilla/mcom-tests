@@ -12,7 +12,7 @@ from pages.desktop.base import Base
 class Contribute(Base):
 
     def go_to_page(self):
-        self.open('/contribute/')
+        self.open('/contribute/?optimizely_opt_out=true')
 
     major_links_list = [
         {
