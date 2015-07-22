@@ -9,7 +9,7 @@ import requests
 
 from unittestzero import Assert
 
-from pages.desktop.contribute import Contribute, Signup
+from pages.desktop.contribute import Contribute
 
 
 class TestContribute:
@@ -60,20 +60,3 @@ class TestContribute:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @pytest.mark.nondestructive
-    def test_sign_up_form_fields_are_visible(self, mozwebqa):
-        contribute_page = Contribute(mozwebqa)
-        contribute_page.go_to_page()
-        signup_page = contribute_page.click_signup()
-        bad_fields = []
-        for field in signup_page.sign_up_form_fields:
-            if not signup_page.is_element_visible(*field.get('locator')):
-                bad_fields.append('The field at %s is not visible' % field.get('locator')[1:])
-        Assert.equal(0, len(bad_fields), '%s bad fields found: ' % len(bad_fields) + ', '.join(bad_fields))
-
-    @pytest.mark.nondestructive
-    def test_sign_up_form_is_visible(self, mozwebqa):
-        signup_page = Signup(mozwebqa)
-        signup_page.go_to_page()
-        Assert.true(signup_page.is_sign_up_form_present, 'The sign up form is not present on the page.')
