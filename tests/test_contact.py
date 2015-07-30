@@ -8,6 +8,8 @@ import pytest
 from pages.desktop.contact import Contact, Spaces, Communities
 from unittestzero import Assert
 
+nondestructive = pytest.mark.nondestructive
+
 
 class TestContact:
 
@@ -20,20 +22,20 @@ class TestContact:
         Assert.equal(0, len(bad_links), '%s bad links found: '
                      % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_spaces_links_are_correct(self, mozwebqa):
         spaces_page = Spaces(mozwebqa)
         spaces_page.go_to_page()
         self.check_bad_links(spaces_page, spaces_page.spaces_nav_links_list)
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_start_on_spaces(self, mozwebqa):
         contact_page = Contact(mozwebqa)
         contact_page.go_to_page()
         Assert.equal('current', contact_page.spaces_tab.get_attribute('class'),
                      'Page does not start on spaces tab.')
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_switching_tabs_list_display(self, mozwebqa):
         spaces_page = Spaces(mozwebqa)
         spaces_page.go_to_page()
@@ -46,7 +48,7 @@ class TestContact:
         Assert.true(spaces_page.spaces_list.is_displayed(),
                     'List of spaces not displayed on spaces tab.')
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_spaces_map_marker_visibility(self, mozwebqa):
         spaces_page = Spaces(mozwebqa)
         spaces_page.go_to_page()
@@ -60,20 +62,20 @@ class TestContact:
         Assert.equal(0, len(bad_markers), '%s bad markers found: '
                      % len(bad_markers) + ', '.join(bad_markers))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_region_links_are_correct(self, mozwebqa):
         communities_page = Communities(mozwebqa)
         communities_page.go_to_page()
         self.check_bad_links(communities_page, communities_page.region_nav_links_list)
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_region_legend_links_are_correct(self, mozwebqa):
         communities_page = Communities(mozwebqa)
         communities_page.go_to_page()
         Assert.true(communities_page.region_legend.is_displayed(), 'Legend not displayed')
         self.check_bad_links(communities_page, communities_page.region_legend_links_list)
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_region_dropdown_link(self, mozwebqa):
         communities_page = Communities(mozwebqa)
         communities_page.go_to_page()

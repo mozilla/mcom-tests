@@ -9,10 +9,12 @@ import pytest
 from pages.desktop.dnt import DoNotTrack
 from unittestzero import Assert
 
+nondestructive = pytest.mark.nondestructive
+
 
 class TestDoNotTrack:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_footer_section(self, mozwebqa):
         dnt_page = DoNotTrack(mozwebqa)
         dnt_page.go_to_page()
@@ -23,7 +25,7 @@ class TestDoNotTrack:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_status_section(self, mozwebqa):
         dnt_page = DoNotTrack(mozwebqa)
         dnt_page.go_to_page()

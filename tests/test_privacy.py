@@ -8,10 +8,12 @@ import pytest
 from unittestzero import Assert
 from pages.desktop.privacy import Privacy
 
+nondestructive = pytest.mark.nondestructive
+
 
 class TestPrivacy:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_footer_section(self, mozwebqa):
         privacy_page = Privacy(mozwebqa)
         privacy_page.go_to_page()
@@ -22,7 +24,7 @@ class TestPrivacy:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_tabzilla_links_are_correct(self, mozwebqa):
         privacy_page = Privacy(mozwebqa)
         privacy_page.go_to_page()
@@ -35,7 +37,7 @@ class TestPrivacy:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_page_sections(self, mozwebqa):
         privacy_page = Privacy(mozwebqa)
         privacy_page.go_to_page()

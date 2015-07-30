@@ -8,9 +8,12 @@ import requests
 from bs4 import BeautifulSoup
 from unittestzero import Assert
 
+nondestructive = pytest.mark.nondestructive
+skip_selenium = pytest.mark.skip_selenium
 
-@pytest.mark.skip_selenium
-@pytest.mark.nondestructive
+
+@nondestructive
+@skip_selenium
 class TestLocalizations:
 
     def get_language_rows(self, mozwebqa):

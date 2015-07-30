@@ -11,10 +11,13 @@ from unittestzero import Assert
 
 from pages.desktop.contribute import Contribute
 
+link_check = pytest.mark.link_check
+nondestructive = pytest.mark.nondestructive
+
 
 class TestContribute:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_footer_section(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
@@ -25,7 +28,7 @@ class TestContribute:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_tabzilla_links_are_correct(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
@@ -38,7 +41,7 @@ class TestContribute:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
@@ -49,7 +52,8 @@ class TestContribute:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_major_link_urls_are_valid(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()

@@ -9,10 +9,13 @@ import requests
 from unittestzero import Assert
 from pages.desktop.partnerships import Partnerships
 
+link_check = pytest.mark.link_check
+nondestructive = pytest.mark.nondestructive
+
 
 class TestPartnerships:
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_section_link_destinations_are_correct(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
@@ -23,7 +26,8 @@ class TestPartnerships:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
-    @pytest.mark.nondestructive
+    @link_check
+    @nondestructive
     def test_section_link_urls_are_valid(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
@@ -35,7 +39,7 @@ class TestPartnerships:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_image_srcs_are_correct(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
@@ -46,7 +50,7 @@ class TestPartnerships:
                 bad_images.append('%s does not contain %s' % (src, image.get('img_name_contains')))
         Assert.equal(0, len(bad_images), '%s bad images found: ' % len(bad_images) + ', '.join(bad_images))
 
-    @pytest.mark.nondestructive
+    @nondestructive
     def test_partner_form_is_visible(self, mozwebqa):
         partnerships_page = Partnerships(mozwebqa)
         partnerships_page.go_to_page()
