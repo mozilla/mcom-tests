@@ -41,46 +41,6 @@ class TestNightlyFirstRun:
         Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
 
     @nondestructive
-    def test_tabzilla_link_destinations_are_correct(self, mozwebqa):
-        nightly_fr_page = NightlyFirstRun(mozwebqa)
-        nightly_fr_page.go_to_page()
-        Assert.true(nightly_fr_page.header.is_tabzilla_panel_visible)
-        nightly_fr_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in NightlyFirstRun.Header.tabzilla_links_list:
-            url = nightly_fr_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @link_check
-    @nondestructive
-    def test_tabzilla_links_are_valid(self, mozwebqa):
-        nightly_fr_page = NightlyFirstRun(mozwebqa)
-        nightly_fr_page.go_to_page()
-        Assert.true(nightly_fr_page.header.is_tabzilla_panel_visible)
-        nightly_fr_page.header.toggle_tabzilla_dropdown()
-        bad_urls = []
-        for link in NightlyFirstRun.Header.tabzilla_links_list:
-            url = nightly_fr_page.link_destination(link.get('locator'))
-            response_code = nightly_fr_page.get_response_code(url)
-            if response_code != requests.codes.ok:
-                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
-
-    @nondestructive
-    def test_tabzilla_links_are_visible(self, mozwebqa):
-        nightly_fr_page = NightlyFirstRun(mozwebqa)
-        nightly_fr_page.go_to_page()
-        Assert.true(nightly_fr_page.header.is_tabzilla_panel_visible)
-        nightly_fr_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in nightly_fr_page.header.tabzilla_links_list:
-            if not nightly_fr_page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @nondestructive
     def test_are_sections_visible(self, mozwebqa):
         nightly_fr_page = NightlyFirstRun(mozwebqa)
         nightly_fr_page.go_to_page()
