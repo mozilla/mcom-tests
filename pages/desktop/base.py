@@ -5,7 +5,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from pages.page import Page
 
 
@@ -33,58 +32,6 @@ class Base(Page):
 
     class Header(Page):
 
-        _tabzilla = (By.ID, 'tabzilla')
-        _tabzilla_panel = (By.ID, 'tabzilla-panel')
-        _tabzilla_search_textbox = (By.CSS_SELECTOR, '#tabzilla-search #q')
-
-        tabzilla_links_list = [
-            {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': '/mission/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(2) > a'),
-                'url_suffix': '/about/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(3) > a'),
-                'url_suffix': 'support.mozilla.org/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(1) > div > ul > li:nth-of-type(4) > a'),
-                'url_suffix': 'developer.mozilla.org/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': 'www.mozilla.org/firefox/products',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(2) > a'),
-                'url_suffix': 'www.mozilla.org/thunderbird',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(2) > div > ul > li:nth-of-type(3) > a'),
-                'url_suffix': 'www.mozilla.org/firefox/os',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': 'webmaker.org/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(3) > div > ul > li:nth-of-type(2) > a'),
-                'url_suffix': 'research/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(1) > a'),
-                'url_suffix': 'www.mozilla.org/contribute/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(2) > a'),
-                'url_suffix': '//careers.mozilla.org/?icn=tabz',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(3) > a'),
-                'url_suffix': '/about/mozilla-spaces/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(4) > a'),
-                'url_suffix': ('//sendto.mozilla.org/page/contribute/givenow-seq?'
-                               'preset=2&source=mozillaorg_tabzillaTXT&ref=EOYFR2014&utm_campaign=EOYFR2014'
-                               '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_tabzillaTXT&icn=tabz'),
-            }, {
-                'locator': (By.CSS_SELECTOR, '#tabzilla-nav > ul > li:nth-child(4) > div > ul > li:nth-of-type(5) > a'),
-                'url_suffix': '/about/partnerships/',
-            }
-        ]
-
         nav_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(1) > a'),
@@ -100,19 +47,6 @@ class Base(Page):
                 'url_suffix': '/contribute/',
             }
         ]
-
-        def toggle_tabzilla_dropdown(self):
-            self.selenium.find_element(*self._tabzilla).click()
-            WebDriverWait(self.selenium, self.timeout).until(
-                lambda s: s.find_element(*self._tabzilla).get_attribute('class') == "tabzilla-opened")
-
-        @property
-        def is_tabzilla_panel_visible(self):
-            return self.is_element_visible(*self._tabzilla)
-
-        @property
-        def is_tabzilla_search_box_visible(self):
-            return self.is_element_visible(*self._tabzilla_search_textbox)
 
     class Footer(Page):
 

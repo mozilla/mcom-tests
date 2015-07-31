@@ -100,31 +100,6 @@ class TestMozillaBasedPagePage:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
-        page = MozillaBasedPage(mozwebqa)
-        page.go_to_page()
-        Assert.true(page.header.is_tabzilla_panel_visible)
-        page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in MozillaBasedPage.Header.tabzilla_links_list:
-            url = page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @nondestructive
-    def test_tabzilla_links_are_visible(self, mozwebqa):
-        page = MozillaBasedPage(mozwebqa)
-        page.go_to_page()
-        Assert.true(page.header.is_tabzilla_panel_visible)
-        page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in page.header.tabzilla_links_list:
-            if not page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @nondestructive
     def test_navbar_links_are_visible(self, mozwebqa):
         page = MozillaBasedPage(mozwebqa)
         page.go_to_page()

@@ -49,16 +49,3 @@ class TestSMSPage():
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
-        sms_page = SMS(mozwebqa)
-        sms_page.go_to_page()
-        Assert.true(sms_page.header.is_tabzilla_panel_visible)
-        sms_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in sms_page.Header.tabzilla_links_list:
-            url = sms_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))

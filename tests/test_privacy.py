@@ -25,19 +25,6 @@ class TestPrivacy:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
-        privacy_page = Privacy(mozwebqa)
-        privacy_page.go_to_page()
-        Assert.true(privacy_page.header.is_tabzilla_panel_visible)
-        privacy_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in Privacy.Header.tabzilla_links_list:
-            url = privacy_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @nondestructive
     def test_page_sections(self, mozwebqa):
         privacy_page = Privacy(mozwebqa)
         privacy_page.go_to_page()

@@ -29,19 +29,6 @@ class TestContribute:
         Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
 
     @nondestructive
-    def test_tabzilla_links_are_correct(self, mozwebqa):
-        contribute_page = Contribute(mozwebqa)
-        contribute_page.go_to_page()
-        Assert.true(contribute_page.header.is_tabzilla_panel_visible)
-        contribute_page.header.toggle_tabzilla_dropdown()
-        bad_links = []
-        for link in Contribute.Header.tabzilla_links_list:
-            url = contribute_page.link_destination(link.get('locator'))
-            if url.find(link.get('url_suffix')) < 1:
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
-
-    @nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
         contribute_page = Contribute(mozwebqa)
         contribute_page.go_to_page()
