@@ -8,9 +8,11 @@ import requests
 import pytest
 
 nondestructive = pytest.mark.nondestructive
+redirect = pytest.mark.redirect
 skip_selenium = pytest.mark.skip_selenium
 
 
+@redirect
 @skip_selenium
 class TestRedirectLanding(object):
     # List of the current supported locales on /firefox/new/
