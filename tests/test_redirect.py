@@ -9,9 +9,11 @@ import pytest
 
 nondestructive = pytest.mark.nondestructive
 parametrize = pytest.mark.parametrize
+redirect = pytest.mark.redirect
 skip_selenium = pytest.mark.skip_selenium
 
 
+@redirect
 @skip_selenium
 class TestRedirects(object):
     def _test_get_redirect(self, mozwebqa, origin, final,
