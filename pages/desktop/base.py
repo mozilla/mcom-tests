@@ -35,16 +35,18 @@ class Base(Page):
         nav_links_list = [
             {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(1) > a'),
-                'url_suffix': '/mission/',
+                'url_suffix': '/about/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(2) > a'),
-                'url_suffix': '/about/',
+                'url_suffix': '/contribute/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(3) > a'),
                 'url_suffix': '/firefox/products/',
             }, {
                 'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(4) > a'),
-                'url_suffix': '/contribute/',
+                'url_suffix': ('//sendto.mozilla.org/page/contribute/givenow-seq?'
+                               'preset=2&source=mozillaorg_topNAV&ref=EOYFR2014&utm_campaign=EOYFR2014'
+                               '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_topNAV'),
             }
         ]
 

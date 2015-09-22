@@ -25,7 +25,7 @@ class Mission(Base):
             'url_suffix': '/about/forums/',
         }, {
             'locator': (By.CSS_SELECTOR, '#main-content ul.links li:nth-child(4) a'),
-            'url_suffix': '/about/governance.html',
+            'url_suffix': '/about/governance/',
         }
     ]
 
