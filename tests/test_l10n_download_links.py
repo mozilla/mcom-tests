@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -7,74 +6,47 @@ from bs4 import BeautifulSoup
 import pytest
 import requests
 
-
-nondestructive = pytest.mark.nondestructive
-skip_selenium = pytest.mark.skip_selenium
+pytestmark = [pytest.mark.nondestructive, pytest.mark.skip_selenium]
 
 
-@nondestructive
-@skip_selenium
-class TestLocalisedDownloadLinks:
+def pytest_generate_tests(metafunc):
+    base_url = metafunc.config.option.base_url
+    page = metafunc.cls.page  # get the target page from the test class
+    r = requests.get('{0}{1}'.format(base_url, page))
+    soup = BeautifulSoup(r.content, 'html.parser')
+    table = soup.find('table', class_='build-table')  # find the table of links
+    idlist = []
+    argvalues = []
+    for row in table.find('tbody').find_all('tr'):
+        locale = row['id']
+        idlist.append(locale)  # the test id should be the locale
+        url = row.find('a')['href']
+        argvalues.append((locale, url))  # pass locale and url to each test
+    metafunc.parametrize('locale, url', argvalues, ids=idlist)
 
-    def get_language_rows(self, mozwebqa, link='/firefox/all/'):
-        '''
-            Get all links for each locale on the page under test.
-            The default page under test is /firefox/all/ .
-        '''
-        url = "%s/%s" % (mozwebqa.base_url, link)
-        page_response = requests.get(url)
-        html = BeautifulSoup(page_response.content)
-        language_rows = html.findAll('tr', id=True)
-        return language_rows
 
-    def get_locale_code_from_links(self, mozwebqa, language_rows):
-        '''
-           Check that bouncer links have the right locale code.
-        '''
-        bad_links = []
-        for language in language_rows:
-            links = language.findAll('a')
-            for link in links:
-                url = link['href']
-                response = requests.head(url, allow_redirects=True)
-                if language['id'] not in response.url:
-                    bad_links.append("Lang '%s' not in response: %s \n"
-                                     % (language['id'], response.url))
-        return bad_links
+def check_link(locale, url):
+    r = requests.head(url, allow_redirects=True)
+    assert locale in r.url  # the correct locale is in the final url
+    assert requests.codes.found == r.history[0].status_code  # url redirects
 
-    def get_302_response_code_from_links(self, mozwebqa, language_rows):
-        '''
-            Check that download links return a status 302.
-        '''
-        bad_links = []
-        for language in language_rows:
-            links = language.findAll('a')
-            for link in links:
-                url = link['href']
-                response = requests.head(url, allow_redirects=False)
-                status = response.status_code
-                if not (300 < status <= 302):
-                    bad_links.append("Lang '%s' %s link: status %s"
-                                     % (language['id'], link['href'], status))
-        return bad_links
 
-    def test_links_on_firefox_all(self, mozwebqa):
-        language_rows = self.get_language_rows(mozwebqa)
-        result = self.get_locale_code_from_links(mozwebqa, language_rows)
-        assert 0 == len(result), ' '.join(result)
-        second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
-        assert 0 == len(second_result), 'Expected status code 302.  ' + ',  '.join(second_result)
+class TestFirefoxAll(object):
+    page = '/firefox/all/'
 
-    def test_links_on_firefox_organization_all(self, mozwebqa):
-        language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all/')
-        result = self.get_locale_code_from_links(mozwebqa, language_rows)
-        assert 0 == len(result), ' '.join(result)
-        second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
-        assert 0 == len(second_result), 'Expected status code 302.  ' + ',  '.join(second_result)
+    def test_download_link(self, locale, url):
+        check_link(locale, url)
 
-    def test_links_on_thunderbird_all(self, mozwebqa):
-        language_rows = self.get_language_rows(mozwebqa, link='/thunderbird/all/')
-        result = self.get_locale_code_from_links(mozwebqa, language_rows)
-        assert 0 == len(result), ' '.join(result)
-        second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
-        assert 0 == len(second_result), 'Expected status code 302.  ' + ',  '.join(second_result)
+
+class TestFirefoxOrganizationsAll(object):
+    page = '/firefox/organizations/all/'
+
+    def test_download_link(self, locale, url):
+        check_link(locale, url)
+
+
+class TestThunderbirdAll(object):
+    page = '/thunderbird/all/'
+
+    def test_download_link(self, locale, url):
+        check_link(locale, url)
