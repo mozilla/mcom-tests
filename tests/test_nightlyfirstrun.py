@@ -6,7 +6,7 @@
 
 import pytest
 import requests
-from unittestzero import Assert
+
 from pages.desktop.nightlyfirstrun import NightlyFirstRun
 
 
@@ -25,7 +25,7 @@ class TestNightlyFirstRun:
             url = nightly_fr_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @link_check
     @nondestructive
@@ -38,16 +38,16 @@ class TestNightlyFirstRun:
             response_code = nightly_fr_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     @nondestructive
     def test_are_sections_visible(self, mozwebqa):
         nightly_fr_page = NightlyFirstRun(mozwebqa)
         nightly_fr_page.go_to_page()
-        Assert.true(nightly_fr_page.is_test_section_visible)
-        Assert.true(nightly_fr_page.is_code_section_visible)
-        Assert.true(nightly_fr_page.is_localize_section_visible)
-        Assert.true(nightly_fr_page.is_nightly_badge_visible)
-        Assert.true(nightly_fr_page.is_code_button_visible)
-        Assert.true(nightly_fr_page.is_test_button_visible)
-        Assert.true(nightly_fr_page.is_localize_button_visible)
+        assert nightly_fr_page.is_test_section_visible
+        assert nightly_fr_page.is_code_section_visible
+        assert nightly_fr_page.is_localize_section_visible
+        assert nightly_fr_page.is_nightly_badge_visible
+        assert nightly_fr_page.is_code_button_visible
+        assert nightly_fr_page.is_test_button_visible
+        assert nightly_fr_page.is_localize_button_visible

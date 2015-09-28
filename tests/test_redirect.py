@@ -3,9 +3,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from unittestzero import Assert
-import requests
 import pytest
+import requests
 
 nondestructive = pytest.mark.nondestructive
 parametrize = pytest.mark.parametrize
@@ -17,7 +16,8 @@ skip_selenium = pytest.mark.skip_selenium
 @skip_selenium
 class TestRedirects(object):
     def _test_get_redirect(self, mozwebqa, origin, final,
-                           allow_redirects=True, status_code=301):
+                           allow_redirects=True,
+                           status_code=requests.codes.moved_permanently):
         if origin.startswith('http'):
             url = origin
         else:
@@ -28,23 +28,23 @@ class TestRedirects(object):
         else:
             result = mozwebqa.base_url + final
         if allow_redirects:
-            Assert.equal(response.url, result)
+            assert result == response.url
         else:
-            Assert.equal(response.headers['location'], result)
-            Assert.equal(response.status_code, status_code)
+            assert result == response.headers['location']
+            assert status_code == response.status_code
 
     @nondestructive
     def test_redirects_from_mozilla_dot_com(self, mozwebqa):
         url = mozwebqa.base_url
         response = requests.get(url)
-        Assert.contains(url, response.url)
+        assert url in response.url
 
     @nondestructive
     def test_fennec_redirects_to_mobile(self, mozwebqa):
         url = mozwebqa.base_url + "/fennec/"
         response = requests.get(url)
         result = mozwebqa.base_url + "/en-US/firefox/partners/"
-        Assert.equal(result, response.url)
+        assert result == response.url
 
     @nondestructive
     def test_firefox_mobile_redirects_to_mobile(self, mozwebqa):
@@ -56,20 +56,20 @@ class TestRedirects(object):
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
         url = mozwebqa.base_url + "/aurora/"
         response = requests.get(url, allow_redirects=False)
-        Assert.equal(response.status_code, 301)
+        assert requests.codes.moved_permanently == response.status_code
 
     @nondestructive
     def test_beta_redirects_to_firefox_beta(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 '/beta/',
                                 '/firefox/channel/#beta',
-                                False, 302)
+                                False, requests.codes.found)
 
     @nondestructive
     def test_redirect_community_to_contribute(self, mozwebqa):
         url = mozwebqa.base_url + "/community/"
         response = requests.get(url)
-        Assert.contains("/contribute/", response.url)
+        assert '/contribute/' in response.url
 
     @nondestructive
     def test_redirect_mobile_notes_to_android_notes(self, mozwebqa):
@@ -108,8 +108,8 @@ class TestRedirects(object):
                                 "/en-US/firefox/android/")
         url = mozwebqa.base_url + "/mobile/platforms/"
         response = requests.get(url)
-        Assert.equal(response.status_code, 200)
-        Assert.contains('support.mozilla.org', response.url)
+        assert requests.codes.ok == response.status_code
+        assert 'support.mozilla.org' in response.url
 
     @nondestructive
     def test_redirect_some_m_to_firefox_mobile(self, mozwebqa):
@@ -121,8 +121,8 @@ class TestRedirects(object):
                                 "/en-US/firefox/android/")
         url = mozwebqa.base_url + "/m/platforms/"
         response = requests.get(url)
-        Assert.equal(response.status_code, 200)
-        Assert.contains('support.mozilla.org', response.url)
+        assert requests.codes.ok == response.status_code
+        assert 'support.mozilla.org' in response.url
 
     @nondestructive
     def test_redirect_m(self, mozwebqa):
@@ -161,50 +161,50 @@ class TestRedirects(object):
     def test_notes_redirects_to_firefox_notes(self, mozwebqa):
         url = mozwebqa.base_url + "/firefox/notes/"
         response = requests.get(url)
-        Assert.contains("/firefox/", response.url)
-        Assert.contains("/releasenotes/", response.url)
+        assert '/firefox/' in response.url
+        assert '/releasenotes/' in response.url
 
     @nondestructive
     def test_all_older_redirect(self, mozwebqa):
         url = mozwebqa.base_url + "/firefox/all-older.html"
         response = requests.get(url)
-        Assert.contains("/firefox/new", response.url)
+        assert '/firefox/new' in response.url
 
     @nondestructive
     def test_old_firstrun_redirect(self, mozwebqa):
         url = mozwebqa.base_url + "/en-US/projects/firefox/3.6.13/firstrun/"
         response = requests.get(url)
-        Assert.not_equal(response.status_code, 404)
+        assert requests.codes.not_found != response.status_code
 
     @nondestructive
     def test_old_whatsnew_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/en-US/projects/firefox/3.6.13/whatsnew/'
         response = requests.get(url)
-        Assert.not_equal(response.status_code, 404)
+        assert requests.codes.not_found != response.status_code
 
     @nondestructive
     def test_partners_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/b2g/'
         response = requests.get(url)
-        Assert.contains('/partners/', response.url)
+        assert '/partners/' in response.url
 
     @nondestructive
     def test_firefox_metro_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/metrofirefox'
         response = requests.head(url)
-        Assert.not_equal(response.status_code, 404)
+        assert requests.codes.not_found != response.status_code
 
     @nondestructive
     def test_locale_redirect_for_newsletter(self, mozwebqa):
         url = mozwebqa.base_url + '/newsletter'
         response = requests.get(url, headers={'Accept-Language': 'pl'})
-        Assert.equal(response.url, mozwebqa.base_url + '/pl/newsletter/')
+        assert mozwebqa.base_url + '/pl/newsletter/' == response.url
 
     @nondestructive
     def test_firefox_os_mobile_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/firefox/mobile/faq/?os=firefox-os'
         response = requests.get(url, headers={'Accept-Language': 'en-US'})
-        Assert.contains('/firefox/os/faq/', response.url)
+        assert '/firefox/os/faq/' in response.url
 
     @nondestructive
     def test_account_manager_redirect(self, mozwebqa):
@@ -214,7 +214,7 @@ class TestRedirects(object):
         """
         url = mozwebqa.base_url + '/firefox/accountmanager'
         response = requests.get(url, headers={'Accept-Language': 'en-US'})
-        Assert.contains('/persona', response.url)
+        assert '/persona' in response.url
 
     @nondestructive
     def test_developer_redirect(self, mozwebqa):
@@ -224,10 +224,9 @@ class TestRedirects(object):
         """
         url = 'http://aurora.mozilla.org'
         response = requests.get(url)
-        Assert.contains(
-            'https://www.mozilla.org/firefox/channel/#developer',
-            [r.headers.get('location', '') for r in response.history])
-        Assert.equal(200, response.status_code)
+        history = [r.headers.get('location', '') for r in response.history]
+        assert 'https://www.mozilla.org/firefox/channel/#developer' in history
+        assert requests.codes.ok == response.status_code
 
     @nondestructive
     def test_beta_redirect(self, mozwebqa):
@@ -237,10 +236,9 @@ class TestRedirects(object):
         """
         url = 'http://beta.mozilla.org'
         response = requests.get(url)
-        Assert.contains(
-            'http://www.mozilla.org/en-US/firefox/channel/#beta',
-            [r.headers.get('location', '') for r in response.history])
-        Assert.equal(200, response.status_code)
+        history = [r.headers.get('location', '') for r in response.history]
+        assert 'http://www.mozilla.org/en-US/firefox/channel/#beta' in history
+        assert requests.codes.ok == response.status_code
 
     @nondestructive
     def test_apps_redirect(self, mozwebqa):
@@ -250,8 +248,8 @@ class TestRedirects(object):
         """
         url = mozwebqa.base_url + '/apps'
         response = requests.get(url)
-        Assert.contains('marketplace.firefox.com', response.url)
-        Assert.equal(200, response.status_code)
+        assert 'marketplace.firefox.com' in response.url
+        assert requests.codes.ok == response.status_code
 
     @nondestructive
     def test_technology_redirect(self, mozwebqa):
@@ -261,7 +259,7 @@ class TestRedirects(object):
         """
         url = mozwebqa.base_url + '/firefox/technology'
         response = requests.get(url, allow_redirects=False)
-        Assert.equal(301, response.status_code)
+        assert requests.codes.moved_permanently == response.status_code
 
     @nondestructive
     def test_performance_redirect(self, mozwebqa):
@@ -271,8 +269,8 @@ class TestRedirects(object):
         """
         url = mozwebqa.base_url + '/firefox/performance'
         response = requests.get(url)
-        Assert.contains('/firefox/desktop/fast/', response.url)
-        Assert.equal(200, response.status_code)
+        assert '/firefox/desktop/fast/' in response.url
+        assert requests.codes.ok == response.status_code
 
     @nondestructive
     def test_security_redirect(self, mozwebqa):
@@ -282,46 +280,44 @@ class TestRedirects(object):
         """
         url = mozwebqa.base_url + '/firefox/security'
         response = requests.get(url)
-        Assert.contains('/firefox/desktop/trust/', response.url)
-        Assert.equal(200, response.status_code)
+        assert '/firefox/desktop/trust/' in response.url
+        assert requests.codes.ok == response.status_code
 
     @nondestructive
     @parametrize("locale", ['son', 'zh-CN', 'ta'])
     def test_firefox_new_redirect(self, mozwebqa, locale):
         url = mozwebqa.base_url + '/firefox/new'
         response = requests.get(url, headers={'Accept-Language': locale})
-        Assert.contains(locale, response.url)
+        assert locale in response.url
 
     @nondestructive
     def test_policy_archive_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/privacy/archive/'
         response = requests.get(url)
-        Assert.equal(response.status_code, 200)
-        Assert.equal(response.history[0].status_code, 301)
-        Assert.true(response.history[0].headers['location'].endswith('/en-US/privacy/archive/'))
+        assert requests.codes.ok == response.status_code
+        assert requests.codes.moved_permanently == response.history[0].status_code
+        assert response.history[0].headers['location'].endswith('/en-US/privacy/archive/')
 
     @nondestructive
     def test_dnt_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/dnt'
         response = requests.get(url)
-        Assert.equal(response.status_code, 200)
-        Assert.equal(response.history[0].status_code, 301)
-        Assert.true(response.history[-1].headers['location'].endswith('/firefox/dnt/'))
+        assert requests.codes.ok == response.status_code
+        assert requests.codes.moved_permanently == response.history[-1].status_code
+        assert response.history[-1].headers['location'].endswith('/firefox/dnt/')
 
     @nondestructive
     def test_firefox_os_notes_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/firefox/os/notes/'
         response = requests.get(url)
-        Assert.equal(response.status_code, 200)
-        Assert.equal(response.history[0].status_code, 301)
-        Assert.equal(response.history[0].headers['location'],
-                     'https://developer.mozilla.org/Firefox_OS/Releases')
+        assert requests.codes.ok == response.status_code
+        assert requests.codes.moved_permanently == response.history[0].status_code
+        assert 'https://developer.mozilla.org/Firefox_OS/Releases' == response.history[0].headers['location']
 
     @nondestructive
     def test_firefox_os_notes_version_redirect(self, mozwebqa):
         url = mozwebqa.base_url + '/firefox/os/notes/2.0'
         response = requests.get(url)
-        Assert.equal(response.status_code, 200)
-        Assert.equal(response.history[0].status_code, 301)
-        Assert.equal(response.history[0].headers['location'],
-                     'https://developer.mozilla.org/Firefox_OS/Releases/2.0')
+        assert requests.codes.ok == response.status_code
+        assert requests.codes.moved_permanently == response.history[0].status_code
+        assert 'https://developer.mozilla.org/Firefox_OS/Releases/2.0' == response.history[0].headers['location']

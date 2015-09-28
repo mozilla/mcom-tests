@@ -5,7 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-from unittestzero import Assert
+
 from pages.desktop.privacy import Privacy
 
 nondestructive = pytest.mark.nondestructive
@@ -22,7 +22,7 @@ class TestPrivacy:
             url = privacy_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @nondestructive
     def test_page_sections(self, mozwebqa):
@@ -33,4 +33,4 @@ class TestPrivacy:
             url = privacy_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links

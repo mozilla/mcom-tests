@@ -3,12 +3,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
+from bs4 import BeautifulSoup
 import pytest
 import requests
-
-from bs4 import BeautifulSoup
-from unittestzero import Assert
 
 
 nondestructive = pytest.mark.nondestructive
@@ -26,7 +23,7 @@ class TestDownload(object):
         link = mozwebqa.base_url + link
         response = requests.head(link, allow_redirects=True)
         print response.url
-        Assert.equal(response.status_code, 200)
+        assert requests.codes.ok == response.status_code
 
     def test_linux_download_button_returns_status_code_200(self, mozwebqa):
         response = requests.get(mozwebqa.base_url)
@@ -35,7 +32,7 @@ class TestDownload(object):
         link = mozwebqa.base_url + link
         response = requests.head(link, allow_redirects=True)
         print response.url
-        Assert.equal(response.status_code, 200)
+        assert requests.codes.ok == response.status_code
 
     def test_windows_download_button_returns_status_code_200(self, mozwebqa):
         response = requests.get(mozwebqa.base_url)
@@ -44,7 +41,7 @@ class TestDownload(object):
         link = mozwebqa.base_url + link
         response = requests.head(link, allow_redirects=True)
         print response.url
-        Assert.equal(response.status_code, 200)
+        assert requests.codes.ok == response.status_code
 
     def test_download_button_returns_status_code_200_using_google_chrome(self, mozwebqa):
         '''https://bugzilla.mozilla.org/show_bug.cgi?id=672713'''
@@ -57,4 +54,4 @@ class TestDownload(object):
         link = mozwebqa.base_url + link
         response = requests.head(link, allow_redirects=True)
         print response.url
-        Assert.equal(response.status_code, 200)
+        assert requests.codes.ok == response.status_code

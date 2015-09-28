@@ -3,10 +3,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from bs4 import BeautifulSoup
 import pytest
 import requests
-from bs4 import BeautifulSoup
-from unittestzero import Assert
+
 from pages.desktop.notes import Notes
 
 link_check = pytest.mark.link_check
@@ -20,7 +20,7 @@ class TestNotes:
     def test_that_notes_page_is_reachable(self, mozwebqa):
         notes_page = Notes(mozwebqa)
         notes_page.go_to_page()
-        Assert.contains("Notes", notes_page.firefox_notes_header_text)
+        assert 'Notes' in notes_page.firefox_notes_header_text
 
     @link_check
     @nondestructive
@@ -41,7 +41,7 @@ class TestNotes:
             response_code = notes_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     def make_absolute(self, url, base_url):
         url = url.strip(" ")

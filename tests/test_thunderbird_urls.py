@@ -22,5 +22,4 @@ class TestThunderbirdURLs(object):
             url = mozwebqa.base_url + '/en-US' + path
             response = requests.get(url, timeout=3)
             assert len(response.history) <= 2
-            assert response.status_code == 200, 'got status {} from {}'.format(
-                response.status_code, url)
+            assert requests.codes.ok == response.status_code, url

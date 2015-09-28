@@ -6,7 +6,7 @@
 
 import pytest
 import requests
-from unittestzero import Assert
+
 from pages.desktop.about import AboutPage
 
 link_check = pytest.mark.link_check
@@ -24,7 +24,7 @@ class TestAboutPage:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @link_check
     @nondestructive
@@ -37,7 +37,7 @@ class TestAboutPage:
             response_code = about_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad links found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     @nondestructive
     def test_navbar_links_are_visible(self, mozwebqa):
@@ -47,7 +47,7 @@ class TestAboutPage:
         for link in about_page.Header.nav_links_list:
             if not about_page.is_element_visible(*link.get('locator')):
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @nondestructive
     def test_navbar_link_destinations_are_correct(self, mozwebqa):
@@ -58,7 +58,7 @@ class TestAboutPage:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @link_check
     @nondestructive
@@ -71,7 +71,7 @@ class TestAboutPage:
             response_code = about_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     @nondestructive
     def test_major_link_destinations_are_correct(self, mozwebqa):
@@ -82,7 +82,7 @@ class TestAboutPage:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @link_check
     @nondestructive
@@ -95,13 +95,13 @@ class TestAboutPage:
             response_code = about_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     @nondestructive
     def test_sign_up_form_is_visible(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
         about_page.go_to_page()
-        Assert.true(about_page.is_sign_up_form_present, 'The sign up form is not present on the page.')
+        assert about_page.is_sign_up_form_present, 'The sign up form is not present on the page.'
 
     @nondestructive
     def test_sign_up_form_fields_are_visible(self, mozwebqa):
@@ -112,7 +112,7 @@ class TestAboutPage:
         for field in about_page.sign_up_form_fields:
             if not about_page.is_element_visible(*field.get('locator')):
                 bad_fields.append('The field at %s is not visible' % field.get('locator')[1:])
-        Assert.equal(0, len(bad_fields), '%s bad fields found: ' % len(bad_fields) + ', '.join(bad_fields))
+        assert [] == bad_fields
 
     @nondestructive
     def test_sign_up_form_links_are_visible(self, mozwebqa):
@@ -124,7 +124,7 @@ class TestAboutPage:
         for link in about_page.sign_up_form_link_list:
             if not about_page.is_element_visible(*link.get('locator')):
                 bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @nondestructive
     def test_sign_up_form_link_destinations_are_correct(self, mozwebqa):
@@ -135,7 +135,7 @@ class TestAboutPage:
             url = about_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @link_check
     @nondestructive
@@ -148,7 +148,7 @@ class TestAboutPage:
             response_code = about_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     @nondestructive
     def test_sign_up_form_elements_are_visible(self, mozwebqa):
@@ -156,7 +156,7 @@ class TestAboutPage:
         about_page.go_to_page()
         about_page.expand_sign_up_form()
         about_page.wait_for_element_visible(*about_page._sign_up_form_privacy_checkbox_locator)
-        about_page.is_element_visible(*about_page._sign_up_form_country_select_locator)
+        assert about_page.is_element_visible(*about_page._sign_up_form_country_select_locator)
 
     def test_sign_up_form_invalid_email(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
@@ -170,9 +170,7 @@ class TestAboutPage:
         about_page.select_option(country, about_page._sign_up_form_country_select_locator)
         about_page.check_privacy_checkbox()
         about_page.submit_form()
-        Assert.true(expected_url == about_page.url_current_page[:len(expected_url)],
-                    'Expected current URL to be %s, found %s instead.' %
-                    (expected_url, about_page.url_current_page[:len(expected_url)]))
+        assert expected_url == about_page.url_current_page[:len(expected_url)]
 
     def test_sign_up_form_privacy_policy_unchecked(self, mozwebqa):
         about_page = AboutPage(mozwebqa)
@@ -185,6 +183,4 @@ class TestAboutPage:
         about_page.input_email(valid_email)
         about_page.select_option(country, about_page._sign_up_form_country_select_locator)
         about_page.submit_form()
-        Assert.true(expected_url == about_page.url_current_page[:len(expected_url)],
-                    'Expected current URL to be %s, found %s instead.' %
-                    (expected_url, about_page.url_current_page[:len(expected_url)]))
+        assert expected_url == about_page.url_current_page[:len(expected_url)]

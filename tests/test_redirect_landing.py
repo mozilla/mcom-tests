@@ -3,9 +3,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from unittestzero import Assert
-import requests
 import pytest
+import requests
 
 nondestructive = pytest.mark.nondestructive
 redirect = pytest.mark.redirect
@@ -46,7 +45,7 @@ class TestRedirectLanding(object):
     def _test_redirect(self, mozwebqa, origin, final, headers):
         url = mozwebqa.base_url + origin
         response = requests.get(url, headers=headers)
-        Assert.contains(final, response.url)
+        assert final in response.url
 
     @nondestructive
     def test_redirect_firefox(self, mozwebqa):

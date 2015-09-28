@@ -3,10 +3,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from bs4 import BeautifulSoup
 import pytest
 import requests
-from bs4 import BeautifulSoup
-from unittestzero import Assert
 
 
 nondestructive = pytest.mark.nondestructive
@@ -62,23 +61,20 @@ class TestLocalisedDownloadLinks:
     def test_links_on_firefox_all(self, mozwebqa):
         language_rows = self.get_language_rows(mozwebqa)
         result = self.get_locale_code_from_links(mozwebqa, language_rows)
-        Assert.equal(0, len(result), " ".join(result))
+        assert 0 == len(result), ' '.join(result)
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
-        Assert.equal(0, len(second_result),
-                     "Expected status code 302.  " + ",  ".join(second_result))
+        assert 0 == len(second_result), 'Expected status code 302.  ' + ',  '.join(second_result)
 
     def test_links_on_firefox_organization_all(self, mozwebqa):
         language_rows = self.get_language_rows(mozwebqa, link='/firefox/organizations/all/')
         result = self.get_locale_code_from_links(mozwebqa, language_rows)
-        Assert.equal(0, len(result), " ".join(result))
+        assert 0 == len(result), ' '.join(result)
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
-        Assert.equal(0, len(second_result),
-                     "Expected status code 302.  " + ",  ".join(second_result))
+        assert 0 == len(second_result), 'Expected status code 302.  ' + ',  '.join(second_result)
 
     def test_links_on_thunderbird_all(self, mozwebqa):
         language_rows = self.get_language_rows(mozwebqa, link='/thunderbird/all/')
         result = self.get_locale_code_from_links(mozwebqa, language_rows)
-        Assert.equal(0, len(result), " ".join(result))
+        assert 0 == len(result), ' '.join(result)
         second_result = self.get_302_response_code_from_links(mozwebqa, language_rows)
-        Assert.equal(0, len(second_result),
-                     "Expected status code 302.  " + ",  ".join(second_result))
+        assert 0 == len(second_result), 'Expected status code 302.  ' + ',  '.join(second_result)

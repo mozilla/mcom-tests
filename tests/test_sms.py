@@ -6,7 +6,7 @@
 
 import pytest
 import requests
-from unittestzero import Assert
+
 from pages.desktop.sms import SMS
 
 link_check = pytest.mark.link_check
@@ -24,7 +24,7 @@ class TestSMSPage():
             url = sms_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links
 
     @link_check
     @nondestructive
@@ -37,7 +37,7 @@ class TestSMSPage():
             response_code = sms_page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        Assert.equal(0, len(bad_urls), '%s bad urls found: ' % len(bad_urls) + ', '.join(bad_urls))
+        assert [] == bad_urls
 
     @nondestructive
     def test_footer_section(self, mozwebqa):
@@ -48,4 +48,4 @@ class TestSMSPage():
             url = sms_page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        Assert.equal(0, len(bad_links), '%s bad links found: ' % len(bad_links) + ', '.join(bad_links))
+        assert [] == bad_links

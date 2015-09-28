@@ -3,10 +3,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from bs4 import BeautifulSoup
 import pytest
 import requests
-from bs4 import BeautifulSoup
-from unittestzero import Assert
 
 nondestructive = pytest.mark.nondestructive
 skip_selenium = pytest.mark.skip_selenium
@@ -37,7 +36,7 @@ class TestLocalizations:
                 if language['id'] not in response.url:
                     bad_links.append("Lang '%s' not in response: %s \n"
                                      % (language['id'], response.url))
-        Assert.equal(0, len(bad_links), " ".join(bad_links))
+        assert [] == bad_links
 
     def test_that_download_links_return_302(self, mozwebqa):
         '''
@@ -57,5 +56,4 @@ class TestLocalizations:
                                          (language['id'], link['href'], status))
                 except Exception, e:
                     bad_links.append("Exception thrown: %s url: %s" % (e, url))
-        Assert.equal(0, len(bad_links),
-                     "Expected status code 302.  " + ",  ".join(bad_links))
+        assert [] == bad_links
