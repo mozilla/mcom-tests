@@ -54,16 +54,17 @@ class TestRedirects(object):
 
     @nondestructive
     def test_aurora_redirects_to_firefox_aurora(self, mozwebqa):
-        url = mozwebqa.base_url + "/aurora/"
-        response = requests.get(url, allow_redirects=False)
-        assert requests.codes.moved_permanently == response.status_code
+        self._test_get_redirect(mozwebqa,
+                                '/aurora/',
+                                '/firefox/channel/#developer',
+                                False)
 
     @nondestructive
     def test_beta_redirects_to_firefox_beta(self, mozwebqa):
         self._test_get_redirect(mozwebqa,
                                 '/beta/',
                                 '/firefox/channel/#beta',
-                                False, requests.codes.found)
+                                False)
 
     @nondestructive
     def test_redirect_community_to_contribute(self, mozwebqa):
