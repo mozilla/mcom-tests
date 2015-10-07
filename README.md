@@ -9,7 +9,15 @@ Running Tests
 -------------
 
 ### Python
-Before you will be able to run these tests you will need to have Python 2.6 installed.
+
+Before you will be able to run these tests you will need to have
+Python 2.7.9 installed.
+
+__note__
+
+Python versions before 2.7.9 do not support
+[SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) which will
+cause tests to fail.
 
 If you are running on Ubuntu/Debian you will need to first do
 
@@ -48,6 +56,48 @@ To run tests locally, it's a simple case of calling the command below from this 
     py.test --driver=firefox
 
 For more command line options, see https://github.com/mozilla/pytest-mozwebqa
+
+
+### Running tests with Docker
+
+__note__
+
+You will need a working Docker installation. Docker provides complete
+[installation documenation](https://docs.docker.com/installation/) for
+various systems including Linux, OSX and Windows.
+
+To run Saucelabs backed tests with Docker:
+
+1. Save Saucelabs credentials in a file named `creds.yml` in the
+   following format
+
+        username: USERNAME
+        password: PASSWORD
+        api-key: API_KEY
+
+2. Run:
+
+    docker run -v `pwd`/creds.yml:/tmp/creds -v `pwd`/results/:/app/results mozorg/mcom-tests
+
+3. Find the test results in the `results` directory.
+
+__note__
+
+The default test configuration is listed in the
+[Dockerfile](Dockerfile) and can be overriden with environment
+variables. For example to test against the stage server, override
+BASE_URL environment variable:
+
+    docker run -v `pwd`/creds.yml:/tmp/creds -e BASE_URL=https://www.allizom.org mozorg/mcom-tests
+
+__note__
+
+Docker registry builds new docker images for every code commit in
+mozilla/mcom-tests. To fetch an up to date image run:
+
+    docker pull mozorg/mcom-tests
+
+
 
 Writing Tests
 -------------
