@@ -1,14 +1,4 @@
-## These are the required python libraries needed to run Selenium tests
-## on Mozilla WebQA projects
-
-beautifulsoup4
-PyYAML==3.10
-certifi==0.0.8
-chardet==2.1.1
-execnet==1.1
-py==1.4.26
-pytest==2.7.0
+beautifulsoup4==4.4.1
+pytest==2.7.3
 pytest-mozwebqa
-requests==2.6.0
-selenium
-wsgiref==0.1.2
+requests==2.8.0
