@@ -1,10 +1,2 @@
-*.py[co]
-rmpyc.sh
-/debug/**
+*.pyc
 results
-venv
-.codeintel/*
-.DS_Store
-*.yaml
-*.sh
-
