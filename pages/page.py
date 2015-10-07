@@ -2,10 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-'''
-Created on Jun 21, 2010
-
-'''
 import re
 import time
 
@@ -19,9 +15,6 @@ http_regex = re.compile('https?://((\w+\.)+\w+\.\w+)')
 
 
 class Page(object):
-    """
-    Base class for all Pages
-    """
 
     def __init__(self, testsetup):
         self.testsetup = testsetup
