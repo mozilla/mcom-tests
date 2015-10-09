@@ -14,6 +14,7 @@ class Contact(Base):
         self.open('/contact/')
 
     _spaces_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=spaces]')
+    _contact_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=contact]')
     _communities_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=communities]')
     _spaces_tab_link_locator = (By.CSS_SELECTOR,
                                 '#page-content > .category-tabs > li[data-id=spaces] > a')
@@ -25,6 +26,10 @@ class Contact(Base):
         timeout = 360
         self.selenium.execute_script("window.scrollTo(0, 0)")
         WebDriverWait(self.selenium, timeout).until(EC.visibility_of(element))
+
+    @property
+    def contact_tab(self):
+        return self.selenium.find_element(*self._contact_tab_locator)
 
     @property
     def spaces_tab(self):

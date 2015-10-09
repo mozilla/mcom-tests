@@ -26,10 +26,10 @@ class TestContact:
         self.check_bad_links(spaces_page, spaces_page.spaces_nav_links_list)
 
     @nondestructive
-    def test_start_on_spaces(self, mozwebqa):
+    def test_start_on_contact(self, mozwebqa):
         contact_page = Contact(mozwebqa)
         contact_page.go_to_page()
-        assert 'current' == contact_page.spaces_tab.get_attribute('class'), 'Page does not start on spaces tab.'
+        assert 'current' == contact_page.contact_tab.get_attribute('class'), 'Page does not start on contact us tab.'
 
     @nondestructive
     def test_switching_tabs_list_display(self, mozwebqa):
