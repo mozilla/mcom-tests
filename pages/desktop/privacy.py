@@ -3,13 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 
 
 class Privacy(Base):
 
-    def go_to_page(self):
-        self.open('/privacy/')
+    _url = '{base_url}/{locale}/privacy'
 
     privacy_policy_list = [
         {

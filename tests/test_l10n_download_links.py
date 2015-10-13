@@ -6,8 +6,6 @@ from bs4 import BeautifulSoup
 import pytest
 import requests
 
-pytestmark = [pytest.mark.nondestructive, pytest.mark.skip_selenium]
-
 
 def pytest_generate_tests(metafunc):
     base_url = metafunc.config.option.base_url
@@ -31,6 +29,7 @@ def check_link(locale, url):
     assert requests.codes.found == r.history[0].status_code  # url redirects
 
 
+@pytest.mark.nondestructive
 class TestFirefoxAll(object):
     page = '/firefox/all/'
 
@@ -38,6 +37,7 @@ class TestFirefoxAll(object):
         check_link(locale, url)
 
 
+@pytest.mark.nondestructive
 class TestFirefoxOrganizationsAll(object):
     page = '/firefox/organizations/all/'
 
@@ -45,6 +45,7 @@ class TestFirefoxOrganizationsAll(object):
         check_link(locale, url)
 
 
+@pytest.mark.nondestructive
 class TestThunderbirdAll(object):
     page = '/thunderbird/all/'
 

@@ -3,15 +3,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as expected
+from selenium.webdriver.support.ui import WebDriverWait as Wait
 from pages.desktop.base import Base
 
 
 class AboutPage(Base):
 
-    def go_to_page(self):
-        self.open('/about/')
+    _url = '{base_url}/{locale}/about'
 
     major_links_list = [
         {
@@ -83,8 +82,10 @@ class AboutPage(Base):
         self.selenium.find_element(*self._sign_up_form_submit_button_locator).click()
 
     def expand_sign_up_form(self):
-        self.selenium.find_element(*self._sign_up_form_email_input_locator).click()
-        WebDriverWait(self.selenium, 10).until(EC.visibility_of_element_located(self._sign_up_form_privacy_checkbox_locator))
+        self.selenium.find_element(*self._sign_up_form_submit_button_locator).click()
+        Wait(self.selenium, self.timeout).until(
+            expected.visibility_of_element_located(
+                self._sign_up_form_privacy_checkbox_locator))
 
     @property
     def is_sign_up_form_present(self):

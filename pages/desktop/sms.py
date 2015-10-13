@@ -3,13 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 
 
 class SMS(Base):
 
-    def go_to_page(self):
-        self.open('/firefox/sms/')
+    _url = '{base_url}/{locale}/firefox/sms'
 
     info_links_list = [
         {

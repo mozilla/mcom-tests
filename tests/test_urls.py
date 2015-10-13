@@ -6,12 +6,7 @@ import pytest
 import requests
 
 
-nondestructive = pytest.mark.nondestructive
-skip_selenium = pytest.mark.skip_selenium
-
-
-@nondestructive
-@skip_selenium
+@pytest.mark.nondestructive
 @pytest.mark.parametrize('path', [
     'firefox/',
     'firefox/all/',
@@ -48,8 +43,8 @@ skip_selenium = pytest.mark.skip_selenium
     # Thunberbird URLs
     'thunderbird/all/',
     'thunderbird/releases/'])
-def test_url(path, mozwebqa):
-    url = '/'.join([mozwebqa.base_url, 'en-US', path])
+def test_url(path, base_url):
+    url = '/'.join([base_url, 'en-US', path])
     r = requests.get(url, timeout=3)
     assert len(r.history) <= 2
     assert requests.codes.ok == r.status_code, url

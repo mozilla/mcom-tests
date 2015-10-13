@@ -3,12 +3,15 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as Wait
+from selenium.webdriver.support import expected_conditions as expected
+
 from pages.desktop.base import Base
 
 
 class Partners(Base):
+
+    _url = '{base_url}/{locale}/firefox/partners'
 
     _firefox_os_header_locator = (By.CSS_SELECTOR, '#main-feature > h2')
     _welcome_section_locator = (By.CSS_SELECTOR, '#primary')
@@ -32,10 +35,6 @@ class Partners(Base):
     _phone_marketplace_image_locator = (By.ID, 'screen-marketplace')
     _phone_image_locator = (By.CSS_SELECTOR, '.phone-overlay')
 
-    def go_to_page(self):
-        self.open('/firefox/partners/')
-        self.wait_for_element_visible(*self._partner_with_us_button_locator)
-
     def click_partner_pager_button(self):
         return self.selenium.find_element(*self._partner_pager_button_locator).click()
 
@@ -47,13 +46,13 @@ class Partners(Base):
 
     def click_os_menu(self):
         self.selenium.find_element(*self._os_menu_icon_locator).click()
-        WebDriverWait(self.selenium, self.timeout).until(EC.visibility_of_element_located(self._phone_os_image_locator))
+        Wait(self.selenium, self.timeout).until(expected.visibility_of_element_located(self._phone_os_image_locator))
 
     def click_operators_button(self):
-        WebDriverWait(self.selenium, self.timeout).until(EC.element_to_be_clickable(self._operators_button_locator))
+        Wait(self.selenium, self.timeout).until(expected.element_to_be_clickable(self._operators_button_locator))
         self.selenium.find_element(*self._operators_button_locator).click()
-        element = WebDriverWait(self.selenium, self.timeout).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, '#os-operators-headline')))
+        element = Wait(self.selenium, self.timeout).until(
+            expected.visibility_of_element_located((By.CSS_SELECTOR, '#os-operators-headline')))
         return element
 
     @property

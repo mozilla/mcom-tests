@@ -8,15 +8,9 @@ from selenium.webdriver.common.by import By
 
 class Notes(Base):
 
+    _url = '{base_url}/{locale}/firefox/notes'
+
     _firefox_notes_header_locator = (By.CSS_SELECTOR, '.notes-head > h1')
-    _notes_page_url = '/firefox/notes/'
-
-    def go_to_page(self):
-        self.open(self._notes_page_url)
-
-    @property
-    def notes_page_url(self):
-        return self._notes_page_url
 
     @property
     def firefox_notes_header_text(self):

@@ -3,13 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 
 
 class DoNotTrack(Base):
 
-    def go_to_page(self):
-        self.open('/firefox/dnt')
+    _url = '{base_url}/{locale}/firefox/dnt'
 
     _dnt_status_wrapper_locator = (By.ID, 'dnt-status-wrapper')
     _dnt_status_text_locator = (By.CSS_SELECTOR, '#dnt-status > h4')

@@ -7,50 +7,40 @@ import pytest
 import requests
 
 
-nondestructive = pytest.mark.nondestructive
-skip_selenium = pytest.mark.skip_selenium
-
-
-@nondestructive
-@skip_selenium
 class TestDownload(object):
 
-    def test_osx_download_button_returns_status_code_200(self, mozwebqa):
-        response = requests.get(mozwebqa.base_url)
-        html = BeautifulSoup(response.content)
+    @pytest.mark.nondestructive
+    def test_osx_download_button_returns_status_code_200(self, base_url):
+        html = BeautifulSoup(requests.get(base_url).content, 'html.parser')
         link = html.find('li', 'os_osx').a['href']
-        link = mozwebqa.base_url + link
-        response = requests.head(link, allow_redirects=True)
-        print response.url
-        assert requests.codes.ok == response.status_code
+        link = base_url + link
+        r = requests.head(link, allow_redirects=True)
+        assert requests.codes.ok == r.status_code, r.url
 
-    def test_linux_download_button_returns_status_code_200(self, mozwebqa):
-        response = requests.get(mozwebqa.base_url)
-        html = BeautifulSoup(response.content)
+    @pytest.mark.nondestructive
+    def test_linux_download_button_returns_status_code_200(self, base_url):
+        html = BeautifulSoup(requests.get(base_url).content, 'html.parser')
         link = html.find('li', 'os_linux').a['href']
-        link = mozwebqa.base_url + link
-        response = requests.head(link, allow_redirects=True)
-        print response.url
-        assert requests.codes.ok == response.status_code
+        link = base_url + link
+        r = requests.head(link, allow_redirects=True)
+        assert requests.codes.ok == r.status_code, r.url
 
-    def test_windows_download_button_returns_status_code_200(self, mozwebqa):
-        response = requests.get(mozwebqa.base_url)
-        html = BeautifulSoup(response.content)
+    @pytest.mark.nondestructive
+    def test_windows_download_button_returns_status_code_200(self, base_url):
+        html = BeautifulSoup(requests.get(base_url).content, 'html.parser')
         link = html.find('li', 'os_win').a['href']
-        link = mozwebqa.base_url + link
-        response = requests.head(link, allow_redirects=True)
-        print response.url
-        assert requests.codes.ok == response.status_code
+        link = base_url + link
+        r = requests.head(link, allow_redirects=True)
+        assert requests.codes.ok == r.status_code, r.url
 
-    def test_download_button_returns_status_code_200_using_google_chrome(self, mozwebqa):
+    @pytest.mark.nondestructive
+    def test_download_button_returns_status_code_200_using_google_chrome(self, base_url):
         '''https://bugzilla.mozilla.org/show_bug.cgi?id=672713'''
-        response = requests.get(mozwebqa.base_url,
-                                headers={'User-Agent': 'AppleWebKit/537.36 \
-                                          (KHTML, like Gecko) Chrome/35.0.1916.153 \
-                                          Safari/537.36'})
-        html = BeautifulSoup(response.content)
+        r = requests.get(base_url, headers={
+            'User-Agent': 'AppleWebKit/537.36 (KHTML, like Gecko) '
+                          'Chrome/35.0.1916.153 Safari/537.36'})
+        html = BeautifulSoup(r.content, 'html.parser')
         link = html.find('li', 'os_win').a['href']
-        link = mozwebqa.base_url + link
-        response = requests.head(link, allow_redirects=True)
-        print response.url
-        assert requests.codes.ok == response.status_code
+        link = base_url + link
+        r = requests.head(link, allow_redirects=True)
+        assert requests.codes.ok == r.status_code, r.url

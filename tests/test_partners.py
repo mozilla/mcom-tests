@@ -3,34 +3,29 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-from pages.desktop.partners import Partners
 
-nondestructive = pytest.mark.nondestructive
+from pages.desktop.partners import Partners
 
 
 class TestPartners(object):
 
-    @nondestructive
-    def test_footer_section(self, mozwebqa):
-        partners_page = Partners(mozwebqa)
-        partners_page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_footer_section(self, base_url, selenium):
+        page = Partners(base_url, selenium).open()
         bad_links = []
         for link in Partners.Footer.footer_links_list:
-            url = partners_page.link_destination(link.get('locator'))
+            url = page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
 
-    @nondestructive
-    def test_overview_section_image(self, mozwebqa):
-        partners_page = Partners(mozwebqa)
-        partners_page.selenium.maximize_window()
-        partners_page.go_to_page()
-        assert partners_page.is_phone_overlay_visible
+    @pytest.mark.nondestructive
+    def test_overview_section_image(self, base_url, selenium):
+        page = Partners(base_url, selenium).open()
+        assert page.is_phone_overlay_visible
 
-    @nondestructive
-    def test_os_section(self, mozwebqa):
-        partners_page = Partners(mozwebqa)
-        partners_page.go_to_page()
-        partners_page.click_os_menu()
-        partners_page.click_operators_button()
+    @pytest.mark.nondestructive
+    def test_os_section(self, base_url, selenium):
+        page = Partners(base_url, selenium).open()
+        page.click_os_menu()
+        page.click_operators_button()

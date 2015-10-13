@@ -3,15 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class Contact(Base):
 
-    def go_to_page(self):
-        self.open('/contact/')
+    _url = '{base_url}/{locale}/contact'
 
     _spaces_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=spaces]')
     _contact_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=contact]')
@@ -20,12 +18,6 @@ class Contact(Base):
                                 '#page-content > .category-tabs > li[data-id=spaces] > a')
     _communities_tab_link_locator = (By.CSS_SELECTOR,
                                      '#page-content > .category-tabs > li[data-id=communities] > a')
-
-    def wait_until_element_visible(self, element):
-        # overriding timeout here to higher value of 360
-        timeout = 360
-        self.selenium.execute_script("window.scrollTo(0, 0)")
-        WebDriverWait(self.selenium, timeout).until(EC.visibility_of(element))
 
     @property
     def contact_tab(self):
@@ -40,20 +32,19 @@ class Contact(Base):
         return self.selenium.find_element(*self._communities_tab_locator)
 
     def click_spaces_tab(self):
-            spaces_tab_link = self.selenium.find_element(*self._spaces_tab_link_locator)
-            spaces_tab_link.click()
-            return Spaces(self.testsetup)
+        spaces_tab_link = self.selenium.find_element(*self._spaces_tab_link_locator)
+        spaces_tab_link.click()
+        return Spaces(self.base_url, self.selenium).wait_for_page_to_load()
 
     def click_communities_tab(self):
-            communities_tab_link = self.selenium.find_element(*self._communities_tab_link_locator)
-            communities_tab_link.click()
-            return Communities(self.testsetup)
+        communities_tab_link = self.selenium.find_element(*self._communities_tab_link_locator)
+        communities_tab_link.click()
+        return Communities(self.base_url, self.selenium).wait_for_page_to_load()
 
 
 class Spaces(Contact):
 
-    def go_to_page(self):
-        self.open('/contact/spaces')
+    _url = '{base_url}/{locale}/contact/spaces'
 
     _spaces_list_locator = (By.ID, 'nav-spaces')
     _spaces_marker_locator = (By.CSS_SELECTOR, '#map .leaflet-marker-pane > .leaflet-marker-icon')
@@ -114,8 +105,7 @@ class Spaces(Contact):
 
 class Communities(Contact):
 
-    def go_to_page(self):
-        self.open('/contact/communities')
+    _url = '{base_url}/{locale}/contact/communities'
 
     _region_list_locator = (By.ID, 'nav-communities')
     _region_legend_locator = (By.CSS_SELECTOR, '#map > ul')

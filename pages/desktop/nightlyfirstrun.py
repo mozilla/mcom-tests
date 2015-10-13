@@ -3,13 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 
 
 class NightlyFirstRun(Base):
 
-    def go_to_page(self):
-        self.open('/firefox/nightly/firstrun/')
+    _url = '{base_url}/{locale}/firefox/nightly/firstrun'
 
     _test_section_locator = (By.CSS_SELECTOR, '.blue-box.test')
     _test_button_locator = (By.CSS_SELECTOR, '.test > .content > a')

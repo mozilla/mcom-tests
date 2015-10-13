@@ -6,24 +6,15 @@ import pytest
 import requests
 
 
-nonbedrock = pytest.mark.nonbedrock
-nondestructive = pytest.mark.nondestructive
-skip_selenium = pytest.mark.skip_selenium
-
-
-@skip_selenium
 class TestStatus(object):
 
-    @nonbedrock
-    @nondestructive
-    def test_status_code_returns_404(self, mozwebqa):
-        url = mozwebqa.base_url + '/abck'
-        response = requests.get(url)
-        assert requests.codes.not_found == response.status_code
+    @pytest.mark.nondestructive
+    def test_status_code_returns_404(self, base_url):
+        r = requests.get('{0}/abck'.format(base_url))
+        assert requests.codes.not_found == r.status_code
 
-    @nondestructive
-    def test_xrobots_tag_is_present(self, mozwebqa):
+    @pytest.mark.nondestructive
+    def test_xrobots_tag_is_present(self, base_url):
         """Test for X-Robots-Tag header"""
-        url = mozwebqa.base_url
-        response = requests.get(url)
-        assert 'noodp' == response.headers.get('x-robots-tag')
+        r = requests.get(base_url)
+        assert 'noodp' == r.headers.get('x-robots-tag')

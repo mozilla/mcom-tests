@@ -60,10 +60,9 @@ def pytest_generate_tests(metafunc):
     metafunc.parametrize('origin, destination, locale, user_agent', argvalues)
 
 
-@pytest.mark.skip_selenium
 @pytest.mark.nondestructive
-def test_redirect(origin, destination, locale, user_agent, mozwebqa):
-    url = origin.format(base_url=mozwebqa.base_url, locale=locale)
+def test_redirect(origin, destination, locale, user_agent, base_url):
+    url = origin.format(base_url=base_url, locale=locale)
     headers = {'Accept-Language': locale}
     if user_agent is not None:
         headers['User-Agent'] = user_agent
@@ -71,5 +70,5 @@ def test_redirect(origin, destination, locale, user_agent, mozwebqa):
     for h in r.history:
         assert h.status_code in [requests.codes.moved_permanently,
                                  requests.codes.found]
-    assert destination.format(base_url=mozwebqa.base_url, locale=locale) == r.url
+    assert destination.format(base_url=base_url, locale=locale) == r.url
     assert requests.codes.ok == r.status_code, r.url

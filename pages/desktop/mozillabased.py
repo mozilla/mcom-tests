@@ -3,10 +3,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 
 
 class MozillaBasedPage(Base):
+
+    _url = '{base_url}/{locale}/projects/mozilla-based'
+
     _productlist_locator = (By.CSS_SELECTOR, '.productlist')
     _product_locator = (By.CSS_SELECTOR, 'li > h3 > a')
     _logo_locator = (By.CSS_SELECTOR, 'img')
@@ -57,9 +61,6 @@ class MozillaBasedPage(Base):
             'url_suffix': '/en-US/privacy-policy',
         },
     ]
-
-    def go_to_page(self):
-        self.open('/projects/mozilla-based/')
 
     def get_product_properties(self, unorderedlist_locator):
         products = []

@@ -66,20 +66,17 @@ You will need a working Docker installation. Docker provides complete
 [installation documenation](https://docs.docker.com/installation/) for
 various systems including Linux, OSX and Windows.
 
-To run Saucelabs backed tests with Docker:
+To run Sauce Labs backed tests with Docker:
 
-1. Save Saucelabs credentials in a file named `creds.yml` in the
-   following format
+1. Run the following, replacing ``[user]`` and ``[key]` with the values
+provided by Sauce Labs:
 
-        username: USERNAME
-        password: PASSWORD
-        api-key: API_KEY
+    docker run -v `pwd`/results/:/app/results \
+    -e SAUCELABS_USERNAME=[user] \
+    -e SAUCELABS_API_KEY=[key] \
+    mozorg/mcom-tests
 
-2. Run:
-
-    docker run -v `pwd`/creds.yml:/tmp/creds -v `pwd`/results/:/app/results mozorg/mcom-tests
-
-3. Find the test results in the `results` directory.
+2. Find the test results in the `results` directory.
 
 __note__
 
@@ -88,7 +85,7 @@ The default test configuration is listed in the
 variables. For example to test against the stage server, override
 BASE_URL environment variable:
 
-    docker run -v `pwd`/creds.yml:/tmp/creds -e BASE_URL=https://www.allizom.org mozorg/mcom-tests
+    docker run -e BASE_URL=https://www.allizom.org mozorg/mcom-tests
 
 __note__
 

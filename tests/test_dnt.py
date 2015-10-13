@@ -8,33 +8,29 @@ import pytest
 
 from pages.desktop.dnt import DoNotTrack
 
-nondestructive = pytest.mark.nondestructive
-
 
 class TestDoNotTrack:
 
-    @nondestructive
-    def test_footer_section(self, mozwebqa):
-        dnt_page = DoNotTrack(mozwebqa)
-        dnt_page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_footer_section(self, base_url, selenium):
+        page = DoNotTrack(base_url, selenium).open()
         bad_links = []
         for link in DoNotTrack.Footer.footer_links_list:
-            url = dnt_page.link_destination(link.get('locator'))
+            url = page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
 
-    @nondestructive
-    def test_status_section(self, mozwebqa):
-        dnt_page = DoNotTrack(mozwebqa)
-        dnt_page.go_to_page()
-        assert dnt_page.is_status_wrapper_visible
-        assert dnt_page.is_status_text_visible
-        assert dnt_page.is_enable_dnt_image_visible
-        assert dnt_page.is_enable_dnt_text_visible
+    @pytest.mark.nondestructive
+    def test_status_section(self, base_url, selenium):
+        page = DoNotTrack(base_url, selenium).open()
+        assert page.is_status_wrapper_visible
+        assert page.is_status_text_visible
+        assert page.is_enable_dnt_image_visible
+        assert page.is_enable_dnt_text_visible
         bad_links = []
-        for link in dnt_page.tracking_protection_links_list:
-            url = dnt_page.link_destination(link.get('locator'))
+        for link in page.tracking_protection_links_list:
+            url = page.link_destination(link.get('locator'))
             if not fnmatchcase(url, '*/' + link.get('url_suffix')):
                 bad_links.append('%s does not match %s' % (url, link.get('url_suffix')))
         assert [] == bad_links

@@ -7,64 +7,56 @@ import requests
 
 from pages.desktop.mozillabased import MozillaBasedPage
 
-link_check = pytest.mark.link_check
-nondestructive = pytest.mark.nondestructive
-
 
 class TestMozillaBasedPagePage:
 
-    @nondestructive
-    def test_breadcrumbs_link_destinations_are_correct(self, mozwebqa):
-        mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_breadcrumbs_link_destinations_are_correct(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_links = []
-        for link in mozillabased_page.breadcrumbs_link_list:
-            url = mozillabased_page.link_destination(link.get('locator'))
+        for link in page.breadcrumbs_link_list:
+            url = page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
 
-    @link_check
-    @nondestructive
-    def test_breadcrumbs_link_urls_are_valid(self, mozwebqa):
-        mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
+    @pytest.mark.link_check
+    @pytest.mark.nondestructive
+    def test_breadcrumbs_link_urls_are_valid(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_urls = []
-        for link in mozillabased_page.breadcrumbs_link_list:
-            url = mozillabased_page.link_destination(link.get('locator'))
-            response_code = mozillabased_page.get_response_code(url)
+        for link in page.breadcrumbs_link_list:
+            url = page.link_destination(link.get('locator'))
+            response_code = page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         assert [] == bad_urls
 
-    @nondestructive
-    def test_main_feature_link_destinations_are_correct(self, mozwebqa):
-        mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_main_feature_link_destinations_are_correct(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_links = []
-        for link in mozillabased_page.main_feature_link_list:
-            url = mozillabased_page.link_destination(link.get('locator'))
+        for link in page.main_feature_link_list:
+            url = page.link_destination(link.get('locator'))
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
 
-    @link_check
-    @nondestructive
-    def test_main_feature_link_urls_are_valid(self, mozwebqa):
-        mozillabased_page = MozillaBasedPage(mozwebqa)
-        mozillabased_page.go_to_page()
+    @pytest.mark.link_check
+    @pytest.mark.nondestructive
+    def test_main_feature_link_urls_are_valid(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_urls = []
-        for link in mozillabased_page.main_feature_link_list:
-            url = mozillabased_page.link_destination(link.get('locator'))
-            response_code = mozillabased_page.get_response_code(url)
+        for link in page.main_feature_link_list:
+            url = page.link_destination(link.get('locator'))
+            response_code = page.get_response_code(url)
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         assert [] == bad_urls
 
-    @nondestructive
-    def test_featured_billboard_images_links_are_correct(self, mozwebqa):
-        page = MozillaBasedPage(mozwebqa)
-        page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_featured_billboard_images_links_are_correct(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_links = []
         links = page.get_billboard_product_list
         for link in links:
@@ -74,10 +66,9 @@ class TestMozillaBasedPagePage:
                 bad_links.append('Broken logo %s  product %s' % (link['logo'], link['text']))
         assert [] == bad_links
 
-    @nondestructive
-    def test_featured_images_links_are_correct(self, mozwebqa):
-        page = MozillaBasedPage(mozwebqa)
-        page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_featured_images_links_are_correct(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_links = []
         links = page.get_product_list
         for link in links:
@@ -87,10 +78,9 @@ class TestMozillaBasedPagePage:
                 bad_links.append('Broken logo %s  product %s' % (link['logo'], link['text']))
         assert [] == bad_links
 
-    @nondestructive
-    def test_footer_section_links(self, mozwebqa):
-        page = MozillaBasedPage(mozwebqa)
-        page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_footer_section_links(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_links = []
         for link in MozillaBasedPage.Footer.footer_links_list:
             url = page.link_destination(link.get('locator'))
@@ -98,10 +88,9 @@ class TestMozillaBasedPagePage:
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
 
-    @nondestructive
-    def test_navbar_links_are_visible(self, mozwebqa):
-        page = MozillaBasedPage(mozwebqa)
-        page.go_to_page()
+    @pytest.mark.nondestructive
+    def test_navbar_links_are_visible(self, base_url, selenium):
+        page = MozillaBasedPage(base_url, selenium).open()
         bad_links = []
         for link in page.Header.nav_links_list:
             if not page.is_element_visible(*link.get('locator')):

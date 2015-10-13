@@ -3,10 +3,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 
 
 class HomePage(Base):
+
+    _url = '{base_url}/{locale}'
+
     major_links_list = [
         {
             'locator': (By.CSS_SELECTOR, '#firefox-download-section header a'),
@@ -86,20 +90,17 @@ class HomePage(Base):
         },
     ]
 
-    def __init__(self, testsetup):
-        super(HomePage, self).__init__(testsetup)
+    def __init__(self, base_url, selenium):
+        super(HomePage, self).__init__(base_url, selenium)
         # issue mozilla/mcom-tests#399
         # events area of home page will come and go based on whether
         # remo is responding at the time of deployment. This is reliably
         # testable on stage and prod, but not dev.
-        if 'www-dev.allizom.org' not in self.base_url:
+        if 'www-dev.allizom.org' not in base_url:
             self.major_links_list.append({
                 'locator': (By.CSS_SELECTOR, '#upcoming-events .more-large'),
                 'url_suffix': '/contribute/events/',
             })
-
-    def go_to_page(self):
-        self.open('')
 
     @property
     def is_sign_up_form_present(self):

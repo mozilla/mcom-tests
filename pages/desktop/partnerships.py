@@ -3,14 +3,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+
 from pages.desktop.base import Base
 from pages.page import Page
 
 
 class Partnerships(Base):
 
-    def go_to_page(self):
-        self.open('/about/partnerships/')
+    _url = '{base_url}/{locale}/about/partnerships'
 
     section_links_list = [
         {
@@ -61,7 +61,7 @@ class Partnerships(Base):
 
     @property
     def partner_form(self):
-        return self.PartnerForm(self.testsetup)
+        return self.PartnerForm(self.base_url, self.selenium)
 
     class PartnerForm(Page):
 

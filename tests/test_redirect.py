@@ -8,7 +8,6 @@ import pytest
 import requests
 
 
-@pytest.mark.skip_selenium
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('origin, destination, locale', [
     ('{base_url}/', '{base_url}/{locale}/', 'en-US'),
@@ -57,32 +56,31 @@ import requests
     ('https://www.mozilla.com/', 'https://www.mozilla.org/{locale}/firefox/new/', 'en-US'),
     ('https://aurora.mozilla.org/', 'https://www.mozilla.org/{locale}/firefox/channel/', 'en-US'),
     ('https://beta.mozilla.org/', 'https://www.mozilla.org/{locale}/firefox/channel/#beta', 'en-US')])
-def test_redirect(origin, destination, locale, mozwebqa):
-    url = origin.format(base_url=mozwebqa.base_url, locale=locale)
+def test_redirect(origin, destination, locale, base_url):
+    url = origin.format(base_url=base_url, locale=locale)
     headers = {'Accept-Language': locale}
     r = requests.get(url, allow_redirects=True, headers=headers)
     for h in r.history:
         assert h.status_code in [requests.codes.moved_permanently,
                                  requests.codes.found]
-    assert destination.format(base_url=mozwebqa.base_url, locale=locale) == r.url
+    assert destination.format(base_url=base_url, locale=locale) == r.url
     assert requests.codes.ok == r.status_code, r.url
 
 
-@pytest.mark.skip_selenium
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('origin, destination, locale', [
     ('{base_url}/mobile/notes/', '{base_url}\/{locale}\/firefox\/android\/[\d\.]+\/releasenotes\/', 'en-US'),
     ('{base_url}/mobile/beta/notes/', '{base_url}\/{locale}\/firefox\/android\/[\d\.]+beta\/releasenotes\/', 'en-US'),
     ('{base_url}/mobile/aurora/notes/', '{base_url}\/{locale}\/firefox\/android\/[\d\.a-zA-Z]+\/auroranotes\/', 'en-US'),
     ('{base_url}/firefox/notes/', '{base_url}\/{locale}\/firefox\/[\d\.]+\/releasenotes\/', 'en-US')])
-def test_redirect_regex(origin, destination, locale, mozwebqa):
-    url = origin.format(base_url=mozwebqa.base_url, locale=locale)
+def test_redirect_regex(origin, destination, locale, base_url):
+    url = origin.format(base_url=base_url, locale=locale)
     headers = {'Accept-Language': locale}
     r = requests.get(url, allow_redirects=True, headers=headers)
     for h in r.history:
         assert h.status_code in [requests.codes.moved_permanently,
                                  requests.codes.found]
-    pattern = destination.format(base_url=re.escape(mozwebqa.base_url),
-                                 locale=re.escape(locale))
-    assert re.match(pattern, r.url) is not None
+    expected = destination.format(base_url=re.escape(base_url),
+                                  locale=re.escape(locale))
+    assert re.match(expected, r.url) is not None
     assert requests.codes.ok == r.status_code, r.url

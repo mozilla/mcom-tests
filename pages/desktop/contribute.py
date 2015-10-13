@@ -9,8 +9,7 @@ from pages.desktop.base import Base
 
 class Contribute(Base):
 
-    def go_to_page(self):
-        self.open('/contribute/')
+    _url = '{base_url}/{locale}/contribute'
 
     major_links_list = [
         {
