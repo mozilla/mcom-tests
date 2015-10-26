@@ -12,6 +12,7 @@ import requests
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('origin, destination, locale', [
     ('{base_url}/', '{base_url}/{locale}/', 'en-US'),
+    ('{base_url}/firefox/', '{base_url}/{locale}/firefox/new/', 'en-US'),
     ('{base_url}/fennec/', '{base_url}/{locale}/firefox/partners/', 'en-US'),
     ('{base_url}/firefox/mobile/', '{base_url}/{locale}/firefox/android/', 'en-US'),
     ('{base_url}/aurora/', '{base_url}/{locale}/firefox/channel/', 'en-US'),
