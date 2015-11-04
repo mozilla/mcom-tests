@@ -8,7 +8,12 @@ import requests
 
 
 def pytest_generate_tests(metafunc):
-    base_url = metafunc.config.option.base_url
+    config = metafunc.config
+    # try to get base url from command line or ini file
+    base_url = config.option.base_url or config.getini('base_url')
+    if base_url is None:
+        # base url is not specified or is specified by a fixture
+        pytest.skip('This test requires a base URL to be specified.')
     page = metafunc.cls.page  # get the target page from the test class
     r = requests.get('{0}{1}'.format(base_url, page))
     soup = BeautifulSoup(r.content, 'html.parser')
