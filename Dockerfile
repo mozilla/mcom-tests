@@ -1,7 +1,11 @@
-FROM python:2-slim
+FROM debian:jessie
 
 WORKDIR /app
 CMD ["./run.sh"]
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python2.7 libpython2.7 build-essential python-dev python-pip && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV BASE_URL "https://www-dev.allizom.org"
 ENV BROWSER_NAME Firefox
