@@ -17,10 +17,6 @@ class Base(Page):
         return self
 
     @property
-    def header(self):
-        return self.Header(self.testsetup)
-
-    @property
     def footer(self):
         return self.Footer(self.testsetup)
 
@@ -35,26 +31,6 @@ class Base(Page):
     def image_source(self, locator):
         link = self.selenium.find_element(*locator)
         return link.get_attribute('src')
-
-    class Header(Page):
-
-        nav_links_list = [
-            {
-                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(1) > a'),
-                'url_suffix': '/about/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(2) > a'),
-                'url_suffix': '/contribute/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(3) > a'),
-                'url_suffix': '/firefox/products/',
-            }, {
-                'locator': (By.CSS_SELECTOR, '#nav-main > ul > li:nth-child(4) > a'),
-                'url_suffix': ('//donate.mozilla.org/?presets=100,50,25,15'
-                               '&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015'
-                               '&utm_source=mozilla.org&utm_medium=referral&utm_content=header'),
-            }
-        ]
 
     class Footer(Page):
 

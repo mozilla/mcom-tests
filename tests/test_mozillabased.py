@@ -87,12 +87,3 @@ class TestMozillaBasedPagePage:
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
-
-    @pytest.mark.nondestructive
-    def test_navbar_links_are_visible(self, base_url, selenium):
-        page = MozillaBasedPage(base_url, selenium).open()
-        bad_links = []
-        for link in page.Header.nav_links_list:
-            if not page.is_element_visible(*link.get('locator')):
-                bad_links.append('The link at %s is not visible' % link.get('locator')[1:])
-        assert [] == bad_links
