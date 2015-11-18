@@ -81,8 +81,6 @@ class HomePage(Base):
         },
     ]
 
-    _sign_up_form_locator = (By.ID, 'mozorg-newsletter-form')
-
     sign_up_form_link_list = [
         {
             'locator': (By.CSS_SELECTOR, 'label.privacy-check-label > span > a'),
@@ -101,7 +99,3 @@ class HomePage(Base):
                 'locator': (By.CSS_SELECTOR, '#upcoming-events .more-large'),
                 'url_suffix': '/contribute/events/',
             })
-
-    @property
-    def is_sign_up_form_present(self):
-        return self.is_element_present(*self._sign_up_form_locator)

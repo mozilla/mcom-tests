@@ -67,28 +67,9 @@ class TestHomePage:
         assert [] == bad_urls
 
     @pytest.mark.nondestructive
-    def test_sign_up_form_is_visible(self, base_url, selenium):
+    def test_sign_up_form_links(self, base_url, selenium):
         page = HomePage(base_url, selenium).open()
-        assert page.is_sign_up_form_present, 'The sign up form is not present on the page.'
-
-    @pytest.mark.nondestructive
-    def test_sign_up_form_link_destinations_are_correct(self, base_url, selenium):
-        page = HomePage(base_url, selenium).open()
-        bad_links = []
         for link in page.sign_up_form_link_list:
             url = page.link_destination(link.get('locator'))
-            if not url.endswith(link.get('url_suffix')):
-                bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
-        assert [] == bad_links
-
-    @pytest.mark.link_check
-    @pytest.mark.nondestructive
-    def test_sign_up_form_link_urls_are_valid(self, base_url, selenium):
-        page = HomePage(base_url, selenium).open()
-        bad_urls = []
-        for link in page.sign_up_form_link_list:
-            url = page.link_destination(link.get('locator'))
-            response_code = page.get_response_code(url)
-            if response_code != requests.codes.ok:
-                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        assert [] == bad_urls
+            assert url.endswith(link.get('url_suffix'))
+            assert requests.codes.ok == page.get_response_code(url)

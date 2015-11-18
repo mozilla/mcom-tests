@@ -47,9 +47,6 @@ class AboutPage(Base):
         }
     ]
 
-    _sign_up_form_locator = (By.ID, 'mozorg-newsletter-form')
-    _sign_up_form_email_input_locator = (By.ID, 'id_email')
-    _sign_up_form_country_select_locator = (By.ID, 'country')
     _sign_up_form_privacy_checkbox_locator = (By.ID, 'id_privacy')
     _sign_up_form_submit_button_locator = (By.ID, 'footer_email_submit')
 
@@ -60,33 +57,8 @@ class AboutPage(Base):
         },
     ]
 
-    sign_up_form_fields = [
-        {
-            'locator': (By.ID, 'id_email'),
-        }, {
-            'locator': (By.ID, 'country'),
-        }, {
-            'locator': (By.ID, 'id_privacy'),
-        }, {
-            'locator': (By.ID, 'footer_email_submit'),
-        },
-    ]
-
-    def input_email(self, email):
-        self.selenium.find_element(*self._sign_up_form_email_input_locator).send_keys(email)
-
-    def check_privacy_checkbox(self):
-        self.selenium.find_element(*self._sign_up_form_privacy_checkbox_locator).click()
-
-    def submit_form(self):
-        self.selenium.find_element(*self._sign_up_form_submit_button_locator).click()
-
     def expand_sign_up_form(self):
         self.selenium.find_element(*self._sign_up_form_submit_button_locator).click()
         Wait(self.selenium, self.timeout).until(
             expected.visibility_of_element_located(
                 self._sign_up_form_privacy_checkbox_locator))
-
-    @property
-    def is_sign_up_form_present(self):
-        return self.is_element_present(*self._sign_up_form_locator)
