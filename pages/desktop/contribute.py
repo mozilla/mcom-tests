@@ -28,9 +28,6 @@ class Contribute(Base):
             'locator': (By.CSS_SELECTOR, '.section.landing-howto a'),
             'url_suffix': 'signup/',
         }, {
-            'locator': (By.CSS_SELECTOR, '.other-actions li:nth-child(1) a'),
-            'url_suffix': 'Give-Now?source=mozillaorg&ref=volunteer_getinvolvedpage201410&utm_campaign=volunteer_getinvolvedpage201410&utm_source=mozillaorg&utm_medium=referral',
-        }, {
             'locator': (By.CSS_SELECTOR, '.other-actions li:nth-child(2) a'),
             'url_suffix': 'firefox/',
         }, {
