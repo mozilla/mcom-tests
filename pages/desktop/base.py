@@ -48,9 +48,6 @@ class Base(Page):
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(2) >a'),
                 'url_suffix': '/about/partnerships/',
             }, {
-                'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(3) >a'),
-                'url_suffix': ('//donate.mozilla.org/'),
-            }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(4) >a'),
                 'url_suffix': '/contribute/friends/',
             }, {
