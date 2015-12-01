@@ -49,9 +49,7 @@ class Base(Page):
                 'url_suffix': '/about/partnerships/',
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(3) >a'),
-                'url_suffix': ('//donate.mozilla.org/?presets=100,50,25,15'
-                               '&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015'
-                               '&utm_source=mozilla.org&utm_medium=referral&utm_content=footer'),
+                'url_suffix': ('//donate.mozilla.org/'),
             }, {
                 'locator': (By.CSS_SELECTOR, 'ul.links-join > li:nth-of-type(4) >a'),
                 'url_suffix': '/contribute/friends/',
