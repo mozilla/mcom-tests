@@ -7,47 +7,9 @@ from selenium.webdriver.common.by import By
 from pages.desktop.base import Base
 
 
-class Contact(Base):
-
-    _url = '{base_url}/{locale}/contact'
-
-    _spaces_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=spaces]')
-    _contact_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=contact]')
-    _communities_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=communities]')
-    _spaces_tab_link_locator = (By.CSS_SELECTOR,
-                                '#page-content > .category-tabs > li[data-id=spaces] > a')
-    _communities_tab_link_locator = (By.CSS_SELECTOR,
-                                     '#page-content > .category-tabs > li[data-id=communities] > a')
-
-    @property
-    def contact_tab(self):
-        return self.selenium.find_element(*self._contact_tab_locator)
-
-    @property
-    def spaces_tab(self):
-        return self.selenium.find_element(*self._spaces_tab_locator)
-
-    @property
-    def communities_tab(self):
-        return self.selenium.find_element(*self._communities_tab_locator)
-
-    def click_spaces_tab(self):
-        spaces_tab_link = self.selenium.find_element(*self._spaces_tab_link_locator)
-        spaces_tab_link.click()
-        return Spaces(self.base_url, self.selenium).wait_for_page_to_load()
-
-    def click_communities_tab(self):
-        communities_tab_link = self.selenium.find_element(*self._communities_tab_link_locator)
-        communities_tab_link.click()
-        return Communities(self.base_url, self.selenium).wait_for_page_to_load()
-
-
-class Spaces(Contact):
+class Spaces(Base):
 
     _url = '{base_url}/{locale}/contact/spaces'
-
-    _spaces_list_locator = (By.ID, 'nav-spaces')
-    _spaces_marker_locator = (By.CSS_SELECTOR, '#map .leaflet-marker-pane > .leaflet-marker-icon')
 
     spaces_nav_links_list = [
         {
@@ -89,90 +51,10 @@ class Spaces(Contact):
         }
     ]
 
-    @property
-    def spaces_markers(self):
-        return self.selenium.find_elements(*self._spaces_marker_locator)
 
-    @property
-    def spaces_links(self):
-        return [self.selenium.find_element(*link.get('locator'))
-                for link in self.spaces_nav_links_list]
-
-    @property
-    def spaces_list(self):
-        return self.selenium.find_element(*self._spaces_list_locator)
-
-
-class Communities(Contact):
+class Communities(Base):
 
     _url = '{base_url}/{locale}/contact/communities'
-
-    _region_list_locator = (By.ID, 'nav-communities')
-    _region_legend_locator = (By.CSS_SELECTOR, '#map > ul')
-    _communities_link_locator = (By.CSS_SELECTOR,
-                                 '#nav-communities > ul > .hasmenu > .submenu > li > a')
-
-    def click_north_america(self):
-        self.selenium.find_element(By.CSS_SELECTOR,
-                                   '#nav-communities > ul > li[data-id=north-america] > a').click()
-
-    def click_latin_america(self):
-        self.selenium.find_element(By.CSS_SELECTOR,
-                                   '#nav-communities > ul > li[data-id=latin-america] > a').click()
-
-    def click_europe(self):
-        self.selenium.find_element(By.CSS_SELECTOR,
-                                   '#nav-communities > ul > li[data-id=europe] > a').click()
-
-    def click_asia_south_pacific(self):
-        self.selenium.find_element(By.CSS_SELECTOR,
-                                   '#nav-communities > ul > li[data-id=asia] > a').click()
-
-    def click_africa_middle_east(self):
-        self.selenium.find_element(By.CSS_SELECTOR,
-                                   '#nav-communities > ul > li[data-id=africa] > a').click()
-
-    def click_balkans(self):
-        self.selenium.find_element(By.CSS_SELECTOR,
-                                   '#nav-communities > ul > li[data-id=balkans] > a').click()
-
-    @property
-    def north_america_communities(self):
-        return self.selenium.find_elements(By.CSS_SELECTOR,
-                                           '#nav-communities > ul > li[data-id=north-america] > .submenu > li')
-
-    @property
-    def latin_america_communities(self):
-        return self.selenium.find_elements(By.CSS_SELECTOR,
-                                           '#nav-communities > ul > li[data-id=latin-america] > .submenu > li')
-
-    @property
-    def europe_communities(self):
-        return self.selenium.find_elements(By.CSS_SELECTOR,
-                                           '#nav-communities > ul > li[data-id=europe] > .submenu > li')
-
-    @property
-    def asia_south_pacific_communities(self):
-        return self.selenium.find_elements(By.CSS_SELECTOR,
-                                           '#nav-communities > ul > li[data-id=asia] > .submenu > li')
-
-    @property
-    def africa_middle_east_communities(self):
-        return self.selenium.find_elements(By.CSS_SELECTOR,
-                                           '#nav-communities > ul > li[data-id=africa] > .submenu > li')
-
-    @property
-    def balkans_communities(self):
-        return self.selenium.find_elements(By.CSS_SELECTOR,
-                                           '#nav-communities > ul > li[data-id=balkans] > .submenu > li')
-
-    @property
-    def region_list(self):
-        return self.selenium.find_element(*self._region_list_locator)
-
-    @property
-    def region_legend(self):
-        return self.selenium.find_element(*self._region_legend_locator)
 
     region_nav_links_list = [
         {
