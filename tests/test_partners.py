@@ -18,14 +18,3 @@ class TestPartners(object):
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
-
-    @pytest.mark.nondestructive
-    def test_overview_section_image(self, base_url, selenium):
-        page = Partners(base_url, selenium).open()
-        assert page.is_phone_overlay_visible
-
-    @pytest.mark.nondestructive
-    def test_os_section(self, base_url, selenium):
-        page = Partners(base_url, selenium).open()
-        page.click_os_menu()
-        page.click_operators_button()
