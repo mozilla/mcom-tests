@@ -24,10 +24,6 @@ class TestDoNotTrack:
     @pytest.mark.nondestructive
     def test_status_section(self, base_url, selenium):
         page = DoNotTrack(base_url, selenium).open()
-        assert page.is_status_wrapper_visible
-        assert page.is_status_text_visible
-        assert page.is_enable_dnt_image_visible
-        assert page.is_enable_dnt_text_visible
         bad_links = []
         for link in page.tracking_protection_links_list:
             url = page.link_destination(link.get('locator'))
