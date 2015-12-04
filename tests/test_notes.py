@@ -6,15 +6,8 @@ from bs4 import BeautifulSoup
 import pytest
 import requests
 
-from pages.desktop.notes import Notes
-
 
 class TestNotes:
-
-    @pytest.mark.nondestructive
-    def test_that_page_is_reachable(self, base_url, selenium):
-        page = Notes(base_url, selenium).open()
-        assert 'Notes' in page.firefox_notes_header_text
 
     @pytest.mark.link_check
     @pytest.mark.nondestructive
