@@ -31,11 +31,6 @@ class Mission(Base):
     ]
 
     _video_sources_locator = (By.CSS_SELECTOR, 'video source')
-    _video_overlay_locator = (By.CSS_SELECTOR, '.mozilla-video-control-overlay')
-
-    @property
-    def is_video_overlay_visible(self):
-        return self.is_element_visible(*self._video_overlay_locator)
 
     @property
     def video_sources_list(self):

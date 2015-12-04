@@ -31,14 +31,3 @@ class TestNightlyFirstRun:
             if response_code != requests.codes.ok:
                 bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
         assert [] == bad_urls
-
-    @pytest.mark.nondestructive
-    def test_are_sections_visible(self, base_url, selenium):
-        page = NightlyFirstRun(base_url, selenium).open()
-        assert page.is_test_section_visible
-        assert page.is_code_section_visible
-        assert page.is_localize_section_visible
-        assert page.is_nightly_badge_visible
-        assert page.is_code_button_visible
-        assert page.is_test_button_visible
-        assert page.is_localize_button_visible
