@@ -15,9 +15,7 @@ class TestNotes:
         bad_urls = []
         r = requests.get('{0}/en-US/firefox/notes'.format(base_url))
         for link in BeautifulSoup(r.content, 'html.parser').findAll('a'):
-            # see both blog.mozilla.com and blog.mozilla.org domains
-            if 'blog.mozilla.' in link['href']:
-                # skip for issue 408: blog.m.o links not working via jenkins
+            if 'href' not in link or 'blog.mozilla.' in link['href']:
                 continue
             url = self.make_absolute(link['href'], base_url)
             r = requests.get(url, verify=False, allow_redirects=True)
