@@ -14,9 +14,6 @@ class Partnerships(Base):
 
     section_links_list = [
         {
-            'locator': (By.CSS_SELECTOR, '#firefox > ul > li:nth-of-type(1) > a'),
-            'url_suffix': '/en-US/firefox/tiles/',
-        }, {
             'locator': (By.CSS_SELECTOR, '#firefox > ul > li:nth-of-type(2) > a'),
             'url_suffix': '/en-US/about/partnerships/distribution/',
         }, {
