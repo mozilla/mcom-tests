@@ -14,7 +14,7 @@ class Partnerships(Base):
 
     section_links_list = [
         {
-            'locator': (By.CSS_SELECTOR, '#firefox > ul > li:nth-of-type(2) > a'),
+            'locator': (By.CSS_SELECTOR, '#firefox > ul > li:nth-of-type(1) > a'),
             'url_suffix': '/en-US/about/partnerships/distribution/',
         }, {
             'locator': (By.CSS_SELECTOR, '#marketplace > p > a'),
