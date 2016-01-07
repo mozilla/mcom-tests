@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-import requests
 
 from pages.desktop.partnerships import Partnerships
 
@@ -19,18 +18,6 @@ class TestPartnerships:
             if not url.endswith(link.get('url_suffix')):
                 bad_links.append('%s does not end with %s' % (url, link.get('url_suffix')))
         assert [] == bad_links
-
-    @pytest.mark.link_check
-    @pytest.mark.nondestructive
-    def test_section_link_urls_are_valid(self, base_url, selenium):
-        page = Partnerships(base_url, selenium).open()
-        bad_urls = []
-        for link in page.section_links_list:
-            url = page.link_destination(link.get('locator'))
-            response_code = page.get_response_code(url)
-            if response_code != requests.codes.ok:
-                bad_urls.append('%s is not a valid url - status code: %s.' % (url, response_code))
-        assert [] == bad_urls
 
     @pytest.mark.nondestructive
     def test_image_srcs_are_correct(self, base_url, selenium):
