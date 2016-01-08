@@ -12,50 +12,6 @@ class Partnerships(Base):
 
     _url = '{base_url}/{locale}/about/partnerships'
 
-    section_links_list = [
-        {
-            'locator': (By.CSS_SELECTOR, '#firefox > ul > li:nth-of-type(1) > a'),
-            'url_suffix': '/en-US/about/partnerships/distribution/',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#marketplace > p > a'),
-            'url_suffix': 'marketplace.firefox.com/developers/',
-        }
-    ]
-
-    images_list = [
-        {
-            'locator': (By.CSS_SELECTOR, '#firefox > img:nth-of-type(1)'),
-            'img_name_contains': 'banner-firefox',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#firefox > img:nth-of-type(2)'),
-            'img_name_contains': 'icon-firefox',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#android > img:nth-of-type(1)'),
-            'img_name_contains': 'banner-android',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#android > img:nth-of-type(2)'),
-            'img_name_contains': 'icon-android',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#marketplace > img:nth-of-type(1)'),
-            'img_name_contains': 'banner-marketplace',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#marketplace > img:nth-of-type(2)'),
-            'img_name_contains': 'icon-marketplace',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#firefoxos > img:nth-of-type(1)'),
-            'img_name_contains': 'banner-firefoxos',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#firefoxos > img:nth-of-type(2)'),
-            'img_name_contains': 'icon-firefox',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#cobrand > img:nth-of-type(1)'),
-            'img_name_contains': 'banner-cobrand',
-        }, {
-            'locator': (By.CSS_SELECTOR, '#cobrand > img:nth-of-type(2)'),
-            'img_name_contains': 'icon-cobrand',
-        }
-    ]
-
     @property
     def partner_form(self):
         return self.PartnerForm(self.base_url, self.selenium)
@@ -82,15 +38,20 @@ class Partnerships(Base):
 
         @property
         def fields_list(self):
-            return [
-                self._first_name_textbox_locator, self._last_name_textbox_locator,
-                self._title_textbox_locator, self._company_textbox_locator,
-                self._website_textbox_locator, self._email_textbox_locator,
-                self._phone_textbox_locator, self._mobile_textbox_locator,
-                self._address_textbox_locator, self._city_textbox_locator,
-                self._country_textbox_locator, self._zip_textbox_locator,
-                self._interest_field_locator, self._description_textbox_locator
-            ]
+            return [self._first_name_textbox_locator,
+                    self._last_name_textbox_locator,
+                    self._title_textbox_locator,
+                    self._company_textbox_locator,
+                    self._website_textbox_locator,
+                    self._email_textbox_locator,
+                    self._phone_textbox_locator,
+                    self._mobile_textbox_locator,
+                    self._address_textbox_locator,
+                    self._city_textbox_locator,
+                    self._country_textbox_locator,
+                    self._zip_textbox_locator,
+                    self._interest_field_locator,
+                    self._description_textbox_locator]
 
         @property
         def is_title_visible(self):
