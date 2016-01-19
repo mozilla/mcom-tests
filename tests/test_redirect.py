@@ -12,7 +12,6 @@ import requests
 @pytest.mark.parametrize('origin, destination, locale', [
     ('{base_url}/', '{base_url}/{locale}/', 'en-US'),
     ('{base_url}/firefox/', '{base_url}/{locale}/firefox/new/', 'en-US'),
-    ('{base_url}/fennec/', '{base_url}/{locale}/firefox/partners/', 'en-US'),
     ('{base_url}/firefox/mobile/', '{base_url}/{locale}/firefox/android/', 'en-US'),
     ('{base_url}/aurora/', '{base_url}/{locale}/firefox/channel/', 'en-US'),
     ('{base_url}/beta/', '{base_url}/{locale}/firefox/channel/', 'en-US'),
@@ -35,7 +34,6 @@ import requests
     ('{base_url}/firefox/all-older.html', '{base_url}/{locale}/firefox/new/', 'en-US'),
     ('{base_url}/projects/firefox/3.6.13/firstrun/', '{base_url}/{locale}/firefox/new/', 'en-US'),
     ('{base_url}/projects/firefox/3.6.13/whatsnew/', '{base_url}/{locale}/firefox/new/', 'en-US'),
-    ('{base_url}/b2g/', '{base_url}/{locale}/firefox/partners/', 'en-US'),
     ('{base_url}/metrofirefox/', '{base_url}/{locale}/firefox/new/', 'en-US'),
     ('{base_url}/newsletter/', '{base_url}/{locale}/newsletter/', 'en-US'),
     ('{base_url}/newsletter/', '{base_url}/{locale}/newsletter/', 'pl'),
