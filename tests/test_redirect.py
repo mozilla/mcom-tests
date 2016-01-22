@@ -38,7 +38,6 @@ import requests
     ('{base_url}/newsletter/', '{base_url}/{locale}/newsletter/', 'en-US'),
     ('{base_url}/newsletter/', '{base_url}/{locale}/newsletter/', 'pl'),
     ('{base_url}/firefox/mobile/faq/?os=firefox-os', '{base_url}/{locale}/firefox/os/faq/', 'en-US'),
-    ('{base_url}/firefox/accountmanager/', '{base_url}/{locale}/persona/', 'en-US'),
     ('{base_url}/apps/', 'https://marketplace.firefox.com/', 'en-US'),
     ('{base_url}/firefox/technology/', 'https://developer.mozilla.org/{locale}/docs/Tools', 'en-US'),
     ('{base_url}/firefox/performance/', '{base_url}/{locale}/firefox/desktop/fast/', 'en-US'),
